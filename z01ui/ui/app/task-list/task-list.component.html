@@ -1,0 +1,10 @@
+<div *ngIf="!projectTasks">
+    <h2>You dont have any tasks assigned to you</h2>
+</div>
+
+<div class="list-group">
+    <a class="list-group-item list-group-item-action projects-navlink" *ngFor="let item of projectTasks" uiSrefActive="active" uiSref="{{linkToState}}" [uiParams]="{ taskId: item.id }">
+        <b>{{item.title}}</b>
+    </a>
+</div>
+

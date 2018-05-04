@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+  ng-projects:
+    image: 732040347412.dkr.ecr.us-east-1.amazonaws.com/projects-ui:current
+    networks:
+      - reverse-proxy
+    container_name: ng-projects
+    hostname: projects-dev.ncats.nih.gov
+    expose:
+      - 8000
+    environment:
+      VIRTUAL_HOST: projects-dev.ncats.nih.gov
+      VIRTUAL_PORT: 8000
+    volumes:
+      - ${WORKSPACE}/app.conf:/var/www/app/app.conf
+
+networks:
+  reverse-proxy:
+    external:
+      name: reverse-proxy

@@ -1,0 +1,24 @@
+<form #myForm="ngForm">
+    <div class="form-group row">
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 font-weight-bold  col-form-label" for="name">Group Title<span>*</span></label>
+        <div class="col-md-10">
+            <input required name="title" type="text" class="form-control" id="name" placeholder="Group Title"
+                   [(ngModel)]="data.title">
+        </div>
+    </div>
+
+    <hr>
+    <i [hidden]="!isProcessing" class="fa fa-spinner load-animate"></i>
+    <div [hidden]="isProcessing" class="form-row">
+        <button class="btn btn-primary" *ngIf="!isEditMode" [disabled]="myForm.invalid" (click)="submit()">Add
+            Group
+        </button>&nbsp;&nbsp;
+        <button class="btn btn-primary" *ngIf="isEditMode" [disabled]="myForm.invalid" (click)="update()">Update
+            Group
+        </button>&nbsp;&nbsp;
+        <button class="btn btn-primary" (click)="goBack()">Cancel</button>&nbsp;&nbsp;
+        <h6 *ngIf="error" class="text-danger">{{error}}</h6>
+    </div>
+</form>

@@ -1,0 +1,19 @@
+{
+  "menu": [
+    {
+      "icon": "fa fa-list fa-2x",
+      "name": "PROJECTS",
+      "link": "projects"
+    },
+    {
+      "icon": "fa fa-star fa-2x",
+      "link": "groups",
+      "name": "GROUPS"
+    },
+    {
+      "icon": "fa fa-tasks fa-2x",
+      "link": "tasks",
+      "name": "MY TASKS"
+    }
+  ]
+}

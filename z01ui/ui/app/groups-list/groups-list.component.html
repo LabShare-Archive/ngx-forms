@@ -1,0 +1,32 @@
+<div class="form-group row pt-3">
+    <div class="col-sm-8">
+        <input type="text" [(ngModel)]="fltr" class="form-control" name="fltr" id="filter" placeholder="Filter">
+    </div>
+
+    <div class="col-sm-2">
+        <a uiSref="add-group" title="Add New Group">
+            <i class="fa fa-plus fa-2x"></i>
+        </a>
+    </div>
+</div>
+<table class="table">
+    <tbody>
+        <ng-container *ngFor="let item of groups | filter:fltr">
+            <tr>
+                <td>
+                    <b>{{item.title}}</b>
+                </td>
+                <td width="5%">
+                    <a title="Edit" uiSref="edit-group" [uiParams]="{ groupId: item.id }">
+                        <i class="fa fa-pencil fa-2x text-primary"></i>
+                    </a>
+                </td>
+                <td width="5%">
+                    <a title="Delete" (click)="removeOne(item.id)" class="text-danger link">
+                        <i class="fa fa-times fa-2x"></i>
+                    </a>
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

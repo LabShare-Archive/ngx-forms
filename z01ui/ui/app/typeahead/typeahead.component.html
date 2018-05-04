@@ -1,0 +1,6 @@
+<ng-template #rt let-r="result" let-t="term">
+    {{r[key]}}
+</ng-template>
+
+<input id="typeahead-template" type="text" class="form-control" [(ngModel)]="emitModel" (ngModelChange)="change($event)"
+    [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" />

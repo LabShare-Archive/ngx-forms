@@ -1,0 +1,30 @@
+<ngb-carousel>
+  <ng-template ngbSlide>
+    <img src="{{imagesArray.slide1}}" alt="first slide">
+  </ng-template>
+  <ng-template ngbSlide>
+    <img src="{{imagesArray.slide2}}" alt="second slide">
+  </ng-template>
+  <ng-template ngbSlide>
+    <img src="{{imagesArray.slide3}}" alt="third slide">
+  </ng-template>
+</ngb-carousel>
+
+<style>
+
+  ngb-carousel {
+    background-color: black;
+  }
+
+  ng-template {
+    align-items: center;
+  }
+
+  img {
+    width: 50%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 25%;
+  }
+
+</style>

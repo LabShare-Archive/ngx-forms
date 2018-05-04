@@ -1,0 +1,62 @@
+<div *ngIf="project">
+    <div class="large-links">
+        <label class="details-title">{{project.title}}</label>
+        <span class="pull-right">
+            <a title="Edit" uiSref="edit-project" [uiParams]="{ projectId: project.id }">
+                <i class="fa fa-pencil text-primary"></i>
+            </a>
+        </span>
+    </div>
+    <br/>
+
+    <h6>Name</h6>
+    <p>{{project.activityName}}</p>
+
+    <h6>Group</h6>
+    <p>{{project.dpiDivision}}</p>
+
+    <h6>Type</h6>
+    <p>{{project.activityType}}</p>
+
+    <h6>Human Subject Reseach</h6>
+    <p>{{project.humanSubjectResear}}</p>
+
+    <h6>Principal Investigator</h6>
+    <p>{{project.principleInvestigator}}</p>
+    
+    <hr>
+    <h6>Intramural Collaborators</h6>
+    <div [innerHTML]="project.intramuralCollaborators"></div>
+
+    <hr>
+    <h6>Goals and Objectives</h6>
+    <div [innerHTML]="project.goalsAndObjectives"></div>
+
+    <hr>
+    <h6>Summary</h6>
+    <div [innerHTML]="project.summaryOfActivitie"></div>
+
+    <hr>
+    <h6>Public Health Impact</h6>
+    <div [innerHTML]="project.publicHealthImpact"></div>
+    
+    <hr>
+    <h6>Summary</h6>
+    <div [innerHTML]="project.summaryOfActivitie"></div>
+
+    <hr>
+    <h6>Stuff List</h6>
+    <div [innerHTML]="project.labStaffList"></div>
+
+    <hr>
+    <h6>NIDB Link</h6>
+    <a target="blank" href="{{project.nidbLink}}">{{project.nidbLink}}</a>
+        
+    <hr>
+    <h6>Keywords</h6>
+    <span *ngFor="let word of project.keywordsArr">
+        <span class="badge badge-primary" aria-disabled="true">{{word}}</span>
+    </span>
+ 
+    <hr>
+</div>
