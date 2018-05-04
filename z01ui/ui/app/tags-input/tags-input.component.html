@@ -1,8 +1,0 @@
-<tag-input [(ngModel)]="emitModel" (onAdd)="change($event)" (onSelect)="change($event)" (onRemove)="change($event)" [onlyFromAutocomplete]="true" [maxItems]="maxItems">
-    <tag-input-dropdown [autocompleteObservable]='requestAutocompleteItems' theme='bootstrap' [identifyBy]="identifyBy" [displayBy]="key"
-        [focusFirstElement]="true">
-        <ng-template let-item="item" let-index="index">
-            {{ item[key] }}
-        </ng-template>
-    </tag-input-dropdown>
-</tag-input>
