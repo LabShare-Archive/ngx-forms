@@ -2,7 +2,6 @@
     <label class="col-md-2 font-weight-bold col-form-label" for="group">{{config.label}}</label>
     <div class="col-md-10">
         <select [formControlName]="config.name" class="form-control" >
-            <option value="">{{config.placeholder}}</option>
             <option *ngFor="let option of config.options">{{option}}</option>
         </select>
     </div>

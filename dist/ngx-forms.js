@@ -405,7 +405,7 @@ module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <lab
 /* 14 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\" for=\"group\">{{config.label}}</label>\n    <div class=\"col-md-10\">\n        <select [formControlName]=\"config.name\" class=\"form-control\" >\n            <option value=\"\">{{config.placeholder}}</option>\n            <option *ngFor=\"let option of config.options\">{{option}}</option>\n        </select>\n    </div>\n</div>";
+module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\" for=\"group\">{{config.label}}</label>\n    <div class=\"col-md-10\">\n        <select [formControlName]=\"config.name\" class=\"form-control\" >\n            <option *ngFor=\"let option of config.options\">{{option}}</option>\n        </select>\n    </div>\n</div>";
 
 /***/ }),
 /* 15 */
