@@ -10,6 +10,7 @@ import { FormInputComponent } from './app/components/form-input/form-input.compo
 import { FormSelectComponent } from './app/components/form-select/form-select.component';
 import { FormTextareaComponent } from './app/components/form-textarea/form-textarea.component'
 import { FormTextEditorComponent } from './app/components/form-text-editor/form-text-editor.component';
+import { FormInputHidden } from './app/components/form-hidden/form-hidden.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { FormTextEditorComponent } from './app/components/form-text-editor/form-
     QuillModule
   ],
   declarations: [
+    FormInputHidden,
     FormTextEditorComponent,
     DynamicFieldDirective,
     DynamicFormComponent,
@@ -30,6 +32,7 @@ import { FormTextEditorComponent } from './app/components/form-text-editor/form-
     DynamicFormComponent
   ],
   entryComponents: [
+    FormInputHidden,
     FormButtonComponent,
     FormInputComponent,
     FormSelectComponent,

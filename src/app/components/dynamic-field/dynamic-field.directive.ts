@@ -9,13 +9,15 @@ import { FormTextEditorComponent } from '../form-text-editor/form-text-editor.co
 import { Field } from '../../models/field.interface';
 import { FieldConfig } from '../../models/field-config.interface';
 import { FormTextareaComponent } from '../form-textarea/form-textarea.component';
+import { FormInputHidden } from '../form-hidden/form-hidden.component';
 
 const components: { [type: string]: Type<Field> } = {
     button: FormButtonComponent,
     text: FormInputComponent,
     select: FormSelectComponent,
     editor: FormTextEditorComponent,
-    textarea: FormTextareaComponent
+    textarea: FormTextareaComponent,
+    hidden: FormInputHidden
 };
 
 @Directive({
