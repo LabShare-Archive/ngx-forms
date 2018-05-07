@@ -444,7 +444,7 @@ module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <lab
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\" for=\"group\">{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10\">\n        <select [formControlName]=\"config.name\" class=\"form-control\" >\n            <option *ngFor=\"let option of config.options\">{{option}}</option>\n        </select>\n    </div>\n</div>";
+module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\" for=\"group\">{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10\">\n        <select [formControlName]=\"config.name\" class=\"form-control\" >\n            <option *ngFor=\"let option of config.options\" [ngValue]=\"option\">{{option}}</option>\n        </select>\n    </div>\n</div>";
 
 /***/ }),
 /* 17 */
@@ -843,7 +843,6 @@ var DynamicFormComponent = /** @class */ (function () {
     function DynamicFormComponent(fb) {
         this.fb = fb;
         this.config = [];
-        this.submit = new core_1.EventEmitter();
     }
     Object.defineProperty(DynamicFormComponent.prototype, "controls", {
         get: function () { return this.config.filter(function (_a) {
@@ -898,7 +897,6 @@ var DynamicFormComponent = /** @class */ (function () {
         return group;
     };
     DynamicFormComponent.prototype.createControl = function (config) {
-        // const { disabled, validation, value } = config;
         var disabled = config.disabled, required = config.required, minLength = config.minLength, maxLength = config.maxLength, email = config.email, min = config.min, max = config.max, pattern = config.pattern, nullValidator = config.nullValidator, value = config.value;
         var validators = [];
         if (required != undefined && required) {
@@ -927,11 +925,6 @@ var DynamicFormComponent = /** @class */ (function () {
         }
         return this.fb.control({ disabled: disabled, value: value }, validators);
     };
-    DynamicFormComponent.prototype.handleSubmit = function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.submit.emit(this.value);
-    };
     DynamicFormComponent.prototype.setDisabled = function (name, disable) {
         if (this.form.controls[name]) {
             var method = disable ? 'disable' : 'enable';
@@ -956,20 +949,16 @@ var DynamicFormComponent = /** @class */ (function () {
         core_1.Input(),
         __metadata("design:type", Object)
     ], DynamicFormComponent.prototype, "model", void 0);
-    __decorate([
-        core_1.Output(),
-        __metadata("design:type", typeof (_a = typeof core_1.EventEmitter !== "undefined" && core_1.EventEmitter) === "function" && _a || Object)
-    ], DynamicFormComponent.prototype, "submit", void 0);
     DynamicFormComponent = __decorate([
         core_1.Component({
             exportAs: 'dynamicForm',
             selector: 'dynamic-form',
             template: __webpack_require__(26)
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof forms_1.FormBuilder !== "undefined" && forms_1.FormBuilder) === "function" && _b || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof forms_1.FormBuilder !== "undefined" && forms_1.FormBuilder) === "function" && _a || Object])
     ], DynamicFormComponent);
     return DynamicFormComponent;
-    var _a, _b;
+    var _a;
 }());
 exports.DynamicFormComponent = DynamicFormComponent;
 
@@ -978,7 +967,7 @@ exports.DynamicFormComponent = DynamicFormComponent;
 /* 26 */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"dynamic-form\" [formGroup]=\"form\" (submit)=\"handleSubmit($event)\">\n    <ng-container *ngFor=\"let field of config;\" dynamicField [config]=\"field\" [group]=\"form\">\n    </ng-container>\n</form>";
+module.exports = "<!-- <form class=\"dynamic-form\" [formGroup]=\"form\" (submit)=\"handleSubmit($event)\"> -->\n<form class=\"dynamic-form\" [formGroup]=\"form\">\n    <ng-container *ngFor=\"let field of config;\" dynamicField [config]=\"field\" [group]=\"form\">\n    </ng-container>\n</form>";
 
 /***/ })
 /******/ ]);

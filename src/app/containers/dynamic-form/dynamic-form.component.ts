@@ -13,7 +13,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
     @Input() config: FieldConfig[] = [];
     @Input() model: any;
 
-    @Output() submit: EventEmitter<any> = new EventEmitter<any>();
+    // @Output() submit: EventEmitter<any> = new EventEmitter<any>();
 
     form: FormGroup;
 
@@ -58,7 +58,6 @@ export class DynamicFormComponent implements OnChanges, OnInit {
     }
 
     createControl(config: FieldConfig) {
-        // const { disabled, validation, value } = config;
         const { disabled, required, minLength, maxLength, email, min, max, pattern, nullValidator, value } = config;
         let validators = [];
         if (required != undefined && required) { validators.push(Validators.required); }
@@ -69,14 +68,10 @@ export class DynamicFormComponent implements OnChanges, OnInit {
         if (max != undefined) { validators.push(Validators.max(max)); }
         if (pattern != undefined) { validators.push(Validators.pattern(pattern)); }
         if (nullValidator != undefined) { validators.push(Validators.nullValidator); }
+
         return this.fb.control({ disabled, value }, validators);
     }
 
-    handleSubmit(event: Event) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.submit.emit(this.value);
-    }
 
     setDisabled(name: string, disable: boolean) {
         if (this.form.controls[name]) {
