@@ -105,7 +105,7 @@ var FormButtonComponent = /** @class */ (function () {
     FormButtonComponent = __decorate([
         core_1.Component({
             selector: 'form-button',
-            template: "\n    <div \n      class=\"dynamic-field form-button\"\n      [formGroup]=\"group\">\n      <button\n        [disabled]=\"config.disabled\"\n        type=\"submit\">\n        {{ config.label }}\n      </button>\n    </div>\n  "
+            template: __webpack_require__(14)
         })
     ], FormButtonComponent);
     return FormButtonComponent;
@@ -133,7 +133,7 @@ var FormInputComponent = /** @class */ (function () {
     FormInputComponent = __decorate([
         core_1.Component({
             selector: 'form-input',
-            template: __webpack_require__(14)
+            template: __webpack_require__(15)
         })
     ], FormInputComponent);
     return FormInputComponent;
@@ -161,7 +161,7 @@ var FormSelectComponent = /** @class */ (function () {
     FormSelectComponent = __decorate([
         core_1.Component({
             selector: 'form-select',
-            template: __webpack_require__(15)
+            template: __webpack_require__(16)
         })
     ], FormSelectComponent);
     return FormSelectComponent;
@@ -192,8 +192,8 @@ var FormTextEditorComponent = /** @class */ (function () {
     FormTextEditorComponent = __decorate([
         core_1.Component({
             selector: 'form-text-editor',
-            template: __webpack_require__(16),
-            styles: [__webpack_require__(17).toString()]
+            template: __webpack_require__(17),
+            styles: [__webpack_require__(18).toString()]
         })
     ], FormTextEditorComponent);
     return FormTextEditorComponent;
@@ -221,7 +221,7 @@ var FormTextareaComponent = /** @class */ (function () {
     FormTextareaComponent = __decorate([
         core_1.Component({
             selector: 'form-textarea',
-            template: __webpack_require__(22)
+            template: __webpack_require__(23)
         })
     ], FormTextareaComponent);
     return FormTextareaComponent;
@@ -249,7 +249,7 @@ var FormInputHidden = /** @class */ (function () {
     FormInputHidden = __decorate([
         core_1.Component({
             selector: 'form-hidden',
-            template: __webpack_require__(23)
+            template: __webpack_require__(24)
         })
     ], FormInputHidden);
     return FormInputHidden;
@@ -297,7 +297,7 @@ var common_1 = __webpack_require__(11);
 var forms_1 = __webpack_require__(1);
 var ngx_quill_1 = __webpack_require__(12);
 var dynamic_field_directive_1 = __webpack_require__(13);
-var dynamic_form_component_1 = __webpack_require__(24);
+var dynamic_form_component_1 = __webpack_require__(25);
 var form_button_component_1 = __webpack_require__(2);
 var form_input_component_1 = __webpack_require__(3);
 var form_select_component_1 = __webpack_require__(4);
@@ -376,7 +376,7 @@ var form_button_component_1 = __webpack_require__(2);
 var form_input_component_1 = __webpack_require__(3);
 var form_select_component_1 = __webpack_require__(4);
 var form_text_editor_component_1 = __webpack_require__(5);
-var field_config_interface_1 = __webpack_require__(21);
+var field_config_interface_1 = __webpack_require__(22);
 var form_textarea_component_1 = __webpack_require__(6);
 var form_hidden_component_1 = __webpack_require__(7);
 var components = {
@@ -432,31 +432,37 @@ exports.DynamicFieldDirective = DynamicFieldDirective;
 /* 14 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold  col-form-label\" for=\"name\">{{config.label}}</label>\n    <div class=\"col-md-10\">\n        <input type=\"text\" class=\"form-control\" [attr.placeholder]=\"config.placeholder\" [formControlName]=\"config.name\">\n    </div>\n</div>";
+module.exports = "<ng-container [formGroup]=\"group\">\n    <button class=\"btn btn-primary\" [disabled]=\"config.disabled\" (click)=\"submit()\">{{config.label}}</button>&nbsp;&nbsp;\n</ng-container>";
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\" for=\"group\">{{config.label}}</label>\n    <div class=\"col-md-10\">\n        <select [formControlName]=\"config.name\" class=\"form-control\" >\n            <option *ngFor=\"let option of config.options\">{{option}}</option>\n        </select>\n    </div>\n</div>";
+module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold  col-form-label\" for=\"name\">{{config.label}}</label>\n    <div class=\"col-md-10\">\n        <input type=\"text\" class=\"form-control\" [attr.placeholder]=\"config.placeholder\" [formControlName]=\"config.name\">\n    </div>\n</div>";
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\" for=\"group\" required>{{config.label}}</label>\n    <div class=\"col-md-10 editor-container\">\n        <quill-editor [modules]=\"quillToolbar\" [formControlName]=\"config.name\"></quill-editor>\n    </div>\n</div>";
+module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\" for=\"group\">{{config.label}}</label>\n    <div class=\"col-md-10\">\n        <select [formControlName]=\"config.name\" class=\"form-control\" >\n            <option *ngFor=\"let option of config.options\">{{option}}</option>\n        </select>\n    </div>\n</div>";
 
 /***/ }),
 /* 17 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\" for=\"group\" required>{{config.label}}</label>\n    <div class=\"col-md-10 editor-container\">\n        <quill-editor [modules]=\"quillToolbar\" [formControlName]=\"config.name\"></quill-editor>\n    </div>\n</div>";
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(18);
+var content = __webpack_require__(19);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(20)(content, {});
+var update = __webpack_require__(21)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -473,10 +479,10 @@ if(false) {
 }
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(19)();
+exports = module.exports = __webpack_require__(20)();
 // imports
 
 
@@ -487,7 +493,7 @@ exports.push([module.i, "form-text-editor .editor-container {\n  margin-bottom: 
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 /*
@@ -543,7 +549,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 /*
@@ -795,7 +801,7 @@ function updateLink(linkElement, obj) {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -804,19 +810,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold  col-form-label\" for=\"name\">{{config.label}}</label>\n    <div class=\"col-md-10\">\n        <textarea class=\"form-control\" rows=\"3\" [attr.placeholder]=\"config.placeholder\" [formControlName]=\"config.name\"></textarea>\n    </div>\n</div>";
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container [formGroup]=\"group\" >\n<input type=\"hidden\" class=\"form-control\" [formControlName]=\"config.name\">\n</ng-container>";
+module.exports = "<ng-container [formGroup]=\"group\">\n    <input type=\"hidden\" class=\"form-control\" [formControlName]=\"config.name\">\n</ng-container>";
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -884,6 +890,7 @@ var DynamicFormComponent = /** @class */ (function () {
                 _this.form.addControl(name, _this.createControl(config));
             });
         }
+        console.log('on change');
     };
     DynamicFormComponent.prototype.createGroup = function () {
         var _this = this;
@@ -932,7 +939,7 @@ var DynamicFormComponent = /** @class */ (function () {
         core_1.Component({
             exportAs: 'dynamicForm',
             selector: 'dynamic-form',
-            template: __webpack_require__(25)
+            template: __webpack_require__(26)
         }),
         __metadata("design:paramtypes", [typeof (_b = typeof forms_1.FormBuilder !== "undefined" && forms_1.FormBuilder) === "function" && _b || Object])
     ], DynamicFormComponent);
@@ -943,7 +950,7 @@ exports.DynamicFormComponent = DynamicFormComponent;
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 module.exports = "<form class=\"dynamic-form\" [formGroup]=\"form\" (submit)=\"handleSubmit($event)\">\n    <ng-container *ngFor=\"let field of config;\" dynamicField [config]=\"field\" [group]=\"form\">\n    </ng-container>\n</form>";

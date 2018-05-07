@@ -49,6 +49,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
                 });
 
         }
+        console.log('on change');
     }
 
     createGroup() {
