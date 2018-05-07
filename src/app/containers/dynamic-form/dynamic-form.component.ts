@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { FieldConfig } from '../../models/field-config.interface';
 
@@ -49,7 +49,6 @@ export class DynamicFormComponent implements OnChanges, OnInit {
                 });
 
         }
-        console.log('on change');
     }
 
     createGroup() {
@@ -59,8 +58,18 @@ export class DynamicFormComponent implements OnChanges, OnInit {
     }
 
     createControl(config: FieldConfig) {
-        const { disabled, validation, value } = config;
-        return this.fb.control({ disabled, value }, validation);
+        // const { disabled, validation, value } = config;
+        const { disabled, required, minLength, maxLength, email, min, max, pattern, nullValidator, value } = config;
+        let validators = [];
+        if (required != undefined && required) { validators.push(Validators.required); }
+        if (minLength != undefined) { validators.push(Validators.minLength(minLength)); }
+        if (maxLength != undefined) { validators.push(Validators.maxLength(maxLength)); }
+        if (email != undefined) { validators.push(Validators.email); }
+        if (min != undefined) { validators.push(Validators.min(min)); }
+        if (max != undefined) { validators.push(Validators.max(max)); }
+        if (pattern != undefined) { validators.push(Validators.pattern(pattern)); }
+        if (nullValidator != undefined) { validators.push(Validators.nullValidator); }
+        return this.fb.control({ disabled, value }, validators);
     }
 
     handleSubmit(event: Event) {

@@ -438,19 +438,19 @@ module.exports = "<ng-container [formGroup]=\"group\">\n    <button class=\"btn 
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold  col-form-label\" for=\"name\">{{config.label}}</label>\n    <div class=\"col-md-10\">\n        <input type=\"text\" class=\"form-control\" [attr.placeholder]=\"config.placeholder\" [formControlName]=\"config.name\">\n    </div>\n</div>";
+module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold  col-form-label\" for=\"name\">{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10\">\n        <input type=\"text\" class=\"form-control\" [attr.placeholder]=\"config.placeholder\" [formControlName]=\"config.name\">\n    </div>\n</div>";
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\" for=\"group\">{{config.label}}</label>\n    <div class=\"col-md-10\">\n        <select [formControlName]=\"config.name\" class=\"form-control\" >\n            <option *ngFor=\"let option of config.options\">{{option}}</option>\n        </select>\n    </div>\n</div>";
+module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\" for=\"group\">{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10\">\n        <select [formControlName]=\"config.name\" class=\"form-control\" >\n            <option *ngFor=\"let option of config.options\">{{option}}</option>\n        </select>\n    </div>\n</div>";
 
 /***/ }),
 /* 17 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\" for=\"group\" required>{{config.label}}</label>\n    <div class=\"col-md-10 editor-container\">\n        <quill-editor [modules]=\"quillToolbar\" [formControlName]=\"config.name\"></quill-editor>\n    </div>\n</div>";
+module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\" for=\"group\" required>{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10 editor-container\">\n        <quill-editor [modules]=\"quillToolbar\" [formControlName]=\"config.name\"></quill-editor>\n    </div>\n</div>";
 
 /***/ }),
 /* 18 */
@@ -813,7 +813,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* 23 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold  col-form-label\" for=\"name\">{{config.label}}</label>\n    <div class=\"col-md-10\">\n        <textarea class=\"form-control\" rows=\"3\" [attr.placeholder]=\"config.placeholder\" [formControlName]=\"config.name\"></textarea>\n    </div>\n</div>";
+module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold  col-form-label\" for=\"name\">{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10\">\n        <textarea class=\"form-control\" rows=\"3\" [attr.placeholder]=\"config.placeholder\" [formControlName]=\"config.name\"></textarea>\n    </div>\n</div>";
 
 /***/ }),
 /* 24 */
@@ -890,7 +890,6 @@ var DynamicFormComponent = /** @class */ (function () {
                 _this.form.addControl(name, _this.createControl(config));
             });
         }
-        console.log('on change');
     };
     DynamicFormComponent.prototype.createGroup = function () {
         var _this = this;
@@ -899,8 +898,34 @@ var DynamicFormComponent = /** @class */ (function () {
         return group;
     };
     DynamicFormComponent.prototype.createControl = function (config) {
-        var disabled = config.disabled, validation = config.validation, value = config.value;
-        return this.fb.control({ disabled: disabled, value: value }, validation);
+        // const { disabled, validation, value } = config;
+        var disabled = config.disabled, required = config.required, minLength = config.minLength, maxLength = config.maxLength, email = config.email, min = config.min, max = config.max, pattern = config.pattern, nullValidator = config.nullValidator, value = config.value;
+        var validators = [];
+        if (required != undefined && required) {
+            validators.push(forms_1.Validators.required);
+        }
+        if (minLength != undefined) {
+            validators.push(forms_1.Validators.minLength(minLength));
+        }
+        if (maxLength != undefined) {
+            validators.push(forms_1.Validators.maxLength(maxLength));
+        }
+        if (email != undefined) {
+            validators.push(forms_1.Validators.email);
+        }
+        if (min != undefined) {
+            validators.push(forms_1.Validators.min(min));
+        }
+        if (max != undefined) {
+            validators.push(forms_1.Validators.max(max));
+        }
+        if (pattern != undefined) {
+            validators.push(forms_1.Validators.pattern(pattern));
+        }
+        if (nullValidator != undefined) {
+            validators.push(forms_1.Validators.nullValidator);
+        }
+        return this.fb.control({ disabled: disabled, value: value }, validators);
     };
     DynamicFormComponent.prototype.handleSubmit = function (event) {
         event.preventDefault();

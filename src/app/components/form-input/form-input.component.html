@@ -1,5 +1,7 @@
 <div class="form-group row" [formGroup]="group">
-    <label class="col-md-2 font-weight-bold  col-form-label" for="name">{{config.label}}</label>
+    <label class="col-md-2 font-weight-bold  col-form-label" for="name">{{config.label}}
+        <span [hidden]="!config.required">*</span>
+    </label>
     <div class="col-md-10">
         <input type="text" class="form-control" [attr.placeholder]="config.placeholder" [formControlName]="config.name">
     </div>
