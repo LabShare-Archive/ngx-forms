@@ -824,7 +824,11 @@ var DynamicFormComponent = /** @class */ (function () {
         configurable: true
     });
     DynamicFormComponent.prototype.ngOnInit = function () {
+        console.log(this.model);
         this.form = this.createGroup();
+        if (this.model) {
+            this.form.patchValue(this.model);
+        }
     };
     DynamicFormComponent.prototype.ngOnChanges = function () {
         var _this = this;
@@ -877,6 +881,10 @@ var DynamicFormComponent = /** @class */ (function () {
         core_1.Input(),
         __metadata("design:type", Array)
     ], DynamicFormComponent.prototype, "config", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], DynamicFormComponent.prototype, "model", void 0);
     __decorate([
         core_1.Output(),
         __metadata("design:type", typeof (_a = typeof core_1.EventEmitter !== "undefined" && core_1.EventEmitter) === "function" && _a || Object)
