@@ -1,0 +1,6 @@
+<div class="form-group row" [formGroup]="group">
+    <label class="col-md-2 font-weight-bold col-form-label" for="group" required>{{config.label}}</label>
+    <div class="col-md-10 editor-container">
+        <quill-editor [modules]="quillToolbar" [formControlName]="config.name"></quill-editor>
+    </div>
+</div>

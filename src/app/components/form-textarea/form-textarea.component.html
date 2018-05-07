@@ -1,0 +1,6 @@
+<div class="form-group row" [formGroup]="group">
+    <label class="col-md-2 font-weight-bold  col-form-label" for="name">{{config.label}}</label>
+    <div class="col-md-10">
+        <textarea class="form-control" rows="3" [attr.placeholder]="config.placeholder" [formControlName]="config.name"></textarea>
+    </div>
+</div>
