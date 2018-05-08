@@ -20,7 +20,7 @@ Add html tag with bindings
 - `model` - preload data. One way binding only
 
 ## Config example
-```json
+```javascript
 [
     { type: 'hidden', name: 'id' },
     { type: 'text', label: 'Title', name: 'title', placeholder: 'Enter project title', required: true, max: 14 },
