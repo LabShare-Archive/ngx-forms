@@ -28,21 +28,24 @@ Add html tag with bindings
 ]
 ```
 
-## Field options
-- `label?: string` - field label
-- `name: string` - field name
-- `options?: string[]` - options for `<select>` dropdown
-- `placeholder?: string` - text placeholder
-- `type: string` - field type (see field type description)
-- `value?: any` - field value
-- `required?: boolean` - Validation: required or not
-- `minLength? : number` - Validation: minimum length of a text field
-- `maxLength? : number` - Validation: maximum length of a text field
-- `email? : boolean` - Validation: field must be an email address
-- `min?: number` - Validation: minumum value for number fields
-- `max?: number` - Validation: maximum value for number fields
-- `pattern?: RegExp` - Validation: regular expression
-- `nullValidator?: any` - Validation: null validation
+## Field options and examples
+Name | Type | Description | Example
+-- | -- | -- | --
+`disabled?` | `boolean` | disable field if `true` | `disabled: true`
+`label?` | `string` | field label | `label: "Project Title"`
+`name` | `string` | field name | `name: "projectTitle"`
+`options?` | `string[]` | options for `<select>` dropdown | `options: [ "Option 1", "Option 2" ]`
+`placeholder?` | `string` | text placeholder | `placeholder: "Enter Project Title"`
+`type` | `string` | field type (see field type description) | `type: "select"`
+`value?` | `any` | field value | `value: 123`
+`required?` | `boolean` | Validation: required or not | `required: true`
+`minLength?` | `number` | Validation: minimum length of a text field | `minLength: 5`
+`maxLength?` | `number` | Validation: maximum length of a text field | `maxLength: 12`
+`email?` | `boolean` | Validation: field must be an email address | `email: true`
+`min?` | `number` | Validation: minumum value for number fields | `min: 100`
+`max?` | `number` | Validation: maximum value for number fields | `max: 1000`
+`pattern?` | `RegExp` | Validation: regular expression | `pattern: "^[a-zA-Z0-9_]*$"`
+`nullValidator?` | `any` | Validation: null validation | `nullValidator: true`
 
 ## Field types
 - `text` - text input `<input type="text">`
