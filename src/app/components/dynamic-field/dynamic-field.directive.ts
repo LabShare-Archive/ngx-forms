@@ -1,7 +1,6 @@
 import { ComponentFactoryResolver, ComponentRef, Directive, Input, OnChanges, OnInit, Type, ViewContainerRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { FormButtonComponent } from '../form-button/form-button.component';
 import { FormInputComponent } from '../form-input/form-input.component';
 import { FormSelectComponent } from '../form-select/form-select.component';
 import { FormTextEditorComponent } from '../form-text-editor/form-text-editor.component';
@@ -12,7 +11,6 @@ import { FormTextareaComponent } from '../form-textarea/form-textarea.component'
 import { FormInputHidden } from '../form-hidden/form-hidden.component';
 
 const components: { [type: string]: Type<Field> } = {
-    button: FormButtonComponent,
     text: FormInputComponent,
     select: FormSelectComponent,
     editor: FormTextEditorComponent,
