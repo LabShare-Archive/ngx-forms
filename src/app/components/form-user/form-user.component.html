@@ -1,12 +1,3 @@
-<!-- <div class="form-group row" [formGroup]="group">
-    <label class="col-md-2 font-weight-bold col-form-label">{{config.label}}
-        <span [hidden]="!config.required">*</span>
-    </label>
-    <div class="col-md-10">
-        <input type="text" class="form-control" [attr.placeholder]="config.placeholder" [formControlName]="config.name">
-    </div>
-</div> -->
-
 <div class="form-group row" [formGroup]="group">
     <label class="col-md-2 font-weight-bold col-form-label">{{config.label}}
         <span [hidden]="!config.required">*</span>
@@ -20,14 +11,5 @@
                 </ng-template>
             </tag-input-dropdown>
         </tag-input>
-        <!-- <tag-input [(ngModel)]="emitModel" (onAdd)="change($event)" (onSelect)="change($event)" (onRemove)="change($event)" [onlyFromAutocomplete]="true"
-            [maxItems]="maxItems">
-            <tag-input-dropdown [autocompleteObservable]='requestAutocompleteItems' theme='bootstrap' [identifyBy]="identifyBy" [displayBy]="key"
-                [focusFirstElement]="true">
-                <ng-template let-item="item" let-index="index">
-                    {{ item[key] }}
-                </ng-template>
-            </tag-input-dropdown>
-        </tag-input> -->
     </div>
 </div>

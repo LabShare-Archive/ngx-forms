@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Field } from '../../models/field.interface';
 import { FieldConfig } from '../../models/field-config.interface';
@@ -25,9 +25,8 @@ export class FormUserComponent implements Field {
     constructor(private dataService: DataService) { }
 
     ngOnInit() {
-        console.log(this.config)
-        if (this.emitModel)
-            this.emitModel.forEach(item => {
+        if (this.group.controls[this.config.name].value)
+            this.group.controls[this.config.name].value.forEach(item => {
                 if (!item.display) {
                     item.display = item[this.config.settings.displayBy];
                     item.value = item[this.config.settings.identifyBy];
@@ -40,11 +39,9 @@ export class FormUserComponent implements Field {
         this.emitModelChange.emit(this.emitModel);
     }
 
-    public requestAutocompleteItems = (text: string): Observable<{}> => {
-        // let result = this.dataService[this.provider][this.method](text);
-        console.log(this.dataService)
-        let result = this.provider[this.config.providerMethod](text);        
+    requestAutocompleteItems = (text: string): Observable<{}> => {
+        let result = this.provider[this.config.providerMethod](text);
         return Observable.fromPromise(result);
-    };
+    }
 
 }

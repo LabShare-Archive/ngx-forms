@@ -289,17 +289,14 @@ var FormUserComponent = /** @class */ (function () {
         this.dataService = dataService;
         this.emitModelChange = new core_1.EventEmitter;
         this.requestAutocompleteItems = function (text) {
-            // let result = this.dataService[this.provider][this.method](text);
-            console.log(_this.dataService);
             var result = _this.provider[_this.config.providerMethod](text);
             return Observable_1.Observable.fromPromise(result);
         };
     }
     FormUserComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.log(this.config);
-        if (this.emitModel)
-            this.emitModel.forEach(function (item) {
+        if (this.group.controls[this.config.name].value)
+            this.group.controls[this.config.name].value.forEach(function (item) {
                 if (!item.display) {
                     item.display = item[_this.config.settings.displayBy];
                     item.value = item[_this.config.settings.identifyBy];
@@ -931,7 +928,7 @@ module.exports = require("rxjs/add/operator/toPromise");
 /* 28 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\">{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10\">\n        <input type=\"text\" class=\"form-control\" [attr.placeholder]=\"config.placeholder\" [formControlName]=\"config.name\">\n    </div>\n</div> -->\n\n<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\">{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10\">\n        <tag-input [theme]=\"'bootstrap'\" [formControlName]=\"config.name\" name=\"items\" [onlyFromAutocomplete]=\"true\">\n            <tag-input-dropdown [autocompleteObservable]='requestAutocompleteItems' [identifyBy]=\"config.settings.identifyBy\" [displayBy]=\"config.settings.displayBy\"\n                [focusFirstElement]=\"true\">\n                <ng-template let-item=\"item\" let-index=\"index\">\n                    {{ item[config.settings.displayBy] }}\n                </ng-template>\n            </tag-input-dropdown>\n        </tag-input>\n        <!-- <tag-input [(ngModel)]=\"emitModel\" (onAdd)=\"change($event)\" (onSelect)=\"change($event)\" (onRemove)=\"change($event)\" [onlyFromAutocomplete]=\"true\"\n            [maxItems]=\"maxItems\">\n            <tag-input-dropdown [autocompleteObservable]='requestAutocompleteItems' theme='bootstrap' [identifyBy]=\"identifyBy\" [displayBy]=\"key\"\n                [focusFirstElement]=\"true\">\n                <ng-template let-item=\"item\" let-index=\"index\">\n                    {{ item[key] }}\n                </ng-template>\n            </tag-input-dropdown>\n        </tag-input> -->\n    </div>\n</div>";
+module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\">{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10\">\n        <tag-input [theme]=\"'bootstrap'\" [formControlName]=\"config.name\" name=\"items\" [onlyFromAutocomplete]=\"true\">\n            <tag-input-dropdown [autocompleteObservable]='requestAutocompleteItems' [identifyBy]=\"config.settings.identifyBy\" [displayBy]=\"config.settings.displayBy\"\n                [focusFirstElement]=\"true\">\n                <ng-template let-item=\"item\" let-index=\"index\">\n                    {{ item[config.settings.displayBy] }}\n                </ng-template>\n            </tag-input-dropdown>\n        </tag-input>\n    </div>\n</div>";
 
 /***/ }),
 /* 29 */
