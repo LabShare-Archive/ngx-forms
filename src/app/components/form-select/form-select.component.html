@@ -3,7 +3,7 @@
         <span [hidden]="!config.required">*</span>
     </label>
     <div class="col-md-10">
-        <select [formControlName]="config.name" class="form-control" >
+        <select [formControlName]="config.name" class="form-control">
             <option *ngFor="let option of config.options" [ngValue]="option">{{option}}</option>
         </select>
     </div>

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@angular/core"), require("@angular/forms"), require("reflect-metadata"), require("@angular/common"), require("ngx-quill"));
+		module.exports = factory(require("@angular/core"), require("@angular/forms"), require("reflect-metadata"), require("@angular/common"), require("ngx-quill"), require("rxjs/Observable"), require("rxjs/add/observable/fromPromise"), require("rxjs/add/operator/toPromise"), require("ngx-chips"), require("@angular/platform-browser/animations"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@angular/core", "@angular/forms", "reflect-metadata", "@angular/common", "ngx-quill"], factory);
+		define(["@angular/core", "@angular/forms", "reflect-metadata", "@angular/common", "ngx-quill", "rxjs/Observable", "rxjs/add/observable/fromPromise", "rxjs/add/operator/toPromise", "ngx-chips", "@angular/platform-browser/animations"], factory);
 	else if(typeof exports === 'object')
-		exports["ngxForms"] = factory(require("@angular/core"), require("@angular/forms"), require("reflect-metadata"), require("@angular/common"), require("ngx-quill"));
+		exports["ngxForms"] = factory(require("@angular/core"), require("@angular/forms"), require("reflect-metadata"), require("@angular/common"), require("ngx-quill"), require("rxjs/Observable"), require("rxjs/add/observable/fromPromise"), require("rxjs/add/operator/toPromise"), require("ngx-chips"), require("@angular/platform-browser/animations"));
 	else
-		root["ngxForms"] = factory(root["@angular/core"], root["@angular/forms"], root["reflect-metadata"], root["@angular/common"], root["ngx-quill"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__) {
+		root["ngxForms"] = factory(root["@angular/core"], root["@angular/forms"], root["reflect-metadata"], root["@angular/common"], root["ngx-quill"], root["rxjs/Observable"], root["rxjs/add/observable/fromPromise"], root["rxjs/add/operator/toPromise"], root["ngx-chips"], root["@angular/platform-browser/animations"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_25__, __WEBPACK_EXTERNAL_MODULE_26__, __WEBPACK_EXTERNAL_MODULE_27__, __WEBPACK_EXTERNAL_MODULE_31__, __WEBPACK_EXTERNAL_MODULE_32__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -99,13 +99,47 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
+__webpack_require__(27);
+var DataService = /** @class */ (function () {
+    function DataService() {
+    }
+    DataService.prototype.set = function (dataProvider) {
+        this.dataProvider = dataProvider;
+    };
+    DataService.prototype.get = function (key) {
+        if (!this.dataProvider[key])
+            throw new Error("Data Provider with name \"" + key + "\" was not found");
+        return this.dataProvider[key];
+    };
+    DataService = __decorate([
+        core_1.Injectable()
+    ], DataService);
+    return DataService;
+}());
+exports.DataService = DataService;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
 var FormInputComponent = /** @class */ (function () {
     function FormInputComponent() {
     }
     FormInputComponent = __decorate([
         core_1.Component({
             selector: 'form-input',
-            template: __webpack_require__(13)
+            template: __webpack_require__(15)
         })
     ], FormInputComponent);
     return FormInputComponent;
@@ -114,7 +148,7 @@ exports.FormInputComponent = FormInputComponent;
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -133,7 +167,7 @@ var FormSelectComponent = /** @class */ (function () {
     FormSelectComponent = __decorate([
         core_1.Component({
             selector: 'form-select',
-            template: __webpack_require__(14)
+            template: __webpack_require__(16)
         })
     ], FormSelectComponent);
     return FormSelectComponent;
@@ -142,7 +176,7 @@ exports.FormSelectComponent = FormSelectComponent;
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -164,8 +198,8 @@ var FormTextEditorComponent = /** @class */ (function () {
     FormTextEditorComponent = __decorate([
         core_1.Component({
             selector: 'form-text-editor',
-            template: __webpack_require__(15),
-            styles: [__webpack_require__(16).toString()]
+            template: __webpack_require__(17),
+            styles: [__webpack_require__(18).toString()]
         })
     ], FormTextEditorComponent);
     return FormTextEditorComponent;
@@ -174,7 +208,7 @@ exports.FormTextEditorComponent = FormTextEditorComponent;
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -193,7 +227,7 @@ var FormTextareaComponent = /** @class */ (function () {
     FormTextareaComponent = __decorate([
         core_1.Component({
             selector: 'form-textarea',
-            template: __webpack_require__(21)
+            template: __webpack_require__(23)
         })
     ], FormTextareaComponent);
     return FormTextareaComponent;
@@ -202,7 +236,7 @@ exports.FormTextareaComponent = FormTextareaComponent;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -221,7 +255,7 @@ var FormInputHidden = /** @class */ (function () {
     FormInputHidden = __decorate([
         core_1.Component({
             selector: 'form-hidden',
-            template: __webpack_require__(22)
+            template: __webpack_require__(24)
         })
     ], FormInputHidden);
     return FormInputHidden;
@@ -230,7 +264,83 @@ exports.FormInputHidden = FormInputHidden;
 
 
 /***/ }),
-/* 7 */
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
+var Observable_1 = __webpack_require__(25);
+__webpack_require__(26);
+var data_service_1 = __webpack_require__(2);
+var FormUserComponent = /** @class */ (function () {
+    function FormUserComponent(dataService) {
+        var _this = this;
+        this.dataService = dataService;
+        this.emitModelChange = new core_1.EventEmitter;
+        this.requestAutocompleteItems = function (text) {
+            // let result = this.dataService[this.provider][this.method](text);
+            console.log(_this.dataService);
+            var result = _this.provider[_this.config.providerMethod](text);
+            return Observable_1.Observable.fromPromise(result);
+        };
+    }
+    FormUserComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        console.log(this.config);
+        if (this.emitModel)
+            this.emitModel.forEach(function (item) {
+                if (!item.display) {
+                    item.display = item[_this.config.settings.displayBy];
+                    item.value = item[_this.config.settings.identifyBy];
+                }
+            });
+        this.provider = this.dataService.get(this.config.provider);
+    };
+    FormUserComponent.prototype.change = function (event) {
+        this.emitModelChange.emit(this.emitModel);
+    };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Boolean)
+    ], FormUserComponent.prototype, "typeaheadOnly", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], FormUserComponent.prototype, "emitModel", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], FormUserComponent.prototype, "maxItems", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", Object)
+    ], FormUserComponent.prototype, "emitModelChange", void 0);
+    FormUserComponent = __decorate([
+        core_1.Component({
+            selector: 'form-user',
+            template: __webpack_require__(28)
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof data_service_1.DataService !== "undefined" && data_service_1.DataService) === "function" && _a || Object])
+    ], FormUserComponent);
+    return FormUserComponent;
+    var _a;
+}());
+exports.FormUserComponent = FormUserComponent;
+
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -240,19 +350,19 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 // Shim for class decorators
-__webpack_require__(8);
+__webpack_require__(10);
 // Public API
-__export(__webpack_require__(9));
+__export(__webpack_require__(11));
 
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = require("reflect-metadata");
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -265,16 +375,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var common_1 = __webpack_require__(10);
+var common_1 = __webpack_require__(12);
 var forms_1 = __webpack_require__(1);
-var ngx_quill_1 = __webpack_require__(11);
-var dynamic_field_directive_1 = __webpack_require__(12);
-var dynamic_form_component_1 = __webpack_require__(23);
-var form_input_component_1 = __webpack_require__(2);
-var form_select_component_1 = __webpack_require__(3);
-var form_textarea_component_1 = __webpack_require__(5);
-var form_text_editor_component_1 = __webpack_require__(4);
-var form_hidden_component_1 = __webpack_require__(6);
+var ngx_quill_1 = __webpack_require__(13);
+var dynamic_field_directive_1 = __webpack_require__(14);
+var dynamic_form_component_1 = __webpack_require__(29);
+var form_input_component_1 = __webpack_require__(3);
+var form_select_component_1 = __webpack_require__(4);
+var form_textarea_component_1 = __webpack_require__(6);
+var form_text_editor_component_1 = __webpack_require__(5);
+var form_hidden_component_1 = __webpack_require__(7);
+var form_user_component_1 = __webpack_require__(8);
+var ngx_chips_1 = __webpack_require__(31);
+var animations_1 = __webpack_require__(32);
+var data_service_1 = __webpack_require__(2);
 var NgxFormModule = /** @class */ (function () {
     function NgxFormModule() {
     }
@@ -282,8 +396,11 @@ var NgxFormModule = /** @class */ (function () {
         core_1.NgModule({
             imports: [
                 common_1.CommonModule,
+                animations_1.BrowserAnimationsModule,
                 forms_1.ReactiveFormsModule,
-                ngx_quill_1.QuillModule
+                forms_1.FormsModule,
+                ngx_quill_1.QuillModule,
+                ngx_chips_1.TagInputModule
             ],
             declarations: [
                 form_hidden_component_1.FormInputHidden,
@@ -292,7 +409,8 @@ var NgxFormModule = /** @class */ (function () {
                 dynamic_form_component_1.DynamicFormComponent,
                 form_input_component_1.FormInputComponent,
                 form_select_component_1.FormSelectComponent,
-                form_textarea_component_1.FormTextareaComponent
+                form_textarea_component_1.FormTextareaComponent,
+                form_user_component_1.FormUserComponent
             ],
             exports: [
                 dynamic_form_component_1.DynamicFormComponent
@@ -302,7 +420,14 @@ var NgxFormModule = /** @class */ (function () {
                 form_input_component_1.FormInputComponent,
                 form_select_component_1.FormSelectComponent,
                 form_text_editor_component_1.FormTextEditorComponent,
-                form_textarea_component_1.FormTextareaComponent
+                form_textarea_component_1.FormTextareaComponent,
+                form_user_component_1.FormUserComponent
+            ],
+            providers: [
+                data_service_1.DataService
+            ],
+            schemas: [
+                core_1.NO_ERRORS_SCHEMA
             ]
         })
     ], NgxFormModule);
@@ -312,19 +437,19 @@ exports.NgxFormModule = NgxFormModule;
 
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = require("@angular/common");
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = require("ngx-quill");
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -341,18 +466,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var forms_1 = __webpack_require__(1);
-var form_input_component_1 = __webpack_require__(2);
-var form_select_component_1 = __webpack_require__(3);
-var form_text_editor_component_1 = __webpack_require__(4);
-var field_config_interface_1 = __webpack_require__(20);
-var form_textarea_component_1 = __webpack_require__(5);
-var form_hidden_component_1 = __webpack_require__(6);
+var form_input_component_1 = __webpack_require__(3);
+var form_select_component_1 = __webpack_require__(4);
+var form_text_editor_component_1 = __webpack_require__(5);
+var field_config_interface_1 = __webpack_require__(22);
+var form_textarea_component_1 = __webpack_require__(6);
+var form_hidden_component_1 = __webpack_require__(7);
+var form_user_component_1 = __webpack_require__(8);
 var components = {
     text: form_input_component_1.FormInputComponent,
     select: form_select_component_1.FormSelectComponent,
     editor: form_text_editor_component_1.FormTextEditorComponent,
     textarea: form_textarea_component_1.FormTextareaComponent,
-    hidden: form_hidden_component_1.FormInputHidden
+    hidden: form_hidden_component_1.FormInputHidden,
+    user: form_user_component_1.FormUserComponent
 };
 var DynamicFieldDirective = /** @class */ (function () {
     function DynamicFieldDirective(resolver, container) {
@@ -396,34 +523,34 @@ exports.DynamicFieldDirective = DynamicFieldDirective;
 
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold  col-form-label\" for=\"name\">{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10\">\n        <input type=\"text\" class=\"form-control\" [attr.placeholder]=\"config.placeholder\" [formControlName]=\"config.name\">\n    </div>\n</div>";
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\" for=\"group\">{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10\">\n        <select [formControlName]=\"config.name\" class=\"form-control\" >\n            <option *ngFor=\"let option of config.options\" [ngValue]=\"option\">{{option}}</option>\n        </select>\n    </div>\n</div>";
-
-/***/ }),
 /* 15 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold  col-form-label\">{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10\">\n        <input type=\"text\" class=\"form-control\" [attr.placeholder]=\"config.placeholder\" [formControlName]=\"config.name\">\n    </div>\n</div>";
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\" for=\"group\">{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10\">\n        <select [formControlName]=\"config.name\" class=\"form-control\">\n            <option *ngFor=\"let option of config.options\" [ngValue]=\"option\">{{option}}</option>\n        </select>\n    </div>\n</div>";
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\" for=\"group\" required>{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10 editor-container\">\n        <quill-editor [modules]=\"quillToolbar\" [formControlName]=\"config.name\"></quill-editor>\n    </div>\n</div>";
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(17);
+var content = __webpack_require__(19);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(19)(content, {});
+var update = __webpack_require__(21)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -440,10 +567,10 @@ if(false) {
 }
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(18)();
+exports = module.exports = __webpack_require__(20)();
 // imports
 
 
@@ -454,7 +581,7 @@ exports.push([module.i, "form-text-editor .editor-container {\n  margin-bottom: 
 
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports) {
 
 /*
@@ -510,7 +637,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports) {
 
 /*
@@ -762,7 +889,7 @@ function updateLink(linkElement, obj) {
 
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -771,19 +898,43 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold  col-form-label\" for=\"name\">{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10\">\n        <textarea class=\"form-control\" rows=\"3\" [attr.placeholder]=\"config.placeholder\" [formControlName]=\"config.name\"></textarea>\n    </div>\n</div>";
+module.exports = "<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold  col-form-label\">{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10\">\n        <textarea class=\"form-control\" rows=\"3\" [attr.placeholder]=\"config.placeholder\" [formControlName]=\"config.name\"></textarea>\n    </div>\n</div>";
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = "<ng-container [formGroup]=\"group\">\n    <input type=\"hidden\" class=\"form-control\" [formControlName]=\"config.name\">\n</ng-container>";
 
 /***/ }),
-/* 23 */
+/* 25 */
+/***/ (function(module, exports) {
+
+module.exports = require("rxjs/Observable");
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports) {
+
+module.exports = require("rxjs/add/observable/fromPromise");
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports) {
+
+module.exports = require("rxjs/add/operator/toPromise");
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- <div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\">{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10\">\n        <input type=\"text\" class=\"form-control\" [attr.placeholder]=\"config.placeholder\" [formControlName]=\"config.name\">\n    </div>\n</div> -->\n\n<div class=\"form-group row\" [formGroup]=\"group\">\n    <label class=\"col-md-2 font-weight-bold col-form-label\">{{config.label}}\n        <span [hidden]=\"!config.required\">*</span>\n    </label>\n    <div class=\"col-md-10\">\n        <tag-input [theme]=\"'bootstrap'\" [formControlName]=\"config.name\" name=\"items\" [onlyFromAutocomplete]=\"true\">\n            <tag-input-dropdown [autocompleteObservable]='requestAutocompleteItems' [identifyBy]=\"config.settings.identifyBy\" [displayBy]=\"config.settings.displayBy\"\n                [focusFirstElement]=\"true\">\n                <ng-template let-item=\"item\" let-index=\"index\">\n                    {{ item[config.settings.displayBy] }}\n                </ng-template>\n            </tag-input-dropdown>\n        </tag-input>\n        <!-- <tag-input [(ngModel)]=\"emitModel\" (onAdd)=\"change($event)\" (onSelect)=\"change($event)\" (onRemove)=\"change($event)\" [onlyFromAutocomplete]=\"true\"\n            [maxItems]=\"maxItems\">\n            <tag-input-dropdown [autocompleteObservable]='requestAutocompleteItems' theme='bootstrap' [identifyBy]=\"identifyBy\" [displayBy]=\"key\"\n                [focusFirstElement]=\"true\">\n                <ng-template let-item=\"item\" let-index=\"index\">\n                    {{ item[key] }}\n                </ng-template>\n            </tag-input-dropdown>\n        </tag-input> -->\n    </div>\n</div>";
+
+/***/ }),
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -800,9 +951,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var forms_1 = __webpack_require__(1);
+var data_service_1 = __webpack_require__(2);
 var DynamicFormComponent = /** @class */ (function () {
-    function DynamicFormComponent(fb) {
+    function DynamicFormComponent(fb, dataService) {
         this.fb = fb;
+        this.dataService = dataService;
         this.config = [];
     }
     Object.defineProperty(DynamicFormComponent.prototype, "controls", {
@@ -829,7 +982,8 @@ var DynamicFormComponent = /** @class */ (function () {
         configurable: true
     });
     DynamicFormComponent.prototype.ngOnInit = function () {
-        console.log(this.model);
+        console.log(this.model, this.dataProvider);
+        this.dataService.set(this.dataProvider);
         this.form = this.createGroup();
         if (this.model) {
             this.form.patchValue(this.model);
@@ -910,25 +1064,41 @@ var DynamicFormComponent = /** @class */ (function () {
         core_1.Input(),
         __metadata("design:type", Object)
     ], DynamicFormComponent.prototype, "model", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], DynamicFormComponent.prototype, "dataProvider", void 0);
     DynamicFormComponent = __decorate([
         core_1.Component({
             exportAs: 'dynamicForm',
             selector: 'dynamic-form',
-            template: __webpack_require__(24)
+            template: __webpack_require__(30)
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof forms_1.FormBuilder !== "undefined" && forms_1.FormBuilder) === "function" && _a || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof forms_1.FormBuilder !== "undefined" && forms_1.FormBuilder) === "function" && _a || Object, typeof (_b = typeof data_service_1.DataService !== "undefined" && data_service_1.DataService) === "function" && _b || Object])
     ], DynamicFormComponent);
     return DynamicFormComponent;
-    var _a;
+    var _a, _b;
 }());
 exports.DynamicFormComponent = DynamicFormComponent;
 
 
 /***/ }),
-/* 24 */
+/* 30 */
 /***/ (function(module, exports) {
 
 module.exports = "<!-- <form class=\"dynamic-form\" [formGroup]=\"form\" (submit)=\"handleSubmit($event)\"> -->\n<form class=\"dynamic-form\" [formGroup]=\"form\">\n    <ng-container *ngFor=\"let field of config;\" dynamicField [config]=\"field\" [group]=\"form\">\n    </ng-container>\n</form>";
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports) {
+
+module.exports = require("ngx-chips");
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+module.exports = require("@angular/platform-browser/animations");
 
 /***/ })
 /******/ ]);

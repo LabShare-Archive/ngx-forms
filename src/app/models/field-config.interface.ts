@@ -3,6 +3,7 @@ export interface FieldConfig {
 	label?: string,
 	name: string,
 	options?: string[],
+	settings?: any,
 	placeholder?: string,
 	type: string,
 	value?: any,
@@ -13,5 +14,7 @@ export interface FieldConfig {
 	min?: number,
 	max?: number,
 	pattern?: RegExp
-	nullValidator?: any
+	nullValidator?: any,
+	provider?: string,
+	providerMethod?: string
 }

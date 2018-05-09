@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angu
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { FieldConfig } from '../../models/field-config.interface';
+import { DataService } from '../../services/data.service';
 
 @Component({
     exportAs: 'dynamicForm',
@@ -12,6 +13,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
 
     @Input() config: FieldConfig[] = [];
     @Input() model: any;
+    @Input() dataProvider: object;
 
     // @Output() submit: EventEmitter<any> = new EventEmitter<any>();
 
@@ -22,14 +24,16 @@ export class DynamicFormComponent implements OnChanges, OnInit {
     get valid() { return this.form.valid; }
     get value() { return this.form.value; }
 
-    constructor(private fb: FormBuilder) { }
+    constructor(private fb: FormBuilder, private dataService: DataService) { }
 
     ngOnInit() {
-        console.log(this.model);
+        console.log(this.model, this.dataProvider);
+        this.dataService.set(this.dataProvider);
         this.form = this.createGroup();
         if (this.model) {
             this.form.patchValue(this.model);
         }
+
     }
 
     ngOnChanges() {
