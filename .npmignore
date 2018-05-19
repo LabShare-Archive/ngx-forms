@@ -1,0 +1,13 @@
+docs
+test
+ui
+.npmignore
+.gitignore
+.gitmodules
+*.md
+tsconfig.json
+.travis.yml
+.coveralls.yml
+sample-config.json
+config.json
+webpack.config.js

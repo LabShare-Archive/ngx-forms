@@ -12,4 +12,4 @@ install:
   - lsc build web
 script:
   - npm test
-  - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then npm install -g codacy-coverage && cat ./test/ui/unit/coverage/**/lcov.info | codacy-coverage && rm -rf ./test/ui/unit/coverage; fi
+  - npm run coverage && cat ./test/ui/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./test/ui/coverage
