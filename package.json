@@ -8,7 +8,8 @@
     "build": "webpack",
     "build:watch": "webpack --watch",
     "watch:build": "webpack --watch",
-    "test": "node ./node_modules/karma/bin/karma start ./test/karma.conf.js"
+    "test": "karma start ./test/ui/karma.conf.js",
+    "coverage": "karma start ./test/ui/karma.conf.js --singleRun=true"
   },
   "private": true,
   "dependencies": {
@@ -31,7 +32,7 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular/cli": "^4.4.4",
+    "@angular/cli": "^1.5.0",
     "@angular/compiler": "4.4.4",
     "@angular/router": "^4.4.4",
     "@labshare/services": "^0.18.304",
@@ -48,10 +49,14 @@
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "1.1.2",
     "karma-jasmine": "1.1.2",
+    "istanbul-instrumenter-loader": "^3.0.1",
     "karma-phantomjs-launcher": "1.0.4",
+    "karma-safari-launcher": "1.0.0",
+    "karma-coverage-istanbul-reporter": "^2.0.0",
     "karma-sourcemap-loader": "0.3.7",
     "karma-typescript": "^3.0.8",
     "karma-webpack": "3.0.0",
+    "loader-utils": "^1.1.0",
     "node-sass": "4.9.0",
     "null-loader": "^0.1.1",
     "sass-loader": "7.0.1",
@@ -60,6 +65,7 @@
     "typescript": "^2.5.3",
     "url-loader": "1.0.1",
     "webpack": "4.8.1",
+    "webpack-cli": "^2.1.3",
     "webpack-node-externals": "^1.6.0"
   }
 }
