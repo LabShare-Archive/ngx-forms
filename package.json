@@ -32,7 +32,7 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular/cli": "^1.5.0",
+    "@angular/cli": "^6.0.4",
     "@angular/compiler": "4.4.4",
     "@angular/router": "^4.4.4",
     "@labshare/services": "^0.18.304",
