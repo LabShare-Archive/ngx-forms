@@ -11,3 +11,4 @@ tsconfig.json
 sample-config.json
 config.json
 webpack.config.js
+commitlint.config.js
