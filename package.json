@@ -37,7 +37,7 @@
     "@angular/cli": "^1.5.0",
     "@angular/compiler": "4.4.4",
     "@angular/router": "^4.4.4",
-    "@labshare/services": "^0.18.304",
+    "@labshare/services": "^2.0.0",
     "@types/es6-promise": "3.3.0",
     "@types/jasmine": "^2.8.6",
     "@types/node": "^10.0.6",
@@ -81,5 +81,6 @@
   },
   "release": {
     "extends": "@labshare/semantic-release-config"
-  }
+  },
+  "peerDependencies": {}
 }
