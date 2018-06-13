@@ -1,13 +1,13 @@
-<div class="form-group row" [formGroup]="group">
-    <label class="col-md-2 font-weight-bold col-form-label">{{config.label}}
-        <span [hidden]="!config.required">*</span>
+<div class="form-group row" [formGroup]="group" *ngIf="isShow()">
+    <label class="col-md-2 font-weight-bold col-form-label">{{field.label}}
+        <span [hidden]="!field.required">*</span>
     </label>
     <div class="col-md-10">
-        <tag-input [theme]="'bootstrap'" [formControlName]="config.name" name="items" [onlyFromAutocomplete]="true">
-            <tag-input-dropdown [autocompleteObservable]='requestAutocompleteItems' [identifyBy]="config.settings.identifyBy" [displayBy]="config.settings.displayBy"
+        <tag-input [theme]="'bootstrap'" [formControlName]="field.name" name="items" [onlyFromAutocomplete]="true">
+            <tag-input-dropdown [autocompleteObservable]='requestAutocompleteItems' [identifyBy]="field.settings.identifyBy" [displayBy]="field.settings.displayBy"
                 [focusFirstElement]="true">
                 <ng-template let-item="item" let-index="index">
-                    {{ item[config.settings.displayBy] }}
+                    {{ item[field.settings.displayBy] }}
                 </ng-template>
             </tag-input-dropdown>
         </tag-input>

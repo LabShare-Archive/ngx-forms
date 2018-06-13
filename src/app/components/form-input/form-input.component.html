@@ -1,8 +1,8 @@
-<div class="form-group row" [formGroup]="group">
-    <label class="col-md-2 font-weight-bold  col-form-label">{{config.label}}
-        <span [hidden]="!config.required">*</span>
+<div class="form-group row" [formGroup]="group" *ngIf="isShow()">
+    <label class="col-md-2 font-weight-bold  col-form-label">{{field.label}}
+        <span [hidden]="!field.required">*</span>
     </label>
     <div class="col-md-10">
-        <input type="text" class="form-control" [attr.placeholder]="config.placeholder" [formControlName]="config.name">
+        <input type="text" class="form-control" [attr.placeholder]="field.placeholder" [formControlName]="field.name">
     </div>
 </div>

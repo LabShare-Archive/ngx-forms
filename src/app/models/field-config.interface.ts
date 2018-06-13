@@ -1,5 +1,6 @@
 export interface FieldConfig {
 	disabled?: boolean,
+  hidden?: boolean,
 	label?: string,
 	name: string,
 	options?: string[],

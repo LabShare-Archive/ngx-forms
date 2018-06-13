@@ -9,6 +9,13 @@ import { FieldConfig } from '../../models/field-config.interface';
   templateUrl: './form-select.component.html'
 })
 export class FormSelectComponent implements Field {
-  config: FieldConfig;
+  field: FieldConfig;
   group: FormGroup;
+  fields: FieldConfig[];
+
+
+  isShow () {
+    return !this.field.hidden;
+  }
+
 }

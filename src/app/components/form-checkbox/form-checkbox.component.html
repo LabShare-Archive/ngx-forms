@@ -1,0 +1,8 @@
+<div class="form-group row" [formGroup]="group" *ngIf="isShow()">
+  <label class="col-md-2 font-weight-bold  col-form-label">{{field.label}}</label>
+  <div class="col-md-10 container">
+    <label class="row" *ngFor="let item of field.options">
+      <input type="checkbox" [formControlName]="field.name">{{item.value}}
+    </label>
+  </div>
+</div>

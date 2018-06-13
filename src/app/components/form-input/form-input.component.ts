@@ -8,6 +8,11 @@ import { FieldConfig } from '../../models/field-config.interface';
   templateUrl: './form-input.component.html'
 })
 export class FormInputComponent implements Field {
-  config: FieldConfig;
+  field: FieldConfig;
   group: FormGroup;
+  fields: FieldConfig[];
+
+  isShow () {
+    return !this.field.hidden;
+  }
 }
