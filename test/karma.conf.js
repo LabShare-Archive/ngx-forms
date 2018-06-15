@@ -76,7 +76,7 @@ module.exports = function (config) {
             exclude: '/node_modules'
           },
           {
-            test: /ui\/.+(\.ts|\.js)$/,
+            test: /src\/.+(\.ts|\.js)$/,
             exclude: /(node_modules|spec\.ts$|spec.js$)/,
             loader: 'istanbul-instrumenter-loader',
             enforce: 'post',
