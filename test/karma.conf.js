@@ -3,21 +3,20 @@
 const {join} = require('path');
 
 module.exports = function (config) {
-  'use strict';
 
   let configuration = {
-    autoWatch: true,
-    basePath: '../../../',
+    basePath: '../',
     frameworks: ['jasmine'],
     files: [
+      'test/test-index.ts'
     ],
-    reporters: ['progress', 'coverage-istanbul'],
     customLaunchers: {
       Chrome_travis_ci: {
         base: 'Chrome',
         flags: ['--no-sandbox']
       }
     },
+    reporters: ['progress', 'coverage-istanbul'],
     coverageIstanbulReporter: {
       // reports can be any that are listed here: https://github.com/istanbuljs/istanbuljs/tree/aae256fb8b9a3d19414dcf069c592e88712c32c6/packages/istanbul-reports/lib
       reports: ['html', 'lcovonly', 'text-summary'],
@@ -38,43 +37,47 @@ module.exports = function (config) {
       verbose: false // output config used by istanbul for debugging
     },
     preprocessors: {
+      'test/test-index.ts': ['webpack']
     },
     webpackMiddleware: {
       stats: 'errors-only'
     },
+    exclude: [],
+    port: 8080,
+    browsers: ['ChromeHeadless'],
+    singleRun: true,
     browserConsoleLogOptions: {
       level: 'log',
       format: '%b %T: %m',
       terminal: true
     },
-    exclude: [],
-    port: 8080,
-    browsers: [
-      'Chrome',
-      'Safari'
-    ],
     // Workaround for test timeout issue: https://github.com/jasmine/jasmine/issues/1327#issuecomment-332939551
-    browserNoActivityTimeout: 50000,
+    browserNoActivityTimeout: 150000,
     mime: {  // Chrome version 55+ has a bug with TS. See: https://stackoverflow.com/a/41054760
       'text/x-typescript': ['ts', 'tsx']
     },
-    singleRun: true,
     colors: true,
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
     logLevel: config.LOG_INFO,
     webpack: {
+      mode: 'development',
       resolve: {
-        extensions: ['.ts', '.tsx', '.js']
+        // Add '.ts' and '.tsx' as a resolvable extension.
+        extensions: [".ts", ".tsx", ".js"]
       },
       module: {
         rules: [
           {
             test: /\.tsx?$/,
-            use: ['ts-loader']
+            use: {
+              loader: 'ts-loader',
+              options: {}
+            },
+            exclude: '/node_modules'
           },
           {
             test: /ui\/.+(\.ts|\.js)$/,
-            exclude: /(node_modules|_Spec\.ts$|\_Spec.js$)/,
+            exclude: /(node_modules|spec\.ts$|spec.js$)/,
             loader: 'istanbul-instrumenter-loader',
             enforce: 'post',
             options: {
@@ -94,11 +97,12 @@ module.exports = function (config) {
             use: ['null-loader']
           },
           {
-            test: /\.(jpe|jpg|woff|woff2|eot|ttf|svg|png)(\?.*$|$)/,
+            test: /\.(jpe|jpg|png|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
             loader: 'null-loader'
           }
         ]
       },
+      plugins: [],
       cache: true,
       devtool: 'inline-source-map'
     }

@@ -8,7 +8,7 @@ import * as _ from 'lodash';
 
 @Component({
     selector: 'form-radio',
-    templateUrl: './form-radio.component.html'
+    template: require('./form-radio.component.html')
 })
 
 export class FormRadioComponent implements  Field{

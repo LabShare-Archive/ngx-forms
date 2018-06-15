@@ -1,46 +1,46 @@
 {
-    "compilerOptions": {
-      "moduleResolution": "node",
-      "inlineSourceMap": true,
-      "target": "es5",
-      "module": "commonjs",
-      "experimentalDecorators": true,
-      "emitDecoratorMetadata": true,
-      "baseUrl": ".",
-      "allowJs": true,
-      "outDir": "dist",
-      "skipLibCheck": true,
-      "suppressImplicitAnyIndexErrors": true,
-      "inlineSources": true,
-      "stripInternal": true,
-      "rootDir": ".",
-      "lib": [
-        "es2015",
-        "es2017",
-        "dom"
-      ]
-    },
-    "files": [
-      "src/app.ts"
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "inlineSourceMap": true,
+    "target": "es5",
+    "module": "commonjs",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": ".",
+    "allowJs": true,
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "inlineSources": true,
+    "stripInternal": true,
+    "rootDir": ".",
+    "lib": [
+      "es2015",
+      "es2017",
+      "dom"
     ],
     "paths": {
       "@angular/*": [
         "../node_modules/@angular/*"
       ]
-    },
-    "compileOnSave": false,
-    "buildOnSave": false,
-    "exclude": [
-      "node_modules",
-      "dist",
-      "test"
-    ],
-    "angularCompilerOptions": {
-      "strictMetadataEmit": true,
-      "skipCodeGeneration": true,
-      "genDir": "dist",
-      "skipTemplateCodegen": true,
-      "debug": true,
-      "entryModule": "src/index#NgCoreModule"
     }
+  },
+  "files": [
+    "src/app.ts"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "exclude": [
+    "node_modules",
+    "dist",
+    "test"
+  ],
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true,
+    "skipCodeGeneration": true,
+    "genDir": "dist",
+    "skipTemplateCodegen": true,
+    "debug": true,
+    "entryModule": "src/index#NgCoreModule"
   }
+}
