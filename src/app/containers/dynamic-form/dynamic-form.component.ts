@@ -7,7 +7,7 @@ import { DataService } from '../../services/data.service';
 @Component({
     exportAs: 'dynamicForm',
     selector: 'dynamic-form',
-    templateUrl: './dynamic-form.component.html'
+    template: require('./dynamic-form.component.html')
 })
 export class DynamicFormComponent implements OnChanges, OnInit {
 
@@ -27,7 +27,6 @@ export class DynamicFormComponent implements OnChanges, OnInit {
     constructor(private fb: FormBuilder, private dataService: DataService) { }
 
     ngOnInit() {
-        console.log(this.model, this.dataProvider);
         this.dataService.set(this.dataProvider);
         this.form = this.createGroup();
         if (this.model) {
