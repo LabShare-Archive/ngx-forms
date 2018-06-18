@@ -1,8 +1,8 @@
-<div class="form-group row" [formGroup]="group">
-    <label class="col-md-2 font-weight-bold col-form-label" for="group" required>{{config.label}}
-        <span [hidden]="!config.required">*</span>
+<div class="form-group row" [formGroup]="group" *ngIf="isShow()">
+    <label class="col-md-2 font-weight-bold col-form-label" for="group" required>{{field.label}}
+        <span [hidden]="!field.required">*</span>
     </label>
     <div class="col-md-10 editor-container">
-        <quill-editor [modules]="quillToolbar" [formControlName]="config.name"></quill-editor>
+        <quill-editor [modules]="quillToolbar" [formControlName]="field.name"></quill-editor>
     </div>
 </div>

@@ -3,7 +3,7 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/LabShare/ngx-forms.svg?token=4a12f6b1da0f082ac1bbf2c72bbcaf01b001705746c61c36eee1db6bda3d7c11&ts=1525971500061)](https://greenkeeper.io/)
 Dynamic form generator. This module provides components that wrap angular 2+ FormBuilder styled with Bootstrap CSS 4
 [![Coverage Status](https://coveralls.io/repos/github/LabShare/ngx-forms/badge.svg?t=K1oUbj)](https://coveralls.io/github/LabShare/ngx-forms)
-![Alt text](/readmess.png?raw=true "Optional Title")
+![Alt text](/imgs/readmess.png?raw=true "Optional Title")
 
 ## Requirements
 -   angular 2+
@@ -36,7 +36,7 @@ Name | Type | Description | Example
 `disabled?` | `boolean` | disable field if `true` | `disabled: true`
 `label?` | `string` | field label | `label: "Project Title"`
 `name` | `string` | field name | `name: "projectTitle"`
-`options?` | `string[]` | options for `<select>` dropdown | `options: [ "Option 1", "Option 2" ]`
+`options?` | `any[]` | options for `<select>` dropdown or radio buttons | `options: [ "Option 1", "Option 2" ]` 
 `placeholder?` | `string` | text placeholder | `placeholder: "Enter Project Title"`
 `type` | `string` | field type (see field type description) | `type: "select"`
 `value?` | `any` | field value | `value: 123`
@@ -48,6 +48,7 @@ Name | Type | Description | Example
 `max?` | `number` | Validation: maximum value for number fields | `max: 1000`
 `pattern?` | `RegExp` | Validation: regular expression | `pattern: "^[a-zA-Z0-9_]*$"`
 `nullValidator?` | `any` | Validation: null validation | `nullValidator: true`
+`hidden` | `boolean` | hide the field by default when the form loading| `hidden: true`
 
 ## Field types
 - `text` - text input `<input type="text">`
@@ -55,3 +56,18 @@ Name | Type | Description | Example
 - `textarea` - text input `<textarea>`
 - `editor` - Rich text editor based on `ngx-quill`
 - `hidden` - hidden value field `<input type="hidden">`.
+- `radio` - radio buttons
+- `checkbox` - checkbox buttons
+
+## Interaction between two fields
+#### Show a new field by selecting a radio button
+![Alt text](/imgs/ngx-forms-radio-buttons.gif)
+When users select a value of radio button, a new field which name is same with `ref` in `options` will show up.
+If `ref` in that option is missing, it will not show anything and reverse the status back.
+
+Field example
+```json
+{ "type": "radio", "label": "Were NCATS core facilities used?", "name": "questions", "options": [{"value": "Yes", "ref": "checkId"}, {"value": "No"}]},
+{ "type": "checkbox", "label":"Identify all that apply", "name": "checkId", "hidden": true, "options": [{"value": "NIH Grant"}, {"value": "NIH Intramural"}]}
+```
+So when users select radio button `Yes`, it will look for the field with name `checkID` and show the checkbox. When `No` is selected, the checkbox will hide because there is no value in `ref`.

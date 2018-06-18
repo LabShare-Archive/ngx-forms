@@ -10,9 +10,14 @@ import { FieldConfig } from '../../models/field-config.interface';
     styles: [require('./form-text-editor.component.scss').toString()]
 })
 export class FormTextEditorComponent implements Field {
-	config: FieldConfig;
+  field: FieldConfig;
 	group: FormGroup;
-	private quillToolbar: object = {
+  fields: FieldConfig[];
+  private quillToolbar: object = {
 		toolbar: ['bold', 'italic', 'underline', 'strike', { 'header': 1 }, { 'header': 2 }, { 'list': 'ordered' }, { 'list': 'bullet' }, 'blockquote', 'code-block', 'link']
 	};
+
+  isShow () {
+    return !this.field.hidden;
+  }
 }

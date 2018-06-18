@@ -1,10 +1,10 @@
-<div class="form-group row" [formGroup]="group">
-    <label class="col-md-2 font-weight-bold col-form-label" for="group">{{config.label}}
-        <span [hidden]="!config.required">*</span>
+<div class="form-group row" [formGroup]="group" *ngIf="isShow()">
+    <label class="col-md-2 font-weight-bold col-form-label" for="group">{{field.label}}
+        <span [hidden]="!field.required">*</span>
     </label>
     <div class="col-md-10">
-        <select [formControlName]="config.name" class="form-control">
-            <option *ngFor="let option of config.options" [ngValue]="option">{{option}}</option>
+        <select [formControlName]="field.name" class="form-control">
+            <option *ngFor="let option of field.options" [ngValue]="option">{{option}}</option>
         </select>
     </div>
 </div>

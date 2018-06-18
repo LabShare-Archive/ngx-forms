@@ -11,8 +11,10 @@ import { FormTextareaComponent } from './app/components/form-textarea/form-texta
 import { FormTextEditorComponent } from './app/components/form-text-editor/form-text-editor.component';
 import { FormInputHidden } from './app/components/form-hidden/form-hidden.component';
 import { FormUserComponent } from './app/components/form-user/form-user.component';
+import { FormRadioComponent } from "./app/components/form-radio/form-radio.component";
+import { FormCheckboxComponent } from "./app/components/form-checkbox/form-checkbox.component";
 import { TagInputModule } from "ngx-chips";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataService } from './app/services/data.service';
 
 @NgModule({
@@ -30,9 +32,11 @@ import { DataService } from './app/services/data.service';
         DynamicFieldDirective,
         DynamicFormComponent,
         FormInputComponent,
-        FormSelectComponent,    
+        FormSelectComponent,
         FormTextareaComponent,
-        FormUserComponent
+        FormUserComponent,
+        FormRadioComponent,
+        FormCheckboxComponent
     ],
     exports: [
         DynamicFormComponent
@@ -43,7 +47,9 @@ import { DataService } from './app/services/data.service';
         FormSelectComponent,
         FormTextEditorComponent,
         FormTextareaComponent,
-        FormUserComponent
+        FormUserComponent,
+        FormRadioComponent,
+        FormCheckboxComponent
     ],
     providers: [
         DataService

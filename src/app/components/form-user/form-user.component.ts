@@ -12,10 +12,12 @@ import { DataService } from '../../services/data.service';
     templateUrl: './form-user.component.html'
 })
 export class FormUserComponent implements Field {
-    config: FieldConfig;
+    field: FieldConfig;
     group: FormGroup;
+    fields: FieldConfig[];
 
-    @Input() typeaheadOnly: boolean;
+
+  @Input() typeaheadOnly: boolean;
     @Input() emitModel: any;
     @Input() maxItems: number;
     @Output() emitModelChange = new EventEmitter;
@@ -25,14 +27,14 @@ export class FormUserComponent implements Field {
     constructor(private dataService: DataService) { }
 
     ngOnInit() {
-        if (this.group.controls[this.config.name].value)
-            this.group.controls[this.config.name].value.forEach(item => {
+        if (this.group.controls[this.field.name].value)
+            this.group.controls[this.field.name].value.forEach(item => {
                 if (!item.display) {
-                    item.display = item[this.config.settings.displayBy];
-                    item.value = item[this.config.settings.identifyBy];
+                    item.display = item[this.field.settings.displayBy];
+                    item.value = item[this.field.settings.identifyBy];
                 }
             });
-        this.provider = this.dataService.get(this.config.provider);
+        this.provider = this.dataService.get(this.field.provider);
     }
 
     change(event) {
@@ -40,8 +42,12 @@ export class FormUserComponent implements Field {
     }
 
     requestAutocompleteItems = (text: string): Observable<{}> => {
-        let result = this.provider[this.config.providerMethod](text);
+        let result = this.provider[this.field.providerMethod](text);
         return Observable.fromPromise(result);
+    }
+
+    isShow () {
+      return !this.field.hidden;
     }
 
 }

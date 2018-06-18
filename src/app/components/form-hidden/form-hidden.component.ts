@@ -8,6 +8,7 @@ import { FieldConfig } from '../../models/field-config.interface';
   templateUrl: './form-hidden.component.html'
 })
 export class FormInputHidden implements Field {
-  config: FieldConfig;
+  field: FieldConfig;
   group: FormGroup;
+  fields: FieldConfig[];
 }
