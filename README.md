@@ -36,7 +36,7 @@ Name | Type | Description | Example
 `disabled?` | `boolean` | disable field if `true` | `disabled: true`
 `label?` | `string` | field label | `label: "Project Title"`
 `name` | `string` | field name | `name: "projectTitle"`
-`options?` | `string[]` | options for `<select>` dropdown or radio buttons | `options: [ "Option 1", "Option 2" ]` 
+`options?` | `any[]` | options for `<select>` dropdown or radio buttons | `options: [ "Option 1", "Option 2" ]` 
 `placeholder?` | `string` | text placeholder | `placeholder: "Enter Project Title"`
 `type` | `string` | field type (see field type description) | `type: "select"`
 `value?` | `any` | field value | `value: 123`
