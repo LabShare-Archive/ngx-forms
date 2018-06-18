@@ -16,6 +16,7 @@ import { FormCheckboxComponent } from "./app/components/form-checkbox/form-check
 import { TagInputModule } from "ngx-chips";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataService } from './app/services/data.service';
+import { DynamicFieldService } from "./app/services/dynamic-field.service";
 
 @NgModule({
     imports: [
@@ -52,10 +53,14 @@ import { DataService } from './app/services/data.service';
         FormCheckboxComponent
     ],
     providers: [
-        DataService
+        DataService,
+        DynamicFieldService
     ],
     schemas: [
         NO_ERRORS_SCHEMA
     ]
 })
 export class NgxFormModule { }
+
+export {DynamicFieldService}
+

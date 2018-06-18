@@ -10,60 +10,87 @@ import { FieldConfig } from '../../models/field-config.interface';
 import { FormTextareaComponent } from '../form-textarea/form-textarea.component';
 import { FormInputHidden } from '../form-hidden/form-hidden.component';
 import { FormUserComponent } from '../form-user/form-user.component';
+import { DynamicFieldService } from "../../services/dynamic-field.service"
 
 const components: { [type: string]: Type<Field> } = {
-    text: FormInputComponent,
-    select: FormSelectComponent,
-    editor: FormTextEditorComponent,
-    textarea: FormTextareaComponent,
-    hidden: FormInputHidden,
-    user: FormUserComponent,
-    radio: FormRadioComponent,
-    checkbox: FormCheckboxComponent
+  text: FormInputComponent,
+  select: FormSelectComponent,
+  editor: FormTextEditorComponent,
+  textarea: FormTextareaComponent,
+  hidden: FormInputHidden,
+  user: FormUserComponent,
+  radio: FormRadioComponent,
+  checkbox: FormCheckboxComponent
 };
 
 @Directive({
-    selector: '[dynamicField]'
+  selector: '[dynamicField]'
 })
 export class DynamicFieldDirective implements Field, OnChanges, OnInit {
-    @Input()
-    field: FieldConfig;
+  @Input()
+  field: FieldConfig;
 
-    @Input()
-    group: FormGroup;
+  @Input()
+  group: FormGroup;
 
 
-    @Input()
-    fields: [FieldConfig];
+  @Input()
+  fields: [FieldConfig];
 
-    component: ComponentRef<Field>;
+  component: ComponentRef<Field>;
 
-    constructor(
-        private resolver: ComponentFactoryResolver,
-        private container: ViewContainerRef
-    ) { }
+  constructor(
+    private resolver: ComponentFactoryResolver,
+    private container: ViewContainerRef,
+    private dynamicFieldService: DynamicFieldService
+  ) { }
 
-    ngOnChanges() {
-        if (this.component) {
-            this.component.instance.field = this.field;
-            this.component.instance.group = this.group;
-            this.component.instance.fields = this.fields;
-        }
-    }
+  /**
+   * @description
+   * 1, check if the field is custom field
+   * 2, check if type is pre-defined field, if not throw errors
+   */
+  loadComponent() {
+    if (this.field.custom) {
 
-    ngOnInit() {
-        if (!components[this.field.type]) {
-            const supportedTypes = Object.keys(components).join(', ');
-            throw new Error(
-                `Trying to use an unsupported type (${this.field.type}).
-        Supported types: ${supportedTypes}`
-            );
-        }
-        const component = this.resolver.resolveComponentFactory<Field>(components[this.field.type]);
-        this.component = this.container.createComponent(component);
+      try {
+        let customComponent = this.dynamicFieldService.getCustomComponent(this.field.type);
+        this.component= this.dynamicFieldService.addDynamicComponent(customComponent);
         this.component.instance.field = this.field;
         this.component.instance.group = this.group;
         this.component.instance.fields = this.fields;
+      } catch (e) {
+        throw new Error(`Can't build custom component field "${this.field.type}"`)
+      }
+
+    } else if (!components[this.field.type]) {
+
+      const supportedTypes = Object.keys(components).join(', ');
+      throw new Error(
+        `Trying to use an unsupported type (${this.field.type}).Supported types: ${supportedTypes}`
+      );
+
+    } else {
+
+      this.component = this.dynamicFieldService.addDynamicComponent(components[this.field.type]);
+      this.component.instance.field = this.field;
+      this.component.instance.group = this.group;
+      this.component.instance.fields = this.fields;
 
     }
+  }
+
+  ngOnChanges() {
+    if (this.component) {
+      this.component.instance.field = this.field;
+      this.component.instance.group = this.group;
+      this.component.instance.fields = this.fields;
+    }
+  }
+
+
+  ngOnInit() {
+    this.dynamicFieldService.setRootViewContainerRef(this.container);
+    this.loadComponent();
+  }
 }
