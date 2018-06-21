@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray} from '@angular/forms';
 
 import { FieldConfig } from '../../models/field-config.interface';
 import { DataService } from '../../services/data.service';
@@ -54,9 +54,15 @@ export class DynamicFormComponent implements OnChanges, OnInit {
         }
     }
 
+  /**
+   * @description create FormGroup and FormControl for all general field, exclude custom field
+   * @return {FormGroup}
+   */
     createGroup() {
         const group = this.fb.group({});
-        this.controls.forEach(control => group.addControl(control.name, this.createControl(control)));
+        this.controls.forEach(control => {
+          if (!control.custom)  group.addControl(control.name, this.createControl(control));
+        });
         return group;
     }
 
