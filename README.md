@@ -1,8 +1,11 @@
+[![Greenkeeper badge](https://badges.greenkeeper.io/LabShare/ngx-forms.svg?token=4a12f6b1da0f082ac1bbf2c72bbcaf01b001705746c61c36eee1db6bda3d7c11&ts=1528346534395)](https://greenkeeper.io/)
+[![Coverage Status](https://coveralls.io/repos/github/LabShare/ngx-forms/badge.svg?t=K1oUbj)](https://coveralls.io/github/LabShare/ngx-forms)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
+
 # ngx-forms
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/LabShare/ngx-forms.svg?token=4a12f6b1da0f082ac1bbf2c72bbcaf01b001705746c61c36eee1db6bda3d7c11&ts=1528346534395)](https://greenkeeper.io/)
 Dynamic form generator. This module provides components that wrap angular 2+ FormBuilder styled with Bootstrap CSS 4
-[![Coverage Status](https://coveralls.io/repos/github/LabShare/ngx-forms/badge.svg?t=K1oUbj)](https://coveralls.io/github/LabShare/ngx-forms)
 ![Alt text](/imgs/readmess.png?raw=true "Optional Title")
 
 ## Requirements
@@ -71,3 +74,4 @@ Field example
 { "type": "checkbox", "label":"Identify all that apply", "name": "checkId", "hidden": true, "options": [{"value": "NIH Grant"}, {"value": "NIH Intramural"}]}
 ```
 So when users select radio button `Yes`, it will look for the field with name `checkID` and show the checkbox. When `No` is selected, the checkbox will hide because there is no value in `ref`.
+
