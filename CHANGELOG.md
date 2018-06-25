@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/LabShare/ngx-forms/compare/v1.1.0...v1.1.1) (2018-06-25)
+
+
+### Bug Fixes
+
+* **coverage:** remove outdir to fix wrong path in lcov.info ([cae16d0](https://github.com/LabShare/ngx-forms/commit/cae16d0))
+* **package:** remove font awesome ([a2293bf](https://github.com/LabShare/ngx-forms/commit/a2293bf))
+* **ui:** #PPC-53 exclude adding formControl custom field ([7ede7ee](https://github.com/LabShare/ngx-forms/commit/7ede7ee)), closes [#PPC-53](https://github.com/LabShare/ngx-forms/issues/PPC-53)
+
 # [1.1.0](https://github.com/LabShare/ngx-forms/compare/v1.0.0...v1.1.0) (2018-06-25)
 
 
