@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/LabShare/ngx-forms/compare/v1.0.0...v1.1.0) (2018-06-25)
+
+
+### Features
+
+* **test:** add unit test for dynamic field ([8747851](https://github.com/LabShare/ngx-forms/commit/8747851))
+* **ui:** #PPC-53 allow form  to load external component ([b4e2a70](https://github.com/LabShare/ngx-forms/commit/b4e2a70)), closes [#PPC-53](https://github.com/LabShare/ngx-forms/issues/PPC-53)
+
 # 1.0.0 (2018-06-18)
 
 
