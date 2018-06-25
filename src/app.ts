@@ -62,5 +62,5 @@ import { DynamicFieldService } from "./app/services/dynamic-field.service";
 })
 export class NgxFormModule { }
 
-export {DynamicFieldService}
+export {DynamicFieldService, DataService}
 
