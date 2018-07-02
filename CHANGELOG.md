@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/LabShare/ngx-forms/compare/v1.1.2...v1.1.3) (2018-07-02)
+
+
+### Bug Fixes
+
+* fixed version of rxjs-compat ([43e3a63](https://github.com/LabShare/ngx-forms/commit/43e3a63))
+
 ## [1.1.2](https://github.com/LabShare/ngx-forms/compare/v1.1.1...v1.1.2) (2018-06-28)
 
 
