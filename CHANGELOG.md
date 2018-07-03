@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/LabShare/ngx-forms/compare/v1.1.3...v2.0.0) (2018-07-03)
+
+
+### chore
+
+* **package:** update dependencies ([5d97e58](https://github.com/LabShare/ngx-forms/commit/5d97e58))
+
+
+### BREAKING CHANGES
+
+* **package:** Updated Angular from 4 to 6
+
 ## [1.1.3](https://github.com/LabShare/ngx-forms/compare/v1.1.2...v1.1.3) (2018-07-02)
 
 
