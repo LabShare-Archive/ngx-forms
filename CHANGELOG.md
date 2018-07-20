@@ -1,3 +1,12 @@
+## [1.1.4](https://github.com/LabShare/ngx-forms/compare/v1.1.3...v1.1.4) (2018-07-20)
+
+
+### Bug Fixes
+
+* **ci:** fix build command ([3ece456](https://github.com/LabShare/ngx-forms/commit/3ece456))
+* **ci:** fix Travis branch name ([6730dba](https://github.com/LabShare/ngx-forms/commit/6730dba))
+* **package:** unpin Angular4 dependencies ([3c1b43e](https://github.com/LabShare/ngx-forms/commit/3c1b43e))
+
 ## [1.1.3](https://github.com/LabShare/ngx-forms/compare/v1.1.2...v1.1.3) (2018-07-02)
 
 
