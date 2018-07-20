@@ -1,7 +1,7 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/LabShare/ngx-forms.svg?token=4a12f6b1da0f082ac1bbf2c72bbcaf01b001705746c61c36eee1db6bda3d7c11&ts=1528346534395)](https://greenkeeper.io/)
 [![Coverage Status](https://coveralls.io/repos/github/LabShare/ngx-forms/badge.svg?t=K1oUbj)](https://coveralls.io/github/LabShare/ngx-forms)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-
+[![Build Status](https://travis-ci.com/LabShare/ngx-forms.svg?token=zsifsALL6Np5avzzjVp1&branch=master)](https://travis-ci.com/LabShare/ngx-forms)
 
 # ngx-forms
 
