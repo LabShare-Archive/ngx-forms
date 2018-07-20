@@ -82,5 +82,5 @@
   "release": {
     "extends": "@labshare/semantic-release-config",
     "branch": "1x"
-  },
+  }
 }

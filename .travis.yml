@@ -4,7 +4,7 @@ node_js:
   - node
 before_install:
   - |-
-    if [ $TRAVIS_PULL_REQUEST == false ] && [ $TRAVIS_BRANCH == "master" ];
+    if [ $TRAVIS_PULL_REQUEST == false ] && [ $TRAVIS_BRANCH == "1x" ];
      then
         echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > ~/.npmrc;
       else
