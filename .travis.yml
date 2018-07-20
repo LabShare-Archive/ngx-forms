@@ -41,3 +41,5 @@ jobs:
         skip_cleanup: true
         script:
           - npm run semantic-release
+        on:
+          branch: 1x

@@ -76,9 +76,11 @@
     "@labshare/semantic-release-config": "^1.0.0"
   },
   "publishConfig": {
-    "access": "restricted"
+    "access": "restricted",
+    "tag": "1x"
   },
   "release": {
-    "extends": "@labshare/semantic-release-config"
-  }
+    "extends": "@labshare/semantic-release-config",
+    "branch": "1x"
+  },
 }
