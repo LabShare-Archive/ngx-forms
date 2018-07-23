@@ -1,3 +1,11 @@
+## [2.0.1](https://github.com/LabShare/ngx-forms/compare/v2.0.0...v2.0.1) (2018-07-23)
+
+
+### Bug Fixes
+
+* **travis:** update ([5a6fbaf](https://github.com/LabShare/ngx-forms/commit/5a6fbaf))
+* **ui:** update html ([76fefc8](https://github.com/LabShare/ngx-forms/commit/76fefc8))
+
 # [2.0.0](https://github.com/LabShare/ngx-forms/compare/v1.1.3...v2.0.0) (2018-07-03)
 
 
