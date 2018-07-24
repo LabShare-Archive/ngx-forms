@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/LabShare/ngx-forms/compare/v2.0.1...v2.0.2) (2018-07-24)
+
+
+### Bug Fixes
+
+* **package:** unpin Angular dependencies ([e0df2cc](https://github.com/LabShare/ngx-forms/commit/e0df2cc))
+
 ## [2.0.1](https://github.com/LabShare/ngx-forms/compare/v2.0.0...v2.0.1) (2018-07-23)
 
 
