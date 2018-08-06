@@ -13,12 +13,26 @@ export class ObserverService {
         }).pipe(share());
     }
 
-    public broadcast(event) {
+  /**
+   * @description broadcast an event
+   * @param event example
+   * {
+   *     name: eventName,
+   *     ...
+   * }
+   */
+  public broadcast(event) {
         this.observer.next(event);
     }
 
+  /**
+   * @description listen to broadcast events
+   * @param eventName
+   * @param callback
+   * @returns {Subscription}
+   */
     public on(eventName, callback) {
-        this.observable.pipe(filter((event) => event.name === eventName))
+        return this.observable.pipe(filter((event) => event.name === eventName))
             .subscribe(callback);
     }
 }

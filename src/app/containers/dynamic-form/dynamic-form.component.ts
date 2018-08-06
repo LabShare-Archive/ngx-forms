@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray} from '@angular/forms';
 
 import { FieldConfig } from '../../models/field-config.interface';
@@ -6,13 +6,14 @@ import { DataService } from '../../services/data.service';
 import { ObserverService } from "../../services/observer.service";
 
 import { Events } from '../../models/events';
+import { ISubscription } from "rxjs/Subscription";
 
 @Component({
     exportAs: 'dynamicForm',
     selector: 'dynamic-form',
     template: require('./dynamic-form.component.html')
 })
-export class DynamicFormComponent implements OnChanges, OnInit {
+export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy{
 
     @Input() fieldsConfig: FieldConfig[] = [];
     @Input() model: any;
@@ -21,6 +22,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
 
     public form: FormGroup;
     public showFormLabelName: string;  //label name of the form to show
+    public subscription: ISubscription;
 
     get controls() { return this.fieldsConfig.filter(({ type }) => type !== 'button'); }
     get changes() { return this.form.valueChanges; }
@@ -28,7 +30,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
     get value() { return this.form.value; }
 
     constructor(private fb: FormBuilder, private dataService: DataService, private observerService: ObserverService) {
-          this.observerService.on(Events.SELECT_FORM_TAB, (events)=> {
+          this.subscription = this.observerService.on(Events.SELECT_FORM_TAB, (events)=> {
                this.showFormLabelName = events.value;
           })
     }
@@ -112,4 +114,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
       return label == this.showFormLabelName;
     }
 
+    ngOnDestroy() {
+      this.subscription.unsubscribe();
+    }
 }
