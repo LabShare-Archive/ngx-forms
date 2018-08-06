@@ -1,5 +1,5 @@
 /**
- * Contains all the Event's Contants for ngx-publications
+ * Contains all the Event's Contants for ngx-forms
  * @access public
  */
 export class Events {
