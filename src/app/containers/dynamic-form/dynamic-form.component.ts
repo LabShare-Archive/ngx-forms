@@ -1,30 +1,39 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray} from '@angular/forms';
 
 import { FieldConfig } from '../../models/field-config.interface';
 import { DataService } from '../../services/data.service';
+import { ObserverService } from "../../services/observer.service";
+
+import { Events } from '../../models/events';
+import { ISubscription } from "rxjs/Subscription";
 
 @Component({
     exportAs: 'dynamicForm',
     selector: 'dynamic-form',
     template: require('./dynamic-form.component.html')
 })
-export class DynamicFormComponent implements OnChanges, OnInit {
+export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy{
 
-    @Input() config: FieldConfig[] = [];
+    @Input() fieldsConfig: FieldConfig[] = [];
     @Input() model: any;
     @Input() dataProvider: object;
+    @Input() formsConfig;
 
-    // @Output() submit: EventEmitter<any> = new EventEmitter<any>();
+    public form: FormGroup;
+    public showFormLabelName: string;  //label name of the form to show
+    public subscription: ISubscription;
 
-    form: FormGroup;
-
-    get controls() { return this.config.filter(({ type }) => type !== 'button'); }
+    get controls() { return this.fieldsConfig.filter(({ type }) => type !== 'button'); }
     get changes() { return this.form.valueChanges; }
     get valid() { return this.form.valid; }
     get value() { return this.form.value; }
 
-    constructor(private fb: FormBuilder, private dataService: DataService) { }
+    constructor(private fb: FormBuilder, private dataService: DataService, private observerService: ObserverService) {
+          this.subscription = this.observerService.on(Events.SELECT_FORM_TAB, (events)=> {
+               this.showFormLabelName = events.value;
+          })
+    }
 
     ngOnInit() {
         this.dataService.set(this.dataProvider);
@@ -47,7 +56,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
             configControls
                 .filter((control) => !controls.includes(control))
                 .forEach((name) => {
-                    const config = this.config.find((control) => control.name === name);
+                    const config = this.fieldsConfig.find((control) => control.name === name);
                     this.form.addControl(name, this.createControl(config));
                 });
 
@@ -89,7 +98,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
             return;
         }
 
-        this.config = this.config.map((item) => {
+        this.fieldsConfig = this.fieldsConfig.map((item) => {
             if (item.name === name) {
                 item.disabled = disable;
             }
@@ -101,4 +110,11 @@ export class DynamicFormComponent implements OnChanges, OnInit {
         this.form.controls[name].setValue(value, { emitEvent: true });
     }
 
+    isShow(label) {
+      return label == this.showFormLabelName;
+    }
+
+    ngOnDestroy() {
+      this.subscription.unsubscribe();
+    }
 }

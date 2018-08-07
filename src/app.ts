@@ -1,10 +1,11 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { QuillModule } from "ngx-quill";
 
 import { DynamicFieldDirective } from './app/components/dynamic-field/dynamic-field.directive';
 import { DynamicFormComponent } from './app/containers/dynamic-form/dynamic-form.component';
+import { DynamicPanelComponent } from "./app/containers/dynamic-panel/dynamic-panel.component";
 import { FormInputComponent } from './app/components/form-input/form-input.component';
 import { FormSelectComponent } from './app/components/form-select/form-select.component';
 import { FormTextareaComponent } from './app/components/form-textarea/form-textarea.component'
@@ -17,6 +18,8 @@ import { TagInputModule } from "ngx-chips";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataService } from './app/services/data.service';
 import { DynamicFieldService } from "./app/services/dynamic-field.service";
+import { ObserverService } from "./app/services/observer.service";
+import { Events } from './app/models/events';
 
 @NgModule({
     imports: [
@@ -32,6 +35,7 @@ import { DynamicFieldService } from "./app/services/dynamic-field.service";
         FormTextEditorComponent,
         DynamicFieldDirective,
         DynamicFormComponent,
+        DynamicPanelComponent,
         FormInputComponent,
         FormSelectComponent,
         FormTextareaComponent,
@@ -54,7 +58,8 @@ import { DynamicFieldService } from "./app/services/dynamic-field.service";
     ],
     providers: [
         DataService,
-        DynamicFieldService
+        DynamicFieldService,
+        ObserverService
     ],
     schemas: [
         NO_ERRORS_SCHEMA
@@ -62,5 +67,5 @@ import { DynamicFieldService } from "./app/services/dynamic-field.service";
 })
 export class NgxFormModule { }
 
-export {DynamicFieldService, DataService}
+export {DynamicFieldService, DataService, ObserverService, Events}
 
