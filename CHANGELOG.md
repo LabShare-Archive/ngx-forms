@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/LabShare/ngx-forms/compare/v2.0.2...v2.0.3) (2018-08-03)
+
+
+### Bug Fixes
+
+* **tests:** integrate with CodeCov ([ab364c5](https://github.com/LabShare/ngx-forms/commit/ab364c5))
+
 ## [2.0.2](https://github.com/LabShare/ngx-forms/compare/v2.0.1...v2.0.2) (2018-07-24)
 
 
