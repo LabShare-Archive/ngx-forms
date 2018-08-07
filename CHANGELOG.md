@@ -1,3 +1,16 @@
+# [2.1.0](https://github.com/LabShare/ngx-forms/compare/v2.0.3...v2.1.0) (2018-08-07)
+
+
+### Bug Fixes
+
+* **refactor:** memory leak ([0a7f92b](https://github.com/LabShare/ngx-forms/commit/0a7f92b))
+* **typo:** update ([5857db5](https://github.com/LabShare/ngx-forms/commit/5857db5))
+
+
+### Features
+
+* **ui:** add dynamic panel #PPC-83 ([1300138](https://github.com/LabShare/ngx-forms/commit/1300138)), closes [#PPC-83](https://github.com/LabShare/ngx-forms/issues/PPC-83)
+
 ## [2.0.3](https://github.com/LabShare/ngx-forms/compare/v2.0.2...v2.0.3) (2018-08-03)
 
 
