@@ -1,6 +1,10 @@
 {
   "type": "object",
   "properties": {
+    "layout": {
+      "type": "string",
+      "enum": ["tabs", "accordion"]
+    },
     "sections": {
       "type": "array",
       "items": {
@@ -33,15 +37,7 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": [
-            "text",
-            "hidden",
-            "select",
-            "editor",
-            "radio",
-            "checkbox",
-            "custom"
-          ]
+          "enum": ["text", "hidden","select", "editor", "radio", "checkbox","custom"]
         },
         "name": {
           "type": "string"
