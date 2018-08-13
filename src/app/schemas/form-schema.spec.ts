@@ -8,6 +8,7 @@ describe('forms schema', () => {
 
   beforeEach(function () {
     validate = ajv.compile(schema);
+    delete require.cache[require.resolve('../../../test/ui/fixtures/valid-ngx-forms-config')]; // invalidate require cache
     formConfig = require('../../../test/ui/fixtures/valid-ngx-forms-config').Config;
   });
 
