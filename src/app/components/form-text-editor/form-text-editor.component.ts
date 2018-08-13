@@ -12,7 +12,6 @@ import { FieldConfig } from '../../models/field-config.interface';
 export class FormTextEditorComponent implements Field {
   field: FieldConfig;
 	group: FormGroup;
-  fields: FieldConfig[];
   private quillToolbar: object = {
 		toolbar: ['bold', 'italic', 'underline', 'strike', { 'header': 1 }, { 'header': 2 }, { 'list': 'ordered' }, { 'list': 'bullet' }, 'blockquote', 'code-block', 'link']
 	};

@@ -36,17 +36,4 @@ describe('FormRadioComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('onSelectionChange: Show checkbox groups by matching `options.ref` and `name`', () => {
-      let refName = 'checkId';
-      component.onSelectionChange(refName);
-      expect(_.find(component.fields, {"name": "checkId"}).hidden).toBe(false)
-  });
-
-  it('onSelectionChange: Hide checkbox groups when `options.ref` is empty', () => {
-     let refName = '';
-     component.onSelectionChange(refName);
-     expect(_.find(component.fields, {"name": "checkId"}).hidden).toBe(true)
-
-  })
-
 });

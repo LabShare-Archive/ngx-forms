@@ -11,7 +11,6 @@ import { FieldConfig } from '../../models/field-config.interface';
 export class FormTextareaComponent implements Field {
   field: FieldConfig;
   group: FormGroup;
-  fields: FieldConfig[];
 
   isShow () {
     return !this.field.hidden;

@@ -39,7 +39,7 @@ Name | Type | Description | Example
 `disabled?` | `boolean` | disable field if `true` | `disabled: true`
 `label?` | `string` | field label | `label: "Project Title"`
 `name` | `string` | field name | `name: "projectTitle"`
-`options?` | `any[]` | options for `<select>` dropdown or radio buttons | `options: [ "Option 1", "Option 2" ]` 
+`options?` | `string[]` | options for `<select>` dropdown | `options: [ "Option 1", "Option 2" ]`
 `placeholder?` | `string` | text placeholder | `placeholder: "Enter Project Title"`
 `type` | `string` | field type (see field type description) | `type: "select"`
 `value?` | `any` | field value | `value: 123`
@@ -61,17 +61,3 @@ Name | Type | Description | Example
 - `hidden` - hidden value field `<input type="hidden">`.
 - `radio` - radio buttons
 - `checkbox` - checkbox buttons
-
-## Interaction between two fields
-#### Show a new field by selecting a radio button
-![Alt text](/imgs/ngx-forms-radio-buttons.gif)
-When users select a value of radio button, a new field which name is same with `ref` in `options` will show up.
-If `ref` in that option is missing, it will not show anything and reverse the status back.
-
-Field example
-```json
-{ "type": "radio", "label": "Were NCATS core facilities used?", "name": "questions", "options": [{"value": "Yes", "ref": "checkId"}, {"value": "No"}]},
-{ "type": "checkbox", "label":"Identify all that apply", "name": "checkId", "hidden": true, "options": [{"value": "NIH Grant"}, {"value": "NIH Intramural"}]}
-```
-So when users select radio button `Yes`, it will look for the field with name `checkID` and show the checkbox. When `No` is selected, the checkbox will hide because there is no value in `ref`.
-

@@ -10,5 +10,4 @@ import { FieldConfig } from '../../models/field-config.interface';
 export class FormInputHidden implements Field {
   field: FieldConfig;
   group: FormGroup;
-  fields: FieldConfig[];
 }
