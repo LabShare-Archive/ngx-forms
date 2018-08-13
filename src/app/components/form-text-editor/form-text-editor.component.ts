@@ -6,7 +6,7 @@ import { FieldConfig } from '../../models/field-config.interface';
 
 @Component({
 	selector: 'form-text-editor',
-	templateUrl: 'form-text-editor.component.html',
+	template: require('./form-text-editor.component.html'),
     styles: [require('./form-text-editor.component.scss').toString()]
 })
 export class FormTextEditorComponent implements Field {
