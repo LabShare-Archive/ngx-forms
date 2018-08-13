@@ -4,8 +4,6 @@ import { FormGroup } from '@angular/forms';
 import { FieldConfig } from '../../models/field-config.interface';
 import * as _ from 'lodash';
 
-
-
 @Component({
     selector: 'form-radio',
     template: require('./form-radio.component.html')

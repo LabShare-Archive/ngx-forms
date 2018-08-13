@@ -6,7 +6,7 @@ import { FieldConfig } from '../../models/field-config.interface';
 
 @Component({
   selector: 'form-textarea',
-  templateUrl: './form-textarea.component.html'
+  template: require('./form-textarea.component.html')
 })
 export class FormTextareaComponent implements Field {
   field: FieldConfig;
