@@ -26,8 +26,6 @@ describe('FormRadioComponent', () => {
     fixture = TestBed.createComponent(FormRadioComponent);
     component = fixture.componentInstance;
     component.field = { "type": "text", "label": "Explain", "name": "testName", "hidden": true, "required": true };
-    component.fields = [{ "type": "radio", "label": "Radio button label", "name": "questions", "options": [{"value": "Yes", "ref": "checkId"}, {"value": "No"}]},
-      { "type": "checkbox", "label":"Check box label", "name": "checkId", "hidden": true, "options": [{"value": "Value1"}, {"value": "Value2"}]}];
 
     fixture.detectChanges();
   });
