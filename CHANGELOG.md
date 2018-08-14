@@ -1,3 +1,13 @@
+## [2.1.1](https://github.com/LabShare/ngx-forms/compare/v2.1.0...v2.1.1) (2018-08-14)
+
+
+### Bug Fixes
+
+* **test:** add unit test ([127831f](https://github.com/LabShare/ngx-forms/commit/127831f))
+* **test:** add unit test ([cd79259](https://github.com/LabShare/ngx-forms/commit/cd79259))
+* **test:** update ([e2b0892](https://github.com/LabShare/ngx-forms/commit/e2b0892))
+* **ui:** move out customized functionality ([144411e](https://github.com/LabShare/ngx-forms/commit/144411e))
+
 # [2.1.0](https://github.com/LabShare/ngx-forms/compare/v2.0.3...v2.1.0) (2018-08-07)
 
 
