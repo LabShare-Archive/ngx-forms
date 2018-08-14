@@ -34,9 +34,6 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
   group: FormGroup;
 
 
-  @Input()
-  fields: [FieldConfig];
-
   component: ComponentRef<Field>;
 
   constructor(
@@ -58,7 +55,6 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
         this.component= this.dynamicFieldService.addDynamicComponent(customComponent);
         this.component.instance.field = this.field;
         this.component.instance.group = this.group;
-        this.component.instance.fields = this.fields;
       } catch (e) {
         throw new Error(`Can't build custom component field "${this.field.type}"`)
       }
@@ -75,8 +71,6 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
       this.component = this.dynamicFieldService.addDynamicComponent(components[this.field.type]);
       this.component.instance.field = this.field;
       this.component.instance.group = this.group;
-      this.component.instance.fields = this.fields;
-
     }
   }
 
@@ -84,7 +78,6 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
     if (this.component) {
       this.component.instance.field = this.field;
       this.component.instance.group = this.group;
-      this.component.instance.fields = this.fields;
     }
   }
 

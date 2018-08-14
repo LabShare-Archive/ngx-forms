@@ -3,6 +3,5 @@ import { FieldConfig } from './field-config.interface';
 
 export interface Field {
   field: FieldConfig,
-  group: FormGroup,
-  fields: FieldConfig[]
+  group: FormGroup
 }

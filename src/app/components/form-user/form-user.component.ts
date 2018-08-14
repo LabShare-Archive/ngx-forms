@@ -14,8 +14,6 @@ import { DataService } from '../../services/data.service';
 export class FormUserComponent implements Field {
     field: FieldConfig;
     group: FormGroup;
-    fields: FieldConfig[];
-
 
   @Input() typeaheadOnly: boolean;
     @Input() emitModel: any;

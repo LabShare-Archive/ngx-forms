@@ -10,7 +10,6 @@ import { FieldConfig } from '../../models/field-config.interface';
 export class FormInputComponent implements Field {
   field: FieldConfig;
   group: FormGroup;
-  fields: FieldConfig[];
 
   isShow () {
     return !this.field.hidden;

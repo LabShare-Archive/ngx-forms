@@ -1,20 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormRadioComponent } from './form-radio.component';
+import { FormTextEditorComponent } from './form-text-editor.component';
 import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
+import { QuillModule } from "ngx-quill";
 import  * as _  from 'lodash';
 
-describe('FormRadioComponent', () => {
-  let component: FormRadioComponent;
-  let fixture: ComponentFixture<FormRadioComponent>;
+describe('FormTextEditorComponent', () => {
+  let component: FormTextEditorComponent;
+  let fixture: ComponentFixture<FormTextEditorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        QuillModule
       ],
-      declarations: [FormRadioComponent],
+      declarations: [FormTextEditorComponent],
       providers: [
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
@@ -23,9 +25,9 @@ describe('FormRadioComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormRadioComponent);
+    fixture = TestBed.createComponent(FormTextEditorComponent);
     component = fixture.componentInstance;
-    component.field = { "type": "text", "label": "Explain", "name": "testName", "hidden": true, "required": true };
+    component.field = { "type": "editor", "label": "Explain", "name": "testName", "hidden": true, "required": true };
 
     fixture.detectChanges();
   });
