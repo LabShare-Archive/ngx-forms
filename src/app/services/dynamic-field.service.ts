@@ -1,34 +1,28 @@
 import {
-  ComponentFactoryResolver,
-  Injectable,
-  Inject
-} from '@angular/core'
+    Injectable,
+    Inject
+} from '@angular/core';
 
 @Injectable()
 export class DynamicFieldService {
 
-  factoryResolver;
-  rootViewContainer;
-  customComponents = {};
+    components = {};
 
-  constructor(@Inject(ComponentFactoryResolver) factoryResolver) {
-    this.factoryResolver = factoryResolver
-  }
-  setRootViewContainerRef(viewContainerRef) {
-    this.rootViewContainer = viewContainerRef
-  }
-  addDynamicComponent(DynamicComponent) {
-    const factory = this.factoryResolver.resolveComponentFactory(DynamicComponent);
-    const component = factory.create(this.rootViewContainer.parentInjector);
-    this.rootViewContainer.insert(component.hostView);
-    return component;
-  }
+    addField(type, component) {
+        if (!type || !type.length) throw new Error('Failed to add new component. Type is incorrent, Type value: ' + type);
+        if (!component) throw new Error('Failed to add new component. Component is undefined');
+        this.components[type] = component;
+    }
 
-  storeCustomComponent(name, DynamicComponent) {
-    this.customComponents[name] = DynamicComponent;
-  }
+    getField(type) {
+        if (!this.components[type]) {
+            const supportedTypes = Object.keys(this.components).join(', ');
+            throw new Error(
+                `Trying to use an unsupported field type "${type}".
+                  Supported types: ${supportedTypes}`
+            );
+        }
+        return this.components[type];
+    }
 
-  getCustomComponent(name) {
-    return this.customComponents[name] || null;
-  }
 }

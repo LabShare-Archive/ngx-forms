@@ -1,19 +1,18 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray} from '@angular/forms';
-
+import { Component, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FieldConfig } from '../../models/field-config.interface';
 import { DataService } from '../../services/data.service';
 import { ObserverService } from "../../services/observer.service";
-
 import { Events } from '../../models/events';
 import { ISubscription } from "rxjs/Subscription";
+import { ComponentLoader } from "../../services/components.service";
 
 @Component({
     exportAs: 'dynamicForm',
     selector: 'dynamic-form',
     template: require('./dynamic-form.component.html')
 })
-export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy{
+export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
 
     @Input() fieldsConfig: FieldConfig[] = [];
     @Input() model: any;
@@ -29,10 +28,11 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy{
     get valid() { return this.form.valid; }
     get value() { return this.form.value; }
 
-    constructor(private fb: FormBuilder, private dataService: DataService, private observerService: ObserverService) {
-          this.subscription = this.observerService.on(Events.SELECT_FORM_TAB, (events)=> {
-               this.showFormLabelName = events.value;
-          })
+    constructor(private fb: FormBuilder, private dataService: DataService, private observerService: ObserverService, private componentLoader: ComponentLoader) {
+        // TODO: redo tabs
+        this.subscription = this.observerService.on(Events.SELECT_FORM_TAB, (events) => {
+            this.showFormLabelName = events.value;
+        })
     }
 
     ngOnInit() {
@@ -41,7 +41,6 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy{
         if (this.model) {
             this.form.patchValue(this.model);
         }
-
     }
 
     ngOnChanges() {
@@ -63,14 +62,19 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy{
         }
     }
 
-  /**
-   * @description create FormGroup and FormControl for all general field, exclude custom field
-   * @return {FormGroup}
-   */
+    /**
+     * @description create FormGroup and FormControl for all general field, exclude custom field
+     * @return {FormGroup}
+     */
     createGroup() {
         const group = this.fb.group({});
         this.controls.forEach(control => {
-          if (!control.custom)  group.addControl(control.name, this.createControl(control));
+            // console.log('adding control: ' + control.name); 
+            if (control.isGroup) {
+                group.addControl(control.name, new FormGroup({}))
+            } else
+                group.addControl(control.name, this.createControl(control))
+
         });
         return group;
     }
@@ -87,9 +91,8 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy{
         if (pattern != undefined) { validators.push(Validators.pattern(pattern)); }
         if (nullValidator != undefined) { validators.push(Validators.nullValidator); }
 
-        return this.fb.control({ disabled, value }, validators);
+        return this.fb.control({ disabled, value }, validators); ``
     }
-
 
     setDisabled(name: string, disable: boolean) {
         if (this.form.controls[name]) {
@@ -111,10 +114,10 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy{
     }
 
     isShow(label) {
-      return label == this.showFormLabelName;
+        return label == this.showFormLabelName;
     }
 
     ngOnDestroy() {
-      this.subscription.unsubscribe();
+        this.subscription.unsubscribe();
     }
 }

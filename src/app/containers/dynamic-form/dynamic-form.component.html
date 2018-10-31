@@ -1,10 +1,7 @@
 <form class="dynamic-form" [formGroup]="form">
-  <ng-container *ngFor="let formConfig of formsConfig;">
-    <!-- choose which form to show in formsConfig by matching the form label name-->
-    <div [hidden]="!isShow(formConfig.label)">
-      <dynamic-panel *ngFor="let panelConfig of formConfig.panels" [panelConfig]="panelConfig" [fieldsConfig]="fieldsConfig" [group]="form"></dynamic-panel>
+  <ng-container *ngFor="let group of formsConfig;">
+    <div [hidden]="!isShow(group.label)">
+      <dynamic-panel *ngFor="let panelConfig of group.panels" [panelConfig]="panelConfig" [fieldsConfig]="fieldsConfig" [group]="form" [model]="model"></dynamic-panel>
     </div>
-    <!-- choose which form to show in formsConfig by matching the form label name-->
   </ng-container>
 </form>
-
