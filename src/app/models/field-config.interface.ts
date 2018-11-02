@@ -18,5 +18,6 @@ export interface FieldConfig {
 	pattern?: RegExp
 	nullValidator?: any,
 	provider?: string,
-	providerMethod?: string
+	providerMethod?: string,
+	lookup?: string
 }

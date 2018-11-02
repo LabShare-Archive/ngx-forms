@@ -15,7 +15,7 @@ export class FormUserComponent implements Field {
     field: FieldConfig;
     group: FormGroup;
 
-  @Input() typeaheadOnly: boolean;
+    @Input() typeaheadOnly: boolean;
     @Input() emitModel: any;
     @Input() maxItems: number;
     @Output() emitModelChange = new EventEmitter;
@@ -44,8 +44,8 @@ export class FormUserComponent implements Field {
         return Observable.fromPromise(result);
     }
 
-    isShow () {
-      return !this.field.hidden;
+    isShow() {
+        return !this.field.hidden;
     }
 
 }

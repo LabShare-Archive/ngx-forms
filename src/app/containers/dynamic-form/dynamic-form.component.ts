@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { FieldConfig } from '../../models/field-config.interface';
 import { DataService } from '../../services/data.service';
 import { ObserverService } from "../../services/observer.service";
@@ -18,6 +18,7 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
     @Input() model: any;
     @Input() dataProvider: object;
     @Input() formsConfig;
+    @Input() lookups: object;
 
     public form: FormGroup;
     public showFormLabelName: string;  //label name of the form to show
@@ -29,18 +30,20 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
     get value() { return this.form.value; }
 
     constructor(private fb: FormBuilder, private dataService: DataService, private observerService: ObserverService, private componentLoader: ComponentLoader) {
-        // TODO: redo tabs
-        this.subscription = this.observerService.on(Events.SELECT_FORM_TAB, (events) => {
+        this.subscription = this.observerService.on(Events.SELECT_FORM_TAB, (events) => {         // TODO: redo tabs
             this.showFormLabelName = events.value;
         })
     }
 
     ngOnInit() {
         this.dataService.set(this.dataProvider);
-        this.form = this.createGroup();
+        this.form = this.createForm();
         if (this.model) {
             this.form.patchValue(this.model);
         }
+        this.fieldsConfig.forEach(field => {
+            if (field.lookup && this.lookups.hasOwnProperty(field.lookup)) field.options = this.lookups[field.lookup];
+        });
     }
 
     ngOnChanges() {
@@ -66,10 +69,10 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
      * @description create FormGroup and FormControl for all general field, exclude custom field
      * @return {FormGroup}
      */
-    createGroup() {
+    createForm() {
         const group = this.fb.group({});
         this.controls.forEach(control => {
-            // console.log('adding control: ' + control.name); 
+
             if (control.isGroup) {
                 group.addControl(control.name, new FormGroup({}))
             } else
@@ -79,7 +82,7 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
         return group;
     }
 
-    createControl(config: FieldConfig) {
+    createControl(config: FieldConfig): FormControl {
         const { disabled, required, minLength, maxLength, email, min, max, pattern, nullValidator, value } = config;
         let validators = [];
         if (required != undefined && required) { validators.push(Validators.required); }
@@ -91,7 +94,7 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
         if (pattern != undefined) { validators.push(Validators.pattern(pattern)); }
         if (nullValidator != undefined) { validators.push(Validators.nullValidator); }
 
-        return this.fb.control({ disabled, value }, validators); ``
+        return this.fb.control({ disabled, value }, validators);
     }
 
     setDisabled(name: string, disable: boolean) {
