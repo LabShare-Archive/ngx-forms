@@ -6,7 +6,6 @@ export interface IFieldConfig {
 	label?: string,
 	name: string,
 	options?: any[],
-	formComponentType?: FormComponentType,
 	settings?: any,
 	placeholder?: string,
 	type: string,
