@@ -1,7 +1,7 @@
 import { Component } from "@angular/core"
 import {Field} from "../../models/field.interface";
 import { FormGroup } from '@angular/forms';
-import { FieldConfig } from '../../models/field-config.interface';
+import { IFieldConfig } from '../../models/field-config.interface';
 import * as _ from 'lodash';
 
 @Component({
@@ -10,8 +10,9 @@ import * as _ from 'lodash';
 })
 
 export class FormRadioComponent implements  Field{
-    field: FieldConfig;
+    field: IFieldConfig;
     group: FormGroup;
+    model: object;
 
   isShow () {
     return !this.field.hidden;

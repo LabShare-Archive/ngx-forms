@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Field } from '../../models/field.interface';
-import { FieldConfig } from '../../models/field-config.interface';
+import { IFieldConfig } from '../../models/field-config.interface';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
 import { DataService } from '../../services/data.service';
@@ -12,7 +12,8 @@ import { DataService } from '../../services/data.service';
     templateUrl: './form-user.component.html'
 })
 export class FormUserComponent implements Field {
-    field: FieldConfig;
+    model: object;
+    field: IFieldConfig;
     group: FormGroup;
 
     @Input() typeaheadOnly: boolean;

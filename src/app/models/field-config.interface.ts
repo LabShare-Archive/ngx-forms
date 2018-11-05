@@ -1,10 +1,12 @@
-export interface FieldConfig {
+import { FormComponentType } from "./enums";
+
+export interface IFieldConfig {
 	disabled?: boolean,
 	hidden?: boolean,
-	isGroup?: boolean,
 	label?: string,
 	name: string,
 	options?: any[],
+	formComponentType?: FormComponentType,
 	settings?: any,
 	placeholder?: string,
 	type: string,

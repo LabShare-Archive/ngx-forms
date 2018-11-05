@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import * as _ from 'lodash';
-import { FieldConfig } from "src/app/models/field-config.interface";
+import { IFieldConfig } from "src/app/models/field-config.interface";
 
 @Component({
     selector: 'dynamic-panel',
@@ -11,7 +11,7 @@ import { FieldConfig } from "src/app/models/field-config.interface";
 export class DynamicPanelComponent {
     @Input() public panelConfig;
     @Input() public group;
-    @Input() public fieldsConfig: FieldConfig[];
+    @Input() public fieldsConfig: IFieldConfig[];
     @Input() model: any;
 
     // TODO move getFieldConfig to service call inside dynamic field. Keep all configs in one service

@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, FormControl }
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicFieldDirective } from "./dynamic-field.directive"
 import { By } from '@angular/platform-browser';
-import { FieldConfig } from "../../models/field-config.interface";
+import { IFieldConfig } from "../../models/field-config.interface";
 import { DynamicFieldService } from "../../services/dynamic-field.service";
 import { FormInputComponent } from "../form-input/form-input.component";
 
@@ -14,7 +14,7 @@ import { FormInputComponent } from "../form-input/form-input.component";
 })
 
 class TestComponent {
-    field: FieldConfig;
+    field: IFieldConfig;
     form: FormGroup;
 }
 

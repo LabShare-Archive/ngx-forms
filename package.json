@@ -2,7 +2,7 @@
   "name": "@labshare/ngx-forms",
   "version": "2.1.1",
   "main": "dist/ngx-forms",
-  "typings": "dist/src/app/app.module",
+  "typings": "index.d.ts",
   "scripts": {
     "precommit": "npm run build && git add dist/ngx-forms.js",
     "build": "webpack",

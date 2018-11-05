@@ -1,11 +1,13 @@
 import { Component, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { FieldConfig } from '../../models/field-config.interface';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
+import { IFieldConfig } from '../../models/field-config.interface';
 import { DataService } from '../../services/data.service';
 import { ObserverService } from "../../services/observer.service";
 import { Events } from '../../models/events';
 import { ISubscription } from "rxjs/Subscription";
 import { ComponentLoader } from "../../services/components.service";
+import { FormComponentType } from '../../models/enums';
+import { DynamicFieldService } from '../../services/dynamic-field.service';
 
 @Component({
     exportAs: 'dynamicForm',
@@ -14,7 +16,7 @@ import { ComponentLoader } from "../../services/components.service";
 })
 export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
 
-    @Input() fieldsConfig: FieldConfig[] = [];
+    @Input() fieldsConfig: IFieldConfig[] = [];
     @Input() model: any;
     @Input() dataProvider: object;
     @Input() formsConfig;
@@ -29,7 +31,7 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
     get valid() { return this.form.valid; }
     get value() { return this.form.value; }
 
-    constructor(private fb: FormBuilder, private dataService: DataService, private observerService: ObserverService, private componentLoader: ComponentLoader) {
+    constructor(private fb: FormBuilder, private dataService: DataService, private observerService: ObserverService, private componentLoader: ComponentLoader, private dynamicFieldService: DynamicFieldService) {
         this.subscription = this.observerService.on(Events.SELECT_FORM_TAB, (events) => {         // TODO: redo tabs
             this.showFormLabelName = events.value;
         })
@@ -72,17 +74,22 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
     createForm() {
         const group = this.fb.group({});
         this.controls.forEach(control => {
-
-            if (control.isGroup) {
-                group.addControl(control.name, new FormGroup({}))
-            } else
-                group.addControl(control.name, this.createControl(control))
-
+            let type = this.dynamicFieldService.getType(control.type)
+            switch (type) {
+                case FormComponentType.Array:
+                    group.addControl(control.name, new FormArray([]));
+                    break;
+                case FormComponentType.Group:
+                    group.addControl(control.name, new FormGroup({}))
+                    break;
+                default:
+                    group.addControl(control.name, this.createControl(control))
+            }
         });
         return group;
-    }
+    };
 
-    createControl(config: FieldConfig): FormControl {
+    createControl(config: IFieldConfig): FormControl {
         const { disabled, required, minLength, maxLength, email, min, max, pattern, nullValidator, value } = config;
         let validators = [];
         if (required != undefined && required) { validators.push(Validators.required); }
