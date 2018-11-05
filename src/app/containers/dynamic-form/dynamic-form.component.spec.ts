@@ -3,10 +3,10 @@ import { DynamicPanelComponent } from '../dynamic-panel/dynamic-panel.component'
 import { DynamicFieldDirective } from '../../components/dynamic-field/dynamic-field.directive';
 import { DebugElement } from "@angular/core";
 import { DynamicFormComponent } from "./dynamic-form.component";
-import { ReactiveFormsModule, FormsModule, FormGroup, FormBuilder  } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { DataService } from '../../services/data.service';
 import { DynamicFieldService } from "../../services/dynamic-field.service";
-import { ObserverService  } from '../../services/observer.service'
+import { ObserverService } from '../../services/observer.service';
 
 describe('DynamicFormComponent', () => {
   let component: DynamicFormComponent;

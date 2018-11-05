@@ -5,7 +5,16 @@ import { DataService } from '../../services/data.service';
 import { ObserverService } from "../../services/observer.service";
 import { Events } from '../../models/events';
 import { ISubscription } from "rxjs/Subscription";
-import { ComponentLoader } from "../../services/components.service";
+
+import { FormInputComponent } from '../../components/form-input/form-input.component';
+import { FormSelectComponent } from '../../components/form-select/form-select.component';
+import { FormTextEditorComponent } from '../../components/form-text-editor/form-text-editor.component';
+import { FormCheckboxComponent } from "../../components/form-checkbox/form-checkbox.component";
+import { FormRadioComponent } from "../../components/form-radio/form-radio.component";
+import { FormTextareaComponent } from '../../components/form-textarea/form-textarea.component';
+import { FormInputHidden } from '../../components/form-hidden/form-hidden.component';
+import { FormUserComponent } from '../../components/form-user/form-user.component';
+
 import { FormComponentType } from '../../models/enums';
 import { DynamicFieldService } from '../../services/dynamic-field.service';
 
@@ -31,10 +40,20 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
     get valid() { return this.form.valid; }
     get value() { return this.form.value; }
 
-    constructor(private fb: FormBuilder, private dataService: DataService, private observerService: ObserverService, private componentLoader: ComponentLoader, private dynamicFieldService: DynamicFieldService) {
+    constructor(private fb: FormBuilder, private dataService: DataService, private observerService: ObserverService, private dynamicFieldService: DynamicFieldService) {
         this.subscription = this.observerService.on(Events.SELECT_FORM_TAB, (events) => {         // TODO: redo tabs
             this.showFormLabelName = events.value;
         })
+
+        this.dynamicFieldService.addField('text', FormInputComponent);
+        this.dynamicFieldService.addField('select', FormSelectComponent);
+        this.dynamicFieldService.addField('editor', FormTextEditorComponent);
+        this.dynamicFieldService.addField('textarea', FormTextareaComponent);
+        this.dynamicFieldService.addField('hidden', FormInputHidden);
+        this.dynamicFieldService.addField('user', FormUserComponent);
+        this.dynamicFieldService.addField('radio', FormRadioComponent);
+        this.dynamicFieldService.addField('checkbox', FormCheckboxComponent);
+
     }
 
     ngOnInit() {
@@ -131,3 +150,5 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
         this.subscription.unsubscribe();
     }
 }
+
+export const Components = [FormInputComponent, FormSelectComponent, FormTextEditorComponent, FormTextareaComponent, FormInputHidden, FormUserComponent, FormRadioComponent, FormCheckboxComponent];
