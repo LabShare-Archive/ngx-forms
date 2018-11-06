@@ -8,6 +8,7 @@ import { By } from '@angular/platform-browser';
 import { IFieldConfig } from "../../models/field-config.interface";
 import { DynamicFieldService } from "../../services/dynamic-field.service";
 import { FormInputComponent } from "../form-input/form-input.component";
+import { PreloadService } from '../../services/preload.service';
 
 @Component({
     template: `<form [formGroup]="form"><div dynamicField [field]="field" [group]="form" ></div></form>`
@@ -39,7 +40,7 @@ describe('dynamicField', () => {
         TestBed.configureTestingModule({
             declarations: [DynamicFieldDirective, TestComponent],
             imports: [FormsModule, ReactiveFormsModule, TestModule],
-            providers: [DynamicFieldService]
+            providers: [DynamicFieldService, PreloadService]
         });
 
         fixture = TestBed.createComponent(TestComponent);
@@ -67,7 +68,7 @@ describe('dynamicField', () => {
 
         expect(() => {
             fixtureError.detectChanges();
-        }).toThrowError('Trying to use an unsupported type (text2).Supported types: text, select, editor, textarea, hidden, user, radio, checkbox');
+        }).toThrowError('Trying to use an unsupported field type "text2". Supported types: text, select, editor, textarea, hidden, user, radio, checkbox');
 
     })
 

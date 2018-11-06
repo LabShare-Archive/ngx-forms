@@ -17,6 +17,7 @@ import { FormUserComponent } from '../../components/form-user/form-user.componen
 
 import { FormComponentType } from '../../models/enums';
 import { DynamicFieldService } from '../../services/dynamic-field.service';
+import { PreloadService } from '../../services/preload.service';
 
 @Component({
     exportAs: 'dynamicForm',
@@ -45,14 +46,14 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
             this.showFormLabelName = events.value;
         })
 
-        this.dynamicFieldService.addField('text', FormInputComponent);
-        this.dynamicFieldService.addField('select', FormSelectComponent);
-        this.dynamicFieldService.addField('editor', FormTextEditorComponent);
-        this.dynamicFieldService.addField('textarea', FormTextareaComponent);
-        this.dynamicFieldService.addField('hidden', FormInputHidden);
-        this.dynamicFieldService.addField('user', FormUserComponent);
-        this.dynamicFieldService.addField('radio', FormRadioComponent);
-        this.dynamicFieldService.addField('checkbox', FormCheckboxComponent);
+        // this.dynamicFieldService.addField('text', FormInputComponent);
+        // this.dynamicFieldService.addField('select', FormSelectComponent);
+        // this.dynamicFieldService.addField('editor', FormTextEditorComponent);
+        // this.dynamicFieldService.addField('textarea', FormTextareaComponent);
+        // this.dynamicFieldService.addField('hidden', FormInputHidden);
+        // this.dynamicFieldService.addField('user', FormUserComponent);
+        // this.dynamicFieldService.addField('radio', FormRadioComponent);
+        // this.dynamicFieldService.addField('checkbox', FormCheckboxComponent);
 
     }
 

@@ -18,10 +18,7 @@ export class DynamicFieldService {
     getField(name: string) {
         if (!this.components[name]) {
             const supportedTypes = Object.keys(this.components).join(', ');
-            throw new Error(
-                `Trying to use an unsupported field type "${name}".
-                  Supported types: ${supportedTypes}`
-            );
+            throw new Error(`Trying to use an unsupported field type "${name}". Supported types: ${supportedTypes}`);
         }
         return this.components[name];
     }

@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataService } from './app/services/data.service';
 import { DynamicFieldService } from "./app/services/dynamic-field.service";
 import { ObserverService } from "./app/services/observer.service";
+import { PreloadService } from './app/services/preload.service';
 import { Events } from './app/models/events';
 
 @NgModule({
@@ -36,7 +37,8 @@ import { Events } from './app/models/events';
     providers: [
         DataService,
         DynamicFieldService,
-        ObserverService
+        ObserverService,
+        PreloadService
     ],
     schemas: [
         NO_ERRORS_SCHEMA
