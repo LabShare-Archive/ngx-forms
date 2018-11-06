@@ -25,4 +25,3 @@ export class PreloadService {
         this.dynamicFieldService.addField('checkbox', FormCheckboxComponent);
     }
 }
-
