@@ -1,7 +1,8 @@
-export interface FieldConfig {
+import { FormComponentType } from "./enums";
+
+export interface IFieldConfig {
 	disabled?: boolean,
-  hidden?: boolean,
-  custom?: boolean,
+	hidden?: boolean,
 	label?: string,
 	name: string,
 	options?: any[],
@@ -10,13 +11,14 @@ export interface FieldConfig {
 	type: string,
 	value?: any,
 	required?: boolean,
-	minLength? : number,
-	maxLength? : number,
-	email? : boolean,
+	minLength?: number,
+	maxLength?: number,
+	email?: boolean,
 	min?: number,
 	max?: number,
 	pattern?: RegExp
 	nullValidator?: any,
 	provider?: string,
-	providerMethod?: string
+	providerMethod?: string,
+	lookup?: string
 }
