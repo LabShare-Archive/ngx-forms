@@ -1,3 +1,19 @@
+# [2.2.0](https://github.com/LabShare/ngx-forms/compare/v2.1.1...v2.2.0) (2018-11-06)
+
+
+### Bug Fixes
+
+* **rjxs:** remove rxJS 5 import ([9b0c290](https://github.com/LabShare/ngx-forms/commit/9b0c290))
+* fixed tests ([9fcb982](https://github.com/LabShare/ngx-forms/commit/9fcb982))
+* fixed tests ([8fba67e](https://github.com/LabShare/ngx-forms/commit/8fba67e))
+* removed formComponentType from options ([bec44cf](https://github.com/LabShare/ngx-forms/commit/bec44cf))
+* removed test coverage assets ([16d93c7](https://github.com/LabShare/ngx-forms/commit/16d93c7))
+
+
+### Features
+
+* added lookup values ([452b017](https://github.com/LabShare/ngx-forms/commit/452b017))
+
 ## [2.1.1](https://github.com/LabShare/ngx-forms/compare/v2.1.0...v2.1.1) (2018-08-14)
 
 
