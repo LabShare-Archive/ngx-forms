@@ -53,7 +53,10 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
             this.form.patchValue(this.model);
         }
         this.fieldsConfig.forEach(field => {
-            if (field.lookup && this.lookups.hasOwnProperty(field.lookup)) field.options = this.lookups[field.lookup];
+            if (field.lookup && this.lookups.hasOwnProperty(field.lookup)) {
+                field.options = this.lookups[field.lookup];
+                if (field.extract) field.options = field.options.map(f => f[field.extract]);
+            }
         });
     }
 
