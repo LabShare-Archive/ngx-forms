@@ -6,14 +6,14 @@ import { IFieldConfig } from '../../models/field-config.interface';
 
 @Component({
   selector: 'form-select',
-  templateUrl: './form-select.component.html'
+  template: require('./form-select.component.html')
 })
 export class FormSelectComponent implements Field {
   field: IFieldConfig;
   group: FormGroup;
   model: object;
 
-  isShow () {
+  isShow() {
     return !this.field.hidden;
   }
 

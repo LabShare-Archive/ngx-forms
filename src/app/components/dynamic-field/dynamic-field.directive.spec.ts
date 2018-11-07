@@ -11,9 +11,8 @@ import { FormInputComponent } from "../form-input/form-input.component";
 import { PreloadService } from '../../services/preload.service';
 
 @Component({
-    template: `<form [formGroup]="form"><div dynamicField [field]="field" [group]="form" ></div></form>`
+    template: `<form [formGroup]="form"><div dynamicField [field]="field" [group]="form"></div></form>`
 })
-
 class TestComponent {
     field: IFieldConfig;
     form: FormGroup;
@@ -52,8 +51,7 @@ describe('dynamicField', () => {
         fixture.detectChanges();
     });
 
-
-    it('load directive and form-input component', () => {
+    it('loads directive and form-input component', () => {
         directiveEl = fixture.debugElement.query(By.directive(DynamicFieldDirective));
         expect(directiveEl).not.toBeNull();
     });

@@ -19,7 +19,7 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
         private resolver: ComponentFactoryResolver,
         private container: ViewContainerRef,
         private dynamicFieldService: DynamicFieldService,
-        private testService: PreloadService
+        private preloadService: PreloadService
     ) { }
 
     ngOnChanges() {
