@@ -1,3 +1,15 @@
+# [2.3.0](https://github.com/LabShare/ngx-forms/compare/v2.2.0...v2.3.0) (2018-11-07)
+
+
+### Bug Fixes
+
+* increased testing coverage ([2b17161](https://github.com/LabShare/ngx-forms/commit/2b17161))
+
+
+### Features
+
+* added ability to extract column from lookup object ([cc1d1bd](https://github.com/LabShare/ngx-forms/commit/cc1d1bd))
+
 # [2.2.0](https://github.com/LabShare/ngx-forms/compare/v2.1.1...v2.2.0) (2018-11-06)
 
 
