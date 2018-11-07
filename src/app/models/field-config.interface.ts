@@ -20,5 +20,6 @@ export interface IFieldConfig {
 	nullValidator?: any,
 	provider?: string,
 	providerMethod?: string,
-	lookup?: string
+	lookup?: string, // Name of a lookup array inside lookup payload
+	extract?: string // Extract one field from lookup item when lookup is an object
 }

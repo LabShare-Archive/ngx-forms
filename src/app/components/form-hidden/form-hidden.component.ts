@@ -5,7 +5,7 @@ import { IFieldConfig } from '../../models/field-config.interface';
 
 @Component({
     selector: 'form-hidden',
-    templateUrl: './form-hidden.component.html'
+    template: require('./form-hidden.component.html')
 })
 export class FormInputHidden implements Field {
     field: IFieldConfig;
