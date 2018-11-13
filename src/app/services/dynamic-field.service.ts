@@ -8,7 +8,7 @@ export class DynamicFieldService {
     components = {};
     types = {};
 
-    addField(name: string, component: new (...args: any[]) => Field, type: FormComponentType = FormComponentType.Field) {
+    addField(name: string, component: any, type: FormComponentType = FormComponentType.Field) {
         if (!name || !name.length) throw new Error('Failed to add new component. Type is incorrent, Type value: ' + name);
         if (!component) throw new Error('Failed to add new component. Component is undefined');
         this.components[name] = component;
