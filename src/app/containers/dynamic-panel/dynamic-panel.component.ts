@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import * as _ from 'lodash';
-import { IFieldConfig } from "src/app/models/field-config.interface";
+import { IFieldConfig } from "../../models/field-config.interface";
 
 @Component({
     selector: 'dynamic-panel',
