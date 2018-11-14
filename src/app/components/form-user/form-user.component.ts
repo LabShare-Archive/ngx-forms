@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Field } from '../../models/field.interface';
 import { IFieldConfig } from '../../models/field-config.interface';
@@ -43,10 +43,6 @@ export class FormUserComponent implements Field {
     requestAutocompleteItems = (text: string): Observable<{}> => {
         let result = this.provider[this.field.providerMethod](text);
         return Observable.fromPromise(result);
-    }
-
-    isShow() {
-        return !this.field.hidden;
     }
 
 }

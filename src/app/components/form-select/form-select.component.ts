@@ -12,9 +12,4 @@ export class FormSelectComponent implements Field {
   field: IFieldConfig;
   group: FormGroup;
   model: object;
-
-  isShow() {
-    return !this.field.hidden;
-  }
-
 }

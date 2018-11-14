@@ -1,6 +1,5 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-
 import { Field } from '../../models/field.interface';
 import { IFieldConfig } from '../../models/field-config.interface';
 
@@ -12,8 +11,4 @@ export class FormTextareaComponent implements Field {
     field: IFieldConfig;
     group: FormGroup;
     model: object;
-
-    isShow() {
-        return !this.field.hidden;
-    }
 }

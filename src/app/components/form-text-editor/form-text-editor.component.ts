@@ -17,7 +17,4 @@ export class FormTextEditorComponent implements Field {
         toolbar: ['bold', 'italic', 'underline', 'strike', { 'header': 1 }, { 'header': 2 }, { 'list': 'ordered' }, { 'list': 'bullet' }, 'blockquote', 'code-block', 'link']
     };
 
-    isShow() {
-        return !this.field.hidden;
-    }
 }

@@ -21,7 +21,8 @@ import { DynamicFieldService } from '../../services/dynamic-field.service';
 @Component({
     exportAs: 'dynamicForm',
     selector: 'dynamic-form',
-    template: require('./dynamic-form.component.html')
+    template: require('./dynamic-form.component.html'),
+    styles: [require('./dynamic-form.component.scss').toString()]
 })
 export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
 
@@ -133,10 +134,6 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
 
     setValue(name: string, value: any) {
         this.form.controls[name].setValue(value, { emitEvent: true });
-    }
-
-    isShow(label) {
-        return label == this.showFormLabelName;
     }
 
     ngOnDestroy() {

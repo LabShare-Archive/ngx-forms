@@ -1,7 +1,8 @@
 <form class="dynamic-form" [formGroup]="form">
   <ng-container *ngFor="let group of formsConfig;">
-    <div [hidden]="!isShow(group.label)">
-      <dynamic-panel *ngFor="let panelConfig of group.panels" [panelConfig]="panelConfig" [fieldsConfig]="fieldsConfig" [group]="form" [model]="model"></dynamic-panel>
+    <div>
+      <dynamic-panel *ngFor="let panelConfig of group.panels" [panelConfig]="panelConfig" [fieldsConfig]="fieldsConfig"
+        [group]="form" [model]="model"></dynamic-panel>
     </div>
   </ng-container>
 </form>
