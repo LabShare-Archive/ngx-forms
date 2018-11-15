@@ -5,7 +5,6 @@ import { DataService } from '../../services/data.service';
 import { ObserverService } from "../../services/observer.service";
 import { Events } from '../../models/events';
 import { ISubscription } from "rxjs/Subscription";
-
 import { FormInputComponent } from '../../components/form-input/form-input.component';
 import { FormSelectComponent } from '../../components/form-select/form-select.component';
 import { FormTextEditorComponent } from '../../components/form-text-editor/form-text-editor.component';
@@ -21,7 +20,8 @@ import { DynamicFieldService } from '../../services/dynamic-field.service';
 @Component({
     exportAs: 'dynamicForm',
     selector: 'dynamic-form',
-    template: require('./dynamic-form.component.html')
+    template: require('./dynamic-form.component.html'),
+    styles: [require('./dynamic-form.component.scss').toString()]
 })
 export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
 
@@ -133,10 +133,6 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
 
     setValue(name: string, value: any) {
         this.form.controls[name].setValue(value, { emitEvent: true });
-    }
-
-    isShow(label) {
-        return label == this.showFormLabelName;
     }
 
     ngOnDestroy() {
