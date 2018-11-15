@@ -12,8 +12,4 @@ export class FormCheckboxComponent implements Field {
     field: IFieldConfig;
     group: FormGroup;
     model: object
-
-    isShow() {
-        return !this.field.hidden;
-    }
 }
