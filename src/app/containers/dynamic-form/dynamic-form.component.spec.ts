@@ -6,7 +6,6 @@ import { DynamicFormComponent } from "./dynamic-form.component";
 import { ReactiveFormsModule, FormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { DataService } from '../../services/data.service';
 import { DynamicFieldService } from "../../services/dynamic-field.service";
-import { ObserverService } from '../../services/observer.service';
 import { PreloadService } from '../../services/preload.service';
 import { FormInputComponent } from '../../components/form-input/form-input.component';
 import { CommonModule } from '@angular/common';
@@ -41,7 +40,7 @@ describe('DynamicFormComponent', () => {
         TestBed.configureTestingModule({
             declarations: [DynamicFieldDirective, TestComponent, DynamicFormComponent, DynamicPanelComponent],
             imports: [FormsModule, ReactiveFormsModule, TestModule],
-            providers: [DynamicFieldService, PreloadService, DataService, ObserverService]
+            providers: [DynamicFieldService, PreloadService, DataService]
         })
             .compileComponents()
             .then(() => {

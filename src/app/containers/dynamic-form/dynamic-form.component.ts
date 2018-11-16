@@ -2,7 +2,6 @@ import { Component, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { IFieldConfig } from '../../models/field-config.interface';
 import { DataService } from '../../services/data.service';
-import { ObserverService } from "../../services/observer.service";
 import { Events } from '../../models/events';
 import { ISubscription } from "rxjs/Subscription";
 import { FormInputComponent } from '../../components/form-input/form-input.component';
@@ -40,10 +39,10 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
     get valid() { return this.form.valid; }
     get value() { return this.form.value; }
 
-    constructor(private fb: FormBuilder, private dataService: DataService, private observerService: ObserverService, private dynamicFieldService: DynamicFieldService) {
-        this.subscription = this.observerService.on(Events.SELECT_FORM_TAB, (events) => {         // TODO: redo tabs
-            this.showFormLabelName = events.value;
-        })
+    constructor(private fb: FormBuilder, private dataService: DataService, private dynamicFieldService: DynamicFieldService) {
+        // this.subscription = this.observerService.on(Events.SELECT_FORM_TAB, (events) => {         // TODO: redo tabs
+        //     this.showFormLabelName = events.value;
+        // })
     }
 
     ngOnInit() {

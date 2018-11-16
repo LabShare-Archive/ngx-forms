@@ -9,7 +9,6 @@ import { TagInputModule } from "ngx-chips";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataService } from './app/services/data.service';
 import { DynamicFieldService } from "./app/services/dynamic-field.service";
-import { ObserverService } from "./app/services/observer.service";
 import { PreloadService } from './app/services/preload.service';
 import { Events } from './app/models/events';
 
@@ -37,7 +36,6 @@ import { Events } from './app/models/events';
     providers: [
         DataService,
         DynamicFieldService,
-        ObserverService,
         PreloadService
     ],
     schemas: [
@@ -46,4 +44,4 @@ import { Events } from './app/models/events';
 })
 export class NgxFormModule { }
 
-export { DynamicFieldService, DataService, ObserverService, Events }
+export { DynamicFieldService, DataService, Events }
