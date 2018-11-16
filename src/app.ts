@@ -10,7 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataService } from './app/services/data.service';
 import { DynamicFieldService } from "./app/services/dynamic-field.service";
 import { PreloadService } from './app/services/preload.service';
-import { Events } from './app/models/events';
 
 @NgModule({
     imports: [
@@ -22,7 +21,7 @@ import { Events } from './app/models/events';
         TagInputModule
     ],
     declarations: [
-        Components, 
+        Components,
         DynamicFieldDirective,
         DynamicFormComponent,
         DynamicPanelComponent,
@@ -44,4 +43,4 @@ import { Events } from './app/models/events';
 })
 export class NgxFormModule { }
 
-export { DynamicFieldService, DataService, Events }
+export { DynamicFieldService, DataService }

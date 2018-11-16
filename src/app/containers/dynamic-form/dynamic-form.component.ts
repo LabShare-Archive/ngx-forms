@@ -2,7 +2,6 @@ import { Component, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { IFieldConfig } from '../../models/field-config.interface';
 import { DataService } from '../../services/data.service';
-import { Events } from '../../models/events';
 import { ISubscription } from "rxjs/Subscription";
 import { FormInputComponent } from '../../components/form-input/form-input.component';
 import { FormSelectComponent } from '../../components/form-select/form-select.component';
