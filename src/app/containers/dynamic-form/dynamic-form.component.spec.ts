@@ -13,15 +13,26 @@ import { FormSelectComponent } from '../../components/form-select/form-select.co
 import { FormInputHidden } from '../../components/form-hidden/form-hidden.component';
 import { By } from '@angular/platform-browser';
 
+interface IFormConfig {
+    form: any;
+    fields: any[]
+}
+
+interface IDynamicForm {
+    formConfig: IFormConfig
+    data: any
+    dynamicForm: any
+    lookups: any
+}
+
 @Component({
-    template: `<dynamic-form [fieldsConfig]="fields" [formsConfig]="formsConfig" #form="dynamicForm" [model]="data" [dataProvider]="dataProvider" [lookups]="lookups"></dynamic-form>`
+    template: `<dynamic-form [formConfig]="formConfig" #form="dynamicForm" [model]="data" [dataProvider]="dataProvider" [lookups]="lookups"></dynamic-form>`
 })
-class TestComponent {
-    fields: any[];
+class TestComponent implements IDynamicForm {
+    formConfig
     data: {};
     dynamicForm: {};
     lookups: {};
-    formsConfig: any[];
 }
 
 @NgModule({
@@ -46,13 +57,14 @@ describe('DynamicFormComponent', () => {
             .then(() => {
                 fixture = TestBed.createComponent(TestComponent);
                 component = fixture.componentInstance;
-                component.fields = [
-                    { type: 'hidden', name: 'id' },
-                    { type: 'text', label: 'Publication Title:', name: 'title', placeholder: '', required: true },
-                    { type: 'select', label: 'Publication Type', name: 'activityType', options: ['a', 'b'] }
-                ];
-
-                component.formsConfig = [{ label: 'Title and Abstract', panels: [{ label: 'Title and Abstract', fields: ['id', 'title', 'activityType'] }] }];
+                component.formConfig = {
+                    fields: [
+                        { type: 'hidden', name: 'id' },
+                        { type: 'text', label: 'Publication Title:', name: 'title', placeholder: '', required: true },
+                        { type: 'select', label: 'Publication Type', name: 'activityType', options: ['a', 'b'] }
+                    ],
+                    form: [{ label: 'Title and Abstract', panels: [{ label: 'Title and Abstract', fields: ['id', 'title', 'activityType'] }] }]
+                }
 
                 fixture.detectChanges();
             });

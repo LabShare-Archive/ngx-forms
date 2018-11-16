@@ -2,7 +2,6 @@ import { Component, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { IFieldConfig } from '../../models/field-config.interface';
 import { DataService } from '../../services/data.service';
-import { ISubscription } from "rxjs/Subscription";
 import { FormInputComponent } from '../../components/form-input/form-input.component';
 import { FormSelectComponent } from '../../components/form-select/form-select.component';
 import { FormTextEditorComponent } from '../../components/form-text-editor/form-text-editor.component';
@@ -26,7 +25,7 @@ interface IFormConfig {
     template: require('./dynamic-form.component.html'),
     styles: [require('./dynamic-form.component.scss').toString()]
 })
-export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
+export class DynamicFormComponent implements OnChanges, OnInit {
 
     @Input() formConfig: IFormConfig;// IFieldConfig[] = [];
     @Input() model: any;
@@ -35,7 +34,6 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
 
     public form: FormGroup;
     public showFormLabelName: string;  //label name of the form to show
-    public subscription: ISubscription;
 
     get controls() { return this.formConfig.fields.filter(({ type }) => type !== 'button'); }
     get changes() { return this.form.valueChanges; }
@@ -137,9 +135,6 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
         this.form.controls[name].setValue(value, { emitEvent: true });
     }
 
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-    }
 }
 
 export const Components = [FormInputComponent, FormSelectComponent, FormTextEditorComponent, FormTextareaComponent, FormInputHidden, FormUserComponent, FormRadioComponent, FormCheckboxComponent];
