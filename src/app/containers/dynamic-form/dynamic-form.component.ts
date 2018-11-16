@@ -2,9 +2,6 @@ import { Component, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { IFieldConfig } from '../../models/field-config.interface';
 import { DataService } from '../../services/data.service';
-import { ObserverService } from "../../services/observer.service";
-import { Events } from '../../models/events';
-import { ISubscription } from "rxjs/Subscription";
 import { FormInputComponent } from '../../components/form-input/form-input.component';
 import { FormSelectComponent } from '../../components/form-select/form-select.component';
 import { FormTextEditorComponent } from '../../components/form-text-editor/form-text-editor.component';
@@ -17,33 +14,36 @@ import { FormUserComponent } from '../../components/form-user/form-user.componen
 import { FormComponentType } from '../../models/enums';
 import { DynamicFieldService } from '../../services/dynamic-field.service';
 
+interface IFormConfig {
+    form: any;
+    fields: IFieldConfig[]
+}
+
 @Component({
     exportAs: 'dynamicForm',
     selector: 'dynamic-form',
     template: require('./dynamic-form.component.html'),
     styles: [require('./dynamic-form.component.scss').toString()]
 })
-export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
+export class DynamicFormComponent implements OnChanges, OnInit {
 
-    @Input() fieldsConfig: IFieldConfig[] = [];
+    @Input() formConfig: IFormConfig;// IFieldConfig[] = [];
     @Input() model: any;
     @Input() dataProvider: object;
-    @Input() formsConfig;
     @Input() lookups: object;
 
     public form: FormGroup;
     public showFormLabelName: string;  //label name of the form to show
-    public subscription: ISubscription;
 
-    get controls() { return this.fieldsConfig.filter(({ type }) => type !== 'button'); }
+    get controls() { return this.formConfig.fields.filter(({ type }) => type !== 'button'); }
     get changes() { return this.form.valueChanges; }
     get valid() { return this.form.valid; }
     get value() { return this.form.value; }
 
-    constructor(private fb: FormBuilder, private dataService: DataService, private observerService: ObserverService, private dynamicFieldService: DynamicFieldService) {
-        this.subscription = this.observerService.on(Events.SELECT_FORM_TAB, (events) => {         // TODO: redo tabs
-            this.showFormLabelName = events.value;
-        })
+    constructor(private fb: FormBuilder, private dataService: DataService, private dynamicFieldService: DynamicFieldService) {
+        // this.subscription = this.observerService.on(Events.SELECT_FORM_TAB, (events) => {         // TODO: redo tabs
+        //     this.showFormLabelName = events.value;
+        // })
     }
 
     ngOnInit() {
@@ -52,7 +52,7 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
         if (this.model) {
             this.form.patchValue(this.model);
         }
-        this.fieldsConfig.forEach(field => {
+        this.formConfig.fields.forEach(field => {
             if (field.lookup && this.lookups.hasOwnProperty(field.lookup)) {
                 field.options = this.lookups[field.lookup];
                 if (field.extract) field.options = field.options.map(f => f[field.extract]);
@@ -72,8 +72,8 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
             configControls
                 .filter((control) => !controls.includes(control))
                 .forEach((name) => {
-                    const config = this.fieldsConfig.find((control) => control.name === name);
-                    this.form.addControl(name, this.createControl(config));
+                    const cfg = this.formConfig.fields.find((control) => control.name === name);
+                    this.form.addControl(name, this.createControl(cfg));
                 });
 
         }
@@ -101,8 +101,8 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
         return group;
     };
 
-    createControl(config: IFieldConfig): FormControl {
-        const { disabled, required, minLength, maxLength, email, min, max, pattern, nullValidator, value } = config;
+    createControl(cfg: IFieldConfig): FormControl {
+        const { disabled, required, minLength, maxLength, email, min, max, pattern, nullValidator, value } = cfg;
         let validators = [];
         if (required != undefined && required) { validators.push(Validators.required); }
         if (minLength != undefined) { validators.push(Validators.minLength(minLength)); }
@@ -123,7 +123,7 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
             return;
         }
 
-        this.fieldsConfig = this.fieldsConfig.map((item) => {
+        this.formConfig.fields = this.formConfig.fields.map((item) => {
             if (item.name === name) {
                 item.disabled = disable;
             }
@@ -135,9 +135,6 @@ export class DynamicFormComponent implements OnChanges, OnInit, OnDestroy {
         this.form.controls[name].setValue(value, { emitEvent: true });
     }
 
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-    }
 }
 
 export const Components = [FormInputComponent, FormSelectComponent, FormTextEditorComponent, FormTextareaComponent, FormInputHidden, FormUserComponent, FormRadioComponent, FormCheckboxComponent];
