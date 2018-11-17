@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { FormSelectComponent } from '../../components/form-select/form-select.component';
 import { FormInputHidden } from '../../components/form-hidden/form-hidden.component';
 import { By } from '@angular/platform-browser';
+import { FormNavModule } from '../../../nav/nav-app';
 
 interface IFormConfig {
     form: any;
@@ -37,7 +38,7 @@ class TestComponent implements IDynamicForm {
 
 @NgModule({
     declarations: [FormInputComponent, FormSelectComponent, FormInputHidden],
-    imports: [FormsModule, ReactiveFormsModule, CommonModule],
+    imports: [FormsModule, ReactiveFormsModule, CommonModule, FormNavModule],
     entryComponents: [FormInputComponent, FormSelectComponent, FormInputHidden]
 })
 class TestModule { }
@@ -50,7 +51,7 @@ describe('DynamicFormComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [DynamicFieldDirective, TestComponent, DynamicFormComponent, DynamicPanelComponent],
-            imports: [FormsModule, ReactiveFormsModule, TestModule],
+            imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule],
             providers: [DynamicFieldService, PreloadService, DataService]
         })
             .compileComponents()
