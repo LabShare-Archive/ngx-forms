@@ -1,0 +1,13 @@
+<ul class="list-group">
+    <ng-container *ngFor="let item of config; let itemIndex = index">
+        <a class="list-group-item" [class.active]='itemIndex === getSelected()' (click)="select(itemIndex)">{{item.label}}</a>
+    </ng-container>
+</ul>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="col-lg-12" ng-hide="!tab">
+            <button type="button" class="btn btn-primary" [disabled]="disablePrev()" (click)="prev()" title="Previous">Previous</button>
+            <button type="button" class="btn btn-primary" [disabled]="disableNext()" (click)="next()" title="Next">Next</button>
+        </div>
+    </div>
+</div>

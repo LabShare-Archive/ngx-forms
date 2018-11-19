@@ -5,6 +5,7 @@ import { QuillModule } from "ngx-quill";
 import { DynamicFieldDirective } from './app/components/dynamic-field/dynamic-field.directive';
 import { DynamicFormComponent, Components } from './app/containers/dynamic-form/dynamic-form.component';
 import { DynamicPanelComponent } from "./app/containers/dynamic-panel/dynamic-panel.component";
+import { FormNavModule } from "./nav/nav-app";
 import { TagInputModule } from "ngx-chips";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataService } from './app/services/data.service';
@@ -18,13 +19,14 @@ import { PreloadService } from './app/services/preload.service';
         ReactiveFormsModule,
         FormsModule,
         QuillModule,
-        TagInputModule
+        TagInputModule,
+        FormNavModule
     ],
     declarations: [
         Components,
         DynamicFieldDirective,
         DynamicFormComponent,
-        DynamicPanelComponent,
+        DynamicPanelComponent
     ],
     exports: [
         DynamicFormComponent
