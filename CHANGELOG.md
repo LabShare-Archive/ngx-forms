@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/LabShare/ngx-forms/compare/v2.3.3...v2.4.0) (2018-11-19)
+
+
+### Features
+
+* added left menu ([5a060e1](https://github.com/LabShare/ngx-forms/commit/5a060e1))
+
 ## [2.3.3](https://github.com/LabShare/ngx-forms/compare/v2.3.2...v2.3.3) (2018-11-16)
 
 
