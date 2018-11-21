@@ -1,3 +1,10 @@
+## [2.4.1](https://github.com/LabShare/ngx-forms/compare/v2.4.0...v2.4.1) (2018-11-21)
+
+
+### Bug Fixes
+
+* form does not show after update ([541e284](https://github.com/LabShare/ngx-forms/commit/541e284))
+
 # [2.4.0](https://github.com/LabShare/ngx-forms/compare/v2.3.3...v2.4.0) (2018-11-19)
 
 
