@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { IFieldConfig } from '../../models/field-config.interface';
 import { DataService } from '../../services/data.service';
@@ -26,7 +26,6 @@ interface IFormConfig {
     styles: [require('./dynamic-form.component.scss').toString()]
 })
 export class DynamicFormComponent implements OnChanges, OnInit {
-
     @Input() formConfig: IFormConfig;// IFieldConfig[] = [];
     @Input() model: any;
     @Input() dataProvider: object;

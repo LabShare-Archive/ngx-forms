@@ -10,7 +10,6 @@ export class FormNavService {
     add(component): void {
         this.components.push(component);
         this.total++;
-        this.displayStyle = component.nativeElement.style.display;
         if (this.components.length > 1)
             component.nativeElement.style.display = 'none';
     }
@@ -21,6 +20,11 @@ export class FormNavService {
         });
         this.components[index].nativeElement.style.display = this.displayStyle;
         this.selected = index;
+    }
+
+    reset() {
+        this.components = [];
+        this.total = 0;
     }
 
 }

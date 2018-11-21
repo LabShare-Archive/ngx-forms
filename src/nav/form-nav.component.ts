@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { FormNavService } from './form-nav.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { FormNavService } from './form-nav.service';
     styles: [require('./form-nav.component.scss').toString()]
 })
 
-export class FormNavComponent {
+export class FormNavComponent implements OnDestroy {
     @Input() public config;
 
     constructor(private ns: FormNavService) {
@@ -35,5 +35,9 @@ export class FormNavComponent {
 
     public disableNext() {
         return this.ns.selected > this.ns.total - 2;
+    }
+
+    ngOnDestroy(): void {
+        this.ns.reset();
     }
 }
