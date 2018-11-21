@@ -1,3 +1,21 @@
+## [2.3.3](https://github.com/LabShare/ngx-forms/compare/v2.3.2...v2.3.3) (2018-11-16)
+
+
+### Bug Fixes
+
+* PPC-143 fields and form config merged ([fa5ed4a](https://github.com/LabShare/ngx-forms/commit/fa5ed4a))
+* removed events ([3244608](https://github.com/LabShare/ngx-forms/commit/3244608))
+* removed ObserverService ([919c205](https://github.com/LabShare/ngx-forms/commit/919c205))
+* tests ([0cb4ee4](https://github.com/LabShare/ngx-forms/commit/0cb4ee4))
+
+## [2.3.2](https://github.com/LabShare/ngx-forms/compare/v2.3.1...v2.3.2) (2018-11-15)
+
+
+### Bug Fixes
+
+* added red asterix. Removed isShow ([672bba8](https://github.com/LabShare/ngx-forms/commit/672bba8))
+* fixed tests ([fcce0a3](https://github.com/LabShare/ngx-forms/commit/fcce0a3))
+
 ## [2.3.1](https://github.com/LabShare/ngx-forms/compare/v2.3.0...v2.3.1) (2018-11-13)
 
 
