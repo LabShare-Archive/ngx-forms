@@ -66,7 +66,7 @@ describe('dynamicField', () => {
 
         expect(() => {
             fixtureError.detectChanges();
-        }).toThrowError('Trying to use an unsupported field type "text2". Supported types: text, select, editor, textarea, hidden, user, radio, checkbox');
+        }).toThrowError()
 
     })
 
