@@ -2,15 +2,6 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { IFieldConfig } from '../../models/field-config.interface';
 import { DataService } from '../../services/data.service';
-import { FormInputComponent } from '../../components/form-input/form-input.component';
-import { FormSelectComponent } from '../../components/form-select/form-select.component';
-import { FormTextEditorComponent } from '../../components/form-text-editor/form-text-editor.component';
-import { FormCheckboxComponent } from "../../components/form-checkbox/form-checkbox.component";
-import { FormRadioComponent } from "../../components/form-radio/form-radio.component";
-import { FormTextareaComponent } from '../../components/form-textarea/form-textarea.component';
-import { FormInputHidden } from '../../components/form-hidden/form-hidden.component';
-import { FormUserComponent } from '../../components/form-user/form-user.component';
-
 import { FormComponentType } from '../../models/enums';
 import { DynamicFieldService } from '../../services/dynamic-field.service';
 
@@ -135,5 +126,3 @@ export class DynamicFormComponent implements OnChanges, OnInit {
     }
 
 }
-
-export const Components = [FormInputComponent, FormSelectComponent, FormTextEditorComponent, FormTextareaComponent, FormInputHidden, FormUserComponent, FormRadioComponent, FormCheckboxComponent];

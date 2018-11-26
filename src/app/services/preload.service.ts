@@ -8,6 +8,7 @@ import { FormRadioComponent } from "../components/form-radio/form-radio.componen
 import { FormTextareaComponent } from '../components/form-textarea/form-textarea.component';
 import { FormInputHidden } from '../components/form-hidden/form-hidden.component';
 import { FormUserComponent } from '../components/form-user/form-user.component';
+import { FormLabel } from '../components/form-label/form-label.component';
 
 import { DynamicFieldService } from './dynamic-field.service';
 
@@ -23,5 +24,8 @@ export class PreloadService {
         this.dynamicFieldService.addField('user', FormUserComponent);
         this.dynamicFieldService.addField('radio', FormRadioComponent);
         this.dynamicFieldService.addField('checkbox', FormCheckboxComponent);
+        this.dynamicFieldService.addField('label', FormLabel);
     }
 }
+
+export const Components = [FormInputComponent, FormSelectComponent, FormTextEditorComponent, FormTextareaComponent, FormInputHidden, FormUserComponent, FormRadioComponent, FormCheckboxComponent, FormLabel];

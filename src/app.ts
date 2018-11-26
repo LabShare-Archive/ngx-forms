@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { QuillModule } from "ngx-quill";
 import { DynamicFieldDirective } from './app/components/dynamic-field/dynamic-field.directive';
-import { DynamicFormComponent, Components } from './app/containers/dynamic-form/dynamic-form.component';
+import { DynamicFormComponent } from './app/containers/dynamic-form/dynamic-form.component';
 import { DynamicPanelComponent } from "./app/containers/dynamic-panel/dynamic-panel.component";
 import { FormNavModule } from "./nav/nav-app";
 import { TagInputModule } from "ngx-chips";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataService } from './app/services/data.service';
 import { DynamicFieldService } from "./app/services/dynamic-field.service";
-import { PreloadService } from './app/services/preload.service';
+import { PreloadService, Components } from './app/services/preload.service';
 
 @NgModule({
     imports: [
