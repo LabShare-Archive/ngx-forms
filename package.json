@@ -13,9 +13,7 @@
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "semantic-release": "semantic-release",
     "lint:fix": "tslint --fix -p tsconfig.json -c tslint.json",
-    "lint": "tslint -p tsconfig.json -c tslint.json",
-    "stylelint": "stylelint ./ui/**/*.scss",
-    "stylelint:fix": "stylelint ./ui/**/*.scss --fix"
+    "lint": "tslint -p tsconfig.json -c tslint.json"
   },
   "dependencies": {
     "@angular/animations": "^6.0.4",
@@ -79,11 +77,5 @@
   },
   "release": {
     "extends": "@labshare/semantic-release-config"
-  },
-  "stylelint": {
-    "extends": "stylelint-config-standard",
-    "rules": {
-      "selector-type-no-unknown": null
-    }
-  }
+  }  
 }
