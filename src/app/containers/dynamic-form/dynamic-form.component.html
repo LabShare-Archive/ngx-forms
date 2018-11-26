@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-md-2">
-        <form-nav [config]="formConfig.form"></form-nav>
+        <form-nav></form-nav>
     </div>
     <div class="col-md-10" [formGroup]="form">
-        <div *ngFor="let group of formConfig.form" navTab>
+        <div *ngFor="let group of formConfig.form" [navTab]="group">
             <dynamic-panel *ngFor="let panelConfig of group.panels" [panelConfig]="panelConfig" [fieldsConfig]="formConfig.fields"
-                [group]="form" [model]="model"></dynamic-panel>
+                [group]="form" [model]="model" [hidden]="group.hidden"></dynamic-panel>
         </div>
     </div>
 </div>

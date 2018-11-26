@@ -1,5 +1,5 @@
 <ul class="list-group mb-3">
-    <ng-container *ngFor="let item of config; let itemIndex = index">
+    <ng-container *ngFor="let item of ref.groups; let itemIndex = index">
         <a class="list-group-item" [class.active]='itemIndex === getSelected()' (click)="select(itemIndex)">{{item.label}}</a>
     </ng-container>
 </ul>

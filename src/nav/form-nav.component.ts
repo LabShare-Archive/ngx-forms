@@ -9,8 +9,10 @@ import { FormNavService } from './form-nav.service';
 
 export class FormNavComponent implements OnDestroy {
     @Input() public config;
+    public ref = { groups: [] };
 
     constructor(private ns: FormNavService) {
+        ns.addWatcher(this.ref);
     }
 
     public select(index) {
@@ -34,7 +36,7 @@ export class FormNavComponent implements OnDestroy {
     }
 
     public disableNext() {
-        return this.ns.selected > this.ns.total - 2;
+        return this.ns.selected > this.ref.groups.length - 2;
     }
 
     ngOnDestroy(): void {

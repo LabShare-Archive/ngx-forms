@@ -24,6 +24,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
 
     public form: FormGroup;
     public showFormLabelName: string;  //label name of the form to show
+    public navConfig;
 
     get controls() { return this.formConfig.fields.filter(({ type }) => type !== 'button'); }
     get changes() { return this.form.valueChanges; }
@@ -48,6 +49,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
                 if (field.extract) field.options = field.options.map(f => f[field.extract]);
             }
         });
+        this.navConfig = this.formConfig.form.filter(g => !g.static);        
     }
 
     ngOnChanges() {
