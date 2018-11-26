@@ -11,8 +11,9 @@ export class NavDirective implements OnInit {
     }
 
     ngOnInit() {
-        if (!this.group.static)
+        if (!this.group.static) {
             this.navService.add(this.group);
+        }
     }
 
 }

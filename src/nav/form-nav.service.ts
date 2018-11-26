@@ -1,4 +1,4 @@
-import { Injectable, ElementRef } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class FormNavService {
@@ -8,9 +8,8 @@ export class FormNavService {
 
     add(group): void {
         this.groups.push(group);
-        if (this.groups.length > 1)
-            group.hidden = true;
-        this.watchers.forEach(w => w.groups = this.groups)
+        if (this.groups.length > 1) { group.hidden = true; }
+        this.watchers.forEach(w => w.groups = this.groups);
     }
 
     select(index: any): void {

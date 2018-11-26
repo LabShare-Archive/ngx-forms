@@ -10,7 +10,7 @@ import { PreloadService } from '../../services/preload.service';
 import { FormInputComponent } from '../../components/form-input/form-input.component';
 import { CommonModule } from '@angular/common';
 import { FormSelectComponent } from '../../components/form-select/form-select.component';
-import { FormInputHidden } from '../../components/form-hidden/form-hidden.component';
+import { FormInputHiddenComponent } from '../../components/form-hidden/form-hidden.component';
 import { By } from '@angular/platform-browser';
 import { FormNavModule } from '../../../nav/nav-app';
 
@@ -37,9 +37,9 @@ class TestComponent implements IDynamicForm {
 }
 
 @NgModule({
-    declarations: [FormInputComponent, FormSelectComponent, FormInputHidden],
+    declarations: [FormInputComponent, FormSelectComponent, FormInputHiddenComponent],
     imports: [FormsModule, ReactiveFormsModule, CommonModule, FormNavModule],
-    entryComponents: [FormInputComponent, FormSelectComponent, FormInputHidden]
+    entryComponents: [FormInputComponent, FormSelectComponent, FormInputHiddenComponent]
 })
 class TestModule { }
 
@@ -72,7 +72,7 @@ describe('DynamicFormComponent', () => {
     }));
 
     it('loads input-hidden component', () => {
-        directiveEl = fixture.debugElement.query(By.directive(FormInputHidden));
+        directiveEl = fixture.debugElement.query(By.directive(FormInputHiddenComponent));
         expect(directiveEl).not.toBeNull();
     });
 

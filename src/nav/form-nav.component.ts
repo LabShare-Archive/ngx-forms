@@ -24,11 +24,11 @@ export class FormNavComponent implements OnDestroy {
     }
 
     public prev() {
-        this.select(this.ns.selected - 1)
+        this.select(this.ns.selected - 1);
     }
 
     public next() {
-        this.select(this.ns.selected + 1)
+        this.select(this.ns.selected + 1);
     }
 
     public disablePrev() {

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Field } from '../../models/field.interface';
 import { IFieldConfig } from '../../models/field-config.interface';
@@ -11,7 +11,7 @@ import { DataService } from '../../services/data.service';
     selector: 'form-user',
     templateUrl: './form-user.component.html'
 })
-export class FormUserComponent implements Field {
+export class FormUserComponent implements Field, OnInit {
     model: object;
     field: IFieldConfig;
     group: FormGroup;
@@ -26,13 +26,14 @@ export class FormUserComponent implements Field {
     constructor(private dataService: DataService) { }
 
     ngOnInit() {
-        if (this.group.controls[this.field.name].value)
+        if (this.group.controls[this.field.name].value) {
             this.group.controls[this.field.name].value.forEach(item => {
                 if (!item.display) {
                     item.display = item[this.field.settings.displayBy];
                     item.value = item[this.field.settings.identifyBy];
                 }
             });
+        }
         this.provider = this.dataService.get(this.field.provider);
     }
 
@@ -41,7 +42,7 @@ export class FormUserComponent implements Field {
     }
 
     requestAutocompleteItems = (text: string): Observable<{}> => {
-        let result = this.provider[this.field.providerMethod](text);
+        const result = this.provider[this.field.providerMethod](text);
         return Observable.fromPromise(result);
     }
 

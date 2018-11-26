@@ -7,7 +7,7 @@ import { IFieldConfig } from '../../models/field-config.interface';
     selector: 'form-label',
     template: require('./form-label.component.html')
 })
-export class FormLabel implements Field {
+export class FormLabelComponent implements Field {
     field: IFieldConfig;
     group: FormGroup;
     model: object;
