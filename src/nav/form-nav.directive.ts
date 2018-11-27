@@ -1,16 +1,19 @@
-import { Directive, OnInit, ElementRef } from '@angular/core';
+import { Directive, OnInit, ElementRef, Input } from '@angular/core';
 import { FormNavService } from './form-nav.service';
 
 @Directive({
     selector: '[navTab]'
 })
 export class NavDirective implements OnInit {
+    @Input('navTab') group;
 
-    constructor(private elementRef: ElementRef, private navService: FormNavService ) {
+    constructor(private navService: FormNavService) {
     }
 
     ngOnInit() {
-        this.navService.add(this.elementRef);
+        if (!this.group.static) {
+            this.navService.add(this.group);
+        }
     }
 
 }

@@ -1,30 +1,31 @@
-import { Injectable, ElementRef } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
-export class FormNavService {    
-    private components: ElementRef[] = [];
-    private displayStyle = 'block';
+export class FormNavService {
     public selected = 0;
-    public total = 0;
+    private groups = [];
+    private watchers = [];
 
-    add(component): void {
-        this.components.push(component);
-        this.total++;
-        if (this.components.length > 1)
-            component.nativeElement.style.display = 'none';
+    add(group): void {
+        this.groups.push(group);
+        if (this.groups.length > 1) { group.hidden = true; }
+        this.watchers.forEach(w => w.groups = this.groups);
     }
 
     select(index: any): void {
-        this.components.forEach((comp) => {
-            comp.nativeElement.style.display = 'none';
+        this.groups.forEach((group) => {
+            group.hidden = true;
         });
-        this.components[index].nativeElement.style.display = this.displayStyle;
+        this.groups[index].hidden = false;
         this.selected = index;
     }
 
     reset() {
-        this.components = [];
-        this.total = 0;
+        this.groups = [];
+    }
+
+    addWatcher(ref: { groups: any[]; }): any {
+        this.watchers.push(ref);
     }
 
 }
