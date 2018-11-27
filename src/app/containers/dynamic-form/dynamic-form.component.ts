@@ -4,6 +4,7 @@ import { IFieldConfig } from '../../models/field-config.interface';
 import { DataService } from '../../services/data.service';
 import { FormComponentType } from '../../models/enums';
 import { DynamicFieldService } from '../../services/dynamic-field.service';
+import { FieldConfigService } from '../../services/field-config.service';
 
 interface IFormConfig {
     form: any;
@@ -23,7 +24,6 @@ export class DynamicFormComponent implements OnChanges, OnInit {
     @Input() lookups: object;
 
     public form: FormGroup;
-    public showFormLabelName: string;  // label name of the form to show
     public navConfig;
 
     get controls() { return this.formConfig.fields.filter(({ type }) => type !== 'button'); }
@@ -31,11 +31,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
     get valid() { return this.form.valid; }
     get value() { return this.form.value; }
 
-    constructor(private fb: FormBuilder, private dataService: DataService, private dynamicFieldService: DynamicFieldService) {
-        // this.subscription = this.observerService.on(Events.SELECT_FORM_TAB, (events) => {         // TODO: redo tabs
-        //     this.showFormLabelName = events.value;
-        // })
-    }
+    constructor(private fb: FormBuilder, private dataService: DataService, private dynamicFieldService: DynamicFieldService, private fieldConfigService: FieldConfigService) { }
 
     ngOnInit() {
         this.dataService.set(this.dataProvider);
@@ -50,6 +46,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
             }
         });
         this.navConfig = this.formConfig.form.filter(g => !g.static);
+        this.fieldConfigService.addFields(this.formConfig.fields);
     }
 
     ngOnChanges() {
@@ -71,10 +68,6 @@ export class DynamicFormComponent implements OnChanges, OnInit {
         }
     }
 
-    /**
-     * @description create FormGroup and FormControl for all general field, exclude custom field
-     * @return {FormGroup}
-     */
     createForm() {
         const group = this.fb.group({});
         this.controls.forEach(control => {
