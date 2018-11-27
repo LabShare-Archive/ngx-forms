@@ -44,7 +44,6 @@ describe('FormSelectComponent', () => {
 
     it('ensures component is rendered', () => {
         directiveEl = fixture.debugElement.queryAll(By.css('option'));
-        directiveEl.forEach(d => console.log(d.nativeElement));
         expect(directiveEl.length).toEqual(component.field.options.length);
     });
 
