@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormInputComponent as Type} from './form-input.component';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
-import * as _ from 'lodash';
 import { By } from '@angular/platform-browser';
 
 describe('FormInputComponent', () => {
