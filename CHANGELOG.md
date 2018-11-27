@@ -1,3 +1,20 @@
+# [2.5.0](https://github.com/LabShare/ngx-forms/compare/v2.4.1...v2.5.0) (2018-11-27)
+
+
+### Bug Fixes
+
+* added lint and lint fixes ([c37ec60](https://github.com/LabShare/ngx-forms/commit/c37ec60))
+* added tests ([8a83057](https://github.com/LabShare/ngx-forms/commit/8a83057))
+* fixed tests ([32e71cd](https://github.com/LabShare/ngx-forms/commit/32e71cd))
+* form style fixed ([e0687e3](https://github.com/LabShare/ngx-forms/commit/e0687e3))
+* removed stylelint ([d8a4e20](https://github.com/LabShare/ngx-forms/commit/d8a4e20))
+
+
+### Features
+
+* added ability to hide panel header if title is not specified ([f52323e](https://github.com/LabShare/ngx-forms/commit/f52323e))
+* added ability to permanently lock a panel PPC-151 ([39c5c61](https://github.com/LabShare/ngx-forms/commit/39c5c61))
+
 ## [2.4.1](https://github.com/LabShare/ngx-forms/compare/v2.4.0...v2.4.1) (2018-11-21)
 
 
