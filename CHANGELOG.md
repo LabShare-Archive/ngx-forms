@@ -1,3 +1,12 @@
+## [2.5.1](https://github.com/LabShare/ngx-forms/compare/v2.5.0...v2.5.1) (2018-11-27)
+
+
+### Bug Fixes
+
+* added bottom margin to each field ([af7f202](https://github.com/LabShare/ngx-forms/commit/af7f202))
+* added red asterix for required fields ([6c14c48](https://github.com/LabShare/ngx-forms/commit/6c14c48))
+* refactored fields config injection ([f65cf5f](https://github.com/LabShare/ngx-forms/commit/f65cf5f))
+
 # [2.5.0](https://github.com/LabShare/ngx-forms/compare/v2.4.1...v2.5.0) (2018-11-27)
 
 
