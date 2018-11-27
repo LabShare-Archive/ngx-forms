@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import * as _ from 'lodash';
 import { IFieldConfig } from '../../models/field-config.interface';
+import { FieldConfigService } from '../../services/field-config.service';
 
 @Component({
     selector: 'dynamic-panel',
@@ -11,16 +11,12 @@ import { IFieldConfig } from '../../models/field-config.interface';
 export class DynamicPanelComponent {
     @Input() public panelConfig;
     @Input() public group;
-    @Input() public fieldsConfig: IFieldConfig[];
-    @Input() model: any;
+    @Input() public model: any;
 
-    // TODO move getFieldConfig to service call inside dynamic field. Keep all configs in one service
-    public getFieldConfig(fieldName) {
-        const fieldObj = _.find(this.fieldsConfig, { name: fieldName });
-        if (!fieldObj) {
-            throw new Error(`Can\'t find field name: ${fieldName}, please check config file!`);
-        } else {
-            return fieldObj;
-        }
+    constructor(private fcs: FieldConfigService) {
+    }
+
+    public getFieldConfig(fieldName: string): IFieldConfig {
+        return this.fcs.getField(fieldName);
     }
 }

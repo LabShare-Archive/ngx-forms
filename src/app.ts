@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataService } from './app/services/data.service';
 import { DynamicFieldService } from './app/services/dynamic-field.service';
 import { PreloadService, Components } from './app/services/preload.service';
+import { FieldConfigService } from './app/services/field-config.service';
 
 @NgModule({
     imports: [
@@ -37,7 +38,8 @@ import { PreloadService, Components } from './app/services/preload.service';
     providers: [
         DataService,
         DynamicFieldService,
-        PreloadService
+        PreloadService,
+        FieldConfigService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

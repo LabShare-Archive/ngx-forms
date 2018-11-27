@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicPanelComponent } from '../dynamic-panel/dynamic-panel.component';
 import { DynamicFieldDirective } from '../../components/dynamic-field/dynamic-field.directive';
-import { DebugElement, Component, NgModule } from "@angular/core";
+import { Component, NgModule } from "@angular/core";
 import { DynamicFormComponent } from "./dynamic-form.component";
-import { ReactiveFormsModule, FormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DataService } from '../../services/data.service';
 import { DynamicFieldService } from "../../services/dynamic-field.service";
 import { PreloadService } from '../../services/preload.service';
@@ -13,6 +13,7 @@ import { FormSelectComponent } from '../../components/form-select/form-select.co
 import { FormInputHiddenComponent } from '../../components/form-hidden/form-hidden.component';
 import { By } from '@angular/platform-browser';
 import { FormNavModule } from '../../../nav/nav-app';
+import { FieldConfigService } from '../../services/field-config.service';
 
 interface IFormConfig {
     form: any;
@@ -52,7 +53,7 @@ describe('DynamicFormComponent', () => {
         TestBed.configureTestingModule({
             declarations: [DynamicFieldDirective, TestComponent, DynamicFormComponent, DynamicPanelComponent],
             imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule],
-            providers: [DynamicFieldService, PreloadService, DataService]
+            providers: [DynamicFieldService, PreloadService, DataService, FieldConfigService]
         })
             .compileComponents()
             .then(() => {
