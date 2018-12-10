@@ -32,4 +32,8 @@ export class FormNavService {
         this.watchers.push(ref);
     }
 
+    getAllGroups(): any[] {
+        return this.groups;
+    }
+
 }
