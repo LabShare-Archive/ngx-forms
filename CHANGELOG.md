@@ -1,3 +1,12 @@
+## [2.5.2](https://github.com/LabShare/ngx-forms/compare/v2.5.1...v2.5.2) (2018-12-10)
+
+
+### Bug Fixes
+
+* fixed checkbox input control ([15696dc](https://github.com/LabShare/ngx-forms/commit/15696dc))
+* fixed Form nav does not reset after view change PPC-210 ([000b0e9](https://github.com/LabShare/ngx-forms/commit/000b0e9))
+* removed lodash ([cd7a2f4](https://github.com/LabShare/ngx-forms/commit/cd7a2f4))
+
 ## [2.5.1](https://github.com/LabShare/ngx-forms/compare/v2.5.0...v2.5.1) (2018-11-27)
 
 
