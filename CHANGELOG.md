@@ -1,3 +1,10 @@
+## [2.5.3](https://github.com/LabShare/ngx-forms/compare/v2.5.2...v2.5.3) (2018-12-10)
+
+
+### Bug Fixes
+
+* fixed input type for checkbox ([3021202](https://github.com/LabShare/ngx-forms/commit/3021202))
+
 ## [2.5.2](https://github.com/LabShare/ngx-forms/compare/v2.5.1...v2.5.2) (2018-12-10)
 
 
