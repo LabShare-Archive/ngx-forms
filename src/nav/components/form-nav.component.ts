@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy } from '@angular/core';
-import { FormNavService } from './form-nav.service';
+import { FormNavService } from '../services/form-nav.service';
 
 @Component({
     selector: 'form-nav',
@@ -8,7 +8,6 @@ import { FormNavService } from './form-nav.service';
 })
 
 export class FormNavComponent implements OnDestroy {
-    @Input() public config;
     public ref = { groups: [] };
 
     constructor(private ns: FormNavService) {

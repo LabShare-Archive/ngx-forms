@@ -1,5 +1,5 @@
 import { Directive, OnInit, ElementRef, Input } from '@angular/core';
-import { FormNavService } from './form-nav.service';
+import { FormNavService } from '../services/form-nav.service';
 
 @Directive({
     selector: '[navTab]'
