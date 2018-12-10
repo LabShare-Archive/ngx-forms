@@ -1,13 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormInputComponent as Type} from './form-input.component';
-import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule, FormGroup, FormControl } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 import { By } from '@angular/platform-browser';
 
 describe('FormInputComponent', () => {
     let component: Type;
     let fixture: ComponentFixture<Type>;
-    const formBuilder: FormBuilder = new FormBuilder();
     let directiveEl;
     let value = "Some Test Value";
 
@@ -33,7 +32,6 @@ describe('FormInputComponent', () => {
                 component.group.patchValue({
                     test: value
                 });
-
 
                 fixture.detectChanges();
             });
