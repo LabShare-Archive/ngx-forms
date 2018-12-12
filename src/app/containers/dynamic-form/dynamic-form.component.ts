@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { IFieldConfig } from '../../models/field-config.interface';
-import { DataService } from '../../services/data.service';
 import { FormComponentType } from '../../models/enums';
 import { DynamicFieldService } from '../../services/dynamic-field.service';
 import { FieldConfigService } from '../../services/field-config.service';
@@ -24,17 +23,15 @@ export class DynamicFormComponent implements OnChanges, OnInit {
     @Input() lookups: object;
 
     public form: FormGroup;
-    public navConfig;
 
     get controls() { return this.formConfig.fields.filter(({ type }) => type !== 'button'); }
     get changes() { return this.form.valueChanges; }
     get valid() { return this.form.valid; }
     get value() { return this.form.value; }
 
-    constructor(private fb: FormBuilder, private dataService: DataService, private dynamicFieldService: DynamicFieldService, private fieldConfigService: FieldConfigService) { }
+    constructor(private fb: FormBuilder,  private dynamicFieldService: DynamicFieldService, private fieldConfigService: FieldConfigService) { }
 
     ngOnInit() {
-        this.dataService.set(this.dataProvider);
         this.form = this.createForm();
         if (this.model) {
             this.form.patchValue(this.model);
@@ -45,8 +42,8 @@ export class DynamicFormComponent implements OnChanges, OnInit {
                 if (field.extract) { field.options = field.options.map(f => f[field.extract]); }
             }
         });
-        this.navConfig = this.formConfig.form.filter(g => !g.static);
         this.fieldConfigService.addFields(this.formConfig.fields);
+        this.form.disable();
     }
 
     ngOnChanges() {
@@ -101,23 +98,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
         return this.fb.control({ disabled, value }, validators);
     }
 
-    setDisabled(name: string, disable: boolean) {
-        if (this.form.controls[name]) {
-            const method = disable ? 'disable' : 'enable';
-            this.form.controls[name][method]();
-            return;
-        }
-
-        this.formConfig.fields = this.formConfig.fields.map((item) => {
-            if (item.name === name) {
-                item.disabled = disable;
-            }
-            return item;
-        });
-    }
-
     setValue(name: string, value: any) {
         this.form.controls[name].setValue(value, { emitEvent: true });
     }
-
 }
