@@ -1,5 +1,6 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import {Component, Input, OnDestroy } from '@angular/core';
 import { FormNavService } from '../services/form-nav.service';
+import { Constants } from '../.././app/models/enums';
 
 @Component({
     selector: 'form-nav',
@@ -9,6 +10,21 @@ import { FormNavService } from '../services/form-nav.service';
 
 export class FormNavComponent implements OnDestroy {
     public ref = { groups: [] };
+    @Input()
+    set formNav(val: any) {
+      this.currentControls = Object.keys(val.controls).map(function(key) {
+        return [(key), val.controls[key].status];
+      });
+     }
+
+    @Input()
+    set group(items: Array<any>) {
+      items.forEach(item => this.statusValidationCheck(item));
+    }
+
+    private currentControls: any;
+    private validArrayWithStatus: any;
+    private isValid: boolean;
 
     constructor(private ns: FormNavService) {
         ns.addWatcher(this.ref);
@@ -41,4 +57,32 @@ export class FormNavComponent implements OnDestroy {
     ngOnDestroy(): void {
         this.ns.reset();
     }
+
+  /**
+   * For a given Item, adds the property indicating whether the item is valid or not as per the reactive check.
+   * @param item
+   */
+  statusValidationCheck(item): void {
+     this.validArrayWithStatus = this.currentControls.filter(currentControl => currentControl.includes(Constants.VALID));
+     const itemFields = [];
+        if (item.fields) {
+          item.fields.forEach((field: any) => {
+            itemFields.push(field);
+          });
+        }
+
+        // for anItem.panels
+       if (item.panels) {
+         item.panels.forEach((panel: any) => {
+           panel.fields.forEach(field => {
+             itemFields.push(field);
+           });
+         });
+       }
+
+     itemFields.forEach(itemField => {
+       const selectionArray = this.validArrayWithStatus.flat();
+       selectionArray.includes(itemField) ? item.isValid = true : item.isValid = false;
+     });
+  }
 }

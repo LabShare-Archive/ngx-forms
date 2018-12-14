@@ -3,3 +3,7 @@ export const enum FormComponentType {
     Group = 1,
     Array = 2
 }
+
+export const enum Constants {
+  VALID = 'VALID'
+}
