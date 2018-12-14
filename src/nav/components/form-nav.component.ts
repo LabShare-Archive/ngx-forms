@@ -81,7 +81,7 @@ export class FormNavComponent implements OnDestroy {
        }
 
      itemFields.forEach(itemField => {
-       const selectionArray = this.validArrayWithStatus.flat();
+       const selectionArray = [].concat.apply([], this.validArrayWithStatus);
        selectionArray.includes(itemField) ? item.isValid = true : item.isValid = false;
      });
   }
