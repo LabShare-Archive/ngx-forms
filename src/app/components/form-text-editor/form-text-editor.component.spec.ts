@@ -3,7 +3,6 @@ import { FormTextEditorComponent } from './form-text-editor.component';
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 import { QuillModule } from "ngx-quill";
-import * as _ from 'lodash';
 
 describe('FormTextEditorComponent', () => {
     let component: FormTextEditorComponent;

@@ -1,6 +1,6 @@
-<div class="form-group row" [formGroup]="group">
+<div class="row" [formGroup]="group">
     <label class="col-md-2 font-weight-bold col-form-label" for="group">{{field.label}}
-        <span [hidden]="!field.required">*</span>
+        <span class="required-icon" [hidden]="!field.required">*</span>
     </label>
     <div class="col-md-10">
         <select [formControlName]="field.name" class="form-control">

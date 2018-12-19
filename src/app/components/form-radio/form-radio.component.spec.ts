@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormRadioComponent } from './form-radio.component';
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
-import * as _ from 'lodash';
 
 describe('FormRadioComponent', () => {
     let component: FormRadioComponent;

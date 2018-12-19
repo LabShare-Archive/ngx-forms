@@ -1,34 +1,45 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicPanelComponent } from '../dynamic-panel/dynamic-panel.component';
 import { DynamicFieldDirective } from '../../components/dynamic-field/dynamic-field.directive';
-import { DebugElement, Component, NgModule } from "@angular/core";
+import { Component, NgModule } from "@angular/core";
 import { DynamicFormComponent } from "./dynamic-form.component";
-import { ReactiveFormsModule, FormsModule, FormGroup, FormBuilder } from '@angular/forms';
-import { DataService } from '../../services/data.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DynamicFieldService } from "../../services/dynamic-field.service";
-import { ObserverService } from '../../services/observer.service';
 import { PreloadService } from '../../services/preload.service';
 import { FormInputComponent } from '../../components/form-input/form-input.component';
 import { CommonModule } from '@angular/common';
 import { FormSelectComponent } from '../../components/form-select/form-select.component';
-import { FormInputHidden } from '../../components/form-hidden/form-hidden.component';
+import { FormInputHiddenComponent } from '../../components/form-hidden/form-hidden.component';
 import { By } from '@angular/platform-browser';
+import { FormNavModule } from '../../../nav/nav-app';
+import { FieldConfigService } from '../../services/field-config.service';
+
+interface IFormConfig {
+    form: any;
+    fields: any[]
+}
+
+interface IDynamicForm {
+    formConfig: IFormConfig
+    data: any
+    dynamicForm: any
+    lookups: any
+}
 
 @Component({
-    template: `<dynamic-form [fieldsConfig]="fields" [formsConfig]="formsConfig" #form="dynamicForm" [model]="data" [dataProvider]="dataProvider" [lookups]="lookups"></dynamic-form>`
+    template: `<dynamic-form [formConfig]="formConfig" #form="dynamicForm" [model]="data" [dataProvider]="dataProvider" [lookups]="lookups"></dynamic-form>`
 })
-class TestComponent {
-    fields: any[];
+class TestComponent implements IDynamicForm {
+    formConfig
     data: {};
     dynamicForm: {};
     lookups: {};
-    formsConfig: any[];
 }
 
 @NgModule({
-    declarations: [FormInputComponent, FormSelectComponent, FormInputHidden],
-    imports: [FormsModule, ReactiveFormsModule, CommonModule],
-    entryComponents: [FormInputComponent, FormSelectComponent, FormInputHidden]
+    declarations: [FormInputComponent, FormSelectComponent, FormInputHiddenComponent],
+    imports: [FormsModule, ReactiveFormsModule, CommonModule, FormNavModule],
+    entryComponents: [FormInputComponent, FormSelectComponent, FormInputHiddenComponent]
 })
 class TestModule { }
 
@@ -40,27 +51,28 @@ describe('DynamicFormComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [DynamicFieldDirective, TestComponent, DynamicFormComponent, DynamicPanelComponent],
-            imports: [FormsModule, ReactiveFormsModule, TestModule],
-            providers: [DynamicFieldService, PreloadService, DataService, ObserverService]
+            imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule],
+            providers: [DynamicFieldService, PreloadService, FieldConfigService]
         })
             .compileComponents()
             .then(() => {
                 fixture = TestBed.createComponent(TestComponent);
                 component = fixture.componentInstance;
-                component.fields = [
-                    { type: 'hidden', name: 'id' },
-                    { type: 'text', label: 'Publication Title:', name: 'title', placeholder: '', required: true },
-                    { type: 'select', label: 'Publication Type', name: 'activityType', options: ['a', 'b'] }
-                ];
-
-                component.formsConfig = [{ label: 'Title and Abstract', panels: [{ label: 'Title and Abstract', fields: ['id', 'title', 'activityType'] }] }];
+                component.formConfig = {
+                    fields: [
+                        { type: 'hidden', name: 'id' },
+                        { type: 'text', label: 'Publication Title:', name: 'title', placeholder: '', required: true },
+                        { type: 'select', label: 'Publication Type', name: 'activityType', options: ['a', 'b'] }
+                    ],
+                    form: [{ label: 'Title and Abstract', panels: [{ label: 'Title and Abstract', fields: ['id', 'title', 'activityType'] }] }]
+                }
 
                 fixture.detectChanges();
             });
     }));
 
     it('loads input-hidden component', () => {
-        directiveEl = fixture.debugElement.query(By.directive(FormInputHidden));
+        directiveEl = fixture.debugElement.query(By.directive(FormInputHiddenComponent));
         expect(directiveEl).not.toBeNull();
     });
 
@@ -87,5 +99,82 @@ describe('DynamicFormComponent', () => {
     it('should be created', () => {
         expect(component).toBeTruthy();
     });
+});
 
+describe('DynamicFormComponent Core', () => {
+    let component: DynamicFormComponent;
+    let fixture: ComponentFixture<DynamicFormComponent>;
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [DynamicFieldDirective, TestComponent, DynamicFormComponent, DynamicPanelComponent],
+            imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule],
+            providers: [DynamicFieldService, PreloadService, FieldConfigService]
+        }).compileComponents();
+    });
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(DynamicFormComponent);
+        component = fixture.componentInstance;
+        component.formConfig = {
+            fields: [
+                { type: 'hidden', name: 'id' },
+                { type: 'text', name: 'title' },
+            ],
+            form: [{ label: 'Title and Abstract', panels: [{ label: 'Title and Abstract', fields: ['title'] }] }]
+        }
+        fixture.detectChanges();
+    });
+
+    describe('createControl()', () => {
+        let cfg = { name: 'test', type: 'text', disabled: true, required: true, minLength: 5, maxLength: 10, email: true, min: 1, max: 10, pattern: new RegExp('\d'), nullValidator: true, value: 5 };
+
+        it('should set pattern validator', () => {
+            let control = component.createControl({ name: 'test', type: 'text', pattern: new RegExp('\d'), value: 5 });
+            const vals = control.validator(control);
+            expect(vals.pattern).toBeTruthy();
+        });
+
+        it('should set email validator', () => {
+            let control = component.createControl({ name: 'test', type: 'text', email: true, value: 5 });
+            const vals = control.validator(control);
+            expect(vals.email).toBeTruthy();
+        });
+
+        it('should set min length validator', () => {
+            let control = component.createControl({ name: 'test', type: 'text', minLength: 5, maxLength: 10, value: 'test' });
+            const vals = control.validator(control);
+            expect(vals.minlength).toBeTruthy();
+        });
+
+        it('should set max length validator', () => {
+            let control = component.createControl({ name: 'test', type: 'text', maxLength: 2, value: 'test' });
+            const vals = control.validator(control);
+            expect(vals.maxlength).toBeTruthy();
+        });
+
+        it('should set required validator', () => {
+            let control = component.createControl({ name: 'test', type: 'text', required: true, value: '' });
+            const vals = control.validator(control);
+            expect(vals.required).toBeTruthy();
+        });
+
+        it('should set min value validator', () => {
+            let control = component.createControl({ name: 'test', type: 'text', min: 2, value: 1 });
+            const vals = control.validator(control);
+            expect(vals.min).toBeTruthy();
+        });
+
+        it('should set max value validator', () => {
+            let control = component.createControl({ name: 'test', type: 'text', max: 2, value: 22 });
+            const vals = control.validator(control);
+            expect(vals.max).toBeTruthy();
+        });
+
+        it('should set value', () => {
+            let control = component.createControl(cfg);
+            expect(control.value).toEqual(cfg.value);
+        });
+
+    });
 });

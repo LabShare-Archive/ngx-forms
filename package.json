@@ -1,6 +1,6 @@
 {
   "name": "@labshare/ngx-forms",
-  "version": "2.3.2",
+  "version": "2.5.4",
   "main": "dist/ngx-forms",
   "typings": "index.d.ts",
   "scripts": {
@@ -11,7 +11,9 @@
     "test": "karma start ./test/karma.conf.js",
     "coverage": "karma start ./test/karma.conf.js --singleRun=true",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "lint:fix": "tslint --fix -p tsconfig.json -c tslint.json",
+    "lint": "tslint -p tsconfig.json -c tslint.json"
   },
   "dependencies": {
     "@angular/animations": "^6.0.4",
@@ -24,10 +26,10 @@
     "@angular/platform-browser-dynamic": "^6.0.4",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
-    "lodash": "4.17.10",
+    "fork-ts-checker-webpack-plugin": "^0.5.2",
     "ngx-chips": "^1.9.1",
-    "ngx-quill": "^3.1.0",
-    "quill": "^1.3.4",
+    "ngx-quill": "^4.4.2",
+    "quill": "^1.3.6",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.2.0",
     "rxjs-compat": "^6.2.0",
@@ -45,7 +47,7 @@
     "css-loader": "^1.0.0",
     "html-loader": "0.5.5",
     "html-webpack-plugin": "3.2.0",
-    "husky": "^0.14.3",
+    "husky": "^1.0.0",
     "istanbul-instrumenter-loader": "^3.0.1",
     "jasmine-core": "^3.1.0",
     "karma": "^3.0.0",
@@ -61,11 +63,11 @@
     "null-loader": "^0.1.1",
     "sass-loader": "7.1.0",
     "semantic-release": "^15.5.0",
-    "style-loader": "^0.23.0",
+    "style-loader": "^0.22.0",
     "ts-loader": "^4.3.0",
     "tslint-angular": "^1.1.0",
+    "url-loader": "1.1.1",
     "typescript": "^2.7.2",
-    "url-loader": "1.0.1",
     "webpack": "^4.10.2",
     "webpack-cli": "^3.1.2",
     "webpack-node-externals": "^1.7.2"

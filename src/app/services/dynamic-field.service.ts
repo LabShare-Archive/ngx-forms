@@ -1,18 +1,14 @@
 import { Injectable, Type } from '@angular/core';
-import { Field } from '../models/field.interface';
-import { FormComponentType } from '../models/enums';
 
 @Injectable()
 export class DynamicFieldService {
 
     components = {};
-    types = {};
 
-    addField(name: string, component: any, type: FormComponentType = FormComponentType.Field) {
-        if (!name || !name.length) throw new Error('Failed to add new component. Type is incorrent, Type value: ' + name);
-        if (!component) throw new Error('Failed to add new component. Component is undefined');
+    addField(name: string, component: any) {
+        if (!name || !name.length) { throw new Error('Failed to add new component. Type is incorrent, Type value: ' + name); }
+        if (!component) { throw new Error('Failed to add new component. Component is undefined'); }
         this.components[name] = component;
-        this.types[name] = type;
     }
 
     getField(name: string) {
@@ -22,9 +18,4 @@ export class DynamicFieldService {
         }
         return this.components[name];
     }
-
-    getType(name: string) {
-        return this.types[name];
-    }
-
 }
