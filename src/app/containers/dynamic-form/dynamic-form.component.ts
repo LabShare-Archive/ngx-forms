@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { IFieldConfig } from '../../models/field-config.interface';
-import { FormComponentType } from '../../models/enums';
 import { DynamicFieldService } from '../../services/dynamic-field.service';
 import { FieldConfigService } from '../../services/field-config.service';
 
@@ -29,10 +28,13 @@ export class DynamicFormComponent implements OnChanges, OnInit {
     get valid() { return this.form.valid; }
     get value() { return this.form.value; }
 
-    constructor(private fb: FormBuilder,  private dynamicFieldService: DynamicFieldService, private fieldConfigService: FieldConfigService) { }
+    constructor(private fb: FormBuilder, private dynamicFieldService: DynamicFieldService, private fieldConfigService: FieldConfigService) { }
 
-    ngOnInit() {
-        this.form = this.createForm();
+    public ngOnInit() {
+        this.form = this.fb.group({});
+        this.controls.forEach(control => {
+            this.form.addControl(control.name, this.createControl(control));
+        });
         if (this.model) {
             this.form.patchValue(this.model);
         }
@@ -46,7 +48,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
         // this.form.disable();
     }
 
-    ngOnChanges() {
+    public ngOnChanges() {
         if (this.form) {
             const controls = Object.keys(this.form.controls);
             const configControls = this.controls.map((item) => item.name);
@@ -64,26 +66,8 @@ export class DynamicFormComponent implements OnChanges, OnInit {
         }
     }
 
-    createForm() {
-        const group = this.fb.group({});
-        this.controls.forEach(control => {
-            const type = this.dynamicFieldService.getType(control.type);
-            switch (type) {
-                case FormComponentType.Array:
-                    group.addControl(control.name, new FormArray([]));
-                    break;
-                case FormComponentType.Group:
-                    group.addControl(control.name, new FormGroup({}));
-                    break;
-                default:
-                    group.addControl(control.name, this.createControl(control));
-            }
-        });
-        return group;
-    }
-
-    createControl(cfg: IFieldConfig): FormControl {
-        const { disabled, required, minLength, maxLength, email, min, max, pattern, nullValidator, value } = cfg;
+    public createControl(cfg: IFieldConfig): FormControl {
+        const { disabled, required, minLength, maxLength, email, min, max, pattern, value } = cfg;
         const validators = [];
         if (required !== undefined && required) { validators.push(Validators.required); }
         if (minLength !== undefined) { validators.push(Validators.minLength(minLength)); }
@@ -92,12 +76,11 @@ export class DynamicFormComponent implements OnChanges, OnInit {
         if (min !== undefined) { validators.push(Validators.min(min)); }
         if (max !== undefined) { validators.push(Validators.max(max)); }
         if (pattern !== undefined) { validators.push(Validators.pattern(pattern)); }
-        if (nullValidator !== undefined) { validators.push(Validators.nullValidator); }
 
         return this.fb.control({ disabled, value }, validators);
     }
 
-    setValue(name: string, value: any) {
+    public setValue(name: string, value: any) {
         this.form.controls[name].setValue(value, { emitEvent: true });
     }
 }

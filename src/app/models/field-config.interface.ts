@@ -14,7 +14,6 @@ export interface IFieldConfig {
     min?: number;
     max?: number;
     pattern?: RegExp;
-    nullValidator?: any;
     lookup?: string; // Name of a lookup array inside lookup payload
     extract?: string; // Extract one field from lookup item when lookup is an object
 }
