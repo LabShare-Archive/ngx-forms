@@ -1,0 +1,8 @@
+<div class="card mb-3" [formGroup]="group">
+    <div class="card-header" *ngIf="panelConfig.label">
+        {{panelConfig.label}}
+    </div>
+    <div class="card-body">
+        <div *ngFor="let field of panelConfig.fields" dynamicField [field]="getFieldConfig(field)" [group]="group" [model]="model" class="mb-2"Ï></div>
+    </div>
+</div>

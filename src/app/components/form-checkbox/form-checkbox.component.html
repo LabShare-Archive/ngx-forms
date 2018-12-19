@@ -1,8 +1,8 @@
-<div class="form-group row" [formGroup]="group" *ngIf="isShow()">
-  <label class="col-md-2 font-weight-bold  col-form-label">{{field.label}}</label>
-  <div class="col-md-10">
-    <div class="row" *ngFor="let item of field.options">
-      <label class="col-md-6"><input type="checkbox" [formControlName]="field.name">{{item.value}}</label>
+<div class="row" [formGroup]="group">
+    <label class="col-md-2 font-weight-bold col-form-label">{{field.label}}
+        <span class="required-icon" [hidden]="!field.required">*</span>
+    </label>
+    <div class="col-md-10">
+        <input type="checkbox" class="form-control" [formControlName]="field.name">
     </div>
-  </div>
 </div>

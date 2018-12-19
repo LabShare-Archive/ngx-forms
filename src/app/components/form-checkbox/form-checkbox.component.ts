@@ -1,20 +1,14 @@
-import { Component } from "@angular/core"
-import { Field } from "../../models/field.interface";
+import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FieldConfig } from '../../models/field-config.interface';
+import { Field } from '../../models/field.interface';
+import { IFieldConfig } from '../../models/field-config.interface';
 
 @Component({
     selector: 'form-checkbox',
-    templateUrl: './form-checkbox.component.html'
+    template: require('./form-checkbox.component.html')
 })
-
-export class FormCheckboxComponent implements Field{
-    field : FieldConfig;
+export class FormCheckboxComponent implements Field  {
+    field: IFieldConfig;
     group: FormGroup;
-    fields: FieldConfig[];
-
-
-    isShow () {
-      return !this.field.hidden;
-    }
+    model: object;
 }

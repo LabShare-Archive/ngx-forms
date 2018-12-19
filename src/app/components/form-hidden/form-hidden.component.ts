@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Field } from '../../models/field.interface';
-import { FieldConfig } from '../../models/field-config.interface';
+import { IFieldConfig } from '../../models/field-config.interface';
 
 @Component({
-  selector: 'form-hidden',
-  templateUrl: './form-hidden.component.html'
+    selector: 'form-hidden',
+    template: require('./form-hidden.component.html')
 })
-export class FormInputHidden implements Field {
-  field: FieldConfig;
-  group: FormGroup;
-  fields: FieldConfig[];
+export class FormInputHiddenComponent implements Field {
+    field: IFieldConfig;
+    group: FormGroup;
+    model: object;
 }

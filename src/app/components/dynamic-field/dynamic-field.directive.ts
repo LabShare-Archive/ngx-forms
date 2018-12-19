@@ -1,96 +1,48 @@
-import { ComponentFactoryResolver, ComponentRef, Directive, Input, OnChanges, OnInit, Type, ViewContainerRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { FormInputComponent } from '../form-input/form-input.component';
-import { FormSelectComponent } from '../form-select/form-select.component';
-import { FormTextEditorComponent } from '../form-text-editor/form-text-editor.component';
-import { FormCheckboxComponent } from "../form-checkbox/form-checkbox.component";
-import { FormRadioComponent} from "../form-radio/form-radio.component";
+import { ComponentRef, Directive, Input, OnChanges, OnInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy, Optional, Host, SkipSelf } from '@angular/core';
+import { FormGroup, ControlContainer } from '@angular/forms';
 import { Field } from '../../models/field.interface';
-import { FieldConfig } from '../../models/field-config.interface';
-import { FormTextareaComponent } from '../form-textarea/form-textarea.component';
-import { FormInputHidden } from '../form-hidden/form-hidden.component';
-import { FormUserComponent } from '../form-user/form-user.component';
-import { DynamicFieldService } from "../../services/dynamic-field.service"
-
-const components: { [type: string]: Type<Field> } = {
-  text: FormInputComponent,
-  select: FormSelectComponent,
-  editor: FormTextEditorComponent,
-  textarea: FormTextareaComponent,
-  hidden: FormInputHidden,
-  user: FormUserComponent,
-  radio: FormRadioComponent,
-  checkbox: FormCheckboxComponent
-};
+import { IFieldConfig } from '../../models/field-config.interface';
+import { DynamicFieldService } from '../../services/dynamic-field.service';
+import { PreloadService } from '../../services/preload.service';
 
 @Directive({
-  selector: '[dynamicField]'
+    selector: '[dynamicField]'
 })
-export class DynamicFieldDirective implements Field, OnChanges, OnInit {
-  @Input()
-  field: FieldConfig;
+export class DynamicFieldDirective implements Field, OnChanges, OnInit, OnDestroy {
+    @Input() field: IFieldConfig;
+    @Input() group: FormGroup;
+    @Input() model: any;
+    component: ComponentRef<any>;
 
-  @Input()
-  group: FormGroup;
+    constructor(
+        @Optional() @Host() @SkipSelf() private parent: ControlContainer,
+        private resolver: ComponentFactoryResolver,
+        private container: ViewContainerRef,
+        private dynamicFieldService: DynamicFieldService,
+        private preloadService: PreloadService
+    ) { }
 
+    ngOnChanges() {
+        if (this.component) {
+            this.component.instance.field = this.field;
+            this.component.instance.group = this.group;
+            this.component.instance.model = this.model;
+        }
+    }
 
-  @Input()
-  fields: [FieldConfig];
-
-  component: ComponentRef<Field>;
-
-  constructor(
-    private resolver: ComponentFactoryResolver,
-    private container: ViewContainerRef,
-    private dynamicFieldService: DynamicFieldService
-  ) { }
-
-  /**
-   * @description
-   * 1, check if the field is custom field
-   * 2, check if type is pre-defined field, if not throw errors
-   */
-  loadComponent() {
-    if (this.field.custom) {
-
-      try {
-        let customComponent = this.dynamicFieldService.getCustomComponent(this.field.type);
-        this.component= this.dynamicFieldService.addDynamicComponent(customComponent);
+    ngOnInit() {
+        const componentReference = this.dynamicFieldService.getField(this.field.type);
+        const component = this.resolver.resolveComponentFactory<Field>(componentReference);
+        this.component = this.container.createComponent(component);
         this.component.instance.field = this.field;
         this.component.instance.group = this.group;
-        this.component.instance.fields = this.fields;
-      } catch (e) {
-        throw new Error(`Can't build custom component field "${this.field.type}"`)
-      }
-
-    } else if (!components[this.field.type]) {
-
-      const supportedTypes = Object.keys(components).join(', ');
-      throw new Error(
-        `Trying to use an unsupported type (${this.field.type}).Supported types: ${supportedTypes}`
-      );
-
-    } else {
-
-      this.component = this.dynamicFieldService.addDynamicComponent(components[this.field.type]);
-      this.component.instance.field = this.field;
-      this.component.instance.group = this.group;
-      this.component.instance.fields = this.fields;
-
+        this.component.instance.model = this.model;
     }
-  }
 
-  ngOnChanges() {
-    if (this.component) {
-      this.component.instance.field = this.field;
-      this.component.instance.group = this.group;
-      this.component.instance.fields = this.fields;
+    ngOnDestroy(): void {
+        if (this.component) {
+            this.component.destroy();
+        }
     }
-  }
 
-
-  ngOnInit() {
-    this.dynamicFieldService.setRootViewContainerRef(this.container);
-    this.loadComponent();
-  }
 }

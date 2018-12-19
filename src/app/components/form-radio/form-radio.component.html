@@ -1,8 +1,10 @@
-<div class="form-group row" [formGroup]="group" *ngIf="isShow()">
-    <label class="col-md-2 font-weight-bold  col-form-label">{{field.label}}</label>
+<div class="row" [formGroup]="group">
+    <label class="col-md-2 font-weight-bold  col-form-label">{{field.label}}
+        <span class="required-icon" [hidden]="!field.required">*</span>
+    </label>
     <div class="col-md-10">
-      <label  *ngFor="let item of field.options">
-        <input type="radio"  [value]="item.value" [formControlName]="field.name" (change)=onSelectionChange(item.ref)>{{item.value}}
-      </label>
+        <label *ngFor="let item of field.options">
+            <input type="radio" [value]="item" [formControlName]="field.name">{{item}}
+        </label>
     </div>
 </div>
