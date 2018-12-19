@@ -1,3 +1,10 @@
+## [2.5.4](https://github.com/LabShare/ngx-forms/compare/v2.5.3...v2.5.4) (2018-12-19)
+
+
+### Bug Fixes
+
+* **package:** update ngx-quill to version 4.0.0 ([20b23ed](https://github.com/LabShare/ngx-forms/commit/20b23ed))
+
 ## [2.5.3](https://github.com/LabShare/ngx-forms/compare/v2.5.2...v2.5.3) (2018-12-10)
 
 
