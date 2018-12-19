@@ -1,15 +1,17 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { QuillModule } from "ngx-quill";
+import { QuillModule } from 'ngx-quill';
 import { DynamicFieldDirective } from './app/components/dynamic-field/dynamic-field.directive';
-import { DynamicFormComponent, Components } from './app/containers/dynamic-form/dynamic-form.component';
-import { DynamicPanelComponent } from "./app/containers/dynamic-panel/dynamic-panel.component";
-import { TagInputModule } from "ngx-chips";
+import { DynamicFormComponent } from './app/containers/dynamic-form/dynamic-form.component';
+import { DynamicPanelComponent } from './app/containers/dynamic-panel/dynamic-panel.component';
+import { FormNavModule } from './nav/nav-app';
+import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataService } from './app/services/data.service';
-import { DynamicFieldService } from "./app/services/dynamic-field.service";
-import { PreloadService } from './app/services/preload.service';
+import { DynamicFieldService } from './app/services/dynamic-field.service';
+import { PreloadService, Components } from './app/services/preload.service';
+import { FieldConfigService } from './app/services/field-config.service';
 
 @NgModule({
     imports: [
@@ -18,13 +20,14 @@ import { PreloadService } from './app/services/preload.service';
         ReactiveFormsModule,
         FormsModule,
         QuillModule,
-        TagInputModule
+        TagInputModule,
+        FormNavModule
     ],
     declarations: [
         Components,
         DynamicFieldDirective,
         DynamicFormComponent,
-        DynamicPanelComponent,
+        DynamicPanelComponent
     ],
     exports: [
         DynamicFormComponent
@@ -35,7 +38,8 @@ import { PreloadService } from './app/services/preload.service';
     providers: [
         DataService,
         DynamicFieldService,
-        PreloadService
+        PreloadService,
+        FieldConfigService
     ],
     schemas: [
         NO_ERRORS_SCHEMA
@@ -43,4 +47,4 @@ import { PreloadService } from './app/services/preload.service';
 })
 export class NgxFormModule { }
 
-export { DynamicFieldService, DataService }
+export { DynamicFieldService, DataService };

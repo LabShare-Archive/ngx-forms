@@ -4,10 +4,10 @@ import { Field } from '../../models/field.interface';
 import { IFieldConfig } from '../../models/field-config.interface';
 
 @Component({
-    selector: 'form-checkbox',
-    template: require('./form-checkbox.component.html')
+    selector: 'form-label',
+    template: require('./form-label.component.html')
 })
-export class FormCheckboxComponent implements Field  {
+export class FormLabelComponent implements Field {
     field: IFieldConfig;
     group: FormGroup;
     model: object;

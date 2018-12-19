@@ -1,17 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicPanelComponent } from '../dynamic-panel/dynamic-panel.component';
 import { DynamicFieldDirective } from '../../components/dynamic-field/dynamic-field.directive';
-import { DebugElement, Component, NgModule } from "@angular/core";
+import { Component, NgModule } from "@angular/core";
 import { DynamicFormComponent } from "./dynamic-form.component";
-import { ReactiveFormsModule, FormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DataService } from '../../services/data.service';
 import { DynamicFieldService } from "../../services/dynamic-field.service";
 import { PreloadService } from '../../services/preload.service';
 import { FormInputComponent } from '../../components/form-input/form-input.component';
 import { CommonModule } from '@angular/common';
 import { FormSelectComponent } from '../../components/form-select/form-select.component';
-import { FormInputHidden } from '../../components/form-hidden/form-hidden.component';
+import { FormInputHiddenComponent } from '../../components/form-hidden/form-hidden.component';
 import { By } from '@angular/platform-browser';
+import { FormNavModule } from '../../../nav/nav-app';
+import { FieldConfigService } from '../../services/field-config.service';
 
 interface IFormConfig {
     form: any;
@@ -36,9 +38,9 @@ class TestComponent implements IDynamicForm {
 }
 
 @NgModule({
-    declarations: [FormInputComponent, FormSelectComponent, FormInputHidden],
-    imports: [FormsModule, ReactiveFormsModule, CommonModule],
-    entryComponents: [FormInputComponent, FormSelectComponent, FormInputHidden]
+    declarations: [FormInputComponent, FormSelectComponent, FormInputHiddenComponent],
+    imports: [FormsModule, ReactiveFormsModule, CommonModule, FormNavModule],
+    entryComponents: [FormInputComponent, FormSelectComponent, FormInputHiddenComponent]
 })
 class TestModule { }
 
@@ -50,8 +52,8 @@ describe('DynamicFormComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [DynamicFieldDirective, TestComponent, DynamicFormComponent, DynamicPanelComponent],
-            imports: [FormsModule, ReactiveFormsModule, TestModule],
-            providers: [DynamicFieldService, PreloadService, DataService]
+            imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule],
+            providers: [DynamicFieldService, PreloadService, DataService, FieldConfigService]
         })
             .compileComponents()
             .then(() => {
@@ -71,7 +73,7 @@ describe('DynamicFormComponent', () => {
     }));
 
     it('loads input-hidden component', () => {
-        directiveEl = fixture.debugElement.query(By.directive(FormInputHidden));
+        directiveEl = fixture.debugElement.query(By.directive(FormInputHiddenComponent));
         expect(directiveEl).not.toBeNull();
     });
 

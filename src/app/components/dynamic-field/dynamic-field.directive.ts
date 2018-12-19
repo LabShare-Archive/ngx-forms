@@ -2,7 +2,7 @@ import { ComponentRef, Directive, Input, OnChanges, OnInit, ViewContainerRef, Co
 import { FormGroup } from '@angular/forms';
 import { Field } from '../../models/field.interface';
 import { IFieldConfig } from '../../models/field-config.interface';
-import { DynamicFieldService } from "../../services/dynamic-field.service"
+import { DynamicFieldService } from '../../services/dynamic-field.service';
 import { PreloadService } from '../../services/preload.service';
 
 @Directive({
@@ -31,7 +31,7 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
     }
 
     ngOnInit() {
-        let componentReference = this.dynamicFieldService.getField(this.field.type);
+        const componentReference = this.dynamicFieldService.getField(this.field.type);
         const component = this.resolver.resolveComponentFactory<Field>(componentReference);
         this.component = this.container.createComponent(component);
         this.component.instance.field = this.field;

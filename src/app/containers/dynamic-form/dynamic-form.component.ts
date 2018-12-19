@@ -1,22 +1,14 @@
-import { Component, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { IFieldConfig } from '../../models/field-config.interface';
 import { DataService } from '../../services/data.service';
-import { FormInputComponent } from '../../components/form-input/form-input.component';
-import { FormSelectComponent } from '../../components/form-select/form-select.component';
-import { FormTextEditorComponent } from '../../components/form-text-editor/form-text-editor.component';
-import { FormCheckboxComponent } from "../../components/form-checkbox/form-checkbox.component";
-import { FormRadioComponent } from "../../components/form-radio/form-radio.component";
-import { FormTextareaComponent } from '../../components/form-textarea/form-textarea.component';
-import { FormInputHidden } from '../../components/form-hidden/form-hidden.component';
-import { FormUserComponent } from '../../components/form-user/form-user.component';
-
 import { FormComponentType } from '../../models/enums';
 import { DynamicFieldService } from '../../services/dynamic-field.service';
+import { FieldConfigService } from '../../services/field-config.service';
 
 interface IFormConfig {
     form: any;
-    fields: IFieldConfig[]
+    fields: IFieldConfig[];
 }
 
 @Component({
@@ -26,25 +18,20 @@ interface IFormConfig {
     styles: [require('./dynamic-form.component.scss').toString()]
 })
 export class DynamicFormComponent implements OnChanges, OnInit {
-
-    @Input() formConfig: IFormConfig;// IFieldConfig[] = [];
+    @Input() formConfig: IFormConfig; // IFieldConfig[] = [];
     @Input() model: any;
     @Input() dataProvider: object;
     @Input() lookups: object;
 
     public form: FormGroup;
-    public showFormLabelName: string;  //label name of the form to show
+    public navConfig;
 
     get controls() { return this.formConfig.fields.filter(({ type }) => type !== 'button'); }
     get changes() { return this.form.valueChanges; }
     get valid() { return this.form.valid; }
     get value() { return this.form.value; }
 
-    constructor(private fb: FormBuilder, private dataService: DataService, private dynamicFieldService: DynamicFieldService) {
-        // this.subscription = this.observerService.on(Events.SELECT_FORM_TAB, (events) => {         // TODO: redo tabs
-        //     this.showFormLabelName = events.value;
-        // })
-    }
+    constructor(private fb: FormBuilder, private dataService: DataService, private dynamicFieldService: DynamicFieldService, private fieldConfigService: FieldConfigService) { }
 
     ngOnInit() {
         this.dataService.set(this.dataProvider);
@@ -55,9 +42,11 @@ export class DynamicFormComponent implements OnChanges, OnInit {
         this.formConfig.fields.forEach(field => {
             if (field.lookup && this.lookups.hasOwnProperty(field.lookup)) {
                 field.options = this.lookups[field.lookup];
-                if (field.extract) field.options = field.options.map(f => f[field.extract]);
+                if (field.extract) { field.options = field.options.map(f => f[field.extract]); }
             }
         });
+        this.navConfig = this.formConfig.form.filter(g => !g.static);
+        this.fieldConfigService.addFields(this.formConfig.fields);
     }
 
     ngOnChanges() {
@@ -79,39 +68,35 @@ export class DynamicFormComponent implements OnChanges, OnInit {
         }
     }
 
-    /**
-     * @description create FormGroup and FormControl for all general field, exclude custom field
-     * @return {FormGroup}
-     */
     createForm() {
         const group = this.fb.group({});
         this.controls.forEach(control => {
-            let type = this.dynamicFieldService.getType(control.type)
+            const type = this.dynamicFieldService.getType(control.type);
             switch (type) {
                 case FormComponentType.Array:
                     group.addControl(control.name, new FormArray([]));
                     break;
                 case FormComponentType.Group:
-                    group.addControl(control.name, new FormGroup({}))
+                    group.addControl(control.name, new FormGroup({}));
                     break;
                 default:
-                    group.addControl(control.name, this.createControl(control))
+                    group.addControl(control.name, this.createControl(control));
             }
         });
         return group;
-    };
+    }
 
     createControl(cfg: IFieldConfig): FormControl {
         const { disabled, required, minLength, maxLength, email, min, max, pattern, nullValidator, value } = cfg;
-        let validators = [];
-        if (required != undefined && required) { validators.push(Validators.required); }
-        if (minLength != undefined) { validators.push(Validators.minLength(minLength)); }
-        if (maxLength != undefined) { validators.push(Validators.maxLength(maxLength)); }
-        if (email != undefined) { validators.push(Validators.email); }
-        if (min != undefined) { validators.push(Validators.min(min)); }
-        if (max != undefined) { validators.push(Validators.max(max)); }
-        if (pattern != undefined) { validators.push(Validators.pattern(pattern)); }
-        if (nullValidator != undefined) { validators.push(Validators.nullValidator); }
+        const validators = [];
+        if (required !== undefined && required) { validators.push(Validators.required); }
+        if (minLength !== undefined) { validators.push(Validators.minLength(minLength)); }
+        if (maxLength !== undefined) { validators.push(Validators.maxLength(maxLength)); }
+        if (email !== undefined) { validators.push(Validators.email); }
+        if (min !== undefined) { validators.push(Validators.min(min)); }
+        if (max !== undefined) { validators.push(Validators.max(max)); }
+        if (pattern !== undefined) { validators.push(Validators.pattern(pattern)); }
+        if (nullValidator !== undefined) { validators.push(Validators.nullValidator); }
 
         return this.fb.control({ disabled, value }, validators);
     }
@@ -136,5 +121,3 @@ export class DynamicFormComponent implements OnChanges, OnInit {
     }
 
 }
-
-export const Components = [FormInputComponent, FormSelectComponent, FormTextEditorComponent, FormTextareaComponent, FormInputHidden, FormUserComponent, FormRadioComponent, FormCheckboxComponent];

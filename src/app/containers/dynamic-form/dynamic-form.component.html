@@ -1,8 +1,18 @@
-<form class="dynamic-form" [formGroup]="form">
-  <ng-container *ngFor="let group of formConfig.form">
-    <div>
-      <dynamic-panel *ngFor="let panelConfig of group.panels" [panelConfig]="panelConfig" [fieldsConfig]="formConfig.fields"
-        [group]="form" [model]="model"></dynamic-panel>
+<div class="row">
+    <div class="col-md-2">
+        <form-nav></form-nav>
     </div>
-  </ng-container>
-</form>
+    <div class="col-md-10" [formGroup]="form">
+        <div *ngFor="let group of formConfig.form" [navTab]="group">
+
+            <ng-container *ngIf="group.fields">
+                <dynamic-panel [panelConfig]="group" [group]="form" [model]="model" [hidden]="group.hidden"></dynamic-panel>
+            </ng-container>
+
+            <ng-container *ngIf="group.panels">
+                <dynamic-panel *ngFor="let panelConfig of group.panels" [panelConfig]="panelConfig" [group]="form"
+                    [model]="model" [hidden]="group.hidden"></dynamic-panel>
+            </ng-container>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,59 @@
+## [2.5.3](https://github.com/LabShare/ngx-forms/compare/v2.5.2...v2.5.3) (2018-12-10)
+
+
+### Bug Fixes
+
+* fixed input type for checkbox ([3021202](https://github.com/LabShare/ngx-forms/commit/3021202))
+
+## [2.5.2](https://github.com/LabShare/ngx-forms/compare/v2.5.1...v2.5.2) (2018-12-10)
+
+
+### Bug Fixes
+
+* fixed checkbox input control ([15696dc](https://github.com/LabShare/ngx-forms/commit/15696dc))
+* fixed Form nav does not reset after view change PPC-210 ([000b0e9](https://github.com/LabShare/ngx-forms/commit/000b0e9))
+* removed lodash ([cd7a2f4](https://github.com/LabShare/ngx-forms/commit/cd7a2f4))
+
+## [2.5.1](https://github.com/LabShare/ngx-forms/compare/v2.5.0...v2.5.1) (2018-11-27)
+
+
+### Bug Fixes
+
+* added bottom margin to each field ([af7f202](https://github.com/LabShare/ngx-forms/commit/af7f202))
+* added red asterix for required fields ([6c14c48](https://github.com/LabShare/ngx-forms/commit/6c14c48))
+* refactored fields config injection ([f65cf5f](https://github.com/LabShare/ngx-forms/commit/f65cf5f))
+
+# [2.5.0](https://github.com/LabShare/ngx-forms/compare/v2.4.1...v2.5.0) (2018-11-27)
+
+
+### Bug Fixes
+
+* added lint and lint fixes ([c37ec60](https://github.com/LabShare/ngx-forms/commit/c37ec60))
+* added tests ([8a83057](https://github.com/LabShare/ngx-forms/commit/8a83057))
+* fixed tests ([32e71cd](https://github.com/LabShare/ngx-forms/commit/32e71cd))
+* form style fixed ([e0687e3](https://github.com/LabShare/ngx-forms/commit/e0687e3))
+* removed stylelint ([d8a4e20](https://github.com/LabShare/ngx-forms/commit/d8a4e20))
+
+
+### Features
+
+* added ability to hide panel header if title is not specified ([f52323e](https://github.com/LabShare/ngx-forms/commit/f52323e))
+* added ability to permanently lock a panel PPC-151 ([39c5c61](https://github.com/LabShare/ngx-forms/commit/39c5c61))
+
+## [2.4.1](https://github.com/LabShare/ngx-forms/compare/v2.4.0...v2.4.1) (2018-11-21)
+
+
+### Bug Fixes
+
+* form does not show after update ([541e284](https://github.com/LabShare/ngx-forms/commit/541e284))
+
+# [2.4.0](https://github.com/LabShare/ngx-forms/compare/v2.3.3...v2.4.0) (2018-11-19)
+
+
+### Features
+
+* added left menu ([5a060e1](https://github.com/LabShare/ngx-forms/commit/5a060e1))
+
 ## [2.3.3](https://github.com/LabShare/ngx-forms/compare/v2.3.2...v2.3.3) (2018-11-16)
 
 

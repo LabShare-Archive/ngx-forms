@@ -16,6 +16,7 @@ install:
   - npm install
   - npm run build
 script:
+  - npm run lint
   - xvfb-run npm run coverage
   - codecov
   - cat ./test/ui/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js

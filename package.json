@@ -1,6 +1,6 @@
 {
   "name": "@labshare/ngx-forms",
-  "version": "2.3.3",
+  "version": "2.5.3",
   "main": "dist/ngx-forms",
   "typings": "index.d.ts",
   "scripts": {
@@ -11,7 +11,9 @@
     "test": "karma start ./test/karma.conf.js",
     "coverage": "karma start ./test/karma.conf.js --singleRun=true",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "lint:fix": "tslint --fix -p tsconfig.json -c tslint.json",
+    "lint": "tslint -p tsconfig.json -c tslint.json"
   },
   "dependencies": {
     "@angular/animations": "^6.0.4",
@@ -24,7 +26,6 @@
     "@angular/platform-browser-dynamic": "^6.0.4",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
-    "lodash": "4.17.10",
     "ngx-chips": "^1.9.1",
     "ngx-quill": "^3.1.0",
     "quill": "^1.3.4",
