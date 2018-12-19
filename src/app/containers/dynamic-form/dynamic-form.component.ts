@@ -43,7 +43,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
             }
         });
         this.fieldConfigService.addFields(this.formConfig.fields);
-        this.form.disable();
+        // this.form.disable();
     }
 
     ngOnChanges() {
@@ -61,7 +61,6 @@ export class DynamicFormComponent implements OnChanges, OnInit {
                     const cfg = this.formConfig.fields.find((control) => control.name === name);
                     this.form.addControl(name, this.createControl(cfg));
                 });
-
         }
     }
 
