@@ -16,5 +16,5 @@ export interface IFieldConfig {
     pattern?: RegExp;
     lookup?: string; // Name of a lookup array inside lookup payload
     extract?: string; // Extract one field from lookup item when lookup is an object
-    settings?: object; // Free format object for storing custom form inputs settings
+    settings?: any // Free format object for storing custom form inputs settings
 }
