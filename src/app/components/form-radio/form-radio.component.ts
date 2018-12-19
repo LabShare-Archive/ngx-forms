@@ -1,19 +1,15 @@
-import { Component } from "@angular/core"
-import {Field} from "../../models/field.interface";
+import { Component } from '@angular/core';
+import {Field} from '../../models/field.interface';
 import { FormGroup } from '@angular/forms';
-import { FieldConfig } from '../../models/field-config.interface';
-import * as _ from 'lodash';
+import { IFieldConfig } from '../../models/field-config.interface';
 
 @Component({
     selector: 'form-radio',
     template: require('./form-radio.component.html')
 })
 
-export class FormRadioComponent implements  Field{
-    field: FieldConfig;
+export class FormRadioComponent implements Field {
+    field: IFieldConfig;
     group: FormGroup;
-
-  isShow () {
-    return !this.field.hidden;
-  }
+    model: object;
 }

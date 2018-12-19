@@ -1,23 +1,22 @@
-import { Component, Input } from "@angular/core";
-import * as _ from 'lodash';
+import { Component, Input } from '@angular/core';
+import { IFieldConfig } from '../../models/field-config.interface';
+import { FieldConfigService } from '../../services/field-config.service';
 
 @Component({
-  selector: 'dynamic-panel',
-  template: require('./dynamic-panel.component.html'),
-  styles: [require('./dynamic-panel.component.scss').toString()]
+    selector: 'dynamic-panel',
+    template: require('./dynamic-panel.component.html'),
+    styles: [require('./dynamic-panel.component.scss').toString()]
 })
 
 export class DynamicPanelComponent {
-   @Input() public panelConfig;
-   @Input() public group;
-   @Input() public fieldsConfig;
+    @Input() public panelConfig;
+    @Input() public group;
+    @Input() public model: any;
 
-   public getFieldConfig(fieldName) {
-      let fieldObj =  _.find(this.fieldsConfig, {name: fieldName});
-      if (!fieldObj) {
-        throw new Error(`Can\'t find field name: ${fieldName}, please check config file!`);
-      } else {
-        return fieldObj;
-      }
-   }
+    constructor(private fcs: FieldConfigService) {
+    }
+
+    public getFieldConfig(fieldName: string): IFieldConfig {
+        return this.fcs.getField(fieldName);
+    }
 }
