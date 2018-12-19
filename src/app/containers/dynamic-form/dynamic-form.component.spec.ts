@@ -4,7 +4,6 @@ import { DynamicFieldDirective } from '../../components/dynamic-field/dynamic-fi
 import { Component, NgModule } from "@angular/core";
 import { DynamicFormComponent } from "./dynamic-form.component";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { DataService } from '../../services/data.service';
 import { DynamicFieldService } from "../../services/dynamic-field.service";
 import { PreloadService } from '../../services/preload.service';
 import { FormInputComponent } from '../../components/form-input/form-input.component';
@@ -53,7 +52,7 @@ describe('DynamicFormComponent', () => {
         TestBed.configureTestingModule({
             declarations: [DynamicFieldDirective, TestComponent, DynamicFormComponent, DynamicPanelComponent],
             imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule],
-            providers: [DynamicFieldService, PreloadService, DataService, FieldConfigService]
+            providers: [DynamicFieldService, PreloadService, FieldConfigService]
         })
             .compileComponents()
             .then(() => {
@@ -100,5 +99,82 @@ describe('DynamicFormComponent', () => {
     it('should be created', () => {
         expect(component).toBeTruthy();
     });
+});
 
+describe('DynamicFormComponent Core', () => {
+    let component: DynamicFormComponent;
+    let fixture: ComponentFixture<DynamicFormComponent>;
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [DynamicFieldDirective, TestComponent, DynamicFormComponent, DynamicPanelComponent],
+            imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule],
+            providers: [DynamicFieldService, PreloadService, FieldConfigService]
+        }).compileComponents();
+    });
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(DynamicFormComponent);
+        component = fixture.componentInstance;
+        component.formConfig = {
+            fields: [
+                { type: 'hidden', name: 'id' },
+                { type: 'text', name: 'title' },
+            ],
+            form: [{ label: 'Title and Abstract', panels: [{ label: 'Title and Abstract', fields: ['title'] }] }]
+        }
+        fixture.detectChanges();
+    });
+
+    describe('createControl()', () => {
+        let cfg = { name: 'test', type: 'text', disabled: true, required: true, minLength: 5, maxLength: 10, email: true, min: 1, max: 10, pattern: new RegExp('\d'), nullValidator: true, value: 5 };
+
+        it('should set pattern validator', () => {
+            let control = component.createControl({ name: 'test', type: 'text', pattern: new RegExp('\d'), value: 5 });
+            const vals = control.validator(control);
+            expect(vals.pattern).toBeTruthy();
+        });
+
+        it('should set email validator', () => {
+            let control = component.createControl({ name: 'test', type: 'text', email: true, value: 5 });
+            const vals = control.validator(control);
+            expect(vals.email).toBeTruthy();
+        });
+
+        it('should set min length validator', () => {
+            let control = component.createControl({ name: 'test', type: 'text', minLength: 5, maxLength: 10, value: 'test' });
+            const vals = control.validator(control);
+            expect(vals.minlength).toBeTruthy();
+        });
+
+        it('should set max length validator', () => {
+            let control = component.createControl({ name: 'test', type: 'text', maxLength: 2, value: 'test' });
+            const vals = control.validator(control);
+            expect(vals.maxlength).toBeTruthy();
+        });
+
+        it('should set required validator', () => {
+            let control = component.createControl({ name: 'test', type: 'text', required: true, value: '' });
+            const vals = control.validator(control);
+            expect(vals.required).toBeTruthy();
+        });
+
+        it('should set min value validator', () => {
+            let control = component.createControl({ name: 'test', type: 'text', min: 2, value: 1 });
+            const vals = control.validator(control);
+            expect(vals.min).toBeTruthy();
+        });
+
+        it('should set max value validator', () => {
+            let control = component.createControl({ name: 'test', type: 'text', max: 2, value: 22 });
+            const vals = control.validator(control);
+            expect(vals.max).toBeTruthy();
+        });
+
+        it('should set value', () => {
+            let control = component.createControl(cfg);
+            expect(control.value).toEqual(cfg.value);
+        });
+
+    });
 });

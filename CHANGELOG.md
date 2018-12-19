@@ -1,3 +1,12 @@
+## [2.5.5](https://github.com/LabShare/ngx-forms/compare/v2.5.4...v2.5.5) (2018-12-19)
+
+
+### Bug Fixes
+
+* added disabled style for ngx-quill ([d5adeea](https://github.com/LabShare/ngx-forms/commit/d5adeea))
+* fixed label margin ([ac86b53](https://github.com/LabShare/ngx-forms/commit/ac86b53))
+* removed input types ([a1ed15c](https://github.com/LabShare/ngx-forms/commit/a1ed15c))
+
 ## [2.5.4](https://github.com/LabShare/ngx-forms/compare/v2.5.3...v2.5.4) (2018-12-19)
 
 
