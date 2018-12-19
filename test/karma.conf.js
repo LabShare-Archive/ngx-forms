@@ -1,6 +1,6 @@
 'use strict';
 
-const {join} = require('path');
+const { join } = require('path');
 
 module.exports = function (config) {
 
@@ -43,7 +43,7 @@ module.exports = function (config) {
       stats: 'errors-only'
     },
     exclude: [],
-    port: 8080,
+    port: 9999,
     browsers: ['ChromeHeadless'],
     singleRun: true,
     browserConsoleLogOptions: {
@@ -102,7 +102,7 @@ module.exports = function (config) {
           }
         ]
       },
-      plugins: [],
+        plugins: [],
       cache: true,
       devtool: 'inline-source-map'
     }

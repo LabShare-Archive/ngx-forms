@@ -1,22 +1,20 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-
 import { Field } from '../../models/field.interface';
-import { FieldConfig } from '../../models/field-config.interface';
+import { IFieldConfig } from '../../models/field-config.interface';
 
 @Component({
-	selector: 'form-text-editor',
-	template: require('./form-text-editor.component.html'),
+    selector: 'form-text-editor',
+    template: require('./form-text-editor.component.html'),
     styles: [require('./form-text-editor.component.scss').toString()]
 })
 export class FormTextEditorComponent implements Field {
-  field: FieldConfig;
-	group: FormGroup;
-  private quillToolbar: object = {
-		toolbar: ['bold', 'italic', 'underline', 'strike', { 'header': 1 }, { 'header': 2 }, { 'list': 'ordered' }, { 'list': 'bullet' }, 'blockquote', 'code-block', 'link']
-	};
+    field: IFieldConfig;
+    group: FormGroup;
+    model: object;
 
-  isShow () {
-    return !this.field.hidden;
-  }
+    private quillToolbar: object = {
+        toolbar: ['bold', 'italic', 'underline', 'strike', { 'header': 1 }, { 'header': 2 }, { 'list': 'ordered' }, { 'list': 'bullet' }, 'blockquote', 'code-block', 'link']
+    };
+
 }
