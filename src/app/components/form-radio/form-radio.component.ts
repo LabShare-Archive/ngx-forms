@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {Field} from '../../models/field.interface';
 import { FormGroup } from '@angular/forms';
 import { IFieldConfig } from '../../models/field-config.interface';
-import * as _ from 'lodash';
 
 @Component({
     selector: 'form-radio',

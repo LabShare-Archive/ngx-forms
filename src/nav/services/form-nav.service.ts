@@ -21,11 +21,19 @@ export class FormNavService {
     }
 
     reset() {
+        this.groups.forEach((group) => {
+            group.hidden = false;
+        });
         this.groups = [];
+        this.selected = 0;
     }
 
     addWatcher(ref: { groups: any[]; }): any {
         this.watchers.push(ref);
+    }
+
+    getAllGroups(): any[] {
+        return this.groups;
     }
 
 }
