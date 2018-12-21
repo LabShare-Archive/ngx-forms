@@ -12,7 +12,8 @@ describe('FormNavComponent', () => {
     let component: FormNavComponent;
     let fixture: ComponentFixture<FormNavComponent>;
     let formNavService: FormNavService;
-    let groups = [{ hidden: false, label: 'test1' }, { hidden: false, label: 'test2' }, { hidden: false, label: 'test3' }];
+    let groups = [{ hidden: false, label: 'test1' }, { label:"panelItem", panels: [{hidden: false, label: 'test1'} ] }, { hidden: false, label: 'test2' }, { hidden: false, label: 'test3' }];
+    // let items = [{label:"label1", fields:[{f1:"f1"}, {f2:"f2"}]}, {label:"label2"}];
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -32,6 +33,7 @@ describe('FormNavComponent', () => {
         component = fixture.componentInstance;
         formNavService = TestBed.get(FormNavService);
         groups.forEach(g => formNavService.add(g));
+        component.items = groups;
         fixture.detectChanges();
     });
 

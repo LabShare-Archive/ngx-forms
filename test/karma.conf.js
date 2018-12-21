@@ -1,6 +1,7 @@
 'use strict';
 
 const { join } = require('path');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = function (config) {
 
@@ -71,7 +72,9 @@ module.exports = function (config) {
             test: /\.tsx?$/,
             use: {
               loader: 'ts-loader',
-              options: {}
+              options: {
+                transpileOnly: true // IMPORTANT! use transpileOnly mode to speed-up compilation
+              }
             },
             exclude: '/node_modules'
           },
@@ -102,7 +105,7 @@ module.exports = function (config) {
           }
         ]
       },
-        plugins: [],
+      plugins: [new ForkTsCheckerWebpackPlugin()],
       cache: true,
       devtool: 'inline-source-map'
     }

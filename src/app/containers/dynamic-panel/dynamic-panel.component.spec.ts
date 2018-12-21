@@ -3,9 +3,9 @@ import { DynamicFieldDirective } from "../../components/dynamic-field/dynamic-fi
 import { DebugElement } from "@angular/core";
 import { DynamicPanelComponent } from './dynamic-panel.component';
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
-import { DataService } from '../../services/data.service';
 import { DynamicFieldService } from "../../services/dynamic-field.service";
 import { FieldConfigService } from '../../services/field-config.service';
+import {FormNavService} from "../../../nav/services/form-nav.service";
 
 
 describe('DynamicPanelComponent', () => {
@@ -42,7 +42,7 @@ describe('DynamicPanelComponent', () => {
                 ReactiveFormsModule
             ],
             declarations: [DynamicPanelComponent, DynamicFieldDirective],
-            providers: [DataService, DynamicFieldService, FieldConfigService]
+            providers: [DynamicFieldService, FieldConfigService, FormNavService]
         })
             .compileComponents();
     }));

@@ -8,7 +8,6 @@ import { DynamicPanelComponent } from './app/containers/dynamic-panel/dynamic-pa
 import { FormNavModule } from './nav/nav-app';
 import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DataService } from './app/services/data.service';
 import { DynamicFieldService } from './app/services/dynamic-field.service';
 import { PreloadService, Components } from './app/services/preload.service';
 import { FieldConfigService } from './app/services/field-config.service';
@@ -36,7 +35,6 @@ import { FieldConfigService } from './app/services/field-config.service';
         Components
     ],
     providers: [
-        DataService,
         DynamicFieldService,
         PreloadService,
         FieldConfigService
@@ -47,4 +45,4 @@ import { FieldConfigService } from './app/services/field-config.service';
 })
 export class NgxFormModule { }
 
-export { DynamicFieldService, DataService };
+export { DynamicFieldService };
