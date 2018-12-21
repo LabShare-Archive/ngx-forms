@@ -1,5 +1,6 @@
-import {Component, DoCheck, Input, OnDestroy} from '@angular/core';
+import {Component, DoCheck, Input, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
 import { FormNavService } from '../services/form-nav.service';
+import { Constants } from '../.././app/models/enums';
 
 @Component({
     selector: 'form-nav',
@@ -62,12 +63,14 @@ export class FormNavComponent implements OnDestroy, DoCheck {
      * @param item
      */
      public statusValidationCheck(item): void {
-       item.fields && this.navigationService.isSubSet(item.fields, this.selectionArray) ? this.isValid = true : this.isValid = false;
 
-         item.panels && item.panels.forEach((panel: any) => {
+             item.fields && this.navigationService.isSubSet(item.fields, this.selectionArray) ? this.isValid = true : this.isValid = false;
+
+         if (item.panels) {
+           item.panels.forEach((panel: any) => {
              this.navigationService.isSubSet(panel.fields, this.selectionArray) ? this.isValid = true : this.isValid = false;
            }, this);
-
+         }
         this.setItemValidity(item);
       }
 
@@ -78,10 +81,12 @@ export class FormNavComponent implements OnDestroy, DoCheck {
     ngDoCheck(): void {
       // item.panel field check
       this.items.forEach( item => {
-       item.panels && item.panels.forEach(panel => {
+        if (item.panels) {
+          item.panels.forEach(panel => {
             panel.isValid ? this.isValid = true : this.isValid = false;
           }, this);
           this.setItemValidity(item);
+        }
       }, this);
     }
 }
