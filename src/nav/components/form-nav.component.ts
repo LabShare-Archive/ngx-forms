@@ -1,6 +1,5 @@
-import {Component, DoCheck, Input, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
+import {Component, DoCheck, Input, OnDestroy} from '@angular/core';
 import { FormNavService } from '../services/form-nav.service';
-import { Constants } from '../.././app/models/enums';
 
 @Component({
     selector: 'form-nav',
@@ -79,7 +78,6 @@ export class FormNavComponent implements OnDestroy, DoCheck {
     }
 
     ngDoCheck(): void {
-      // item.panel field check
       this.items.forEach( item => {
         if (item.panels) {
           item.panels.forEach(panel => {

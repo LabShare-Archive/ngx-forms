@@ -21,4 +21,11 @@ dynamic-panel {
       padding: 15px;
     }
   }
+  .valid {
+      color: green
+    }
+
+  .invalid {
+      color: gray
+    }
 }
