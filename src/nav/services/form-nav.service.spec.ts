@@ -44,4 +44,26 @@ describe('Service: FormNavService', () => {
         });
     });
 
+    it('should create arrays with  valid status', () => {
+      let form = {
+        controls:
+          { abstract: { status: "INVALID"},
+            activityType: { status: "VALID"},
+            title: {status: "VALID"},
+            auhtors: {status:"VALID"}
+          }
+      }
+      let selectionArray = service.createStatusKeyArray(form);
+      expect(selectionArray.includes('activityType')).toBeTruthy();
+      expect(selectionArray.includes('abstract')).toBeFalsy();
+    });
+
+    it('should identify if an array is subset of another array', () => {
+      let subset = ["a", "b", "c"];
+      let superset = ["a", "b", "c", "d", "e"];
+      let anotherSet = ["f", "g"];
+      expect(service.isSubSet(subset, superset)).toBeTruthy();
+      expect(service.isSubSet(anotherSet, superset)).toBeFalsy();
+    });
+
 });

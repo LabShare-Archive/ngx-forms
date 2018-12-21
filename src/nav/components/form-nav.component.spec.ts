@@ -12,8 +12,11 @@ describe('FormNavComponent', () => {
     let component: FormNavComponent;
     let fixture: ComponentFixture<FormNavComponent>;
     let formNavService: FormNavService;
-    let groups = [{ hidden: false, label: 'test1' }, { label:"panelItem", panels: [{hidden: false, label: 'test1'} ] }, { hidden: false, label: 'test2' }, { hidden: false, label: 'test3' }];
-    // let items = [{label:"label1", fields:[{f1:"f1"}, {f2:"f2"}]}, {label:"label2"}];
+    let groups = [{ hidden: false, label: 'test1', fields: ["f1", "f2"] },
+                  { label:"panelItem", panels: [{hidden: false, label: 'test1', fields: ["f3", "f4"]} ] },
+                  { hidden: false, label: 'test2' },
+                  { hidden: false, label: 'test3' }];
+    let selectionArray = ["f1", "f2", "f3"];
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -50,6 +53,14 @@ describe('FormNavComponent', () => {
         spyOn(formNavService, 'reset');
         fixture.destroy();
         expect(formNavService.reset).toHaveBeenCalled();
+    });
+
+    it('should set status correctly for items', () => {
+      component.selectionArray = selectionArray;
+      component.items.forEach(item => component.statusValidationCheck(item));
+
+      expect(component.items[0].isValid).toBeTruthy();
+      expect(component.items[1].isValid).toBeFalsy();
     });
 
 });

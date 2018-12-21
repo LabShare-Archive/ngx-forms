@@ -1,6 +1,5 @@
-import {Component, DoCheck, Input, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
+import {Component, DoCheck, Input, OnDestroy} from '@angular/core';
 import { FormNavService } from '../services/form-nav.service';
-import { Constants } from '../.././app/models/enums';
 
 @Component({
     selector: 'form-nav',
@@ -21,7 +20,7 @@ export class FormNavComponent implements OnDestroy, DoCheck {
       items.forEach(item => this.statusValidationCheck(item));
     }
 
-    private selectionArray: any;
+    public selectionArray: any;
     private isValid: boolean;
     public ref = { groups: [] };
     public items: any;
@@ -62,49 +61,27 @@ export class FormNavComponent implements OnDestroy, DoCheck {
      * For a given Item, adds the property indicating whether the item is valid or not as per the angular reactive check.
      * @param item
      */
-    private statusValidationCheck(item): void {
-          if (item.fields) {
-             if (this.navigationService.isSubSet(item.fields, this.selectionArray)) {
-               this.isValid = true;
-             } else {
-               this.isValid = false;
-             }
-          }
+     public statusValidationCheck(item): void {
+       item.fields && this.navigationService.isSubSet(item.fields, this.selectionArray) ? this.isValid = true : this.isValid = false;
 
-         if (item.panels) {
-           item.panels.forEach((panel: any) => {
-             if (this.navigationService.isSubSet(panel.fields, this.selectionArray)) {
-               this.isValid = true;
-             } else {
-               this.isValid = false;
-             }
+         item.panels && item.panels.forEach((panel: any) => {
+             this.navigationService.isSubSet(panel.fields, this.selectionArray) ? this.isValid = true : this.isValid = false;
            }, this);
-         }
 
         this.setItemValidity(item);
       }
 
     private setItemValidity(item) {
-      if (this.isValid) {
-        item.isValid = true;
-      } else {
-        item.isValid = false;
-      }
+      this.isValid ? item.isValid = true : item.isValid = false;
     }
 
     ngDoCheck(): void {
       // item.panel field check
       this.items.forEach( item => {
-        if (item.panels) {
-          item.panels.forEach(panel => {
-            if (panel.isValid) {
-              this.isValid = true;
-            } else {
-              this.isValid = false;
-            }
+       item.panels && item.panels.forEach(panel => {
+            panel.isValid ? this.isValid = true : this.isValid = false;
           }, this);
           this.setItemValidity(item);
-        }
       }, this);
     }
 }

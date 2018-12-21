@@ -1,5 +1,5 @@
 import { ComponentRef, Directive, Input, OnChanges, OnInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy, Optional, Host, SkipSelf } from '@angular/core';
-import { FormGroup, ControlContainer } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Field } from '../../models/field.interface';
 import { IFieldConfig } from '../../models/field-config.interface';
 import { DynamicFieldService } from '../../services/dynamic-field.service';
@@ -15,7 +15,6 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit, OnDestro
     component: ComponentRef<any>;
 
     constructor(
-        @Optional() @Host() @SkipSelf() private parent: ControlContainer,
         private resolver: ComponentFactoryResolver,
         private container: ViewContainerRef,
         private dynamicFieldService: DynamicFieldService,

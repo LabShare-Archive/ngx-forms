@@ -28,8 +28,6 @@ export class FormNavService {
         });
         this.groups = [];
         this.selected = 0;
-        console.log(this.groups.entries());
-
     }
 
     addWatcher(ref: { groups: any[]; }): any {
@@ -47,6 +45,7 @@ export class FormNavService {
       const  validArrayWithStatus = currentControls.filter(currentControl => currentControl.includes(Constants.VALID));
       return [].concat.apply([], validArrayWithStatus);
     }
+
     isSubSet(subsets: Array<any>, superSets: Array<any>): boolean {
       return subsets.every(subsetElement => superSets.indexOf(subsetElement) >= 0);
     }
