@@ -64,7 +64,7 @@ export class FormNavComponent implements OnDestroy, DoCheck {
      */
     private statusValidationCheck(item): void {
           if (item.fields) {
-             if(this.navigationService.isSubSet(item.fields, this.selectionArray)) {
+             if (this.navigationService.isSubSet(item.fields, this.selectionArray)) {
                this.isValid = true;
              } else {
                this.isValid = false;
@@ -73,7 +73,7 @@ export class FormNavComponent implements OnDestroy, DoCheck {
 
          if (item.panels) {
            item.panels.forEach((panel: any) => {
-             if(this.navigationService.isSubSet(panel.fields, this.selectionArray)) {
+             if (this.navigationService.isSubSet(panel.fields, this.selectionArray)) {
                this.isValid = true;
              } else {
                this.isValid = false;
@@ -93,11 +93,11 @@ export class FormNavComponent implements OnDestroy, DoCheck {
     }
 
     ngDoCheck(): void {
-      //item.panel field check
+      // item.panel field check
       this.items.forEach( item => {
-        if(item.panels) {
+        if (item.panels) {
           item.panels.forEach(panel => {
-            if(panel.isValid) {
+            if (panel.isValid) {
               this.isValid = true;
             } else {
               this.isValid = false;
