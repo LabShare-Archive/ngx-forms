@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy } from '@angular/core';
+import {Component, DoCheck, Input, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
 import { FormNavService } from '../services/form-nav.service';
 import { Constants } from '../.././app/models/enums';
 
@@ -8,81 +8,103 @@ import { Constants } from '../.././app/models/enums';
     styles: [require('./form-nav.component.scss').toString()]
 })
 
-export class FormNavComponent implements OnDestroy {
-    public ref = { groups: [] };
+export class FormNavComponent implements OnDestroy, DoCheck {
+
     @Input()
     set formNav(val: any) {
-      this.currentControls = Object.keys(val.controls).map(function(key) {
-        return [(key), val.controls[key].status];
-      });
+      this.selectionArray = this.navigationService.createStatusKeyArray(val);
      }
 
     @Input()
     set group(items: Array<any>) {
+      this.items = items;
       items.forEach(item => this.statusValidationCheck(item));
     }
 
-    private currentControls: any;
-    private validArrayWithStatus: any;
+    private selectionArray: any;
     private isValid: boolean;
+    public ref = { groups: [] };
+    public items: any;
 
-    constructor(private ns: FormNavService) {
-        ns.addWatcher(this.ref);
+    constructor(private navigationService: FormNavService) {
+        navigationService.addWatcher(this.ref);
     }
 
     public select(index) {
-        this.ns.select(index);
+        this.navigationService.select(index);
     }
 
     public getSelected() {
-        return this.ns.selected;
+        return this.navigationService.selected;
     }
 
     public prev() {
-        this.select(this.ns.selected - 1);
+        this.select(this.navigationService.selected - 1);
     }
 
     public next() {
-        this.select(this.ns.selected + 1);
+        this.select(this.navigationService.selected + 1);
     }
 
     public disablePrev() {
-        return this.ns.selected < 1;
+        return this.navigationService.selected < 1;
     }
 
     public disableNext() {
-        return this.ns.selected > this.ref.groups.length - 2;
+        return this.navigationService.selected > this.ref.groups.length - 2;
     }
 
     ngOnDestroy(): void {
-        this.ns.reset();
+        this.navigationService.reset();
     }
 
-  /**
-   * For a given Item, adds the property indicating whether the item is valid or not as per the reactive check.
-   * @param item
-   */
-  statusValidationCheck(item): void {
-     this.validArrayWithStatus = this.currentControls.filter(currentControl => currentControl.includes(Constants.VALID));
-     const itemFields = [];
-        if (item.fields) {
-          item.fields.forEach((field: any) => {
-            itemFields.push(field);
-          });
+    /**
+     * For a given Item, adds the property indicating whether the item is valid or not as per the angular reactive check.
+     * @param item
+     */
+    private statusValidationCheck(item): void {
+          if (item.fields) {
+             if(this.navigationService.isSubSet(item.fields, this.selectionArray)) {
+               this.isValid = true;
+             } else {
+               this.isValid = false;
+             }
+          }
+
+         if (item.panels) {
+           item.panels.forEach((panel: any) => {
+             if(this.navigationService.isSubSet(panel.fields, this.selectionArray)) {
+               this.isValid = true;
+             } else {
+               this.isValid = false;
+             }
+           }, this);
+         }
+
+        this.setItemValidity(item);
+      }
+
+    private setItemValidity(item) {
+      if (this.isValid) {
+        item.isValid = true;
+      } else {
+        item.isValid = false;
+      }
+    }
+
+    ngDoCheck(): void {
+      //item.panel field check
+      this.items.forEach( item => {
+        if(item.panels) {
+          item.panels.forEach(panel => {
+            if(panel.isValid) {
+              this.isValid = true;
+            } else {
+              this.isValid = false;
+            }
+          }, this);
+          this.setItemValidity(item);
         }
-
-        // for anItem.panels
-       if (item.panels) {
-         item.panels.forEach((panel: any) => {
-           panel.fields.forEach(field => {
-             itemFields.push(field);
-           });
-         });
-       }
-
-     itemFields.forEach(itemField => {
-       const selectionArray = [].concat.apply([], this.validArrayWithStatus);
-       selectionArray.includes(itemField) ? item.isValid = true : item.isValid = false;
-     });
-  }
+      }, this);
+    }
 }

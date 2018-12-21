@@ -1,7 +1,7 @@
 <ul class="list-group mb-3">
-    <ng-container *ngFor="let item of ref.groups; let itemIndex = index" onload="statusValidationCheck(item)">
+    <ng-container *ngFor="let item of ref.groups; let itemIndex = index">
         <a class="list-group-item" [class.active]='itemIndex === getSelected()' (click)="select(itemIndex)">
-          <i class="fa fa-check-circle-o fa-2x" [ngStyle] ="{'color':item.isValid ? 'green': 'gray'}"></i>
+          <i ngClass= "fa fa-check-circle-o fa-2x" [ngStyle] ="{'color':item.isValid  ? 'green': 'gray'}"></i>
           {{item.label}}
         </a>
     </ng-container>
@@ -15,6 +15,3 @@
         </div>
     </div>
 </div>
-
-
-

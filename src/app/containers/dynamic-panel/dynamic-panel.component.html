@@ -1,6 +1,7 @@
 <div class="card mb-3" [formGroup]="group">
     <div class="card-header" *ngIf="panelConfig.label">
-        {{panelConfig.label}}
+      <i class="fa fa-check-circle-o fa-2x" [ngStyle] ="{'color':panelConfig.isValid ? 'green': 'gray'}"></i>
+      {{panelConfig.label}}
     </div>
     <div class="card-body">
         <div *ngFor="let field of panelConfig.fields" dynamicField [field]="getFieldConfig(field)" [group]="group" class="mb-2"

@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import {Constants} from '../../app/models/enums';
 
 @Injectable()
 export class FormNavService {
     public selected = 0;
     private groups = [];
     private watchers = [];
+    private isValid: boolean;
 
     add(group): void {
         this.groups.push(group);
@@ -26,6 +28,8 @@ export class FormNavService {
         });
         this.groups = [];
         this.selected = 0;
+        console.log(this.groups.entries());
+
     }
 
     addWatcher(ref: { groups: any[]; }): any {
@@ -36,4 +40,14 @@ export class FormNavService {
         return this.groups;
     }
 
+    createStatusKeyArray(form: any): any[] {
+      const currentControls = Object.keys(form.controls).map(function(key) {
+          return [(key), form.controls[key].status];
+        });
+      const  validArrayWithStatus = currentControls.filter(currentControl => currentControl.includes(Constants.VALID));
+      return [].concat.apply([], validArrayWithStatus);
+    }
+    isSubSet(subsets: Array<any>, superSets: Array<any>): boolean {
+      return subsets.every(subsetElement => superSets.indexOf(subsetElement) >= 0);
+    }
 }
