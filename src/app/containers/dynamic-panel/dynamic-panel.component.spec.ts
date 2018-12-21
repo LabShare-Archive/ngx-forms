@@ -5,7 +5,7 @@ import { DynamicPanelComponent } from './dynamic-panel.component';
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
 import { DynamicFieldService } from "../../services/dynamic-field.service";
 import { FieldConfigService } from '../../services/field-config.service';
-import {FormNavService} from "../../../nav/services/form-nav.service";
+import { FormNavService } from "../../../nav/services/form-nav.service";
 
 
 describe('DynamicPanelComponent', () => {
