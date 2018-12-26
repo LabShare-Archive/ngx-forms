@@ -206,12 +206,6 @@ describe('DynamicFormComponent Core', () => {
 
 
         });
-        // this.formConfig.fields.forEach(field => {
-        //     if (field.lookup && this.lookups.hasOwnProperty(field.lookup)) {
-        //         field.options = this.lookups[field.lookup];
-        //         if (field.extract) { field.options = field.options.map(f => f[field.extract]); }
-        //     }
-        // });
     });
 
     describe('createControl()', () => {
