@@ -1,4 +1,4 @@
-import { Directive, OnInit, ElementRef, Input } from '@angular/core';
+import { Directive, OnInit, Input } from '@angular/core';
 import { FormNavService } from '../services/form-nav.service';
 
 @Directive({

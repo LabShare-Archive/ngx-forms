@@ -28,7 +28,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
     get valid() { return this.form.valid; }
     get value() { return this.form.value; }
 
-    constructor(private fb: FormBuilder, private dynamicFieldService: DynamicFieldService, private fieldConfigService: FieldConfigService) { }
+    constructor(private fb: FormBuilder, private fieldConfigService: FieldConfigService) { }
 
     public ngOnInit() {
         this.form = this.fb.group({});
@@ -45,6 +45,17 @@ export class DynamicFormComponent implements OnChanges, OnInit {
             }
         });
         this.fieldConfigService.addFields(this.formConfig.fields);
+
+        for (const group of this.formConfig.form) {
+            let groupFields = [];
+            if (group.fields) {
+                groupFields = groupFields.concat(group.fields);
+            }
+            if (group.panels) {
+                group.panels.forEach(panel => { if (panel.fields) { groupFields = groupFields.concat(panel.fields); } });
+            }
+            group.controls = groupFields.map(f => this.form.get(f));
+        }
         // this.form.disable();
     }
 
