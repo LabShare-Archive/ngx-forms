@@ -1,3 +1,15 @@
+# [2.6.0](https://github.com/LabShare/ngx-forms/compare/v2.5.6...v2.6.0) (2018-12-26)
+
+
+### Bug Fixes
+
+* removed outcommented code ([fa8f932](https://github.com/LabShare/ngx-forms/commit/fa8f932))
+
+
+### Features
+
+* added green checkmark to menu ([d3f513d](https://github.com/LabShare/ngx-forms/commit/d3f513d))
+
 ## [2.5.6](https://github.com/LabShare/ngx-forms/compare/v2.5.5...v2.5.6) (2018-12-21)
 
 

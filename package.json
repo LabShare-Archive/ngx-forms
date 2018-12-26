@@ -1,6 +1,6 @@
 {
   "name": "@labshare/ngx-forms",
-  "version": "2.5.6",
+  "version": "2.6.0",
   "main": "dist/ngx-forms",
   "typings": "index.d.ts",
   "scripts": {
