@@ -1,3 +1,13 @@
+## [2.5.6](https://github.com/LabShare/ngx-forms/compare/v2.5.5...v2.5.6) (2018-12-21)
+
+
+### Bug Fixes
+
+* added control settings ([3e4dcac](https://github.com/LabShare/ngx-forms/commit/3e4dcac))
+* added type any to settings ([6957ba3](https://github.com/LabShare/ngx-forms/commit/6957ba3))
+* lint fixes ([a066652](https://github.com/LabShare/ngx-forms/commit/a066652))
+* removed coveralls ([7a221d5](https://github.com/LabShare/ngx-forms/commit/7a221d5))
+
 ## [2.5.5](https://github.com/LabShare/ngx-forms/compare/v2.5.4...v2.5.5) (2018-12-19)
 
 
