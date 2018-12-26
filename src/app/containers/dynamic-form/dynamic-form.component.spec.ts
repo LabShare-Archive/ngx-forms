@@ -104,6 +104,7 @@ describe('DynamicFormComponent', () => {
 describe('DynamicFormComponent Core', () => {
     let component: DynamicFormComponent;
     let fixture: ComponentFixture<DynamicFormComponent>;
+    let model = { test: 'test', title: 'title' };
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -128,26 +129,89 @@ describe('DynamicFormComponent Core', () => {
                 { label: 'no fields with panels', panels: [{ label: 'no fields' }] },
                 { label: 'no fields, no panels' }
             ]
-        }
+        };
+        component.model = model;
         fixture.detectChanges();
     });
 
     describe('ngOnInit()', () => {
-        it('should add fields references to config group', () => {   
+        it('should add fields references to config group', () => {
             expect(component.formConfig.form[0].controls.length).toEqual(1);
         });
 
-        it('should add fields references to config group with no panels', () => {   
+        it('should add fields references to config group with no panels', () => {
             expect(component.formConfig.form[1].controls.length).toEqual(1);
         });
 
-        it('should not add fields references to config group with no panels', () => {   
+        it('should not add fields references to config group with no panels', () => {
             expect(component.formConfig.form[2].controls.length).toEqual(0);
         });
 
-        it('should not add fields references to config group with no panels no fields', () => {   
+        it('should not add fields references to config group with no panels no fields', () => {
             expect(component.formConfig.form[3].controls.length).toEqual(0);
         });
+
+        it('should patch model', () => {
+            expect(component.form.value.title).toEqual(model.title);
+        });
+
+        it('should not patch model', () => {
+            component.model = null;
+            component.ngOnInit();
+            expect(component.form.value.title).toBeUndefined();
+        });
+
+        describe('Lookup Expansion', () => {
+            it('should not set lookup when there is no lookup in field', () => {
+                component.lookups = { test: ['a', 'b', 'c'] };
+                component.formConfig = { fields: [{ type: 'text', name: 'title' }], form: [] };
+                component.ngOnInit();
+                expect(component.formConfig.fields[0].options).toBeUndefined();
+            });
+
+            it('should not find lookup when no lookups were passed', () => {
+                component.lookups = null;
+                component.formConfig = { fields: [{ type: 'text', name: 'title', lookup: 'test' }], form: [] };
+                component.ngOnInit();
+                expect(component.formConfig.fields[0].options).toBeUndefined();
+            });
+
+            it('should not find lookup when no lookups found', () => {
+                component.lookups = { test: ['a', 'b', 'c'] };;
+                component.formConfig = { fields: [{ type: 'text', name: 'title', lookup: 'test1' }], form: [] };
+                component.ngOnInit();
+                expect(component.formConfig.fields[0].options).toBeUndefined();
+            });
+
+            it('should copy lookup', () => {
+                component.lookups = { test: ['a', 'b', 'c'] };;
+                component.formConfig = { fields: [{ type: 'text', name: 'title', lookup: 'test' }], form: [] };
+                component.ngOnInit();
+                expect(component.formConfig.fields[0].options).toBeDefined();
+            });
+
+            it('should copy lookup', () => {
+                component.lookups = { test: ['a', 'b', 'c'] };;
+                component.formConfig = { fields: [{ type: 'text', name: 'title', lookup: 'test' }], form: [] };
+                component.ngOnInit();
+                expect(component.formConfig.fields[0].options).toEqual(['a', 'b', 'c']);
+            });
+
+            it('should extract lookup', () => {
+                component.lookups = { test: [{ t: 'a' }, { t: 'b' }, { t: 'c' }] };;
+                component.formConfig = { fields: [{ type: 'text', name: 'title', lookup: 'test', extract: 't' }], form: [] };
+                component.ngOnInit();
+                expect(component.formConfig.fields[0].options).toEqual(['a', 'b', 'c']);
+            });
+
+
+        });
+        // this.formConfig.fields.forEach(field => {
+        //     if (field.lookup && this.lookups.hasOwnProperty(field.lookup)) {
+        //         field.options = this.lookups[field.lookup];
+        //         if (field.extract) { field.options = field.options.map(f => f[field.extract]); }
+        //     }
+        // });
     });
 
     describe('createControl()', () => {
