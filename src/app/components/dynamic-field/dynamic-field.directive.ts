@@ -36,12 +36,12 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit, OnDestro
         this.component = this.container.createComponent(component);
         this.component.instance.field = this.field;
         this.component.instance.group = this.group;
-        this.component.instance.model = this.model;
 
         this.group.addControl(this.field.name, this.createControl(this.field));
 
         if (this.model && this.model[this.field.name]) {
             this.group.get(this.field.name).patchValue(this.model[this.field.name]);
+            this.component.instance.model = this.model[this.field.name];
         }
     }
 
