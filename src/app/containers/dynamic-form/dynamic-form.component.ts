@@ -25,7 +25,7 @@ export class DynamicFormComponent implements OnInit {
 
     public ngOnInit() {
         this.form = this.fb.group({});
-        
+
         let fields = [];
         this.formConfig.form.forEach(gr => {
             if (gr.fields) { fields = fields.concat(gr.fields); }

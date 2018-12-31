@@ -1,4 +1,4 @@
-import { ComponentRef, Directive, Input, OnChanges, OnInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
+import { ComponentRef, Directive, Input, OnInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Field } from '../../models/field.interface';
 import { IFieldConfig } from '../../models/field-config.interface';
@@ -8,7 +8,7 @@ import { PreloadService } from '../../services/preload.service';
 @Directive({
     selector: '[dynamicField]'
 })
-export class DynamicFieldDirective implements Field, OnChanges, OnInit, OnDestroy {
+export class DynamicFieldDirective implements Field, OnInit, OnDestroy {
     @Input() field: IFieldConfig;
     @Input() group: FormGroup;
     @Input() model: any;
@@ -22,14 +22,6 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit, OnDestro
         private fb: FormBuilder,
     ) { }
 
-    ngOnChanges() {
-        if (this.component) {
-            this.component.instance.field = this.field;
-            this.component.instance.group = this.group;
-            this.component.instance.model = this.model;
-        }
-    }
-
     ngOnInit() {
         const componentReference = this.dynamicFieldService.getField(this.field.type);
         const component = this.resolver.resolveComponentFactory<Field>(componentReference);
@@ -41,7 +33,6 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit, OnDestro
 
         if (this.model && this.model[this.field.name]) {
             this.group.get(this.field.name).patchValue(this.model[this.field.name]);
-            this.component.instance.model = this.model[this.field.name];
         }
     }
 

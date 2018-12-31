@@ -11,5 +11,4 @@ import { IFieldConfig } from '../../models/field-config.interface';
 export class FormRadioComponent implements Field {
     field: IFieldConfig;
     group: FormGroup;
-    model: object;
 }

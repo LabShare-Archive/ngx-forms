@@ -10,5 +10,4 @@ import { IFieldConfig } from '../../models/field-config.interface';
 export class FormInputHiddenComponent implements Field {
     field: IFieldConfig;
     group: FormGroup;
-    model: object;
 }
