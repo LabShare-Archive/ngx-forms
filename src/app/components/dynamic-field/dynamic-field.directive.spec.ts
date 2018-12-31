@@ -30,7 +30,6 @@ describe('dynamicField', () => {
     let componentError: TestComponent;
     let fixture: ComponentFixture<TestComponent>;
     let fixtureError: ComponentFixture<TestComponent>;
-    let debugElement: DebugElement;
     let directiveEl;
 
     const formBuilder: FormBuilder = new FormBuilder();
@@ -68,6 +67,66 @@ describe('dynamicField', () => {
             fixtureError.detectChanges();
         }).toThrowError()
 
-    })
+    });
 
+    describe('createControl()', () => {
+        let dir;
+
+        beforeEach(() => {
+            TestBed.compileComponents()
+            directiveEl = fixture.debugElement.query(By.directive(DynamicFieldDirective));
+            dir = directiveEl.injector.get(DynamicFieldDirective);
+        });
+
+        let cfg = { name: 'test', type: 'text', disabled: true, required: true, minLength: 5, maxLength: 10, email: true, min: 1, max: 10, pattern: new RegExp('\d'), nullValidator: true, value: 5 };
+
+        it('should set pattern validator', () => {
+            let control = dir.createControl({ name: 'test', type: 'text', pattern: new RegExp('\d'), value: 5 });
+            const vals = control.validator(control);
+            expect(vals.pattern).toBeTruthy();
+        });
+
+        it('should set email validator', () => {
+            let control = dir.createControl({ name: 'test', type: 'text', email: true, value: 5 });
+            const vals = control.validator(control);
+            expect(vals.email).toBeTruthy();
+        });
+
+        it('should set min length validator', () => {
+            let control = dir.createControl({ name: 'test', type: 'text', minLength: 5, maxLength: 10, value: 'test' });
+            const vals = control.validator(control);
+            expect(vals.minlength).toBeTruthy();
+        });
+
+        it('should set max length validator', () => {
+            let control = dir.createControl({ name: 'test', type: 'text', maxLength: 2, value: 'test' });
+            const vals = control.validator(control);
+            expect(vals.maxlength).toBeTruthy();
+        });
+
+        it('should set required validator', () => {
+            let control = dir.createControl({ name: 'test', type: 'text', required: true, value: '' });
+            const vals = control.validator(control);
+            expect(vals.required).toBeTruthy();
+        });
+
+        it('should set min value validator', () => {
+            let control = dir.createControl({ name: 'test', type: 'text', min: 2, value: 1 });
+            const vals = control.validator(control);
+            expect(vals.min).toBeTruthy();
+        });
+
+        it('should set max value validator', () => {
+            let control = dir.createControl({ name: 'test', type: 'text', max: 2, value: 22 });
+            const vals = control.validator(control);
+            expect(vals.max).toBeTruthy();
+        });
+
+        it('should set value', () => {
+            let control = dir.createControl(cfg);
+            expect(control.value).toEqual(cfg.value);
+        });
+
+    });
 });
+

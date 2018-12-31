@@ -3,15 +3,15 @@
         <form-nav></form-nav>
     </div>
     <div class="col-md-10" [formGroup]="form">
-        <div *ngFor="let group of formConfig.form" [navTab]="group">
+        <div *ngFor="let panel of formConfig.form" [navTab]="panel">
 
-            <ng-container *ngIf="group.fields">
-                <dynamic-panel [panelConfig]="group" [group]="form" [model]="model" [hidden]="group.hidden"></dynamic-panel>
+            <ng-container *ngIf="panel.fields">
+                <dynamic-panel [panelConfig]="panel" [group]="form" [model]="model" [hidden]="panel.hidden"></dynamic-panel>
             </ng-container>
 
-            <ng-container *ngIf="group.panels">
-                <dynamic-panel *ngFor="let panelConfig of group.panels" [panelConfig]="panelConfig" [group]="form"
-                    [model]="model" [hidden]="group.hidden"></dynamic-panel>
+            <ng-container *ngIf="panel.panels">
+                <dynamic-panel *ngFor="let panelConfig of panel.panels" [panelConfig]="panelConfig" [group]="form"
+                    [model]="model" [hidden]="panel.hidden"></dynamic-panel>
             </ng-container>
         </div>
     </div>

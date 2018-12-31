@@ -11,7 +11,6 @@ import { IFieldConfig } from '../../models/field-config.interface';
 export class FormTextEditorComponent implements Field {
     field: IFieldConfig;
     group: FormGroup;
-    model: object;
 
     public quillToolbar: object = {
         toolbar: ['bold', 'italic', 'underline', 'strike', { 'header': 1 }, { 'header': 2 }, { 'list': 'ordered' }, { 'list': 'bullet' }, 'blockquote', 'code-block', 'link']

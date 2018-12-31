@@ -12,7 +12,6 @@ import { FormSelectComponent } from '../../components/form-select/form-select.co
 import { FormInputHiddenComponent } from '../../components/form-hidden/form-hidden.component';
 import { By } from '@angular/platform-browser';
 import { FormNavModule } from '../../../nav/nav-app';
-import { FieldConfigService } from '../../services/field-config.service';
 
 interface IFormConfig {
     form: any;
@@ -27,7 +26,7 @@ interface IDynamicForm {
 }
 
 @Component({
-    template: `<dynamic-form [formConfig]="formConfig" #form="dynamicForm" [model]="data" [dataProvider]="dataProvider" [lookups]="lookups"></dynamic-form>`
+    template: `<dynamic-form [formConfig]="formConfig" #form="dynamicForm" [model]="data" [lookups]="lookups"></dynamic-form>`
 })
 class TestComponent implements IDynamicForm {
     formConfig
@@ -52,20 +51,21 @@ describe('DynamicFormComponent', () => {
         TestBed.configureTestingModule({
             declarations: [DynamicFieldDirective, TestComponent, DynamicFormComponent, DynamicPanelComponent],
             imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule],
-            providers: [DynamicFieldService, PreloadService, FieldConfigService]
+            providers: [DynamicFieldService, PreloadService]
         })
             .compileComponents()
             .then(() => {
                 fixture = TestBed.createComponent(TestComponent);
                 component = fixture.componentInstance;
                 component.formConfig = {
-                    fields: [
-                        { type: 'hidden', name: 'id' },
-                        { type: 'text', label: 'Publication Title:', name: 'title', placeholder: '', required: true },
-                        { type: 'select', label: 'Publication Type', name: 'activityType', options: ['a', 'b'] }
-                    ],
-                    form: [{ label: 'Title and Abstract', panels: [{ label: 'Title and Abstract', fields: ['id', 'title', 'activityType'] }] }]
-                }
+                    form: [{
+                        fields: [
+                            { type: 'hidden', name: 'id' },
+                            { type: 'text', label: 'Publication Title:', name: 'title', placeholder: '', required: true },
+                            { type: 'select', label: 'Publication Type', name: 'activityType', options: ['a', 'b'] }
+                        ]
+                    }]
+                };
 
                 fixture.detectChanges();
             });
@@ -110,7 +110,7 @@ describe('DynamicFormComponent Core', () => {
         TestBed.configureTestingModule({
             declarations: [DynamicFieldDirective, TestComponent, DynamicFormComponent, DynamicPanelComponent],
             imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule],
-            providers: [DynamicFieldService, PreloadService, FieldConfigService]
+            providers: [DynamicFieldService, PreloadService]
         }).compileComponents();
     });
 
@@ -118,14 +118,9 @@ describe('DynamicFormComponent Core', () => {
         fixture = TestBed.createComponent(DynamicFormComponent);
         component = fixture.componentInstance;
         component.formConfig = {
-            fields: [
-                { type: 'hidden', name: 'id' },
-                { type: 'text', name: 'title', required: true },
-                { type: 'text', name: 'test', required: true }
-            ],
             form: [
-                { label: 'fields and panels', panels: [{ label: 'fields', fields: ['title'] }] },
-                { label: 'fields, no panels', fields: ['test'] },
+                { label: 'fields and panels', panels: [{ label: 'fields', fields: [{ type: 'text', name: 'title', required: true }] }] },
+                { label: 'fields, no panels', fields: [{ type: 'text', name: 'test', required: true }] },
                 { label: 'no fields with panels', panels: [{ label: 'no fields' }] },
                 { label: 'no fields, no panels' }
             ]
@@ -135,128 +130,50 @@ describe('DynamicFormComponent Core', () => {
     });
 
     describe('ngOnInit()', () => {
-        it('should add fields references to config group', () => {
-            expect(component.formConfig.form[0].controls.length).toEqual(1);
-        });
 
-        it('should add fields references to config group with no panels', () => {
-            expect(component.formConfig.form[1].controls.length).toEqual(1);
-        });
-
-        it('should not add fields references to config group with no panels', () => {
-            expect(component.formConfig.form[2].controls.length).toEqual(0);
-        });
-
-        it('should not add fields references to config group with no panels no fields', () => {
-            expect(component.formConfig.form[3].controls.length).toEqual(0);
-        });
-
-        it('should patch model', () => {
-            expect(component.form.value.title).toEqual(model.title);
-        });
-
-        it('should not patch model', () => {
-            component.model = null;
-            component.ngOnInit();
-            expect(component.form.value.title).toBeUndefined();
+        it('should create group', () => {
+            expect(component.form).toBeDefined();
         });
 
         describe('Lookup Expansion', () => {
-            it('should not set lookup when there is no lookup in field', () => {
-                component.lookups = { test: ['a', 'b', 'c'] };
-                component.formConfig = { fields: [{ type: 'text', name: 'title' }], form: [] };
-                component.ngOnInit();
-                expect(component.formConfig.fields[0].options).toBeUndefined();
-            });
 
             it('should not find lookup when no lookups were passed', () => {
                 component.lookups = null;
-                component.formConfig = { fields: [{ type: 'text', name: 'title', lookup: 'test' }], form: [] };
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: 'test' }] }] };
                 component.ngOnInit();
-                expect(component.formConfig.fields[0].options).toBeUndefined();
+                expect(component.formConfig.form[0].fields[0].options).toBeUndefined();
             });
 
             it('should not find lookup when no lookups found', () => {
                 component.lookups = { test: ['a', 'b', 'c'] };;
-                component.formConfig = { fields: [{ type: 'text', name: 'title', lookup: 'test1' }], form: [] };
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title' }] }] };
                 component.ngOnInit();
-                expect(component.formConfig.fields[0].options).toBeUndefined();
+                expect(component.formConfig.form[0].fields[0].options).toBeUndefined();
+            });
+
+            it('should not copy lookup with wrong name', () => {
+                component.lookups = { test: ['a', 'b', 'c'] };;
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: 'test1' }] }] };
+                component.ngOnInit();
+                expect(component.formConfig.form[0].fields[0].options).toBeUndefined();
             });
 
             it('should copy lookup', () => {
                 component.lookups = { test: ['a', 'b', 'c'] };;
-                component.formConfig = { fields: [{ type: 'text', name: 'title', lookup: 'test' }], form: [] };
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: 'test' }] }] };
                 component.ngOnInit();
-                expect(component.formConfig.fields[0].options).toBeDefined();
-            });
-
-            it('should copy lookup', () => {
-                component.lookups = { test: ['a', 'b', 'c'] };;
-                component.formConfig = { fields: [{ type: 'text', name: 'title', lookup: 'test' }], form: [] };
-                component.ngOnInit();
-                expect(component.formConfig.fields[0].options).toEqual(['a', 'b', 'c']);
+                expect(component.formConfig.form[0].fields[0].options).toEqual(['a', 'b', 'c']);
             });
 
             it('should extract lookup', () => {
                 component.lookups = { test: [{ t: 'a' }, { t: 'b' }, { t: 'c' }] };;
-                component.formConfig = { fields: [{ type: 'text', name: 'title', lookup: 'test', extract: 't' }], form: [] };
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: 'test', extract: 't' }] }] };
                 component.ngOnInit();
-                expect(component.formConfig.fields[0].options).toEqual(['a', 'b', 'c']);
+                expect(component.formConfig.form[0].fields[0].options).toEqual(['a', 'b', 'c']);
             });
 
-
-        });
-    });
-
-    describe('createControl()', () => {
-        let cfg = { name: 'test', type: 'text', disabled: true, required: true, minLength: 5, maxLength: 10, email: true, min: 1, max: 10, pattern: new RegExp('\d'), nullValidator: true, value: 5 };
-
-        it('should set pattern validator', () => {
-            let control = component.createControl({ name: 'test', type: 'text', pattern: new RegExp('\d'), value: 5 });
-            const vals = control.validator(control);
-            expect(vals.pattern).toBeTruthy();
-        });
-
-        it('should set email validator', () => {
-            let control = component.createControl({ name: 'test', type: 'text', email: true, value: 5 });
-            const vals = control.validator(control);
-            expect(vals.email).toBeTruthy();
-        });
-
-        it('should set min length validator', () => {
-            let control = component.createControl({ name: 'test', type: 'text', minLength: 5, maxLength: 10, value: 'test' });
-            const vals = control.validator(control);
-            expect(vals.minlength).toBeTruthy();
-        });
-
-        it('should set max length validator', () => {
-            let control = component.createControl({ name: 'test', type: 'text', maxLength: 2, value: 'test' });
-            const vals = control.validator(control);
-            expect(vals.maxlength).toBeTruthy();
-        });
-
-        it('should set required validator', () => {
-            let control = component.createControl({ name: 'test', type: 'text', required: true, value: '' });
-            const vals = control.validator(control);
-            expect(vals.required).toBeTruthy();
-        });
-
-        it('should set min value validator', () => {
-            let control = component.createControl({ name: 'test', type: 'text', min: 2, value: 1 });
-            const vals = control.validator(control);
-            expect(vals.min).toBeTruthy();
-        });
-
-        it('should set max value validator', () => {
-            let control = component.createControl({ name: 'test', type: 'text', max: 2, value: 22 });
-            const vals = control.validator(control);
-            expect(vals.max).toBeTruthy();
-        });
-
-        it('should set value', () => {
-            let control = component.createControl(cfg);
-            expect(control.value).toEqual(cfg.value);
         });
 
     });
+
 });
