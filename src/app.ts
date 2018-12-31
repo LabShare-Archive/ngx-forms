@@ -10,7 +10,6 @@ import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicFieldService } from './app/services/dynamic-field.service';
 import { PreloadService, Components } from './app/services/preload.service';
-import { FieldConfigService } from './app/services/field-config.service';
 
 @NgModule({
     imports: [
@@ -36,8 +35,7 @@ import { FieldConfigService } from './app/services/field-config.service';
     ],
     providers: [
         DynamicFieldService,
-        PreloadService,
-        FieldConfigService
+        PreloadService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

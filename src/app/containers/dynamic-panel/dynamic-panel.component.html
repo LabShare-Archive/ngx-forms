@@ -3,6 +3,6 @@
         {{panelConfig.label}}
     </div>
     <div class="card-body">
-        <div *ngFor="let field of panelConfig.fields" dynamicField [field]="getFieldConfig(field)" [group]="group" [model]="model" class="mb-2"Ï></div>
+        <div *ngFor="let field of panelConfig.fields" dynamicField [field]="field" [group]="group" [model]="model" class="mb-2"></div>
     </div>
 </div>
