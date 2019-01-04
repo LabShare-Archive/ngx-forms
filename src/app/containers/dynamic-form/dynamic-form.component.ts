@@ -38,7 +38,7 @@ export class DynamicFormComponent implements OnInit {
         fields.forEach((field: IFieldConfig) => {
 
             if (field.lookup && this.lookups) {
-                const cfg = typeof field.lookup === "string" ? { name: field.lookup, extract: null } as ILookup : field.lookup as ILookup;
+                const cfg = typeof field.lookup === 'string' ? { name: field.lookup, extract: null } as ILookup : field.lookup as ILookup;
                 field.options = cfg.extract ? this.lookups[cfg.name].map(l => l[cfg.extract]) : this.lookups[cfg.name];
                 return;
             }
