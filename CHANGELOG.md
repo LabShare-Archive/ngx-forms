@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/LabShare/ngx-forms/compare/v2.6.0...v3.0.0) (2018-12-31)
+
+
+### Features
+
+* join fields and form models ([90a6e6e](https://github.com/LabShare/ngx-forms/commit/90a6e6e))
+
+
+### BREAKING CHANGES
+
+* new json config format
+
 # [2.6.0](https://github.com/LabShare/ngx-forms/compare/v2.5.6...v2.6.0) (2018-12-26)
 
 
