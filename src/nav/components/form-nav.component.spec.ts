@@ -1,12 +1,10 @@
 import { FormNavComponent } from './form-nav.component';
-import { ComponentFixture, TestBed, inject } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { APP_BASE_HREF, CommonModule } from '@angular/common';
-import { Component, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { APP_BASE_HREF } from '@angular/common';
 import { FormNavService } from '../services/form-nav.service';
 import { FormNavModule } from '../nav-app';
 import { By } from "@angular/platform-browser";
-
 
 describe('FormNavComponent', () => {
     let component: FormNavComponent;
@@ -48,6 +46,28 @@ describe('FormNavComponent', () => {
         spyOn(formNavService, 'reset');
         fixture.destroy();
         expect(formNavService.reset).toHaveBeenCalled();
+    });
+
+    describe('select()', () => {
+        it('should select an item', () => {
+            component.select(1);
+            expect(component.getSelected()).toEqual(1);
+        });
+    });
+
+    describe('next()', () => {
+        it('should select next item', () => {
+            component.next();
+            expect(component.getSelected()).toEqual(1);
+        });
+    });
+
+    describe('prev()', () => {
+        it('should select next item', () => {
+            component.select(2);
+            component.prev();
+            expect(component.getSelected()).toEqual(1);
+        });
     });
 
 });
