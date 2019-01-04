@@ -1,7 +1,7 @@
 import { ComponentRef, Directive, Input, OnInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { Field } from '../../models/field.interface';
-import { IFieldConfig } from '../../models/field-config.interface';
+import { Field } from '../../types';
+import { IFieldConfig } from '../../types';
 import { DynamicFieldService } from '../../services/dynamic-field.service';
 import { PreloadService } from '../../services/preload.service';
 
@@ -23,6 +23,10 @@ export class DynamicFieldDirective implements Field, OnInit, OnDestroy {
     ) { }
 
     ngOnInit() {
+        if (!this.group) {
+            throw new Error('group is not set');
+        }
+
         const componentReference = this.dynamicFieldService.getField(this.field.type);
         const component = this.resolver.resolveComponentFactory<Field>(componentReference);
         this.component = this.container.createComponent(component);

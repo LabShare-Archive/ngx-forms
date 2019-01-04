@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, DebugElement } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicFieldDirective } from "./dynamic-field.directive"
 import { By } from '@angular/platform-browser';
-import { IFieldConfig } from "../../models/field-config.interface";
+import { IFieldConfig } from "../../types"
 import { DynamicFieldService } from "../../services/dynamic-field.service";
 import { FormInputComponent } from "../form-input/form-input.component";
 import { PreloadService } from '../../services/preload.service';
@@ -47,6 +47,8 @@ describe('dynamicField', () => {
         component.form = formBuilder.group({
             publicationTitle: new FormControl('test')
         });
+
+
         fixture.detectChanges();
     });
 
@@ -70,15 +72,28 @@ describe('dynamicField', () => {
     });
 
     describe('createControl()', () => {
-        let dir;
+        let dir: DynamicFieldDirective;
 
         beforeEach(() => {
-            TestBed.compileComponents()
+            TestBed.compileComponents();
             directiveEl = fixture.debugElement.query(By.directive(DynamicFieldDirective));
             dir = directiveEl.injector.get(DynamicFieldDirective);
         });
 
         let cfg = { name: 'test', type: 'text', disabled: true, required: true, minLength: 5, maxLength: 10, email: true, min: 1, max: 10, pattern: new RegExp('\d'), nullValidator: true, value: 5 };
+
+        it('shoulld test constructor', () => {
+            DynamicFieldDirective.constructor();
+            expect(dir).toBeTruthy();
+        });
+
+        it('should throw error', () => {
+            expect(() => {
+                dir.group = undefined;
+                dir.ngOnInit();
+                fixtureError.detectChanges();
+            }).toThrowError('group is not set');
+        });
 
         it('should set pattern validator', () => {
             let control = dir.createControl({ name: 'test', type: 'text', pattern: new RegExp('\d'), value: 5 });
@@ -130,3 +145,45 @@ describe('dynamicField', () => {
     });
 });
 
+describe('TestNoGroup', () => {
+    @Component({ template: `<div dynamicField [field]="field"></div>` }) class TestNoGroup { }
+    let fixtureError: ComponentFixture<TestNoGroup>;
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [DynamicFieldDirective, TestNoGroup],
+            imports: [FormsModule, ReactiveFormsModule, TestModule],
+            providers: [DynamicFieldService, PreloadService]
+        });
+        TestBed.createComponent(TestNoGroup);
+    });
+
+    it('should throw error', () => {
+        expect(() => { fixtureError.detectChanges(); }).toThrowError()
+    });
+});
+
+describe('TestNoInput', () => {
+    @Component({ template: `<div dynamicField [group]="form"></div>` }) class TestNoInput { form: any };
+    let fixtureError: ComponentFixture<TestNoInput>;
+    let component: TestNoInput;
+    let fixture: ComponentFixture<TestNoInput>;
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [DynamicFieldDirective, TestNoInput],
+            imports: [FormsModule, ReactiveFormsModule, TestModule],
+            providers: [DynamicFieldService, PreloadService]
+        });
+
+        fixture = TestBed.createComponent(TestNoInput);
+        component = fixture.componentInstance;
+        component.form = new FormGroup({
+            publicationTitle: new FormControl('test')
+        });
+    });
+
+    it('should throw error', () => {
+        expect(() => { fixtureError.detectChanges(); }).toThrowError("Cannot read property 'detectChanges' of undefined")
+    });
+
+});

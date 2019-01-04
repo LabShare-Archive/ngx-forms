@@ -167,7 +167,7 @@ describe('DynamicFormComponent Core', () => {
 
             it('should extract lookup', () => {
                 component.lookups = { test: [{ t: 'a' }, { t: 'b' }, { t: 'c' }] };;
-                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: 'test', extract: 't' }] }] };
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: { name: 'test', extract: 't' } }] }] };
                 component.ngOnInit();
                 expect(component.formConfig.form[0].fields[0].options).toEqual(['a', 'b', 'c']);
             });
