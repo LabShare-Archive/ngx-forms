@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing'
 import { DynamicFieldDirective } from "../../components/dynamic-field/dynamic-field.directive";
 import { DebugElement } from "@angular/core";
 import { DynamicPanelComponent } from './dynamic-panel.component';
-import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { DynamicFieldService } from "../../services/dynamic-field.service";
 
 
@@ -32,7 +32,6 @@ describe('DynamicPanelComponent', () => {
         }
     ];
 
-    const formBuilder: FormBuilder = new FormBuilder();
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
@@ -48,7 +47,7 @@ describe('DynamicPanelComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(DynamicPanelComponent);
         component = fixture.componentInstance;
-        component.group = formBuilder.group({});
+        component.group = new FormGroup({});
         component.panelConfig = mockPanelConfig;
         fixture.detectChanges();
     });

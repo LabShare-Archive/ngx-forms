@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {Field} from '../../models/field.interface';
+import { Field } from '../../types';
 import { FormGroup } from '@angular/forms';
-import { IFieldConfig } from '../../models/field-config.interface';
+import { IFieldConfig } from '../../types';
 
 @Component({
     selector: 'form-radio',

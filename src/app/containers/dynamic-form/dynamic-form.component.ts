@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { IFieldConfig, ILookup } from '../../types';
 
 interface IFormConfig {
     form: any;
@@ -21,12 +22,10 @@ export class DynamicFormComponent implements OnInit {
     get valid() { return this.form.valid; }
     get value() { return this.form.value; }
 
-    constructor(private fb: FormBuilder) { }
+    public ngOnInit(): void {
+        this.form = new FormGroup({});
 
-    public ngOnInit() {
-        this.form = this.fb.group({});
-
-        let fields = [];
+        let fields: IFieldConfig[] = [];
         this.formConfig.form.forEach(gr => {
             if (gr.fields) { fields = fields.concat(gr.fields); }
             if (gr.panels) {
@@ -36,14 +35,24 @@ export class DynamicFormComponent implements OnInit {
             }
         });
 
-        fields.forEach(field => {
-            if (field.lookup && this.lookups && this.lookups.hasOwnProperty(field.lookup)) {
-                field.options = this.lookups[field.lookup];
-                if (field.extract) { field.options = field.options.map(f => f[field.extract]); }
+        fields.forEach((field: IFieldConfig) => {
+
+            if (field.lookup && this.lookups) {
+                const cfg = typeof field.lookup === "string" ? { name: field.lookup, extract: null } as ILookup : field.lookup as ILookup;
+                field.options = cfg.extract ? this.lookups[cfg.name].map(l => l[cfg.extract]) : this.lookups[cfg.name];
+                return;
             }
+
+            // TODO: this code is for cases when multiple lookups required the same time
+            // if (field.lookups && Array.isArray(field.lookups) && this.lookups) {
+            //     field.options = field.lookups
+            //         .map(obj => typeof obj === "string" ? { name: obj } : obj as ILookup)
+            //         .map(obj =>
+            //             obj.extract ? this.lookups[obj.name].map(l => l[obj.extract]) : this.lookups[obj.name]);
+            // }
+
         });
 
-        // this.form.disable();
-    }
 
+    }
 }
