@@ -83,9 +83,17 @@ describe('dynamicField', () => {
         let cfg = { name: 'test', type: 'text', disabled: true, required: true, minLength: 5, maxLength: 10, email: true, min: 1, max: 10, pattern: new RegExp('\d'), nullValidator: true, value: 5 };
 
         it('shoulld test constructor', () => {
-            DynamicFieldDirective.constructor()
+            DynamicFieldDirective.constructor();
             expect(dir).toBeTruthy();
-        })
+        });
+
+        it('should throw error', () => {
+            expect(() => {
+                dir.group = undefined;
+                dir.ngOnInit();
+                fixtureError.detectChanges();
+            }).toThrowError('group is not set');
+        });
 
         it('should set pattern validator', () => {
             let control = dir.createControl({ name: 'test', type: 'text', pattern: new RegExp('\d'), value: 5 });
