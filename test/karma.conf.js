@@ -45,7 +45,7 @@ module.exports = function (config) {
     },
     exclude: [],
     port: 9999,
-    browsers: ['Chrome'], //ChromeHeadless
+    browsers: ['ChromeHeadless'], //ChromeHeadless
     singleRun: true,
     browserConsoleLogOptions: {
       level: 'log',

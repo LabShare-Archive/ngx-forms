@@ -7,12 +7,13 @@ import { FormNavService } from '../services/form-nav.service';
 export class NavDirective implements OnInit {
     @Input('navTab') panel;
 
+    // constructor(private navService: FormNavService) { debugger }
     constructor(private navService: FormNavService) { debugger }
 
     ngOnInit() {
-        if (!this.panel.static) {
-            this.navService.add(this.panel);
-        }
+        // if (!this.panel.static) {
+        //     this.navService.add(this.panel);
+        // }
     }
 
 }

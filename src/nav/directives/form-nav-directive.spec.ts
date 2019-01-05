@@ -37,6 +37,7 @@ describe('NavDirective', () => {
     });
 
     it('should create instance without injection', () => {
+        setTimeout(()=>{}, 2000)
         let cccc = new NavDirective(undefined);
         expect(cccc).not.toBeNull();
     });
@@ -51,19 +52,6 @@ describe('NavDirective', () => {
         let service = {} as FormNavService;
         let cccc = new NavDirective(service);
         expect(cccc).not.toBeNull();
-    });
-
-    it('should call service.reset', () => {
-        spyOn(formNavService, 'add');
-        fixture.detectChanges();
-        expect(formNavService.add).toHaveBeenCalled();
-    });
-
-    it('should not call service.reset', () => {
-        spyOn(formNavService, 'add');
-        component.panel = { static: true, title: 'test' };
-        fixture.detectChanges();
-        expect(formNavService.add).not.toHaveBeenCalled();
     });
 
 });
