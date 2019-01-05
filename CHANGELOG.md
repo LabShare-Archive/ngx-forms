@@ -1,3 +1,16 @@
+# [3.1.0](https://github.com/LabShare/ngx-forms/compare/v3.0.0...v3.1.0) (2019-01-04)
+
+
+### Bug Fixes
+
+* added tests ([f061710](https://github.com/LabShare/ngx-forms/commit/f061710))
+* lint fixes ([b412cd5](https://github.com/LabShare/ngx-forms/commit/b412cd5))
+
+
+### Features
+
+* added future support for multiple lookups ([e31308a](https://github.com/LabShare/ngx-forms/commit/e31308a))
+
 # [3.0.0](https://github.com/LabShare/ngx-forms/compare/v2.6.0...v3.0.0) (2018-12-31)
 
 
