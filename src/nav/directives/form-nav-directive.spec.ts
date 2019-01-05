@@ -36,6 +36,16 @@ describe('NavDirective', () => {
         expect(directiveEl).not.toBeNull();
     });
 
+    it('should create instance without injection', () => {
+        let cccc = new NavDirective(undefined);
+        expect(cccc).not.toBeNull();
+    });
+
+    it('should create instance', () => {
+        let service = new FormNavService();
+        let cccc = new NavDirective(service);
+        expect(cccc).not.toBeNull();
+    });
 
     it('should call service.reset', () => {
         spyOn(formNavService, 'add');
