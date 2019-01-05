@@ -47,6 +47,12 @@ describe('NavDirective', () => {
         expect(cccc).not.toBeNull();
     });
 
+    it('should create instance', () => {
+        let service = {} as FormNavService;
+        let cccc = new NavDirective(service);
+        expect(cccc).not.toBeNull();
+    });
+
     it('should call service.reset', () => {
         spyOn(formNavService, 'add');
         fixture.detectChanges();
