@@ -24,7 +24,7 @@ export class DynamicFormComponent implements OnInit {
 
     public ngOnInit(): void {
         this.form = new FormGroup({});
-        this.form.disable();
+        // this.form.disable();
 
         let fields: IFieldConfig[] = [];
         this.formConfig.form.forEach(gr => {
