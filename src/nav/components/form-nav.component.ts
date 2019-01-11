@@ -1,5 +1,7 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy, AfterContentInit } from '@angular/core';
 import { FormNavService } from '../services/form-nav.service';
+import { FormGroup, AbstractControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'form-nav',
@@ -7,11 +9,34 @@ import { FormNavService } from '../services/form-nav.service';
     styles: [require('./form-nav.component.scss').toString()]
 })
 
-export class FormNavComponent implements OnDestroy {
+export class FormNavComponent implements OnDestroy, AfterContentInit {
     public ref = { groups: [] };
+    private subscriptions: Subscription[] = [];
+
+    @Input() form: FormGroup;
 
     constructor(private ns: FormNavService) {
         ns.addWatcher(this.ref);
+    }
+
+    ngAfterContentInit() {
+        const x = Object.keys(this.form.controls);
+
+        for (const group of this.ref.groups) {
+            let fields = [];
+            if (group.fields) {
+                fields = fields.concat(group.fields);
+            }
+            if (group.panels) {
+                group.panels.forEach(panel => { if (panel.fields) { fields = fields.concat(panel.fields); } });
+            }
+            group.controls = fields.map(f => this.form.get(f.name));
+            group.controls.forEach((control: AbstractControl) => {
+                this.subscriptions.push(control.statusChanges.subscribe(() => {
+                    group.valid = group.controls.every((ctrl: AbstractControl) => ctrl.valid);
+                }));
+            });
+        }
     }
 
     public select(index) {
@@ -39,6 +64,7 @@ export class FormNavComponent implements OnDestroy {
     }
 
     ngOnDestroy(): void {
+        this.subscriptions.forEach((sub: Subscription) => sub.unsubscribe());
         this.ns.reset();
     }
 }

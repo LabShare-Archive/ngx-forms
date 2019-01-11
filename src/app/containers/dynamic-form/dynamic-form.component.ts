@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { IFieldConfig, ILookup } from '../../types';
 
@@ -24,6 +24,7 @@ export class DynamicFormComponent implements OnInit {
 
     public ngOnInit(): void {
         this.form = new FormGroup({});
+        this.form.disable();
 
         let fields: IFieldConfig[] = [];
         this.formConfig.form.forEach(gr => {
@@ -36,7 +37,6 @@ export class DynamicFormComponent implements OnInit {
         });
 
         fields.forEach((field: IFieldConfig) => {
-
             if (field.lookup && this.lookups) {
                 const cfg = typeof field.lookup === 'string' ? { name: field.lookup, extract: null } as ILookup : field.lookup as ILookup;
                 field.options = cfg.extract ? this.lookups[cfg.name].map(l => l[cfg.extract]) : this.lookups[cfg.name];
@@ -52,7 +52,6 @@ export class DynamicFormComponent implements OnInit {
             // }
 
         });
-
-
     }
+
 }

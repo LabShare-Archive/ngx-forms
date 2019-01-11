@@ -9,20 +9,6 @@ describe('Service: FormNavService', () => {
         service = new FormNavService();
     });
 
-    describe('add()', () => {
-        it('should subscribe to control changes', () => {
-            const control = new FormControl('', Validators.required);
-            const group: any = { controls: [control], hidden: false };
-            service.add(group);
-
-            control.setValue('test');
-            expect(group.valid).toBeTruthy();
-
-            control.setValue('');
-            expect(group.valid).toBeFalsy();
-        });
-    });
-
     it('should return array with one group', () => {
         service.add(group);
         expect(service.getAllGroups()).toEqual([group]);
