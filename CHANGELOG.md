@@ -1,3 +1,11 @@
+## [3.1.1](https://github.com/LabShare/ngx-forms/compare/v3.1.0...v3.1.1) (2019-01-14)
+
+
+### Bug Fixes
+
+* fixed green marks PPP-163 ([875b068](https://github.com/LabShare/ngx-forms/commit/875b068))
+* removed disable form ([436b02b](https://github.com/LabShare/ngx-forms/commit/436b02b))
+
 # [3.1.0](https://github.com/LabShare/ngx-forms/compare/v3.0.0...v3.1.0) (2019-01-04)
 
 
