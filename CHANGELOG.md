@@ -1,3 +1,11 @@
+## [3.1.2](https://github.com/LabShare/ngx-forms/compare/v3.1.1...v3.1.2) (2019-01-14)
+
+
+### Bug Fixes
+
+* fixed validation for fields that are not required ([f551988](https://github.com/LabShare/ngx-forms/commit/f551988))
+* lint fixes ([0e87091](https://github.com/LabShare/ngx-forms/commit/0e87091))
+
 ## [3.1.1](https://github.com/LabShare/ngx-forms/compare/v3.1.0...v3.1.1) (2019-01-14)
 
 
