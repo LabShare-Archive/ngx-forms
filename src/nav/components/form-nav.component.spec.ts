@@ -12,8 +12,8 @@ describe('FormNavComponent', () => {
     let formNavService: FormNavService;
     let groups = [{
         hidden: false, label: 'test1', fields: [
-            { name: 'a', type: 'text' },
-            { name: 'b', type: 'text' }
+            { name: 'a', type: 'text', required: true },
+            { name: 'b', type: 'text', required: true }
         ]
     }, { hidden: false, label: 'test2' }, { hidden: false, label: 'test3' }];
 
