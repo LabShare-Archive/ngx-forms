@@ -10,14 +10,6 @@ export class FormNavService {
     add(group): void {
         this.groups.push(group);
 
-        if (group.controls) {
-            group.controls.forEach((control: AbstractControl) => {
-                control.statusChanges.subscribe(() => {
-                    group.valid = group.controls.every((ctrl: AbstractControl) => ctrl.valid);
-                });
-            });
-        }
-
         if (this.groups.length > 1) { group.hidden = true; }
         this.watchers.forEach(w => w.groups = this.groups);
     }

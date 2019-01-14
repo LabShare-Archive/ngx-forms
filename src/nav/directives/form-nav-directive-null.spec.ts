@@ -47,11 +47,9 @@ describe('NavDirective', () => {
         component.panel = { title: 'test' };
     });
 
-    
     it('should create instance', () => {
         var form_nav_service_1 = require("../services/form-nav.service");
         form_nav_service_1.FormNavService = undefined;
-        console.log(typeof form_nav_service_1.FormNavService);
         expect(new NavDirective({} as FormNavService)).not.toBeNull();
 
     });
@@ -59,15 +57,12 @@ describe('NavDirective', () => {
     it('should create instance', () => {
         var form_nav_service_1 = require("../services/form-nav.service");
         form_nav_service_1.FormNavService = '';
-        console.log(typeof form_nav_service_1.FormNavService);
         expect(new NavDirective({} as FormNavService)).not.toBeNull();
-        // form_nav_service_1.FormNavService = temp;
     });
 
     it('should create instance', () => {
         var form_nav_service_1 = require("../services/form-nav.service");
         form_nav_service_1.FormNavService = {};
-        console.log(typeof form_nav_service_1.FormNavService);
         expect(new NavDirective({} as FormNavService)).not.toBeNull();
     });
 

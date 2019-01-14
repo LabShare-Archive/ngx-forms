@@ -1,6 +1,6 @@
 import { FormNavComponent } from './form-nav.component';
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule, FormBuilder } from "@angular/forms";
 import { APP_BASE_HREF } from '@angular/common';
 import { FormNavService } from '../services/form-nav.service';
 import { FormNavModule } from '../nav-app';
@@ -10,7 +10,12 @@ describe('FormNavComponent', () => {
     let component: FormNavComponent;
     let fixture: ComponentFixture<FormNavComponent>;
     let formNavService: FormNavService;
-    let groups = [{ hidden: false, label: 'test1' }, { hidden: false, label: 'test2' }, { hidden: false, label: 'test3' }];
+    let groups = [{
+        hidden: false, label: 'test1', fields: [
+            { name: 'a', type: 'text' },
+            { name: 'b', type: 'text' }
+        ]
+    }, { hidden: false, label: 'test2' }, { hidden: false, label: 'test3' }];
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -26,10 +31,16 @@ describe('FormNavComponent', () => {
     });
 
     beforeEach(() => {
+        const fb = new FormBuilder();
         fixture = TestBed.createComponent(FormNavComponent);
         component = fixture.componentInstance;
         formNavService = TestBed.get(FormNavService);
+        component.form = fb.group({
+            a: [''],
+            b: ['']
+        });
         groups.forEach(g => formNavService.add(g));
+
         fixture.detectChanges();
     });
 
@@ -67,6 +78,13 @@ describe('FormNavComponent', () => {
             component.select(2);
             component.prev();
             expect(component.getSelected()).toEqual(1);
+        });
+    });
+
+    describe('subscription()', () => {
+        it('should run check', () => {
+            component.form.controls.a.setValue('test')
+            expect(component.ref.groups[0].valid).toBeTruthy();
         });
     });
 
