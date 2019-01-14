@@ -31,7 +31,6 @@ export class FormNavComponent implements OnDestroy, AfterContentInit {
                 group.panels.forEach(panel => { if (panel.fields) { fields = fields.concat(panel.fields); } });
             }
             group.controls = fields.filter(f => f.required).map(f => this.form.get(f.name));
-            
             if (group.controls.length === 0) { group.valid = true; } else {
                 group.controls.forEach((control: AbstractControl) => {
                     this.subscriptions.push(control.statusChanges.subscribe(() => {
