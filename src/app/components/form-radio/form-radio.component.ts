@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Field } from '../../types';
 import { FormGroup } from '@angular/forms';
-import { IFieldConfig } from '../../types';
+import { FieldConfig } from '../../types';
 
 @Component({
     selector: 'form-radio',
@@ -9,6 +9,6 @@ import { IFieldConfig } from '../../types';
 })
 
 export class FormRadioComponent implements Field {
-    field: IFieldConfig;
+    field: FieldConfig;
     group: FormGroup;
 }

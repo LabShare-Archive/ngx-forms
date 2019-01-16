@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
 import { FormGroup} from '@angular/forms';
 import { Field } from '../../types';
-import { IFieldConfig } from '../../types';
+import { FieldConfig } from '../../types';
 
 @Component({
     selector: 'form-text-editor',
@@ -9,7 +9,7 @@ import { IFieldConfig } from '../../types';
     styles: [require('./form-text-editor.component.scss').toString()],
 })
 export class FormTextEditorComponent implements Field {
-    field: IFieldConfig;
+    field: FieldConfig;
     group: FormGroup;
 
     public quillToolbar: object = {

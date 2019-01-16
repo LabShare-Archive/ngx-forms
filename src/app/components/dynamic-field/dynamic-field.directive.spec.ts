@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, FormControl }
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicFieldDirective } from "./dynamic-field.directive"
 import { By } from '@angular/platform-browser';
-import { IFieldConfig } from "../../types"
+import { FieldConfig } from "../../types"
 import { DynamicFieldService } from "../../services/dynamic-field.service";
 import { FormInputComponent } from "../form-input/form-input.component";
 import { PreloadService } from '../../services/preload.service';
@@ -14,7 +14,7 @@ import { PreloadService } from '../../services/preload.service';
     template: `<form [formGroup]="form"><div dynamicField [field]="field" [group]="form"></div></form>`
 })
 class TestComponent {
-    field: IFieldConfig;
+    field: FieldConfig;
     form: FormGroup;
 }
 

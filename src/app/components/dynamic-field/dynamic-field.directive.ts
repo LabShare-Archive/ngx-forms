@@ -1,7 +1,7 @@
 import { ComponentRef, Directive, Input, OnInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Field } from '../../types';
-import { IFieldConfig } from '../../types';
+import { FieldConfig } from '../../types';
 import { DynamicFieldService } from '../../services/dynamic-field.service';
 import { PreloadService } from '../../services/preload.service';
 
@@ -9,7 +9,7 @@ import { PreloadService } from '../../services/preload.service';
     selector: '[dynamicField]'
 })
 export class DynamicFieldDirective implements Field, OnInit, OnDestroy {
-    @Input() field: IFieldConfig;
+    @Input() field: FieldConfig;
     @Input() group: FormGroup;
     @Input() model: any;
     component: ComponentRef<any>;
@@ -40,7 +40,7 @@ export class DynamicFieldDirective implements Field, OnInit, OnDestroy {
         }
     }
 
-    public createControl(cfg: IFieldConfig): FormControl {
+    public createControl(cfg: FieldConfig): FormControl {
         const { disabled, required, minLength, maxLength, email, min, max, pattern, value } = cfg;
         const validators = [];
         if (required !== undefined && required) { validators.push(Validators.required); }

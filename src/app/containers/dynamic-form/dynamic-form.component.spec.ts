@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicPanelComponent } from '../dynamic-panel/dynamic-panel.component';
 import { DynamicFieldDirective } from '../../components/dynamic-field/dynamic-field.directive';
 import { Component, NgModule } from "@angular/core";
-import { DynamicFormComponent } from "./dynamic-form.component";
+import { DynamicFormComponent, ConditionType } from "./dynamic-form.component";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DynamicFieldService } from "../../services/dynamic-field.service";
 import { PreloadService } from '../../services/preload.service';
@@ -182,6 +182,83 @@ describe('DynamicFormComponent Core', () => {
                 component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: { name: 'test', extract: 't' } }] }] };
                 component.ngOnInit();
                 expect(component.formConfig.form[0].fields[0].options).toEqual(['a', 'b', 'c']);
+            });
+
+        });
+
+        describe('Conditional Disabling', () => {
+
+            it('should enable the fields', () => {
+                component.model = { title: 'test' };
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title' }], enableWhen: { rules: [{ field: "title", equals: ["test"] }] } }] };
+                component.ngOnInit();
+                expect(component.formConfig.form[0].fields[0].disabled).toBeFalsy();
+            });
+
+            it('should disable the fields', () => {
+                component.model = { title: 'test' };
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title' }], enableWhen: { rules: [{ field: "title", equals: ["test1"] }] } }] };
+                component.ngOnInit();
+                expect(component.formConfig.form[0].fields[0].disabled).toBeTruthy();
+            });
+        });
+
+        describe('checkRules()', () => {
+
+            it('should not run rules where there are none', () => {
+                const model = { title: 'test' };
+                const cfg = { rules: [] };
+                expect(component.checkRules(cfg, model)).toBeTruthy();
+            });
+
+            it('should run one rule and return true', () => {
+                const model = { title: 'test' };
+                const cfg = { rules: [{ field: "title", equals: ["test"] }] };
+                expect(component.checkRules(cfg, model)).toBeTruthy();
+            });
+
+            it('should run one rule and return false', () => {
+                const model = { title: 'test' };
+                const cfg = { rules: [{ field: "title", equals: ["test1"] }] };
+                expect(component.checkRules(cfg, model)).toBeFalsy();
+            });
+
+            it('should run multiple rules with `and` and return true', () => {
+                const model = { title: 'test', count: 1 };
+                const cfg = { type: ConditionType.And, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] };
+                expect(component.checkRules(cfg, model)).toBeTruthy();
+            });
+
+            it('should run multiple rules with `and` and return false when one does not match', () => {
+                const model = { title: 'test', count: 1 };
+                const cfg = { type: ConditionType.And, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1123] }] };
+                expect(component.checkRules(cfg, model)).toBeFalsy();
+            });
+
+            it('should run multiple rules with `and` and return true', () => {
+                const model = { title: 'test', count: 1 };
+                const cfg = { type: ConditionType.And, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] };
+                expect(component.checkRules(cfg, model)).toBeTruthy();
+            });
+
+            it('should run multiple rules with `or` and return false when none match', () => {
+                const model = { title: 'test', count: 1 };
+                const cfg = { type: ConditionType.Or, rules: [{ field: "title", equals: ["test1"] }, { field: "count", equals: [1123] }] };
+                expect(component.checkRules(cfg, model)).toBeFalsy();
+            });
+
+            it('should run multiple rules with `or` and return true when one match', () => {
+                const model = { title: 'test', count: 1 };
+                const cfg = { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1222] }] };
+                expect(component.checkRules(cfg, model)).toBeTruthy();
+            });
+
+            it('should throw error', () => {
+                expect(() => {
+                    const model = { title: 'test', count: 1 };
+                    const cfg = { rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1222] }] };
+                    component.checkRules(cfg, model)
+                }).toThrowError('enableWhen type must be defined');
             });
 
         });
