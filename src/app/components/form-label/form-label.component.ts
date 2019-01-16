@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Field } from '../../types';
-import { IFieldConfig } from '../../types';
+import { FieldConfig } from '../../types';
 
 @Component({
     selector: 'form-label',
     template: require('./form-label.component.html')
 })
 export class FormLabelComponent implements Field {
-    field: IFieldConfig;
+    field: FieldConfig;
     group: FormGroup;
 }

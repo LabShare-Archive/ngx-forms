@@ -1,12 +1,12 @@
 import { FormGroup } from '@angular/forms';
-import { IFieldConfig } from './types';
+import { FieldConfig } from './types';
 
 export interface ILookup {
     name: string; // Name of lookup from lookup payload
     extract?: string; // Extract one field from lookup item when lookup is an object
 }
 
-export interface IFieldConfig {
+export interface FieldConfig {
     disabled?: boolean;
     hidden?: boolean;
     label?: string;
@@ -28,6 +28,6 @@ export interface IFieldConfig {
 }
 
 export interface Field {
-    field: IFieldConfig;
+    field: FieldConfig;
     group: FormGroup;
 }
