@@ -30,4 +30,5 @@ export interface FieldConfig {
 export interface Field {
     field: FieldConfig;
     group: FormGroup;
+    model?: Object;
 }
