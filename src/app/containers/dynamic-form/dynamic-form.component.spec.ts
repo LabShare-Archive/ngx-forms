@@ -141,6 +141,10 @@ describe('DynamicFormComponent Core', () => {
         expect(component.value).toEqual(component.form.value);
     });
 
+    it('should call value()', () => {
+        expect(component.rawValue).toEqual(component.form.getRawValue());
+    });
+
     describe('ngOnInit()', () => {
 
         it('should create group', () => {
@@ -205,58 +209,116 @@ describe('DynamicFormComponent Core', () => {
 
         describe('checkRules()', () => {
 
+            it('should not run rules', () => {
+                const model = { title: 'test' };
+                const cfg = {};
+                expect(component.checkRules(cfg, model)).toBeUndefined();
+            });
+
             it('should not run rules where there are none', () => {
                 const model = { title: 'test' };
-                const cfg = { rules: [] };
+                const cfg = { enableWhen: { rules: [] } };
                 expect(component.checkRules(cfg, model)).toBeTruthy();
             });
 
             it('should run one rule and return true', () => {
                 const model = { title: 'test' };
-                const cfg = { rules: [{ field: "title", equals: ["test"] }] };
+                const cfg = { enableWhen: { rules: [{ field: "title", equals: ["test"] }] } };
                 expect(component.checkRules(cfg, model)).toBeTruthy();
             });
 
             it('should run one rule and return false', () => {
                 const model = { title: 'test' };
-                const cfg = { rules: [{ field: "title", equals: ["test1"] }] };
+                const cfg = { enableWhen: { rules: [{ field: "title", equals: ["test1"] }] } };
                 expect(component.checkRules(cfg, model)).toBeFalsy();
             });
 
-            it('should run multiple rules with `and` and return true', () => {
-                const model = { title: 'test', count: 1 };
-                const cfg = { type: ConditionType.And, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] };
-                expect(component.checkRules(cfg, model)).toBeTruthy();
+            it('should check default field value and return true when rule match', () => {
+                const cfg = {
+                    fields: [
+                        { name: "title", type: 'text', value: 'test' }
+                    ],
+                    enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }] }
+                };
+                expect(component.checkRules(cfg, {})).toBeTruthy();
+            });
+
+            it('should check default field value and return false when rule match', () => {
+                const cfg = {
+                    fields: [
+                        { name: "title", type: 'text' }
+                    ],
+                    enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }] }
+                };
+                expect(component.checkRules(cfg, {})).toBeFalsy();
+            });
+
+            it('should check default field value and return true whrn all rules match', () => {
+                const cfg = {
+                    fields: [
+                        { name: "title", type: 'text', value: 'test' },
+                        { name: "count", type: 'text', value: 1 }
+                    ],
+                    enableWhen: { type: ConditionType.And, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
+                };
+                expect(component.checkRules(cfg, {})).toBeTruthy();
+            });
+
+            it('should check default field false when value is not found', () => {
+                const cfg = {
+                    fields: [
+                        { name: "title", type: 'text', value: 'test' },
+                        { name: "count", type: 'text' }
+                    ],
+                    enableWhen: { type: ConditionType.And, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
+                };
+                expect(component.checkRules(cfg, {})).toBeFalsy();
             });
 
             it('should run multiple rules with `and` and return false when one does not match', () => {
                 const model = { title: 'test', count: 1 };
-                const cfg = { type: ConditionType.And, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1123] }] };
+                const cfg = { enableWhen: { type: ConditionType.And, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1123] }] } };
                 expect(component.checkRules(cfg, model)).toBeFalsy();
-            });
-
-            it('should run multiple rules with `and` and return true', () => {
-                const model = { title: 'test', count: 1 };
-                const cfg = { type: ConditionType.And, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] };
-                expect(component.checkRules(cfg, model)).toBeTruthy();
             });
 
             it('should run multiple rules with `or` and return false when none match', () => {
                 const model = { title: 'test', count: 1 };
-                const cfg = { type: ConditionType.Or, rules: [{ field: "title", equals: ["test1"] }, { field: "count", equals: [1123] }] };
+                const cfg = { enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test1"] }, { field: "count", equals: [1123] }] } };
                 expect(component.checkRules(cfg, model)).toBeFalsy();
             });
 
             it('should run multiple rules with `or` and return true when one match', () => {
                 const model = { title: 'test', count: 1 };
-                const cfg = { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1222] }] };
+                const cfg = { enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1222] }] } };
                 expect(component.checkRules(cfg, model)).toBeTruthy();
+            });
+
+            it('should check default field value and return true when one OR rules match', () => {
+                const cfg = {
+                    fields: [
+                        { name: "title", type: 'text', value: 'test' },
+                        { name: "count", type: 'text', value: 3 }
+                    ],
+                    enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
+                };
+                expect(component.checkRules(cfg, {})).toBeTruthy();
+            });
+
+            it('should check default field false when value is not found', () => {
+                const cfg = {
+                    fields: [
+                        { name: "title", type: 'text' },
+                        { name: "count", type: 'text' }
+                    ],
+                    enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
+                };
+                expect(component.checkRules(cfg, {})).toBeFalsy();
             });
 
             it('should throw error', () => {
                 expect(() => {
                     const model = { title: 'test', count: 1 };
-                    const cfg = { rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1222] }] };
+                    const cfg = { enableWhen: { rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1222] }] } };
                     component.checkRules(cfg, model)
                 }).toThrowError('enableWhen type must be defined');
             });

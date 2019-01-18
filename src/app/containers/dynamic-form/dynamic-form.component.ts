@@ -50,7 +50,7 @@ export class DynamicFormComponent implements OnInit {
     get valid() { return this.form.valid; }
     get value() { return this.form.value; }
     get rawValue() { return this.form.getRawValue(); }
-    
+
 
     // TODO: convert this into visitor or something like that
 
@@ -97,7 +97,8 @@ export class DynamicFormComponent implements OnInit {
 
         if (enableWhen.rules.length === 1) {
             const rule = enableWhen.rules[0];
-            const value = data[rule.field] || group.fields.find(f => f.name === rule.field).value || "";
+            let field;
+            const value = data[rule.field] || (field = group.fields.find(f => f.name === rule.field)) && field.value || "";
             enabled = rule.equals.indexOf(value) > -1;
         }
 
@@ -107,14 +108,16 @@ export class DynamicFormComponent implements OnInit {
             if (enableWhen.type === ConditionType.Or) {
                 enabled = false;
                 enableWhen.rules.forEach(rule => {
-                    const value = data[rule.field] || group.fields.find(f => f.name === rule.field).value || "";
+                    let field;
+                    const value = data[rule.field] || (field = group.fields.find(f => f.name === rule.field)) && field.value || "";
                     enabled = enabled || rule.equals.indexOf(value) > -1;
                 });
             }
 
             if (enableWhen.type === ConditionType.And) {
                 enableWhen.rules.forEach(rule => {
-                    const value = data[rule.field] || group.fields.find(f => f.name === rule.field).value || "";
+                    let field;
+                    const value = data[rule.field] || (field = group.fields.find(f => f.name === rule.field)) && field.value || "";
                     enabled = enabled && rule.equals.indexOf(value) > -1;
                 });
             }
