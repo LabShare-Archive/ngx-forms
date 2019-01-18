@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/LabShare/ngx-forms/compare/v3.1.2...v3.2.0) (2019-01-16)
+
+
+### Features
+
+* added ability to disalbe sections conditionally ([8548759](https://github.com/LabShare/ngx-forms/commit/8548759))
+
 ## [3.1.2](https://github.com/LabShare/ngx-forms/compare/v3.1.1...v3.1.2) (2019-01-14)
 
 
