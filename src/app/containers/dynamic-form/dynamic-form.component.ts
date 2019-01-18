@@ -89,7 +89,7 @@ export class DynamicFormComponent implements OnInit {
 
     public checkRules(group: PanelGroup, data): boolean {
         let enabled = true;
-        if (!group.enableWhen) return;
+        if (!group.enableWhen) { return; }
         const enableWhen = group.enableWhen;
 
         // TODO: add check if `equals is not array and wrap it equals = [equals]
@@ -98,7 +98,7 @@ export class DynamicFormComponent implements OnInit {
         if (enableWhen.rules.length === 1) {
             const rule = enableWhen.rules[0];
             let field;
-            const value = data[rule.field] || (field = group.fields.find(f => f.name === rule.field)) && field.value || "";
+            const value = data[rule.field] || (field = group.fields.find(f => f.name === rule.field)) && field.value || '';
             enabled = rule.equals.indexOf(value) > -1;
         }
 
@@ -109,7 +109,7 @@ export class DynamicFormComponent implements OnInit {
                 enabled = false;
                 enableWhen.rules.forEach(rule => {
                     let field;
-                    const value = data[rule.field] || (field = group.fields.find(f => f.name === rule.field)) && field.value || "";
+                    const value = data[rule.field] || (field = group.fields.find(f => f.name === rule.field)) && field.value || '';
                     enabled = enabled || rule.equals.indexOf(value) > -1;
                 });
             }
@@ -117,7 +117,7 @@ export class DynamicFormComponent implements OnInit {
             if (enableWhen.type === ConditionType.And) {
                 enableWhen.rules.forEach(rule => {
                     let field;
-                    const value = data[rule.field] || (field = group.fields.find(f => f.name === rule.field)) && field.value || "";
+                    const value = data[rule.field] || (field = group.fields.find(f => f.name === rule.field)) && field.value || '';
                     enabled = enabled && rule.equals.indexOf(value) > -1;
                 });
             }
