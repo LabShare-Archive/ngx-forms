@@ -1,3 +1,13 @@
+## [3.2.1](https://github.com/LabShare/ngx-forms/compare/v3.2.0...v3.2.1) (2019-01-18)
+
+
+### Bug Fixes
+
+* added model to component ([bcdfbbd](https://github.com/LabShare/ngx-forms/commit/bcdfbbd))
+* added raw value getter ([191f8a1](https://github.com/LabShare/ngx-forms/commit/191f8a1))
+* fixed tests ([cce578f](https://github.com/LabShare/ngx-forms/commit/cce578f))
+* lint fixes ([554dd26](https://github.com/LabShare/ngx-forms/commit/554dd26))
+
 # [3.2.0](https://github.com/LabShare/ngx-forms/compare/v3.1.2...v3.2.0) (2019-01-16)
 
 
