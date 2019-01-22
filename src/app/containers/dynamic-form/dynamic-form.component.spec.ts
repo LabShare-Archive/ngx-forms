@@ -1,17 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
 import { DynamicPanelComponent } from '../dynamic-panel/dynamic-panel.component';
 import { DynamicFieldDirective } from '../../components/dynamic-field/dynamic-field.directive';
 import { Component, NgModule } from "@angular/core";
 import { DynamicFormComponent, ConditionType } from "./dynamic-form.component";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { DynamicFieldService } from "../../services/dynamic-field.service";
-import { PreloadService } from '../../services/preload.service';
 import { FormInputComponent } from '../../components/form-input/form-input.component';
 import { CommonModule } from '@angular/common';
 import { FormSelectComponent } from '../../components/form-select/form-select.component';
 import { FormInputHiddenComponent } from '../../components/form-hidden/form-hidden.component';
 import { By } from '@angular/platform-browser';
 import { FormNavModule } from '../../../nav/nav-app';
+import { FieldDictionary, FIELD_DICT_TOKEN } from '../../types';
 
 interface IFormConfig {
     form: any;
@@ -23,6 +22,12 @@ interface IDynamicForm {
     data: any
     dynamicForm: any
     lookups: any
+}
+
+const defaultInputs: FieldDictionary = {
+    text: FormInputComponent,
+    select: FormSelectComponent,
+    hidden: FormInputHiddenComponent
 }
 
 @Component({
@@ -51,11 +56,12 @@ describe('DynamicFormComponent', () => {
         TestBed.configureTestingModule({
             declarations: [DynamicFieldDirective, TestComponent, DynamicFormComponent, DynamicPanelComponent],
             imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule],
-            providers: [DynamicFieldService, PreloadService]
+            providers: [{ provide: FIELD_DICT_TOKEN, useValue: defaultInputs }]
         })
             .compileComponents()
             .then(() => {
                 fixture = TestBed.createComponent(TestComponent);
+
                 component = fixture.componentInstance;
                 component.formConfig = {
                     form: [{
@@ -110,7 +116,7 @@ describe('DynamicFormComponent Core', () => {
         TestBed.configureTestingModule({
             declarations: [DynamicFieldDirective, TestComponent, DynamicFormComponent, DynamicPanelComponent],
             imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule],
-            providers: [DynamicFieldService, PreloadService]
+            providers: [{ provide: FIELD_DICT_TOKEN, useValue: defaultInputs }]
         }).compileComponents();
     });
 

@@ -1,4 +1,4 @@
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
@@ -8,8 +8,26 @@ import { DynamicPanelComponent } from './app/containers/dynamic-panel/dynamic-pa
 import { FormNavModule } from './nav/nav-app';
 import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicFieldService } from './app/services/dynamic-field.service';
-import { PreloadService, Components } from './app/services/preload.service';
+import { FormInputComponent } from './app/components/form-input/form-input.component';
+import { FormSelectComponent } from './app/components/form-select/form-select.component';
+import { FormTextEditorComponent } from './app/components/form-text-editor/form-text-editor.component';
+import { FormCheckboxComponent } from './app/components/form-checkbox/form-checkbox.component';
+import { FormRadioComponent } from './app/components/form-radio/form-radio.component';
+import { FormTextareaComponent } from './app/components/form-textarea/form-textarea.component';
+import { FormInputHiddenComponent } from './app/components/form-hidden/form-hidden.component';
+import { FormLabelComponent } from './app/components/form-label/form-label.component';
+import { FIELD_DICT_TOKEN, FieldDictionary } from './app/types';
+
+const defaultInputs: FieldDictionary = {
+    text: FormInputComponent,
+    select: FormSelectComponent,
+    editor: FormTextEditorComponent,
+    textarea: FormTextareaComponent,
+    hidden: FormInputHiddenComponent,
+    radio: FormRadioComponent,
+    checkbox: FormCheckboxComponent,
+    label: FormLabelComponent
+};
 
 @NgModule({
     imports: [
@@ -22,25 +40,53 @@ import { PreloadService, Components } from './app/services/preload.service';
         FormNavModule
     ],
     declarations: [
-        Components,
         DynamicFieldDirective,
         DynamicFormComponent,
-        DynamicPanelComponent
+        DynamicPanelComponent,
+
+        FormInputComponent,
+        FormSelectComponent,
+        FormTextEditorComponent,
+        FormTextareaComponent,
+        FormInputHiddenComponent,
+        FormRadioComponent,
+        FormCheckboxComponent,
+        FormLabelComponent
     ],
     exports: [
         DynamicFormComponent
     ],
     entryComponents: [
-        Components
+        FormInputComponent,
+        FormSelectComponent,
+        FormTextEditorComponent,
+        FormTextareaComponent,
+        FormInputHiddenComponent,
+        FormRadioComponent,
+        FormCheckboxComponent,
+        FormLabelComponent
     ],
     providers: [
-        DynamicFieldService,
-        PreloadService
+        {
+            provide: FIELD_DICT_TOKEN,
+            useValue: defaultInputs
+        }
     ],
     schemas: [
         NO_ERRORS_SCHEMA
     ]
 })
-export class NgxFormModule { }
-
-export { DynamicFieldService };
+export class NgxFormModule {
+    public static forRoot(dictionary: FieldDictionary): ModuleWithProviders {
+        Object.keys(dictionary).forEach(key => defaultInputs[key] = dictionary[key]);
+        return {
+            ngModule: NgxFormModule,
+            providers: [
+                {
+                    provide: FIELD_DICT_TOKEN,
+                    useValue: defaultInputs
+                }
+            ]
+        };
+    }
+}
