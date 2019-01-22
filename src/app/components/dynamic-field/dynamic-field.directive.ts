@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Field } from '../../types';
 import { FieldConfig } from '../../types';
 import { DynamicFieldService } from '../../services/dynamic-field.service';
-import { PreloadService } from '../../services/preload.service';
 
 @Directive({
     selector: '[dynamicField]'
@@ -18,7 +17,6 @@ export class DynamicFieldDirective implements Field, OnInit, OnDestroy {
         private resolver: ComponentFactoryResolver,
         private container: ViewContainerRef,
         private dynamicFieldService: DynamicFieldService,
-        private preloadService: PreloadService,
         private fb: FormBuilder,
     ) { }
 

@@ -9,7 +9,14 @@ import { FormNavModule } from './nav/nav-app';
 import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicFieldService } from './app/services/dynamic-field.service';
-import { PreloadService, Components } from './app/services/preload.service';
+import { FormInputComponent } from './app/components/form-input/form-input.component';
+import { FormSelectComponent } from './app/components/form-select/form-select.component';
+import { FormTextEditorComponent } from './app/components/form-text-editor/form-text-editor.component';
+import { FormCheckboxComponent } from './app/components/form-checkbox/form-checkbox.component';
+import { FormRadioComponent } from './app/components/form-radio/form-radio.component';
+import { FormTextareaComponent } from './app/components/form-textarea/form-textarea.component';
+import { FormInputHiddenComponent } from './app/components/form-hidden/form-hidden.component';
+import { FormLabelComponent } from './app/components/form-label/form-label.component';
 
 @NgModule({
     imports: [
@@ -22,25 +29,52 @@ import { PreloadService, Components } from './app/services/preload.service';
         FormNavModule
     ],
     declarations: [
-        Components,
         DynamicFieldDirective,
         DynamicFormComponent,
-        DynamicPanelComponent
+        DynamicPanelComponent,
+
+        FormInputComponent,
+        FormSelectComponent,
+        FormTextEditorComponent,
+        FormTextareaComponent,
+        FormInputHiddenComponent,
+        FormRadioComponent,
+        FormCheckboxComponent,
+        FormLabelComponent
     ],
     exports: [
         DynamicFormComponent
     ],
     entryComponents: [
-        Components
+        FormInputComponent,
+        FormSelectComponent,
+        FormTextEditorComponent,
+        FormTextareaComponent,
+        FormInputHiddenComponent,
+        FormRadioComponent,
+        FormCheckboxComponent,
+        FormLabelComponent
     ],
     providers: [
-        DynamicFieldService,
-        PreloadService
+        DynamicFieldService
     ],
     schemas: [
         NO_ERRORS_SCHEMA
     ]
 })
-export class NgxFormModule { }
+export class NgxFormModule {
+
+    constructor(private dynamicFieldService: DynamicFieldService) {
+        this.dynamicFieldService.addField('text', FormInputComponent);
+        this.dynamicFieldService.addField('select', FormSelectComponent);
+        this.dynamicFieldService.addField('editor', FormTextEditorComponent);
+        this.dynamicFieldService.addField('textarea', FormTextareaComponent);
+        this.dynamicFieldService.addField('hidden', FormInputHiddenComponent);
+        this.dynamicFieldService.addField('radio', FormRadioComponent);
+        this.dynamicFieldService.addField('checkbox', FormCheckboxComponent);
+        this.dynamicFieldService.addField('label', FormLabelComponent);
+    }
+
+}
 
 export { DynamicFieldService };

@@ -1,11 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
 import { DynamicPanelComponent } from '../dynamic-panel/dynamic-panel.component';
 import { DynamicFieldDirective } from '../../components/dynamic-field/dynamic-field.directive';
 import { Component, NgModule } from "@angular/core";
 import { DynamicFormComponent, ConditionType } from "./dynamic-form.component";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DynamicFieldService } from "../../services/dynamic-field.service";
-import { PreloadService } from '../../services/preload.service';
 import { FormInputComponent } from '../../components/form-input/form-input.component';
 import { CommonModule } from '@angular/common';
 import { FormSelectComponent } from '../../components/form-select/form-select.component';
@@ -51,11 +50,18 @@ describe('DynamicFormComponent', () => {
         TestBed.configureTestingModule({
             declarations: [DynamicFieldDirective, TestComponent, DynamicFormComponent, DynamicPanelComponent],
             imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule],
-            providers: [DynamicFieldService, PreloadService]
+            providers: [DynamicFieldService]
         })
             .compileComponents()
             .then(() => {
                 fixture = TestBed.createComponent(TestComponent);
+
+                const injector = getTestBed();
+                const service: DynamicFieldService = injector.get(DynamicFieldService);
+                service.addField('text', FormInputComponent);
+                service.addField('hidden', FormInputHiddenComponent);
+                service.addField('select', FormSelectComponent);
+
                 component = fixture.componentInstance;
                 component.formConfig = {
                     form: [{
@@ -110,8 +116,14 @@ describe('DynamicFormComponent Core', () => {
         TestBed.configureTestingModule({
             declarations: [DynamicFieldDirective, TestComponent, DynamicFormComponent, DynamicPanelComponent],
             imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule],
-            providers: [DynamicFieldService, PreloadService]
+            providers: [DynamicFieldService]
         }).compileComponents();
+
+        const injector = getTestBed();
+        const service: DynamicFieldService = injector.get(DynamicFieldService);
+        service.addField('text', FormInputComponent);
+        service.addField('hidden', FormInputHiddenComponent);
+
     });
 
     beforeEach(() => {
