@@ -1,10 +1,16 @@
-import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicFieldDirective } from "../../components/dynamic-field/dynamic-field.directive";
 import { DebugElement } from "@angular/core";
 import { DynamicPanelComponent } from './dynamic-panel.component';
-import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup } from '@angular/forms';
-import { DynamicFieldService } from "../../services/dynamic-field.service";
+import { ReactiveFormsModule, FormsModule, FormGroup } from '@angular/forms';
+import { FIELD_DICT_TOKEN, FieldDictionary } from '../../types';
+import { FormInputComponent } from '../../components/form-input/form-input.component';
+import { FormInputHiddenComponent } from '../../components/form-hidden/form-hidden.component';
 
+const defaultInputs: FieldDictionary = {
+    text: FormInputComponent,
+    hidden: FormInputHiddenComponent
+}
 
 describe('DynamicPanelComponent', () => {
     let component: DynamicPanelComponent;
@@ -39,7 +45,7 @@ describe('DynamicPanelComponent', () => {
                 ReactiveFormsModule
             ],
             declarations: [DynamicPanelComponent, DynamicFieldDirective],
-            providers: [DynamicFieldService]
+            providers: [ { provide: FIELD_DICT_TOKEN, useValue: defaultInputs }]
         })
             .compileComponents();
     }));

@@ -2,13 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicFieldDirective } from "./dynamic-field.directive"
 import { By } from '@angular/platform-browser';
-import { FieldConfig } from "../../types"
-import { DynamicFieldService } from "../../services/dynamic-field.service";
+import { FieldConfig, FieldDictionary, FIELD_DICT_TOKEN } from "../../types";
 import { FormInputComponent } from "../form-input/form-input.component";
-import {FormInputHiddenComponent} from '../form-hidden/form-hidden.component';
+import { FormInputHiddenComponent } from '../form-hidden/form-hidden.component';
+
+const defaultInputs: FieldDictionary = {
+    text: FormInputComponent,
+    hidden: FormInputHiddenComponent
+}
 
 @Component({
     template: `<form [formGroup]="form"><div dynamicField [field]="field" [group]="form"></div></form>`
@@ -38,13 +42,8 @@ describe('DynamicFieldDirective', () => {
         TestBed.configureTestingModule({
             declarations: [DynamicFieldDirective, TestComponent],
             imports: [FormsModule, ReactiveFormsModule, TestModule],
-            providers: [DynamicFieldService]
+            providers: [{ provide: FIELD_DICT_TOKEN, useValue: defaultInputs }]
         });
-
-        const injector = getTestBed();
-        const service:DynamicFieldService = injector.get(DynamicFieldService);
-        service.addField('text', FormInputComponent);
-        service.addField('hidden', FormInputHiddenComponent);
 
         fixture = TestBed.createComponent(TestComponent);
         component = fixture.componentInstance;
@@ -157,7 +156,7 @@ describe('TestNoGroup', () => {
         TestBed.configureTestingModule({
             declarations: [DynamicFieldDirective, TestNoGroup],
             imports: [FormsModule, ReactiveFormsModule, TestModule],
-            providers: [DynamicFieldService]
+            providers: [{ provide: FIELD_DICT_TOKEN, useValue: defaultInputs }]
         });
         TestBed.createComponent(TestNoGroup);
     });
@@ -177,7 +176,7 @@ describe('TestNoInput', () => {
         TestBed.configureTestingModule({
             declarations: [DynamicFieldDirective, TestNoInput],
             imports: [FormsModule, ReactiveFormsModule, TestModule],
-            providers: [DynamicFieldService]
+            providers: [{ provide: FIELD_DICT_TOKEN, useValue: defaultInputs }]
         });
 
         fixture = TestBed.createComponent(TestNoInput);

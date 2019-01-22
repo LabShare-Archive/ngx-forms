@@ -1,5 +1,6 @@
 import { FormGroup } from '@angular/forms';
 import { FieldConfig } from './types';
+import { InjectionToken } from '@angular/core';
 
 export interface ILookup {
     name: string; // Name of lookup from lookup payload
@@ -32,3 +33,9 @@ export interface Field {
     group: FormGroup;
     model?: Object;
 }
+
+export type Type<T> = new (...args: any[]) => T;
+
+export interface FieldDictionary { [key: string]: Type<Field>; }
+
+export const FIELD_DICT_TOKEN = new InjectionToken<FieldDictionary>('fields');
