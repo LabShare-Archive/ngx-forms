@@ -39,3 +39,35 @@ export type Type<T> = new (...args: any[]) => T;
 export interface FieldDictionary { [key: string]: Type<Field>; }
 
 export const FIELD_DICT_TOKEN = new InjectionToken<FieldDictionary>('fields');
+
+export const enum ConditionType {
+    And = 'and',
+    Or = 'or'
+}
+
+export interface FormConfig {
+    form: PanelGroup[];
+}
+
+export interface ConditionRule {
+    field: string;
+    equals: any[] | any;
+}
+
+export interface EnableWhenConfig {
+    type?: ConditionType;
+    rules: ConditionRule[];
+}
+
+export interface PanelConfig {
+    label?: string;
+    fields?: FieldConfig[];
+    enableWhen?: any;
+}
+
+export interface PanelGroup {
+    label?: string;
+    fields?: FieldConfig[];
+    panels?: PanelConfig[];
+    enableWhen?: EnableWhenConfig;
+}
