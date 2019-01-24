@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicPanelComponent } from '../dynamic-panel/dynamic-panel.component';
 import { DynamicFieldDirective } from '../../components/dynamic-field/dynamic-field.directive';
 import { Component, NgModule } from "@angular/core";

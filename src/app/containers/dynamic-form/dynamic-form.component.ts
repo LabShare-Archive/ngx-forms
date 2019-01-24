@@ -60,7 +60,7 @@ export class DynamicFormComponent implements OnInit {
         if (!group.enableWhen) { return; }
         const enableWhen = group.enableWhen;
 
-        if (enableWhen.rules.length == 0) { return true; }
+        if (!enableWhen.rules.length) { return true; }
 
         const checkRule = rule => {
             let field;
@@ -71,7 +71,7 @@ export class DynamicFormComponent implements OnInit {
 
         if (enableWhen.type === ConditionType.Or || !enableWhen.type) {
             enabled = enableWhen.rules.some(checkRule);
-        };
+        }
 
         if (enableWhen.type === ConditionType.And) {
             enabled = enableWhen.rules.every(checkRule);
