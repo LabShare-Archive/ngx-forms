@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/test
 import { DynamicPanelComponent } from '../dynamic-panel/dynamic-panel.component';
 import { DynamicFieldDirective } from '../../components/dynamic-field/dynamic-field.directive';
 import { Component, NgModule } from "@angular/core";
-import { DynamicFormComponent, ConditionType } from "./dynamic-form.component";
+import { DynamicFormComponent } from "./dynamic-form.component";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FormInputComponent } from '../../components/form-input/form-input.component';
 import { CommonModule } from '@angular/common';
@@ -10,15 +10,15 @@ import { FormSelectComponent } from '../../components/form-select/form-select.co
 import { FormInputHiddenComponent } from '../../components/form-hidden/form-hidden.component';
 import { By } from '@angular/platform-browser';
 import { FormNavModule } from '../../../nav/nav-app';
-import { FieldDictionary, FIELD_DICT_TOKEN } from '../../types';
+import { FieldDictionary, FIELD_DICT_TOKEN, ConditionType } from '../../types';
 
-interface IFormConfig {
+interface FormConfig {
     form: any;
     fields: any[]
 }
 
 interface IDynamicForm {
-    formConfig: IFormConfig
+    formConfig: FormConfig
     data: any
     dynamicForm: any
     lookups: any
@@ -233,6 +233,12 @@ describe('DynamicFormComponent Core', () => {
                 expect(component.checkRules(cfg, model)).toBeTruthy();
             });
 
+            it('should run one rule, wrap equals, and return true', () => {
+                const model = { title: 'test' };
+                const cfg = { enableWhen: { rules: [{ field: "title", equals: "test" }] } };
+                expect(component.checkRules(cfg, model)).toBeTruthy();
+            });
+
             it('should run one rule and return false', () => {
                 const model = { title: 'test' };
                 const cfg = { enableWhen: { rules: [{ field: "title", equals: ["test1"] }] } };
@@ -319,14 +325,6 @@ describe('DynamicFormComponent Core', () => {
                     enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
                 };
                 expect(component.checkRules(cfg, {})).toBeFalsy();
-            });
-
-            it('should throw error', () => {
-                expect(() => {
-                    const model = { title: 'test', count: 1 };
-                    const cfg = { enableWhen: { rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1222] }] } };
-                    component.checkRules(cfg, model)
-                }).toThrowError('enableWhen type must be defined');
             });
 
         });

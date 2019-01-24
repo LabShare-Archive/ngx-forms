@@ -1,38 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FieldConfig, ILookup } from '../../types';
-
-export const enum ConditionType {
-    And = 'and',
-    Or = 'or'
-}
-
-export interface IFormConfig {
-    form: PanelGroup[];
-}
-
-export interface ConditionRule {
-    field: string;
-    equals: any[];
-}
-
-export interface EnableWhenConfig {
-    type?: ConditionType;
-    rules: ConditionRule[];
-}
-
-export interface PanelConfig {
-    label?: string;
-    fields?: FieldConfig[];
-    enableWhen?: any;
-}
-
-export interface PanelGroup {
-    label?: string;
-    fields?: FieldConfig[];
-    panels?: PanelConfig[];
-    enableWhen?: EnableWhenConfig;
-}
+import { FieldConfig, ILookup, FormConfig, PanelGroup, ConditionType } from '../../types';
 
 @Component({
     exportAs: 'dynamicForm',
@@ -41,7 +9,7 @@ export interface PanelGroup {
     styles: [require('./dynamic-form.component.scss').toString()]
 })
 export class DynamicFormComponent implements OnInit {
-    @Input() formConfig: IFormConfig;
+    @Input() formConfig: FormConfig;
     @Input() model: any;
     @Input() lookups: object;
 
@@ -92,36 +60,24 @@ export class DynamicFormComponent implements OnInit {
         if (!group.enableWhen) { return; }
         const enableWhen = group.enableWhen;
 
-        // TODO: add check if `equals is not array and wrap it equals = [equals]
-        // TODO: Refactor this code
+        if (enableWhen.rules.length == 0) { return true; }
 
-        if (enableWhen.rules.length === 1) {
-            const rule = enableWhen.rules[0];
+        const checkRule = rule => {
             let field;
             const value = data[rule.field] || (field = group.fields.find(f => f.name === rule.field)) && field.value || '';
-            enabled = rule.equals.indexOf(value) > -1;
+            if (!Array.isArray(rule.equals)) { rule.equals = [rule.equals]; }
+            return rule.equals.indexOf(value) > -1;
+        };
+
+        if (enableWhen.type === ConditionType.Or || !enableWhen.type) {
+            enabled = enableWhen.rules.some(checkRule);
+        };
+
+        if (enableWhen.type === ConditionType.And) {
+            enabled = enableWhen.rules.every(checkRule);
         }
 
-        if (enableWhen.rules.length > 1) {
-            if (!enableWhen.type) { throw new Error('enableWhen type must be defined'); }
-
-            if (enableWhen.type === ConditionType.Or) {
-                enabled = false;
-                enableWhen.rules.forEach(rule => {
-                    let field;
-                    const value = data[rule.field] || (field = group.fields.find(f => f.name === rule.field)) && field.value || '';
-                    enabled = enabled || rule.equals.indexOf(value) > -1;
-                });
-            }
-
-            if (enableWhen.type === ConditionType.And) {
-                enableWhen.rules.forEach(rule => {
-                    let field;
-                    const value = data[rule.field] || (field = group.fields.find(f => f.name === rule.field)) && field.value || '';
-                    enabled = enabled && rule.equals.indexOf(value) > -1;
-                });
-            }
-        }
+        // leave if() conditions in case other logic operators needed (XOR, etc)
 
         return enabled;
     }
