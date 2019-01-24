@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/LabShare/ngx-forms/compare/v3.2.1...v4.0.0) (2019-01-22)
+
+
+### Features
+
+* fields service replaces with provider ([6d1ed3c](https://github.com/LabShare/ngx-forms/commit/6d1ed3c))
+
+
+### BREAKING CHANGES
+
+* custom fields now injected using forRoot
+
 ## [3.2.1](https://github.com/LabShare/ngx-forms/compare/v3.2.0...v3.2.1) (2019-01-18)
 
 
