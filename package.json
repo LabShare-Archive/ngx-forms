@@ -1,6 +1,6 @@
 {
   "name": "@labshare/ngx-forms",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "main": "dist/ngx-forms",
   "typings": "index.d.ts",
   "scripts": {
@@ -57,7 +57,7 @@
     "karma-jasmine": "^2.0.0",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.7",
-    "karma-typescript": "^3.0.8",
+    "karma-typescript": "^4.0.0",
     "karma-webpack": "^4.0.0-beta.0",
     "node-sass": "^4.9.0",
     "null-loader": "^0.1.1",

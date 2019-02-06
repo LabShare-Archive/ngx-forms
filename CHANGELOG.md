@@ -1,3 +1,11 @@
+## [4.0.1](https://github.com/LabShare/ngx-forms/compare/v4.0.0...v4.0.1) (2019-01-24)
+
+
+### Bug Fixes
+
+* lint fixes ([8b7b16e](https://github.com/LabShare/ngx-forms/commit/8b7b16e))
+* refactored rules and added wrap rule ([0e301b7](https://github.com/LabShare/ngx-forms/commit/0e301b7))
+
 # [4.0.0](https://github.com/LabShare/ngx-forms/compare/v3.2.1...v4.0.0) (2019-01-22)
 
 
