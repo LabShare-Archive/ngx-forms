@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/LabShare/ngx-forms/compare/v4.0.1...v4.1.0) (2019-02-06)
+
+
+### Features
+
+* added Datepicker ([7cca024](https://github.com/LabShare/ngx-forms/commit/7cca024))
+
 ## [4.0.1](https://github.com/LabShare/ngx-forms/compare/v4.0.0...v4.0.1) (2019-01-24)
 
 
