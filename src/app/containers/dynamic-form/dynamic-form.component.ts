@@ -19,7 +19,6 @@ export class DynamicFormComponent implements OnInit {
     get value() { return this.form.value; }
     get rawValue() { return this.form.getRawValue(); }
 
-
     // TODO: convert this into visitor or something like that
 
     public ngOnInit(): void {
@@ -58,6 +57,10 @@ export class DynamicFormComponent implements OnInit {
     public checkRules(group: PanelGroup, data): boolean {
         let enabled = true;
         if (!group.enableWhen) { return; }
+
+        // todo: refactor similar to ngx-publications
+        // todo: merge ngx-forms and ngx-pubs
+
         const enableWhen = group.enableWhen;
 
         if (!enableWhen.rules.length) { return true; }
