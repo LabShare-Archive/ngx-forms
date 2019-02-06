@@ -16,7 +16,9 @@ import { FormRadioComponent } from './app/components/form-radio/form-radio.compo
 import { FormTextareaComponent } from './app/components/form-textarea/form-textarea.component';
 import { FormInputHiddenComponent } from './app/components/form-hidden/form-hidden.component';
 import { FormLabelComponent } from './app/components/form-label/form-label.component';
+import { FormDateComponent } from './app/components/form-date/form-date.component';
 import { FIELD_DICT_TOKEN, FieldDictionary } from './app/types';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const defaultInputs: FieldDictionary = {
     text: FormInputComponent,
@@ -26,7 +28,8 @@ const defaultInputs: FieldDictionary = {
     hidden: FormInputHiddenComponent,
     radio: FormRadioComponent,
     checkbox: FormCheckboxComponent,
-    label: FormLabelComponent
+    label: FormLabelComponent,
+    date: FormDateComponent
 };
 
 @NgModule({
@@ -37,13 +40,13 @@ const defaultInputs: FieldDictionary = {
         FormsModule,
         QuillModule,
         TagInputModule,
-        FormNavModule
+        FormNavModule,
+        NgbModule
     ],
     declarations: [
         DynamicFieldDirective,
         DynamicFormComponent,
         DynamicPanelComponent,
-
         FormInputComponent,
         FormSelectComponent,
         FormTextEditorComponent,
@@ -51,7 +54,8 @@ const defaultInputs: FieldDictionary = {
         FormInputHiddenComponent,
         FormRadioComponent,
         FormCheckboxComponent,
-        FormLabelComponent
+        FormLabelComponent,
+        FormDateComponent
     ],
     exports: [
         DynamicFormComponent
@@ -64,7 +68,8 @@ const defaultInputs: FieldDictionary = {
         FormInputHiddenComponent,
         FormRadioComponent,
         FormCheckboxComponent,
-        FormLabelComponent
+        FormLabelComponent,
+        FormDateComponent
     ],
     providers: [
         {
