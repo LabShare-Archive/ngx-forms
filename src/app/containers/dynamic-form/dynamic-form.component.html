@@ -1,18 +1,2 @@
-<div class="row">
-    <div class="col-md-2">
-        <form-nav [form]="form"></form-nav>
-    </div>
-    <div class="col-md-10" [formGroup]="form">
-        <div *ngFor="let panel of formConfig.form" [navTab]="panel">
-
-            <ng-container *ngIf="panel.fields">
-                <dynamic-panel [panelConfig]="panel" [group]="form" [model]="model" [hidden]="panel.hidden"></dynamic-panel>
-            </ng-container>
-
-            <ng-container *ngIf="panel.panels">
-                <dynamic-panel *ngFor="let panelConfig of panel.panels" [panelConfig]="panelConfig" [group]="form"
-                    [model]="model" [hidden]="panel.hidden"></dynamic-panel>
-            </ng-container>
-        </div>
-    </div>
-</div>
+test container
+<ng-template ad-host></ng-template>

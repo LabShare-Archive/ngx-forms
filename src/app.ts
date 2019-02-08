@@ -19,6 +19,7 @@ import { FormLabelComponent } from './app/components/form-label/form-label.compo
 import { FormDateComponent } from './app/components/form-date/form-date.component';
 import { FIELD_DICT_TOKEN, FieldDictionary } from './app/types';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GroupLayoutFormComponent } from './app/containers/group-layout/group-layout.component';
 
 const defaultInputs: FieldDictionary = {
     text: FormInputComponent,
@@ -55,7 +56,8 @@ const defaultInputs: FieldDictionary = {
         FormRadioComponent,
         FormCheckboxComponent,
         FormLabelComponent,
-        FormDateComponent
+        FormDateComponent,
+        GroupLayoutFormComponent
     ],
     exports: [
         DynamicFormComponent
@@ -69,7 +71,8 @@ const defaultInputs: FieldDictionary = {
         FormRadioComponent,
         FormCheckboxComponent,
         FormLabelComponent,
-        FormDateComponent
+        FormDateComponent,
+        GroupLayoutFormComponent
     ],
     providers: [
         {

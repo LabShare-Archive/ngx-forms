@@ -1,7 +1,6 @@
 import { ComponentRef, Directive, Input, OnInit, ViewContainerRef, ComponentFactoryResolver, OnDestroy, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { Field, Type, FieldDictionary, FIELD_DICT_TOKEN } from '../../types';
-import { FieldConfig } from '../../types';
+import { Field, FieldDictionary, FIELD_DICT_TOKEN, FieldConfig } from '../../types';
 
 @Directive({
     selector: '[dynamicField]'

@@ -47,6 +47,7 @@ export const enum ConditionType {
 
 export interface FormConfig {
     form: PanelGroup[];
+    layout: any;
 }
 
 export interface ConditionRule {
