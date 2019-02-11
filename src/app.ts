@@ -98,3 +98,9 @@ export class NgxFormModule {
         };
     }
 }
+
+
+// TODO: next
+// create provider for layout
+// add ability to inject custom layouts within a module (by importing provider)
+// create different default layouts for ngx-forms 
