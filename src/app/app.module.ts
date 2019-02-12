@@ -59,10 +59,7 @@ export class NgxFormModule {
     }
 }
 
-
 // TODO: next
-// unit tests
 // create different default layouts for ngx-forms
 // make nav part of group-layout
-
 // individual field layout ????

@@ -124,23 +124,6 @@ describe('GroupComponent Core', () => {
         fixture.detectChanges();
     });
 
-    // TODO: move to dynamic form test
-    // it('should call changes()', () => { 
-    //     expect(component.changes).toEqual(component.form.valueChanges);
-    // });
-
-    // it('should call valid()', () => {
-    //     expect(component.valid).toEqual(component.form.valid);
-    // });
-
-    // it('should call value()', () => {
-    //     expect(component.value).toEqual(component.form.value);
-    // });
-
-    // it('should call value()', () => {
-    //     expect(component.rawValue).toEqual(component.form.getRawValue());
-    // });
-
     describe('ngOnInit()', () => {
 
         it('should create group', () => {
