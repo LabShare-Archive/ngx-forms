@@ -30,6 +30,7 @@ class TestComponent {
     data: {};
     dynamicForm: {};
     lookups: {};
+    model: any
 }
 
 @NgModule({
