@@ -1,3 +1,3 @@
-export { FieldConfig, Field } from "./src/app/types";
-export { NgxFormModule } from "./src/app";
-export { DynamicFormComponent } from "./src/app/containers/dynamic-form/dynamic-form.component";
+export { FieldConfig, Field } from "./src/types";
+export { NgxFormModule } from "./src/app/app.module";
+export { DynamicFormDirective } from "./src/app/dynamic-form/dynamic-form.component";

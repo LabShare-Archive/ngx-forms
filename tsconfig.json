@@ -25,7 +25,7 @@
     }
   },
   "files": [
-    "src/app.ts",
+    "src/app/app.module.ts",
     "index.d.ts"
   ],
   "compileOnSave": false,
