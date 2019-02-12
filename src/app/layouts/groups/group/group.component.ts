@@ -1,17 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { FieldConfig, ILookup, FormConfig, PanelGroup, ConditionType, Layout } from '../../../../types'; // todo: move specific types here
+import { Component, OnInit } from '@angular/core';
+import { FieldConfig, ILookup, PanelGroup, ConditionType } from '../../../../types'; // todo: move specific types here
+import { BaseLayout } from '../../base-layout';
 
 @Component({
     selector: 'layout-group-group',
     template: require('./group.component.html'),
     styles: [require('./group.component.scss').toString()]
 })
-export class GroupComponent implements OnInit, Layout {
-    @Input() formConfig: FormConfig;
-    @Input() model: any;
-    @Input() lookups: object;
-    @Input() formGroup: FormGroup;
+export class GroupComponent extends BaseLayout implements OnInit {
 
     public ngOnInit(): void {
         let fields: FieldConfig[] = [];
