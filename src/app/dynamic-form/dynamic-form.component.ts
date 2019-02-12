@@ -11,17 +11,17 @@ export class DynamicFormDirective implements OnInit {
     @Input() model: any;
     @Input() lookups: object;
 
-    public form: FormGroup;
-    get changes() { return this.form.valueChanges; }
-    get valid() { return this.form.valid; }
-    get value() { return this.form.value; }
-    get rawValue() { return this.form.getRawValue(); }
+    public formGroup: FormGroup;
+    get changes() { return this.formGroup.valueChanges; }
+    get valid() { return this.formGroup.valid; }
+    get value() { return this.formGroup.value; }
+    get rawValue() { return this.formGroup.getRawValue(); }
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
         private container: ViewContainerRef,
         @Inject(LAYOUTS_TOKEN) private layouts: LayoutDictionary) {
-        this.form = new FormGroup({});
+        this.formGroup = new FormGroup({});
     }
 
     public ngOnInit(): void {
@@ -31,7 +31,7 @@ export class DynamicFormDirective implements OnInit {
         const componentReference = this.layouts[this.formConfig.layout];
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory<Layout>(componentReference);
         const component = this.container.createComponent(componentFactory);
-        component.instance.form = this.form;
+        component.instance.formGroup = this.formGroup;
         component.instance.formConfig = this.formConfig;
         component.instance.model = this.model;
     }

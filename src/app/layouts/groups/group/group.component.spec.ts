@@ -1,5 +1,5 @@
 import { Component, NgModule } from "@angular/core";
-import { Field, FieldConfig, FieldDictionary, FIELD_DICT_TOKEN, ConditionType, LAYOUTS_TOKEN } from "../../../../types";
+import { Field, FieldConfig, FieldDictionary, FIELD_DICT_TOKEN, ConditionType, LAYOUTS_TOKEN, FormConfig } from "../../../../types";
 import { FormGroup, ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { CommonModule } from "@angular/common";
@@ -111,7 +111,7 @@ describe('GroupComponent Core', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(GroupComponent);
         component = fixture.componentInstance;
-        component.form = new FormGroup({})
+        component.formGroup = new FormGroup({})
         component.formConfig = {
             form: [
                 { label: 'fields and panels', panels: [{ label: 'fields', fields: [{ type: 'text', name: 'title', required: true }] }] },
@@ -119,7 +119,7 @@ describe('GroupComponent Core', () => {
                 { label: 'no fields with panels', panels: [{ label: 'no fields' }] },
                 { label: 'no fields, no panels' }
             ]
-        };
+        } as FormConfig;
         component.model = model;
         fixture.detectChanges();
     });
@@ -127,42 +127,42 @@ describe('GroupComponent Core', () => {
     describe('ngOnInit()', () => {
 
         it('should create group', () => {
-            expect(component.form).toBeDefined();
+            expect(component.formGroup).toBeDefined();
         });
 
         describe('Lookup Expansion', () => {
 
             it('should not find lookup when no lookups were passed', () => {
                 component.lookups = null;
-                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: 'test' }] }] };
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: 'test' }] }] } as FormConfig;
                 component.ngOnInit();
                 expect(component.formConfig.form[0].fields[0].options).toBeUndefined();
             });
 
             it('should not find lookup when no lookups found', () => {
                 component.lookups = { test: ['a', 'b', 'c'] };;
-                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title' }] }] };
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title' }] }] } as FormConfig;
                 component.ngOnInit();
                 expect(component.formConfig.form[0].fields[0].options).toBeUndefined();
             });
 
             it('should not copy lookup with wrong name', () => {
                 component.lookups = { test: ['a', 'b', 'c'] };;
-                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: 'test1' }] }] };
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: 'test1' }] }] } as FormConfig;
                 component.ngOnInit();
                 expect(component.formConfig.form[0].fields[0].options).toBeUndefined();
             });
 
             it('should copy lookup', () => {
                 component.lookups = { test: ['a', 'b', 'c'] };;
-                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: 'test' }] }] };
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: 'test' }] }] } as FormConfig;
                 component.ngOnInit();
                 expect(component.formConfig.form[0].fields[0].options).toEqual(['a', 'b', 'c']);
             });
 
             it('should extract lookup', () => {
                 component.lookups = { test: [{ t: 'a' }, { t: 'b' }, { t: 'c' }] };;
-                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: { name: 'test', extract: 't' } }] }] };
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: { name: 'test', extract: 't' } }] }] } as FormConfig;
                 component.ngOnInit();
                 expect(component.formConfig.form[0].fields[0].options).toEqual(['a', 'b', 'c']);
             });
@@ -173,14 +173,14 @@ describe('GroupComponent Core', () => {
 
             it('should enable the fields', () => {
                 component.model = { title: 'test' };
-                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title' }], enableWhen: { rules: [{ field: "title", equals: ["test"] }] } }] };
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title' }], enableWhen: { rules: [{ field: "title", equals: ["test"] }] } }] } as FormConfig;
                 component.ngOnInit();
                 expect(component.formConfig.form[0].fields[0].disabled).toBeFalsy();
             });
 
             it('should disable the fields', () => {
                 component.model = { title: 'test' };
-                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title' }], enableWhen: { rules: [{ field: "title", equals: ["test1"] }] } }] };
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title' }], enableWhen: { rules: [{ field: "title", equals: ["test1"] }] } }] } as FormConfig;
                 component.ngOnInit();
                 expect(component.formConfig.form[0].fields[0].disabled).toBeTruthy();
             });
