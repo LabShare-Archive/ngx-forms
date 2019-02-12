@@ -1,3 +1,37 @@
+# [5.0.0](https://github.com/LabShare/ngx-forms/compare/v4.1.0...v5.0.0) (2019-02-12)
+
+
+### Bug Fixes
+
+* fixed tests ([a8e3b7b](https://github.com/LabShare/ngx-forms/commit/a8e3b7b))
+* layout injection fixed files ([9d930f6](https://github.com/LabShare/ngx-forms/commit/9d930f6))
+* removed unneeded files ([03c1589](https://github.com/LabShare/ngx-forms/commit/03c1589))
+
+
+### Features
+
+* added ability to inject layouts ([b05c2e5](https://github.com/LabShare/ngx-forms/commit/b05c2e5))
+
+
+### BREAKING CHANGES
+
+* added ability to inject layouts
+
+# [4.1.0](https://github.com/LabShare/ngx-forms/compare/v4.0.1...v4.1.0) (2019-02-06)
+
+
+### Features
+
+* added Datepicker ([7cca024](https://github.com/LabShare/ngx-forms/commit/7cca024))
+
+## [4.0.1](https://github.com/LabShare/ngx-forms/compare/v4.0.0...v4.0.1) (2019-01-24)
+
+
+### Bug Fixes
+
+* lint fixes ([8b7b16e](https://github.com/LabShare/ngx-forms/commit/8b7b16e))
+* refactored rules and added wrap rule ([0e301b7](https://github.com/LabShare/ngx-forms/commit/0e301b7))
+
 # [4.0.0](https://github.com/LabShare/ngx-forms/compare/v3.2.1...v4.0.0) (2019-01-22)
 
 
