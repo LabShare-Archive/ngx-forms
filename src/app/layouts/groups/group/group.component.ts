@@ -14,9 +14,6 @@ export class GroupComponent implements OnInit {
     @Input() form: FormGroup;
 
     public ngOnInit(): void {
-        console.log('recieved form group', this.form);
-        // this.form = new FormGroup({});
-
         let fields: FieldConfig[] = [];
         this.formConfig.form.forEach(gr => {
             if (gr.fields) { fields = fields.concat(gr.fields); }

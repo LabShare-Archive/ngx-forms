@@ -1,15 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DynamicFieldDirective } from "../../components/dynamic-field/dynamic-field.directive";
-import { DebugElement } from "@angular/core";
+import { DebugElement, Component } from "@angular/core";
 import { PanelComponent } from './panel.component';
 import { ReactiveFormsModule, FormsModule, FormGroup } from '@angular/forms';
-import { FIELD_DICT_TOKEN, FieldDictionary } from '../../types';
-import { FormInputComponent } from '../../components/form-input/form-input.component';
-import { FormInputHiddenComponent } from '../../components/form-hidden/form-hidden.component'; // todo: mock fields
+import { FIELD_DICT_TOKEN, FieldDictionary, FieldConfig, Field } from '../../../../types';
+import { CommonModule } from '@angular/common';
+import { DynamicFieldModule } from '../../../dynamic-field/dynamic-field.module';
+
+@Component({
+    selector: 'form-input'
+})
+export class FormInputComponent implements Field {
+    field: FieldConfig;
+    group: FormGroup;
+}
 
 const defaultInputs: FieldDictionary = {
-    text: FormInputComponent,
-    hidden: FormInputHiddenComponent
+    text: FormInputComponent
 }
 
 describe('PanelComponent', () => {
@@ -41,11 +47,13 @@ describe('PanelComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
+                CommonModule,
                 FormsModule,
-                ReactiveFormsModule
+                ReactiveFormsModule,
+                DynamicFieldModule
             ],
-            declarations: [PanelComponent, DynamicFieldDirective],
-            providers: [ { provide: FIELD_DICT_TOKEN, useValue: defaultInputs }]
+            declarations: [PanelComponent],
+            providers: [{ provide: FIELD_DICT_TOKEN, useValue: defaultInputs }]
         })
             .compileComponents();
     }));

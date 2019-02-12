@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Field } from '../../types';
-import { FieldConfig } from '../../types';
+import { Field, FieldConfig } from '../../../types';
+
 @Component({
     selector: 'form-date',
     template: require('./form-date.component.html')
 })
-export class FormDateComponent implements Field  {
+export class FormDateComponent implements Field {
     field: FieldConfig;
     group: FormGroup;
 }

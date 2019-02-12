@@ -5,13 +5,19 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, FormControl }
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicFieldDirective } from "./dynamic-field.directive"
 import { By } from '@angular/platform-browser';
-import { FieldConfig, FieldDictionary, FIELD_DICT_TOKEN } from "../../types";
-import { FormInputComponent } from "../form-input/form-input.component";
-import { FormInputHiddenComponent } from '../form-hidden/form-hidden.component'; // mock this inputs instead of importing
+import { FieldConfig, FieldDictionary, FIELD_DICT_TOKEN, Field } from "../../types";
+
+@Component({
+    selector: 'form-input',
+    template: '<div [formGroup]="group"><input [formControlName]="field.name"></div>'
+})
+export class FormInputComponent implements Field {
+    field: FieldConfig;
+    group: FormGroup;
+}
 
 const defaultInputs: FieldDictionary = {
     text: FormInputComponent,
-    hidden: FormInputHiddenComponent
 }
 
 @Component({
