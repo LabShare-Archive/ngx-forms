@@ -20,10 +20,6 @@ const defaultInputs: FieldDictionary = {
     text: FormInputComponent
 }
 
-const layouts = {
-    groups: BasicLayoutComponent
-}
-
 @Component({
     template: `<dynamic-form [formConfig]="formConfig" #form="dynamicForm" [model]="data" [lookups]="lookups"></dynamic-form>`
 })
@@ -57,7 +53,7 @@ describe('BasicLayoutComponent Core', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(BasicLayoutComponent);
         component = fixture.componentInstance;
-        component.form = new FormGroup({})
+        component.formGroup = new FormGroup({})
         component.formConfig = {
             form: [
                 { label: 'fields and panels', panels: [{ label: 'fields', fields: [{ type: 'text', name: 'title', required: true }] }] },
@@ -73,7 +69,7 @@ describe('BasicLayoutComponent Core', () => {
     describe('ngOnInit()', () => {
 
         it('should create group', () => {
-            expect(component.form).toBeDefined();
+            expect(component.formGroup).toBeDefined();
         });
 
     });

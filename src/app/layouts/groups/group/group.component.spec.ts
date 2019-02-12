@@ -111,7 +111,7 @@ describe('GroupComponent Core', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(GroupComponent);
         component = fixture.componentInstance;
-        component.form = new FormGroup({})
+        component.formGroup = new FormGroup({})
         component.formConfig = {
             form: [
                 { label: 'fields and panels', panels: [{ label: 'fields', fields: [{ type: 'text', name: 'title', required: true }] }] },
@@ -127,7 +127,7 @@ describe('GroupComponent Core', () => {
     describe('ngOnInit()', () => {
 
         it('should create group', () => {
-            expect(component.form).toBeDefined();
+            expect(component.formGroup).toBeDefined();
         });
 
         describe('Lookup Expansion', () => {
