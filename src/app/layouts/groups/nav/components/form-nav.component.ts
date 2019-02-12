@@ -34,9 +34,10 @@ export class FormNavComponent implements OnDestroy, AfterContentInit {
 
             if (group.controls.length === 0) { group.valid = true; } else {
                 group.controls.forEach((control: AbstractControl) => {
-                    this.subscriptions.push(control.statusChanges.subscribe(() => {
-                        group.valid = group.controls.every((ctrl: AbstractControl) => ctrl.valid);
-                    }));
+                    
+                    // this.subscriptions.push(control.statusChanges.subscribe(() => {
+                    //     group.valid = group.controls.every((ctrl: AbstractControl) => ctrl.valid);
+                    // })); 
                 });
             }
         }

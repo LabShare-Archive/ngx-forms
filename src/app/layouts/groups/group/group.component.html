@@ -6,12 +6,12 @@
         <div *ngFor="let panel of formConfig.form" [navTab]="panel">
 
             <ng-container *ngIf="panel.fields">
-                <dynamic-panel [panelConfig]="panel" [group]="form" [model]="model" [hidden]="panel.hidden"></dynamic-panel>
+                <layout-group-panel [panelConfig]="panel" [group]="form" [model]="model" [hidden]="panel.hidden"></layout-group-panel>
             </ng-container>
 
             <ng-container *ngIf="panel.panels">
-                <dynamic-panel *ngFor="let panelConfig of panel.panels" [panelConfig]="panelConfig" [group]="form"
-                    [model]="model" [hidden]="panel.hidden"></dynamic-panel>
+                <layout-group-panel *ngFor="let panelConfig of panel.panels" [panelConfig]="panelConfig" [group]="form"
+                    [model]="model" [hidden]="panel.hidden"></layout-group-panel>
             </ng-container>
         </div>
     </div>

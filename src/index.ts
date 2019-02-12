@@ -2,4 +2,4 @@
 import 'reflect-metadata'
 
 // Public API
-export * from './app'
+export * from './app/app.module'

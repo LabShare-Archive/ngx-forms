@@ -7,7 +7,7 @@ import { DynamicFieldDirective } from "./dynamic-field.directive"
 import { By } from '@angular/platform-browser';
 import { FieldConfig, FieldDictionary, FIELD_DICT_TOKEN } from "../../types";
 import { FormInputComponent } from "../form-input/form-input.component";
-import { FormInputHiddenComponent } from '../form-hidden/form-hidden.component';
+import { FormInputHiddenComponent } from '../form-hidden/form-hidden.component'; // mock this inputs instead of importing
 
 const defaultInputs: FieldDictionary = {
     text: FormInputComponent,

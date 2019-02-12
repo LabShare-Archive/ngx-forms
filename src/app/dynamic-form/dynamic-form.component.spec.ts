@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DynamicPanelComponent } from '../dynamic-panel/dynamic-panel.component';
+import { PanelComponent } from '../layout-group-panel/layout-group-panel.component';
 import { DynamicFieldDirective } from '../../components/dynamic-field/dynamic-field.directive';
 import { Component, NgModule } from "@angular/core";
-import { DynamicFormComponent } from "./dynamic-form.component";
+import { DynamicFormDirective } from "./dynamic-form.component";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FormInputComponent } from '../../components/form-input/form-input.component';
 import { CommonModule } from '@angular/common';
@@ -47,14 +47,14 @@ class TestComponent implements IDynamicForm {
 })
 class TestModule { }
 
-describe('DynamicFormComponent', () => {
+describe('DynamicFormDirective', () => {
     let component: TestComponent;
     let fixture: ComponentFixture<TestComponent>;
     let directiveEl;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [DynamicFieldDirective, TestComponent, DynamicFormComponent, DynamicPanelComponent],
+            declarations: [DynamicFieldDirective, TestComponent, DynamicFormDirective, PanelComponent],
             imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule],
             providers: [{ provide: FIELD_DICT_TOKEN, useValue: defaultInputs }]
         })
@@ -87,8 +87,8 @@ describe('DynamicFormComponent', () => {
         expect(directiveEl).not.toBeNull();
     });
 
-    it('loads dynamic-panel component', () => {
-        directiveEl = fixture.debugElement.query(By.directive(DynamicPanelComponent));
+    it('loads layout-group-panel component', () => {
+        directiveEl = fixture.debugElement.query(By.directive(PanelComponent));
         expect(directiveEl).not.toBeNull();
     });
 
@@ -107,21 +107,21 @@ describe('DynamicFormComponent', () => {
     });
 });
 
-describe('DynamicFormComponent Core', () => {
-    let component: DynamicFormComponent;
-    let fixture: ComponentFixture<DynamicFormComponent>;
+describe('DynamicFormDirective Core', () => {
+    let component: DynamicFormDirective;
+    let fixture: ComponentFixture<DynamicFormDirective>;
     let model = { test: 'test', title: 'title' };
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [DynamicFieldDirective, TestComponent, DynamicFormComponent, DynamicPanelComponent],
+            declarations: [DynamicFieldDirective, TestComponent, DynamicFormDirective, PanelComponent],
             imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule],
             providers: [{ provide: FIELD_DICT_TOKEN, useValue: defaultInputs }]
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(DynamicFormComponent);
+        fixture = TestBed.createComponent(DynamicFormDirective);
         component = fixture.componentInstance;
         component.formConfig = {
             form: [

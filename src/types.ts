@@ -38,7 +38,17 @@ export type Type<T> = new (...args: any[]) => T;
 
 export interface FieldDictionary { [key: string]: Type<Field>; }
 
+export interface LayoutDictionary { [key: string]: Type<Layout>; }
+
 export const FIELD_DICT_TOKEN = new InjectionToken<FieldDictionary>('fields');
+
+export const LAYOUTS_TOKEN = new InjectionToken<Layout>('layouts');
+
+export interface Layout {
+    form: FormGroup;
+    formConfig: any;
+    model: any;
+}
 
 export const enum ConditionType {
     And = 'and',
@@ -71,4 +81,9 @@ export interface PanelGroup {
     fields?: FieldConfig[];
     panels?: PanelConfig[];
     enableWhen?: EnableWhenConfig;
+}
+
+export interface FormsExtensions {
+    fieldDictionary?: FieldDictionary;
+    layoutDictionary?: LayoutDictionary;
 }

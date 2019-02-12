@@ -21,12 +21,14 @@ export class DynamicFieldDirective implements Field, OnInit, OnDestroy {
     ngOnInit() {
         if (!this.group) { throw new Error('group is not set'); }
         if (!this.inputs[this.field.type]) { throw new Error(`Input with type "${this.field.type}" was not found`); }
-
+        
         const componentReference = this.inputs[this.field.type];
         const component = this.resolver.resolveComponentFactory<Field>(componentReference);
         this.component = this.container.createComponent(component);
         this.component.instance.field = this.field;
         this.component.instance.group = this.group;
+
+        console.log('creating control ', this.field.type)
 
         this.component.instance.model = this.model;
         this.group.addControl(this.field.name, this.createControl(this.field));
