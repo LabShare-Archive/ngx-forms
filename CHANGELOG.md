@@ -1,3 +1,22 @@
+# [5.0.0](https://github.com/LabShare/ngx-forms/compare/v4.1.0...v5.0.0) (2019-02-12)
+
+
+### Bug Fixes
+
+* fixed tests ([a8e3b7b](https://github.com/LabShare/ngx-forms/commit/a8e3b7b))
+* layout injection fixed files ([9d930f6](https://github.com/LabShare/ngx-forms/commit/9d930f6))
+* removed unneeded files ([03c1589](https://github.com/LabShare/ngx-forms/commit/03c1589))
+
+
+### Features
+
+* added ability to inject layouts ([b05c2e5](https://github.com/LabShare/ngx-forms/commit/b05c2e5))
+
+
+### BREAKING CHANGES
+
+* added ability to inject layouts
+
 # [4.1.0](https://github.com/LabShare/ngx-forms/compare/v4.0.1...v4.1.0) (2019-02-06)
 
 
