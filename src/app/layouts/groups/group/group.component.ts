@@ -44,9 +44,6 @@ export class GroupComponent extends BaseLayout implements OnInit {
         let enabled = true;
         if (!group.enableWhen) { return; }
 
-        // todo: refactor similar to ngx-publications
-        // todo: merge ngx-forms and ngx-pubs
-
         const enableWhen = group.enableWhen;
 
         if (!enableWhen.rules.length) { return true; }
