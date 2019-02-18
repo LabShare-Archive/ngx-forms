@@ -59,7 +59,3 @@ export class NgxFormModule {
     }
 }
 
-// TODO:
-
-// make nav part of group-layout
-// individual field layout ????
