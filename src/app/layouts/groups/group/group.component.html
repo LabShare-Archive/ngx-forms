@@ -1,16 +1,17 @@
 <div class="row">
     <div class="col-md-2">
-        <form-nav [form]="formGroup"></form-nav>
+        <form-nav [form]="group"></form-nav>
     </div>
-    <div class="col-md-10" [formGroup]="formGroup">
+    <div class="col-md-10" [formGroup]="group">
         <div *ngFor="let panel of formConfig.form" [navTab]="panel">
 
             <ng-container *ngIf="panel.fields">
-                <layout-group-panel [panelConfig]="panel" [group]="formGroup" [model]="model" [hidden]="panel.hidden"></layout-group-panel>
+                <layout-group-panel [panelConfig]="panel" [group]="group" [model]="model" [hidden]="panel.hidden">
+                </layout-group-panel>
             </ng-container>
 
             <ng-container *ngIf="panel.panels">
-                <layout-group-panel *ngFor="let panelConfig of panel.panels" [panelConfig]="panelConfig" [group]="formGroup"
+                <layout-group-panel *ngFor="let panelConfig of panel.panels" [panelConfig]="panelConfig" [group]="group"
                     [model]="model" [hidden]="panel.hidden"></layout-group-panel>
             </ng-container>
         </div>

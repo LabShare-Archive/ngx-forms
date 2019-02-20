@@ -45,7 +45,7 @@ export const FIELD_DICT_TOKEN = new InjectionToken<FieldDictionary>('fields');
 export const LAYOUTS_TOKEN = new InjectionToken<Layout>('layouts');
 
 export interface Layout {
-    formGroup: FormGroup;
+    group: FormGroup;
     formConfig: any;
     model: any;
 }

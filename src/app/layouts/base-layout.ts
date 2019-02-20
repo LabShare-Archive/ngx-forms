@@ -6,5 +6,5 @@ export class BaseLayout implements Layout {
     @Input() formConfig: FormConfig;
     @Input() model: any;
     @Input() lookups: object;
-    @Input() formGroup: FormGroup;
+    @Input() group: FormGroup;
 }
