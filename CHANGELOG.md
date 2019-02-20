@@ -1,3 +1,11 @@
+## [5.1.2](https://github.com/LabShare/ngx-forms/compare/v5.1.1...v5.1.2) (2019-02-20)
+
+
+### Bug Fixes
+
+* fixed two way binding for fields ([77923c2](https://github.com/LabShare/ngx-forms/commit/77923c2))
+* **tests:** lint and test fixes ([d74a8c5](https://github.com/LabShare/ngx-forms/commit/d74a8c5))
+
 ## [5.1.1](https://github.com/LabShare/ngx-forms/compare/v5.1.0...v5.1.1) (2019-02-18)
 
 
