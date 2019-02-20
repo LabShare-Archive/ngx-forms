@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DynamicFormDirective } from './dynamic-form/dynamic-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FIELD_DICT_TOKEN, LAYOUTS_TOKEN, FormsExtensions } from '../types';
-import { FormFieldsModule, defaultInputs } from './fields/fields.module';
+import { Fields, FieldComponents } from './fields';
 import { FormLayoutsModule, defaultLayouts } from './layouts/layouts.module';
 import { DynamicFieldModule } from './dynamic-field/dynamic-field.module';
 
@@ -15,19 +15,22 @@ import { DynamicFieldModule } from './dynamic-field/dynamic-field.module';
         ReactiveFormsModule,
         FormsModule,
         FormLayoutsModule,
-        FormFieldsModule,
         DynamicFieldModule
     ],
     declarations: [
-        DynamicFormDirective
+        DynamicFormDirective,
+        FieldComponents
+    ],
+    entryComponents: [
+        FieldComponents
     ],
     exports: [
-        DynamicFormDirective
+        DynamicFormDirective,
     ],
     providers: [
         {
             provide: FIELD_DICT_TOKEN,
-            useValue: defaultInputs
+            useValue: Fields
         },
         {
             provide: LAYOUTS_TOKEN,
@@ -40,7 +43,7 @@ import { DynamicFieldModule } from './dynamic-field/dynamic-field.module';
 })
 export class NgxFormModule {
     public static forRoot({ fieldDictionary, layoutDictionary }: FormsExtensions): ModuleWithProviders {
-        if (fieldDictionary) { Object.keys(fieldDictionary).forEach(key => defaultInputs[key] = fieldDictionary[key]); }
+        if (fieldDictionary) { Object.keys(fieldDictionary).forEach(key => Fields[key] = fieldDictionary[key]); }
         if (layoutDictionary) { Object.keys(layoutDictionary).forEach(key => defaultLayouts[key] = layoutDictionary[key]); }
 
         return {
@@ -48,7 +51,7 @@ export class NgxFormModule {
             providers: [
                 {
                     provide: FIELD_DICT_TOKEN,
-                    useValue: defaultInputs
+                    useValue: Fields
                 },
                 {
                     provide: LAYOUTS_TOKEN,
