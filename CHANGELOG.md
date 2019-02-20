@@ -1,3 +1,22 @@
+## [5.1.1](https://github.com/LabShare/ngx-forms/compare/v5.1.0...v5.1.1) (2019-02-18)
+
+
+### Bug Fixes
+
+* removed some comments ([2895f16](https://github.com/LabShare/ngx-forms/commit/2895f16))
+
+# [5.1.0](https://github.com/LabShare/ngx-forms/compare/v5.0.0...v5.1.0) (2019-02-12)
+
+
+### Bug Fixes
+
+* fixed tests code warnings ([78b4650](https://github.com/LabShare/ngx-forms/commit/78b4650))
+
+
+### Features
+
+* added basic layout ([329e647](https://github.com/LabShare/ngx-forms/commit/329e647))
+
 # [5.0.0](https://github.com/LabShare/ngx-forms/compare/v4.1.0...v5.0.0) (2019-02-12)
 
 
