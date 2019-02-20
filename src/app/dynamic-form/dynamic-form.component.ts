@@ -25,7 +25,6 @@ export class DynamicFormDirective implements OnInit {
     }
 
     public ngOnInit(): void {
-        // set default layout "default"
         if (!this.layouts[this.formConfig.layout]) { throw new Error(`Layout with name "${this.formConfig.layout}" was not found`); }
 
         const componentReference = this.layouts[this.formConfig.layout];
