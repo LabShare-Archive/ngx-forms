@@ -25,7 +25,7 @@
     "@angular/platform-browser": "^6.0.4",
     "@angular/platform-browser-dynamic": "^6.0.4",
     "@ng-bootstrap/ng-bootstrap": "^4.0.3",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.3.1",
     "core-js": "^2.4.1",
     "fork-ts-checker-webpack-plugin": "^0.5.2",
     "ngx-chips": "^1.9.1",
