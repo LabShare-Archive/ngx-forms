@@ -46,9 +46,4 @@ describe('FormInputComponent', () => {
         expect(directiveEl.nativeElement.value).toEqual(value);
     });
 
-    it('ensures required asterix appears', () => {
-        directiveEl = fixture.debugElement.query(By.css('span'));
-        expect(directiveEl).toBeTruthy();
-    });
-
 });

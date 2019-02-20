@@ -46,9 +46,4 @@ describe('FormCheckboxComponent', () => {
         expect(inputs.length).toBeGreaterThan(0);
     });
 
-    it('ensures required asterix appears', () => {
-        directiveEl = fixture.debugElement.query(By.css('span'));
-        expect(directiveEl).toBeTruthy();
-    });
-
 });
