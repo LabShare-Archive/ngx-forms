@@ -3,13 +3,23 @@
         {{panelConfig.label}}
     </div>
     <div class="card-body">
-        <div class="row mb-2" *ngFor="let field of panelConfig.fields" >
-            <label class="col-md-2 font-weight-bold col-form-label">{{field.label}}
-                <span class="required-icon" [hidden]="!field.required">*</span>
-            </label>
-            <div class="col-md-10">
-                <div dynamicField [field]="field" [group]="group" [model]="model"></div>
-            </div>
+        <div class="row mb-2" *ngFor="let field of panelConfig.fields">
+
+            <ng-container *ngIf="field.label">
+                <label class="col-2 font-weight-bold col-form-label">{{field.label}}
+                    <span class="required-icon" [hidden]="!field.required">*</span>
+                </label>
+                <div class="col-10">
+                    <div dynamicField [field]="field" [group]="group" [model]="model"></div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="!field.label">
+                <div class="col-12">
+                    <div dynamicField [field]="field" [group]="group" [model]="model"></div>
+                </div>
+            </ng-container>
+
         </div>
     </div>
 </div>

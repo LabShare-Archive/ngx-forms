@@ -67,5 +67,3 @@ export class NgxFormModule {
 
 
 // todo: be able to export full form with buttons, or just form as object editor
-
-// todo: group layout: when no title, show md-12 content
