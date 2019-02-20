@@ -7,7 +7,7 @@ import { FIELD_DICT_TOKEN, LAYOUTS_TOKEN, FormsExtensions } from '../types';
 import { Fields, FieldComponents } from './fields';
 import { FormLayoutsModule, defaultLayouts } from './layouts/layouts.module';
 import { DynamicFieldModule } from './dynamic-field/dynamic-field.module';
-
+import { QuillModule } from 'ngx-quill';
 @NgModule({
     imports: [
         CommonModule,
@@ -15,7 +15,8 @@ import { DynamicFieldModule } from './dynamic-field/dynamic-field.module';
         ReactiveFormsModule,
         FormsModule,
         FormLayoutsModule,
-        DynamicFieldModule
+        DynamicFieldModule,
+        QuillModule
     ],
     declarations: [
         DynamicFormDirective,
@@ -62,3 +63,6 @@ export class NgxFormModule {
     }
 }
 
+
+
+// todo: be able to export full form with buttons, or just form as object editor
