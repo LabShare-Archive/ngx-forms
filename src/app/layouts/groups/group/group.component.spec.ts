@@ -191,31 +191,31 @@ describe('GroupComponent Core', () => {
             it('should not run rules', () => {
                 const model = { title: 'test' };
                 const cfg = {};
-                expect(component.checkRules(cfg, model)).toBeUndefined();
+                expect(component.checkRules(cfg, model, [])).toBeUndefined();
             });
 
             it('should not run rules where there are none', () => {
                 const model = { title: 'test' };
                 const cfg = { enableWhen: { rules: [] } };
-                expect(component.checkRules(cfg, model)).toBeTruthy();
+                expect(component.checkRules(cfg, model, [])).toBeTruthy();
             });
 
             it('should run one rule and return true', () => {
                 const model = { title: 'test' };
                 const cfg = { enableWhen: { rules: [{ field: "title", equals: ["test"] }] } };
-                expect(component.checkRules(cfg, model)).toBeTruthy();
+                expect(component.checkRules(cfg, model, [])).toBeTruthy();
             });
 
             it('should run one rule, wrap equals, and return true', () => {
                 const model = { title: 'test' };
                 const cfg = { enableWhen: { rules: [{ field: "title", equals: "test" }] } };
-                expect(component.checkRules(cfg, model)).toBeTruthy();
+                expect(component.checkRules(cfg, model, [])).toBeTruthy();
             });
 
             it('should run one rule and return false', () => {
                 const model = { title: 'test' };
                 const cfg = { enableWhen: { rules: [{ field: "title", equals: ["test1"] }] } };
-                expect(component.checkRules(cfg, model)).toBeFalsy();
+                expect(component.checkRules(cfg, model, [])).toBeFalsy();
             });
 
             it('should check default field value and return true when rule match', () => {
@@ -225,7 +225,7 @@ describe('GroupComponent Core', () => {
                     ],
                     enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }] }
                 };
-                expect(component.checkRules(cfg, {})).toBeTruthy();
+                expect(component.checkRules(cfg, {}, cfg.fields)).toBeTruthy();
             });
 
             it('should check default field value and return false when rule match', () => {
@@ -235,7 +235,7 @@ describe('GroupComponent Core', () => {
                     ],
                     enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }] }
                 };
-                expect(component.checkRules(cfg, {})).toBeFalsy();
+                expect(component.checkRules(cfg, {}, cfg.fields)).toBeFalsy();
             });
 
             it('should check default field value and return true whrn all rules match', () => {
@@ -246,7 +246,7 @@ describe('GroupComponent Core', () => {
                     ],
                     enableWhen: { type: ConditionType.And, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
                 };
-                expect(component.checkRules(cfg, {})).toBeTruthy();
+                expect(component.checkRules(cfg, {}, cfg.fields)).toBeTruthy();
             });
 
             it('should check default field false when value is not found', () => {
@@ -257,25 +257,25 @@ describe('GroupComponent Core', () => {
                     ],
                     enableWhen: { type: ConditionType.And, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
                 };
-                expect(component.checkRules(cfg, {})).toBeFalsy();
+                expect(component.checkRules(cfg, {}, cfg.fields)).toBeFalsy();
             });
 
             it('should run multiple rules with `and` and return false when one does not match', () => {
                 const model = { title: 'test', count: 1 };
                 const cfg = { enableWhen: { type: ConditionType.And, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1123] }] } };
-                expect(component.checkRules(cfg, model)).toBeFalsy();
+                expect(component.checkRules(cfg, model, [])).toBeFalsy();
             });
 
             it('should run multiple rules with `or` and return false when none match', () => {
                 const model = { title: 'test', count: 1 };
                 const cfg = { enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test1"] }, { field: "count", equals: [1123] }] } };
-                expect(component.checkRules(cfg, model)).toBeFalsy();
+                expect(component.checkRules(cfg, model, [])).toBeFalsy();
             });
 
             it('should run multiple rules with `or` and return true when one match', () => {
                 const model = { title: 'test', count: 1 };
                 const cfg = { enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1222] }] } };
-                expect(component.checkRules(cfg, model)).toBeTruthy();
+                expect(component.checkRules(cfg, model, [])).toBeTruthy();
             });
 
             it('should check default field value and return true when one OR rules match', () => {
@@ -286,7 +286,7 @@ describe('GroupComponent Core', () => {
                     ],
                     enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
                 };
-                expect(component.checkRules(cfg, {})).toBeTruthy();
+                expect(component.checkRules(cfg, {}, cfg.fields)).toBeTruthy();
             });
 
             it('should check default field false when value is not found', () => {
@@ -297,7 +297,7 @@ describe('GroupComponent Core', () => {
                     ],
                     enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
                 };
-                expect(component.checkRules(cfg, {})).toBeFalsy();
+                expect(component.checkRules(cfg, {}, cfg.fields)).toBeFalsy();
             });
 
         });
