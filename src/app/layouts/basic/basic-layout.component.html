@@ -2,19 +2,14 @@
     <div class="col-md-12">
         <h2>{{formConfig.title}}</h2>
         <div *ngFor="let field of formConfig.fields" class="mb-2">
-
             <div class="row">
-
                 <label class="col-md-2 font-weight-bold col-form-label">{{field.label}}
                     <span class="required-icon" [hidden]="!field.required">*</span>
                 </label>
-
                 <div class="col-md-10">
                     <div dynamicField [field]="field" [group]="group" [model]="model"></div>
                 </div>
-
             </div>
-
         </div>
     </div>
 </div>

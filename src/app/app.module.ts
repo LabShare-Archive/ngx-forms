@@ -8,6 +8,7 @@ import { Fields, FieldComponents } from './fields';
 import { FormLayoutsModule, defaultLayouts } from './layouts/layouts.module';
 import { DynamicFieldModule } from './dynamic-field/dynamic-field.module';
 import { QuillModule } from 'ngx-quill';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -66,3 +67,5 @@ export class NgxFormModule {
 
 
 // todo: be able to export full form with buttons, or just form as object editor
+
+// todo: group layout: when no title, show md-12 content
