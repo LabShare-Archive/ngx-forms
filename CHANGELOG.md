@@ -1,3 +1,13 @@
+## [5.2.2](https://github.com/LabShare/ngx-forms/compare/v5.2.1...v5.2.2) (2019-02-20)
+
+
+### Bug Fixes
+
+* **layout:** added field title to group layout ([839c6b8](https://github.com/LabShare/ngx-forms/commit/839c6b8))
+* **lint:** lint fixes ([3550bd7](https://github.com/LabShare/ngx-forms/commit/3550bd7))
+* **module:** added ngx-quill module ref ([3d3b2a0](https://github.com/LabShare/ngx-forms/commit/3d3b2a0))
+* **style:** removed margin from text-editor ([f94e890](https://github.com/LabShare/ngx-forms/commit/f94e890))
+
 ## [5.2.1](https://github.com/LabShare/ngx-forms/compare/v5.2.0...v5.2.1) (2019-02-20)
 
 
