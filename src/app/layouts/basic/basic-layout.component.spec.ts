@@ -53,7 +53,7 @@ describe('BasicLayoutComponent Core', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(BasicLayoutComponent);
         component = fixture.componentInstance;
-        component.formGroup = new FormGroup({})
+        component.group = new FormGroup({})
         component.formConfig = {
             form: [
                 { label: 'fields and panels', panels: [{ label: 'fields', fields: [{ type: 'text', name: 'title', required: true }] }] },
@@ -69,7 +69,7 @@ describe('BasicLayoutComponent Core', () => {
     describe('ngOnInit()', () => {
 
         it('should create group', () => {
-            expect(component.formGroup).toBeDefined();
+            expect(component.group).toBeDefined();
         });
 
     });

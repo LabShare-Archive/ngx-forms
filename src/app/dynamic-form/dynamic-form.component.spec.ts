@@ -82,19 +82,19 @@ describe('DynamicFormDirective', () => {
 
 
         it('should call changes()', () => {
-            expect(dir.changes).toEqual(dir.formGroup.valueChanges);
+            expect(dir.changes).toEqual(dir.group.valueChanges);
         });
 
         it('should call valid()', () => {
-            expect(dir.valid).toEqual(dir.formGroup.valid);
+            expect(dir.valid).toEqual(dir.group.valid);
         });
 
         it('should call value()', () => {
-            expect(dir.value).toEqual(dir.formGroup.value);
+            expect(dir.value).toEqual(dir.group.value);
         });
 
         it('should call value()', () => {
-            expect(dir.rawValue).toEqual(dir.formGroup.getRawValue());
+            expect(dir.rawValue).toEqual(dir.group.getRawValue());
         });
 
     });
