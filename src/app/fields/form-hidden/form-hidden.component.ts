@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Field, FieldConfig } from '../../../types';
+import { BaseFieldComponent } from '../base-field';
 
 @Component({
     selector: 'form-hidden',
     template: require('./form-hidden.component.html')
 })
-export class FormInputHiddenComponent implements Field {
-    field: FieldConfig;
-    group: FormGroup;
-}
+export class FormInputHiddenComponent extends BaseFieldComponent { }

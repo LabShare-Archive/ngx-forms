@@ -47,9 +47,4 @@ describe('FormSelectComponent', () => {
         expect(directiveEl.length).toEqual(component.field.options.length);
     });
 
-    it('ensures required asterix appears', () => {
-        directiveEl = fixture.debugElement.query(By.css('span'));
-        expect(directiveEl).toBeTruthy();
-    });
-
 });

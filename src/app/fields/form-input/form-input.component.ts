@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { FieldConfig, Field } from '../../../types';
+import { BaseFieldComponent } from '../base-field';
 
 @Component({
     selector: 'form-input',
     template: require('./form-input.component.html')
 })
-export class FormInputComponent implements Field {
-    field: FieldConfig;
-    group: FormGroup;
+export class FormInputComponent extends BaseFieldComponent {
 }

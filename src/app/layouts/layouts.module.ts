@@ -33,3 +33,6 @@ export const defaultLayouts: LayoutDictionary = {
     ]
 })
 export class FormLayoutsModule { }
+
+// todo: merge nav and panel into one layout component if possible
+// todo: refactor this like fields
