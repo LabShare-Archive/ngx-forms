@@ -1,3 +1,12 @@
+## [5.2.3](https://github.com/LabShare/ngx-forms/compare/v5.2.2...v5.2.3) (2019-02-20)
+
+
+### Bug Fixes
+
+* **logic:** fixed checkRule logic ([d144df6](https://github.com/LabShare/ngx-forms/commit/d144df6))
+* **template:** fixed checkbox template ([10c612b](https://github.com/LabShare/ngx-forms/commit/10c612b))
+* **test:** fixed tests ([2b2b3d8](https://github.com/LabShare/ngx-forms/commit/2b2b3d8))
+
 ## [5.2.2](https://github.com/LabShare/ngx-forms/compare/v5.2.1...v5.2.2) (2019-02-20)
 
 
