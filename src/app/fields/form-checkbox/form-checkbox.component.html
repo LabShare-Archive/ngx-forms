@@ -1,8 +1,3 @@
-<div class="row" [formGroup]="group">
-    <label class="col-md-2 font-weight-bold col-form-label">{{field.label}}
-        <span class="required-icon" [hidden]="!field.required">*</span>
-    </label>
-    <div class="col-md-10">
-        <input type="checkbox" class="orm-check-input" [formControlName]="field.name">
-    </div>
-</div>
+<ng-container [formGroup]="group">
+    <input type="checkbox" class="form-check-input" [formControlName]="field.name">
+</ng-container>
