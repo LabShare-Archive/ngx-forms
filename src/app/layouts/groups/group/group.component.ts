@@ -19,7 +19,7 @@ export class GroupComponent extends BaseLayout implements OnInit {
                 });
             }
 
-            if (gr.enableWhen && !this.checkRules(gr, this.model)) { fields.forEach(f => f.disabled = true); }
+            if (gr.enableWhen && !this.checkRules(gr, this.model, fields)) { fields.forEach(f => f.disabled = true); }
         });
 
         fields.forEach((field: FieldConfig) => {
@@ -40,19 +40,20 @@ export class GroupComponent extends BaseLayout implements OnInit {
         });
     }
 
-    public checkRules(group: PanelGroup, data): boolean {
+    public checkRules(groupCfg: PanelGroup, model, allFields: FieldConfig[]): boolean {
         let enabled = true;
-        if (!group.enableWhen) { return; }
+        if (!groupCfg.enableWhen) { return; }
 
-        const enableWhen = group.enableWhen;
+        const enableWhen = groupCfg.enableWhen;
 
         if (!enableWhen.rules.length) { return true; }
 
         const checkRule = rule => {
             let field;
-            const value = data[rule.field] || (field = group.fields.find(f => f.name === rule.field)) && field.value || '';
+            const value = model[rule.field] || (field = allFields.find(f => f.name === rule.field)) && field.value || '';
             if (!Array.isArray(rule.equals)) { rule.equals = [rule.equals]; }
             return rule.equals.indexOf(value) > -1;
+
         };
 
         if (enableWhen.type === ConditionType.Or || !enableWhen.type) {
