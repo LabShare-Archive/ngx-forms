@@ -1,3 +1,10 @@
+# [5.2.0](https://github.com/LabShare/ngx-forms/compare/v5.1.3...v5.2.0) (2019-02-20)
+
+
+### Features
+
+* formGroup renamed to group ([4c250aa](https://github.com/LabShare/ngx-forms/commit/4c250aa))
+
 ## [5.1.2](https://github.com/LabShare/ngx-forms/compare/v5.1.1...v5.1.2) (2019-02-20)
 
 
