@@ -1,3 +1,15 @@
+# [5.3.0](https://github.com/LabShare/ngx-forms/compare/v5.2.3...v5.3.0) (2019-02-21)
+
+
+### Bug Fixes
+
+* fixed templates ([912986a](https://github.com/LabShare/ngx-forms/commit/912986a))
+
+
+### Features
+
+* **template:** when no label, expand control ([78c3202](https://github.com/LabShare/ngx-forms/commit/78c3202))
+
 ## [5.2.3](https://github.com/LabShare/ngx-forms/compare/v5.2.2...v5.2.3) (2019-02-20)
 
 
