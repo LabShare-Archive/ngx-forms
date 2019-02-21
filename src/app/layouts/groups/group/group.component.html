@@ -1,8 +1,8 @@
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-2">
         <form-nav [form]="group"></form-nav>
     </div>
-    <div class="col-md-10" [formGroup]="group">
+    <div class="col-10" [formGroup]="group">
         <div *ngFor="let panel of formConfig.form" [navTab]="panel">
 
             <ng-container *ngIf="panel.fields">
