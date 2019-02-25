@@ -48,6 +48,7 @@ export interface Layout {
     group: FormGroup;
     formConfig: any;
     model: any;
+    lookups: { [key: string]: Type<any>; };
 }
 
 export const enum ConditionType {

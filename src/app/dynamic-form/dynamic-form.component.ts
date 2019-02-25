@@ -1,6 +1,6 @@
 import { Input, OnInit, ComponentFactoryResolver, ViewContainerRef, Directive, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout } from '../../types';
+import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout, Type } from '../../types';
 
 @Directive({
     exportAs: 'dynamicForm',
@@ -9,7 +9,7 @@ import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout } from '../../types
 export class DynamicFormDirective implements OnInit {
     @Input() formConfig: FormConfig;
     @Input() model: any;
-    @Input() lookups: object;
+    @Input() lookups: { [key: string]: Type<any>; };
 
     public group: FormGroup;
     get changes() { return this.group.valueChanges; }
@@ -25,6 +25,8 @@ export class DynamicFormDirective implements OnInit {
     }
 
     public ngOnInit(): void {
+        console.log('forms');
+
         if (!this.layouts[this.formConfig.layout]) { throw new Error(`Layout with name "${this.formConfig.layout}" was not found`); }
 
         const componentReference = this.layouts[this.formConfig.layout];
@@ -33,6 +35,7 @@ export class DynamicFormDirective implements OnInit {
         component.instance.group = this.group;
         component.instance.formConfig = this.formConfig;
         component.instance.model = this.model;
+        component.instance.lookups = this.lookups;
     }
 
 }
