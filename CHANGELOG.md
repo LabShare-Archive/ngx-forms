@@ -1,3 +1,13 @@
+## [5.3.2](https://github.com/LabShare/ngx-forms/compare/v5.3.1...v5.3.2) (2019-02-25)
+
+
+### Bug Fixes
+
+* **lint:** lint fixes ([145e5e3](https://github.com/LabShare/ngx-forms/commit/145e5e3))
+* **loading:** fixed lookup loading ([54adaa9](https://github.com/LabShare/ngx-forms/commit/54adaa9))
+* **module:** added reference to bootstrap datepicker ([a4ec948](https://github.com/LabShare/ngx-forms/commit/a4ec948))
+* **type:** fixed layout type ([04011c2](https://github.com/LabShare/ngx-forms/commit/04011c2))
+
 ## [5.3.1](https://github.com/LabShare/ngx-forms/compare/v5.3.0...v5.3.1) (2019-02-21)
 
 
