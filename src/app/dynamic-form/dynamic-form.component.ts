@@ -9,7 +9,7 @@ import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout, Type } from '../..
 export class DynamicFormDirective implements OnInit {
     @Input() formConfig: FormConfig;
     @Input() model: any;
-    @Input() lookups: { [key: string]: Type<any>; };
+    @Input() lookups: any;
 
     public group: FormGroup;
     get changes() { return this.group.valueChanges; }
