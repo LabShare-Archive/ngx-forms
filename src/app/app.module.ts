@@ -8,6 +8,7 @@ import { Fields, FieldComponents } from './fields';
 import { FormLayoutsModule, defaultLayouts } from './layouts/layouts.module';
 import { DynamicFieldModule } from './dynamic-field/dynamic-field.module';
 import { QuillModule } from 'ngx-quill';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import { QuillModule } from 'ngx-quill';
         FormsModule,
         FormLayoutsModule,
         DynamicFieldModule,
-        QuillModule
+        QuillModule,
+        NgbModule
     ],
     declarations: [
         DynamicFormDirective,
@@ -63,7 +65,5 @@ export class NgxFormModule {
         };
     }
 }
-
-
 
 // todo: be able to export full form with buttons, or just form as object editor
