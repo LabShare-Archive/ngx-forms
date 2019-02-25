@@ -52,7 +52,7 @@ Name | Type | Description | Example
 `nullValidator?` | `any` | Validation: null validation | `nullValidator: true`
 `hidden` | `boolean` | hide the field by default when the form loading| `hidden: true`
 
-## Field types
+## Field types:
 - `text` - text input `<input type="text">`
 - `select` - text unput `<select>`
 - `textarea` - text input `<textarea>`
@@ -60,3 +60,4 @@ Name | Type | Description | Example
 - `hidden` - hidden value field `<input type="hidden">`.
 - `radio` - radio buttons
 - `checkbox` - checkbox buttons
+
