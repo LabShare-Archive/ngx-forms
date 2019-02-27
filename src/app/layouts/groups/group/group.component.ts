@@ -1,15 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, AfterContentInit } from '@angular/core';
 import { FieldConfig, ILookup, PanelGroup, ConditionType } from '../../../../types'; // todo: move specific types here
 import { BaseLayout } from '../../base-layout';
+import { FormGroup, AbstractControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { FormNavService } from '../group/nav/services/form-nav.service';
 
 @Component({
     selector: 'layout-group-group',
     template: require('./group.component.html'),
     styles: [require('./group.component.scss').toString()]
 })
-export class GroupComponent extends BaseLayout implements OnInit {
+export class GroupComponent extends BaseLayout implements OnInit, OnDestroy, AfterContentInit {
+
+    public ref = { groups: [] };
+    private subscriptions: Subscription[] = [];
+
+    @Input() form: FormGroup;
+
+    constructor(private ns: FormNavService) {
+        super();
+        ns.addWatcher(this.ref);
+    }
 
     public ngOnInit(): void {
+        this.ns.addWatcher(this.ref);
         let fields: FieldConfig[] = [];
         this.formConfig.form.forEach(gr => {
             if (gr.fields) { fields = fields.concat(gr.fields); }
@@ -67,6 +81,58 @@ export class GroupComponent extends BaseLayout implements OnInit {
         // leave if() conditions in case other logic operators needed (XOR, etc)
 
         return enabled;
+    }
+
+    ngAfterContentInit() {
+        const x = Object.keys(this.form.controls);
+
+        for (const group of this.ref.groups) {
+            let fields = [];
+            if (group.fields) {
+                fields = fields.concat(group.fields);
+            }
+            if (group.panels) {
+                group.panels.forEach(panel => { if (panel.fields) { fields = fields.concat(panel.fields); } });
+            }
+            group.controls = fields.filter(f => f.required).map(f => this.form.get(f.name));
+
+            if (group.controls.length === 0) { group.valid = true; } else {
+                group.controls.forEach((control: AbstractControl) => {
+                    this.subscriptions.push(control.statusChanges.subscribe(() => {
+                        group.valid = group.controls.every((ctrl: AbstractControl) => ctrl.valid);
+                    }));
+                });
+            }
+        }
+    }
+
+    public select(index) {
+        this.ns.select(index);
+    }
+
+    public getSelected() {
+        return this.ns.selected;
+    }
+
+    public prev() {
+        this.select(this.ns.selected - 1);
+    }
+
+    public next() {
+        this.select(this.ns.selected + 1);
+    }
+
+    public disablePrev() {
+        return this.ns.selected < 1;
+    }
+
+    public disableNext() {
+        return this.ns.selected > this.ref.groups.length - 2;
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.forEach((sub: Subscription) => sub.unsubscribe());
+        this.ns.reset();
     }
 
 }
