@@ -3,7 +3,7 @@ import { FieldConfig, ILookup, PanelGroup, ConditionType } from '../../../../typ
 import { BaseLayout } from '../../base-layout';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { FormNavService } from '../group/nav/services/form-nav.service';
+import { FormNavService } from '../group/services/form-nav.service';
 
 @Component({
     selector: 'layout-group-group',
