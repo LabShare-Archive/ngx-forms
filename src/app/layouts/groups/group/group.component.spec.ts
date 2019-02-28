@@ -3,7 +3,7 @@ import { Field, FieldConfig, FieldDictionary, FIELD_DICT_TOKEN, ConditionType, L
 import { FormGroup, ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { CommonModule } from "@angular/common";
-import { FormNavModule } from "../nav/nav-app";
+import { FormNavModule } from "../group/nav-app";
 import { DynamicFieldModule } from "../../../dynamic-field/dynamic-field.module";
 import { PanelComponent } from "../panel/panel.component";
 import { DynamicFieldDirective } from "../../../dynamic-field/dynamic-field.directive";
