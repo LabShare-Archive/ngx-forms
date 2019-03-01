@@ -15,7 +15,6 @@ export class GroupComponent extends BaseLayout implements OnInit, AfterViewInit,
     private subscriptions: Subscription[] = [];
     public groupProps = [];
     public selected = 0;
-
     public fconfig = [];
 
     public ngOnInit(): void {
@@ -30,7 +29,7 @@ export class GroupComponent extends BaseLayout implements OnInit, AfterViewInit,
                     if (panel.fields) { fields = fields.concat(panel.fields); }
                 });
             }
-            this.groupProps.push({ hidden: index > 0, valid: true, controls: [], fields: fields });
+            this.groupProps.push({ hidden: index > 0, valid: true, controls: [], fields: fields, invalids: [] });
 
             if (group.enableWhen) {
                 if (!this.checkRules(group, this.model, fields)) {
@@ -86,15 +85,20 @@ export class GroupComponent extends BaseLayout implements OnInit, AfterViewInit,
         return enabled;
     }
 
+    validateGroup(index) {
+        this.groupProps[index].valid = this.groupProps[index].controls.every((ctrl: AbstractControl) => ctrl.valid);
+    }
+
     ngAfterViewInit() {
         this.fconfig.forEach((group, index) => {
             this.groupProps[index].fields
                 .filter((f: FieldConfig) => f.required)
                 .forEach((f: FieldConfig) => {
-                    this.subscriptions.push(this.group.get(f.name).statusChanges.subscribe(() => {
-                        this.groupProps[index].valid = this.groupProps[index].controls.every((ctrl: AbstractControl) => ctrl.valid);
-                    }));
+                    const control = this.group.get(f.name);
+                    this.groupProps[index].controls.push(control);
+                    this.subscriptions.push(control.statusChanges.subscribe(() => { this.validateGroup(index); }));
                 });
+            this.validateGroup(index);
         });
     }
 

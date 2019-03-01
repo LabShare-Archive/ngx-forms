@@ -43,53 +43,6 @@ class TestComponent {
 })
 class TestModule { }
 
-describe('GroupComponent', () => {
-    let component: TestComponent;
-    let fixture: ComponentFixture<TestComponent>;
-    let directiveEl;
-
-
-
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [TestComponent, GroupComponent, DynamicFormDirective],
-            imports: [FormsModule, ReactiveFormsModule, TestModule, DynamicFieldModule],
-            providers: [{ provide: FIELD_DICT_TOKEN, useValue: defaultInputs },
-            { provide: LAYOUTS_TOKEN, useValue: layouts }]
-        })
-            .compileComponents()
-            .then(() => {
-                fixture = TestBed.createComponent(TestComponent);
-
-                component = fixture.componentInstance;
-                component.formConfig = {
-                    layout: 'groups',
-                    form: [{
-                        fields: [
-                            { type: 'text', label: 'Publication Title:', name: 'title', placeholder: '', required: true }
-                        ]
-                    }]
-                };
-
-                fixture.detectChanges();
-            });
-    }));
-
-    it('loads dyncamic-field component', () => {
-        directiveEl = fixture.debugElement.query(By.directive(DynamicFieldDirective));
-        expect(directiveEl).not.toBeNull();
-    });
-
-    it('loads form-input component', () => {
-        directiveEl = fixture.debugElement.query(By.directive(FormInputComponent));
-        expect(directiveEl).not.toBeNull();
-    });
-
-    it('should be created', () => {
-        expect(component).toBeTruthy();
-    });
-});
-
 describe('GroupComponent Core', () => {
     let component: GroupComponent;
     let fixture: ComponentFixture<GroupComponent>;
