@@ -1,6 +1,6 @@
 import { Input, OnInit, ComponentFactoryResolver, ViewContainerRef, Directive, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout, Type } from '../../types';
+import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout } from '../../types';
 
 @Directive({
     exportAs: 'dynamicForm',
@@ -25,8 +25,6 @@ export class DynamicFormDirective implements OnInit {
     }
 
     public ngOnInit(): void {
-        console.log('forms');
-
         if (!this.layouts[this.formConfig.layout]) { throw new Error(`Layout with name "${this.formConfig.layout}" was not found`); }
 
         const componentReference = this.layouts[this.formConfig.layout];

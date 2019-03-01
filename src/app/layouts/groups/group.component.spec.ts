@@ -1,15 +1,13 @@
 import { Component, NgModule } from "@angular/core";
-import { Field, FieldConfig, FieldDictionary, FIELD_DICT_TOKEN, ConditionType, LAYOUTS_TOKEN, FormConfig } from "../../../../types";
+import { Field, FieldConfig, FieldDictionary, FIELD_DICT_TOKEN, ConditionType, LAYOUTS_TOKEN, FormConfig } from "../../../types";
 import { FormGroup, ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { CommonModule } from "@angular/common";
-import { FormNavModule } from "../nav/nav-app";
-import { DynamicFieldModule } from "../../../dynamic-field/dynamic-field.module";
-import { PanelComponent } from "../panel/panel.component";
-import { DynamicFieldDirective } from "../../../dynamic-field/dynamic-field.directive";
+import { DynamicFieldModule } from "../../dynamic-field/dynamic-field.module";
+import { DynamicFieldDirective } from "../../dynamic-field/dynamic-field.directive";
 import { By } from "@angular/platform-browser";
 import { GroupComponent } from './group.component';
-import { DynamicFormDirective} from '../../../dynamic-form/dynamic-form.component';
+import { DynamicFormDirective } from '../../dynamic-form/dynamic-form.component';
 
 @Component({
     selector: 'form-input',
@@ -40,7 +38,7 @@ class TestComponent {
 
 @NgModule({
     declarations: [FormInputComponent],
-    imports: [FormsModule, ReactiveFormsModule, CommonModule, FormNavModule],
+    imports: [FormsModule, ReactiveFormsModule, CommonModule],
     entryComponents: [FormInputComponent, GroupComponent]
 })
 class TestModule { }
@@ -50,12 +48,14 @@ describe('GroupComponent', () => {
     let fixture: ComponentFixture<TestComponent>;
     let directiveEl;
 
+
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [TestComponent, GroupComponent, PanelComponent, DynamicFormDirective],
-            imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule, DynamicFieldModule],
+            declarations: [TestComponent, GroupComponent, DynamicFormDirective],
+            imports: [FormsModule, ReactiveFormsModule, TestModule, DynamicFieldModule],
             providers: [{ provide: FIELD_DICT_TOKEN, useValue: defaultInputs },
-            { provide: LAYOUTS_TOKEN, useValue: layouts}]
+            { provide: LAYOUTS_TOKEN, useValue: layouts }]
         })
             .compileComponents()
             .then(() => {
@@ -74,11 +74,6 @@ describe('GroupComponent', () => {
                 fixture.detectChanges();
             });
     }));
-
-    it('loads layout-group-panel component', () => {
-        directiveEl = fixture.debugElement.query(By.directive(PanelComponent));
-        expect(directiveEl).not.toBeNull();
-    });
 
     it('loads dyncamic-field component', () => {
         directiveEl = fixture.debugElement.query(By.directive(DynamicFieldDirective));
@@ -102,8 +97,8 @@ describe('GroupComponent Core', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [DynamicFieldDirective, TestComponent, GroupComponent, PanelComponent, DynamicFormDirective],
-            imports: [FormsModule, ReactiveFormsModule, TestModule, FormNavModule],
+            declarations: [DynamicFieldDirective, TestComponent, GroupComponent, DynamicFormDirective],
+            imports: [FormsModule, ReactiveFormsModule, TestModule],
             providers: [{ provide: FIELD_DICT_TOKEN, useValue: defaultInputs }]
         }).compileComponents();
     });
@@ -122,6 +117,7 @@ describe('GroupComponent Core', () => {
         } as FormConfig;
         component.model = model;
         fixture.detectChanges();
+        component.ngAfterViewInit();
     });
 
     describe('ngOnInit()', () => {
@@ -136,35 +132,35 @@ describe('GroupComponent Core', () => {
                 component.lookups = null;
                 component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: 'test' }] }] } as FormConfig;
                 component.ngOnInit();
-                expect(component.formConfig.form[0].fields[0].options).toBeUndefined();
+                expect(component.fconfig[0].fields[0].options).toBeUndefined();
             });
 
             it('should not find lookup when no lookups found', () => {
                 component.lookups = { test: ['a', 'b', 'c'] };;
                 component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title' }] }] } as FormConfig;
                 component.ngOnInit();
-                expect(component.formConfig.form[0].fields[0].options).toBeUndefined();
+                expect(component.fconfig[0].fields[0].options).toBeUndefined();
             });
 
             it('should not copy lookup with wrong name', () => {
                 component.lookups = { test: ['a', 'b', 'c'] };;
                 component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: 'test1' }] }] } as FormConfig;
                 component.ngOnInit();
-                expect(component.formConfig.form[0].fields[0].options).toBeUndefined();
+                expect(component.fconfig[0].fields[0].options).toBeUndefined();
             });
 
             it('should copy lookup', () => {
                 component.lookups = { test: ['a', 'b', 'c'] };;
                 component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: 'test' }] }] } as FormConfig;
                 component.ngOnInit();
-                expect(component.formConfig.form[0].fields[0].options).toEqual(['a', 'b', 'c']);
+                expect(component.fconfig[0].fields[0].options).toEqual(['a', 'b', 'c']);
             });
 
             it('should extract lookup', () => {
                 component.lookups = { test: [{ t: 'a' }, { t: 'b' }, { t: 'c' }] };;
                 component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: { name: 'test', extract: 't' } }] }] } as FormConfig;
                 component.ngOnInit();
-                expect(component.formConfig.form[0].fields[0].options).toEqual(['a', 'b', 'c']);
+                expect(component.fconfig[0].fields[0].options).toEqual(['a', 'b', 'c']);
             });
 
         });
@@ -175,14 +171,14 @@ describe('GroupComponent Core', () => {
                 component.model = { title: 'test' };
                 component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title' }], enableWhen: { rules: [{ field: "title", equals: ["test"] }] } }] } as FormConfig;
                 component.ngOnInit();
-                expect(component.formConfig.form[0].fields[0].disabled).toBeFalsy();
+                expect(component.fconfig[0].fields[0].disabled).toBeFalsy();
             });
 
             it('should disable the fields', () => {
                 component.model = { title: 'test' };
                 component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title' }], enableWhen: { rules: [{ field: "title", equals: ["test1"] }] } }] } as FormConfig;
                 component.ngOnInit();
-                expect(component.formConfig.form[0].fields[0].disabled).toBeTruthy();
+                expect(component.fconfig[0].fields[0].disabled).toBeTruthy();
             });
         });
 
@@ -301,6 +297,34 @@ describe('GroupComponent Core', () => {
             });
 
         });
+
+        describe('next()', () => {
+            it('should select next item', () => {
+                component.next();
+                expect(component.selected).toEqual(1);
+            });
+        });
+
+        describe('prev()', () => {
+            it('should select next item', () => {
+                component.select(2);
+                component.prev();
+                expect(component.selected).toEqual(1);
+            });
+        });
+
+
+        describe('subscription()', () => {
+            it('should extract lookup', () => {
+                component.lookups = { test: [{ t: 'a' }, { t: 'b' }, { t: 'c' }] };;
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: { name: 'test', extract: 't' } }] }] } as FormConfig;
+                component.ngOnInit();
+                component.ngAfterViewInit();
+                component.group.patchValue({ title: 'test2' });
+                expect(component.groupProps[0].valid).toBeTruthy();
+            });
+        });
+
 
     });
 

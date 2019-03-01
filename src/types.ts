@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { FormGroup, AbstractControl } from '@angular/forms';
 import { FieldConfig } from './types';
 import { InjectionToken } from '@angular/core';
 
@@ -82,6 +82,7 @@ export interface PanelGroup {
     fields?: FieldConfig[];
     panels?: PanelConfig[];
     enableWhen?: EnableWhenConfig;
+    controls?: AbstractControl[];
 }
 
 export interface FormsExtensions {
