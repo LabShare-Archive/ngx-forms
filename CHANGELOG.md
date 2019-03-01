@@ -1,3 +1,11 @@
+## [5.3.3](https://github.com/LabShare/ngx-forms/compare/v5.3.2...v5.3.3) (2019-03-01)
+
+
+### Bug Fixes
+
+* **name:** renamed template ([430c1e0](https://github.com/LabShare/ngx-forms/commit/430c1e0))
+* cleanup ([e5fed22](https://github.com/LabShare/ngx-forms/commit/e5fed22))
+
 ## [5.3.2](https://github.com/LabShare/ngx-forms/compare/v5.3.1...v5.3.2) (2019-02-25)
 
 
