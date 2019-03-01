@@ -24,13 +24,13 @@
     <div class="col-10" [formGroup]="group">
         <div *ngFor="let panel of fconfig; let i = index;">
             <ng-container *ngIf="panel.fields">
-                <ng-container [ngTemplateOutlet]="defaultTabButtons"
+                <ng-container [ngTemplateOutlet]="panelTpl"
                     [ngTemplateOutletContext]="{ group: group, panelConfig: panel, model: model, hidden: groupProps[i].hidden }">
                 </ng-container>
             </ng-container>
 
             <ng-container *ngIf="panel.panels">
-                <ng-container *ngFor="let panelConfig of panel.panels" [ngTemplateOutlet]="defaultTabButtons"
+                <ng-container *ngFor="let panelConfig of panel.panels" [ngTemplateOutlet]="panelTpl"
                     [ngTemplateOutletContext]="{ group: group, panelConfig: panelConfig, model: model, hidden: groupProps[i].hidden }">
                 </ng-container>
             </ng-container>
@@ -38,7 +38,7 @@
     </div>
 </div>
 
-<ng-template #defaultTabButtons let-group="group" let-panelConfig="panelConfig" let-model="model" let-hidden="hidden">
+<ng-template #panelTpl let-group="group" let-panelConfig="panelConfig" let-model="model" let-hidden="hidden">
     <div class="card mb-3" [formGroup]="group" [hidden]="hidden">
         <div class="card-header" *ngIf="panelConfig.label">
             {{panelConfig.label}}
