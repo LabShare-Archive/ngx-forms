@@ -298,6 +298,34 @@ describe('GroupComponent Core', () => {
 
         });
 
+        describe('next()', () => {
+            it('should select next item', () => {
+                component.next();
+                expect(component.selected).toEqual(1);
+            });
+        });
+
+        describe('prev()', () => {
+            it('should select next item', () => {
+                component.select(2);
+                component.prev();
+                expect(component.selected).toEqual(1);
+            });
+        });
+
+
+        describe('subscription()', () => {
+            it('should extract lookup', () => {
+                component.lookups = { test: [{ t: 'a' }, { t: 'b' }, { t: 'c' }] };;
+                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: { name: 'test', extract: 't' } }] }] } as FormConfig;
+                component.ngOnInit();
+                component.ngAfterViewInit();
+                component.group.patchValue({title: 'test2'});
+                expect(component.groupProps[0].valid).toBeTruthy();
+            });
+        });
+
+
     });
 
 });

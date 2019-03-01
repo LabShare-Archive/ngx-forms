@@ -3,7 +3,7 @@
     <div class="col-2">
         <ul class="list-group mb-3">
             <ng-container *ngFor="let item of fconfig; let i = index">
-                <a class="list-group-item" [class.active]='i === getSelected()' (click)="select(i)">
+                <a class="list-group-item" [class.active]='i === selected' (click)="select(i)">
                     <i class="fa fa-check-circle-o fa-2x"
                         [ngClass]=" groupProps[i].valid ? 'text-success' : 'text-secondary'"></i>
                     {{item.label}}</a>

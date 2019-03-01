@@ -109,10 +109,6 @@ export class GroupComponent extends BaseLayout implements OnInit, AfterViewInit,
         this.selected = index;
     }
 
-    public getSelected() {
-        return this.selected;
-    }
-
     public prev() {
         this.select(this.selected - 1);
     }
