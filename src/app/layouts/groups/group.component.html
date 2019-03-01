@@ -2,10 +2,10 @@
 
     <div class="col-2">
         <ul class="list-group mb-3">
-            <ng-container *ngFor="let item of formConfig.form; let i = index">
+            <ng-container *ngFor="let item of fconfig; let i = index">
                 <a class="list-group-item" [class.active]='i === getSelected()' (click)="select(i)">
                     <i class="fa fa-check-circle-o fa-2x"
-                        [ngClass]=" shown[i].valid ? 'text-success' : 'text-secondary'"></i>
+                        [ngClass]=" groupProps[i].valid ? 'text-success' : 'text-secondary'"></i>
                     {{item.label}}</a>
             </ng-container>
         </ul>
@@ -22,16 +22,16 @@
     </div>
 
     <div class="col-10" [formGroup]="group">
-        <div *ngFor="let panel of formConfig.form; let i = index;">
+        <div *ngFor="let panel of fconfig; let i = index;">
             <ng-container *ngIf="panel.fields">
                 <ng-container [ngTemplateOutlet]="defaultTabButtons"
-                    [ngTemplateOutletContext]="{ group: group, panelConfig: panel, model: model, hidden: shown[i].hidden }">
+                    [ngTemplateOutletContext]="{ group: group, panelConfig: panel, model: model, hidden: groupProps[i].hidden }">
                 </ng-container>
             </ng-container>
 
             <ng-container *ngIf="panel.panels">
                 <ng-container *ngFor="let panelConfig of panel.panels" [ngTemplateOutlet]="defaultTabButtons"
-                    [ngTemplateOutletContext]="{ group: group, panelConfig: panelConfig, model: model, hidden: shown[i].hidden }">
+                    [ngTemplateOutletContext]="{ group: group, panelConfig: panelConfig, model: model, hidden: groupProps[i].hidden }">
                 </ng-container>
             </ng-container>
         </div>
