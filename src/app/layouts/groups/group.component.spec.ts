@@ -1,7 +1,7 @@
 import { Component, NgModule } from "@angular/core";
 import { Field, FieldConfig, FieldDictionary, FIELD_DICT_TOKEN, ConditionType, LAYOUTS_TOKEN, FormConfig } from "../../../types";
 import { FormGroup, ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { ComponentFixture, TestBed, async, tick, fakeAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { CommonModule } from "@angular/common";
 import { DynamicFieldModule } from "../../dynamic-field/dynamic-field.module";
 import { DynamicFieldDirective } from "../../dynamic-field/dynamic-field.directive";
@@ -320,7 +320,7 @@ describe('GroupComponent Core', () => {
                 component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title', lookup: { name: 'test', extract: 't' } }] }] } as FormConfig;
                 component.ngOnInit();
                 component.ngAfterViewInit();
-                component.group.patchValue({title: 'test2'});
+                component.group.patchValue({ title: 'test2' });
                 expect(component.groupProps[0].valid).toBeTruthy();
             });
         });

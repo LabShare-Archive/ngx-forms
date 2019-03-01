@@ -33,8 +33,6 @@ export class GroupComponent extends BaseLayout implements OnInit, AfterViewInit,
             this.groupProps.push({ hidden: index > 0, valid: true, controls: [], fields: fields });
 
             if (group.enableWhen) {
-                // fields.forEach(f => f.disabled = false);
-
                 if (!this.checkRules(group, this.model, fields)) {
                     fields.forEach(f => f.disabled = true);
                 }
@@ -90,16 +88,13 @@ export class GroupComponent extends BaseLayout implements OnInit, AfterViewInit,
 
     ngAfterViewInit() {
         this.fconfig.forEach((group, index) => {
-            const fields = this.groupProps[index].fields;
-            this.groupProps[index].controls = fields.filter(f => f.required).map(f => this.group.get(f.name));
-
-            // if (this.groupProps[index].controls.length > 0) {
-                this.groupProps[index].controls.forEach((control: AbstractControl) => {
-                    this.subscriptions.push(control.statusChanges.subscribe(() => {
+            this.groupProps[index].fields
+                .filter((f: FieldConfig) => f.required)
+                .forEach((f: FieldConfig) => {
+                    this.subscriptions.push(this.group.get(f.name).statusChanges.subscribe(() => {
                         this.groupProps[index].valid = this.groupProps[index].controls.every((ctrl: AbstractControl) => ctrl.valid);
                     }));
                 });
-            // }
         });
     }
 
