@@ -86,10 +86,13 @@ export class GroupComponent extends BaseLayout implements OnInit, AfterViewInit,
     ngAfterViewInit() {
         this.fconfig.forEach((group, index) => {
 
-            // this has to be ran after controls are created and default values are set
             if (group.enableWhen) {
                 if (!this.checkRules(group, this.model, this.groupProps[index].fields)) {
-                    this.groupProps[index].fields.forEach(f => f.disabled = true);
+                    this.groupProps[index].fields
+                        .forEach((f: FieldConfig) => {
+                            const control = this.group.get(f.name);
+                            control.disable();
+                        });
                 }
             }
 
