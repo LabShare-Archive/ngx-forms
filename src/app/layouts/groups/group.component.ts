@@ -31,12 +31,6 @@ export class GroupComponent extends BaseLayout implements OnInit, AfterViewInit,
             }
             this.groupProps.push({ hidden: index > 0, valid: true, controls: [], fields: fields, invalids: [] });
 
-            if (group.enableWhen) {
-                if (!this.checkRules(group, this.model, fields)) {
-                    fields.forEach(f => f.disabled = true);
-                }
-            }
-
             fields.forEach((field: FieldConfig) => {
                 if (field.lookup && this.lookups) {
                     const cfg = typeof field.lookup === 'string' ? { name: field.lookup, extract: null } as ILookup : field.lookup as ILookup;
@@ -91,6 +85,14 @@ export class GroupComponent extends BaseLayout implements OnInit, AfterViewInit,
 
     ngAfterViewInit() {
         this.fconfig.forEach((group, index) => {
+
+            // this has to be ran after controls are created and default values are set
+            if (group.enableWhen) {
+                if (!this.checkRules(group, this.model, this.groupProps[index].fields)) {
+                    this.groupProps[index].fields.forEach(f => f.disabled = true);
+                }
+            }
+
             this.groupProps[index].fields
                 .filter((f: FieldConfig) => f.required)
                 .forEach((f: FieldConfig) => {
