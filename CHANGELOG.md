@@ -1,3 +1,10 @@
+## [5.3.4](https://github.com/LabShare/ngx-forms/compare/v5.3.3...v5.3.4) (2019-03-01)
+
+
+### Bug Fixes
+
+* **validation:** fixed bug when group section appeared valid PPP-276 ([3b71c3f](https://github.com/LabShare/ngx-forms/commit/3b71c3f))
+
 ## [5.3.3](https://github.com/LabShare/ngx-forms/compare/v5.3.2...v5.3.3) (2019-03-01)
 
 
