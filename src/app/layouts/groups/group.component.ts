@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import { FieldConfig, ILookup, PanelGroup, ConditionType } from '../../../types'; // todo: move specific types here
+import { FieldConfig, ILookup, ConditionType, Law } from '../../../types'; // todo: move specific types here
 import { BaseLayout } from '../base-layout';
 import { Subscription } from 'rxjs';
 import { AbstractControl } from '@angular/forms';
@@ -16,6 +16,8 @@ export class GroupComponent extends BaseLayout implements OnInit, AfterViewInit,
     public groupProps = [];
     public selected = 0;
     public fconfig = [];
+
+    private allFields = [];
 
     public ngOnInit(): void {
 
@@ -47,17 +49,14 @@ export class GroupComponent extends BaseLayout implements OnInit, AfterViewInit,
                 // }
 
             });
+
+            this.allFields = this.allFields.concat(fields);
         });
 
     }
 
-    public checkRules(groupCfg: PanelGroup, model, allFields: FieldConfig[]): boolean {
-        let enabled = true;
-        if (!groupCfg.enableWhen) { return; }
-
-        const enableWhen = groupCfg.enableWhen;
-
-        if (!enableWhen.rules.length) { return true; }
+    public checkRules(enableWhen: Law, model, allFields: FieldConfig[]): boolean {
+        if (!enableWhen || !enableWhen.rules || !enableWhen.rules.length) { return true; }
 
         const checkRule = rule => {
             let field;
@@ -67,16 +66,14 @@ export class GroupComponent extends BaseLayout implements OnInit, AfterViewInit,
         };
 
         if (enableWhen.type === ConditionType.Or || !enableWhen.type) {
-            enabled = enableWhen.rules.some(checkRule);
+            return enableWhen.rules.some(checkRule);
         }
 
         if (enableWhen.type === ConditionType.And) {
-            enabled = enableWhen.rules.every(checkRule);
+            return enableWhen.rules.every(checkRule);
         }
 
-        // leave if() conditions in case other logic operators needed (XOR, etc)
-
-        return enabled;
+        return false;
     }
 
     validateGroup(index) {
@@ -87,7 +84,7 @@ export class GroupComponent extends BaseLayout implements OnInit, AfterViewInit,
         this.fconfig.forEach((group, index) => {
 
             if (group.enableWhen) {
-                if (!this.checkRules(group, this.model, this.groupProps[index].fields)) {
+                if (!this.checkRules(group.enableWhen, this.model, this.allFields)) {
                     this.groupProps[index].fields
                         .forEach((f: FieldConfig) => {
                             const control = this.group.get(f.name);

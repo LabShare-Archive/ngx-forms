@@ -119,19 +119,12 @@ describe('GroupComponent Core', () => {
         });
 
         describe('Conditional Disabling', () => {
-
             it('should enable the fields', () => {
                 component.model = { title: 'test' };
                 component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title' }], enableWhen: { rules: [{ field: "title", equals: ["test"] }] } }] } as FormConfig;
                 component.ngOnInit();
+                component.ngAfterViewInit();
                 expect(component.fconfig[0].fields[0].disabled).toBeFalsy();
-            });
-
-            it('should disable the fields', () => {
-                component.model = { title: 'test' };
-                component.formConfig = { form: [{ fields: [{ type: 'text', name: 'title' }], enableWhen: { rules: [{ field: "title", equals: ["test1"] }] } }] } as FormConfig;
-                component.ngOnInit();
-                expect(component.fconfig[0].fields[0].disabled).toBeTruthy();
             });
         });
 
@@ -139,31 +132,31 @@ describe('GroupComponent Core', () => {
 
             it('should not run rules', () => {
                 const model = { title: 'test' };
-                const cfg = {};
-                expect(component.checkRules(cfg, model, [])).toBeUndefined();
+                const cfg = { enableWhen: { rules: [] } };
+                expect(component.checkRules(cfg.enableWhen, model, [])).toBeTruthy();
             });
 
             it('should not run rules where there are none', () => {
                 const model = { title: 'test' };
-                const cfg = { enableWhen: { rules: [] } };
+                const cfg = { rules: [] };
                 expect(component.checkRules(cfg, model, [])).toBeTruthy();
             });
 
             it('should run one rule and return true', () => {
                 const model = { title: 'test' };
-                const cfg = { enableWhen: { rules: [{ field: "title", equals: ["test"] }] } };
+                const cfg = { rules: [{ field: "title", equals: ["test"] }] };
                 expect(component.checkRules(cfg, model, [])).toBeTruthy();
             });
 
             it('should run one rule, wrap equals, and return true', () => {
                 const model = { title: 'test' };
-                const cfg = { enableWhen: { rules: [{ field: "title", equals: "test" }] } };
+                const cfg = { rules: [{ field: "title", equals: "test" }] };
                 expect(component.checkRules(cfg, model, [])).toBeTruthy();
             });
 
             it('should run one rule and return false', () => {
                 const model = { title: 'test' };
-                const cfg = { enableWhen: { rules: [{ field: "title", equals: ["test1"] }] } };
+                const cfg = { rules: [{ field: "title", equals: ["test1"] }] };
                 expect(component.checkRules(cfg, model, [])).toBeFalsy();
             });
 
@@ -174,7 +167,7 @@ describe('GroupComponent Core', () => {
                     ],
                     enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }] }
                 };
-                expect(component.checkRules(cfg, {}, cfg.fields)).toBeTruthy();
+                expect(component.checkRules(cfg.enableWhen, {}, cfg.fields)).toBeTruthy();
             });
 
             it('should check default field value and return false when rule match', () => {
@@ -184,7 +177,7 @@ describe('GroupComponent Core', () => {
                     ],
                     enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }] }
                 };
-                expect(component.checkRules(cfg, {}, cfg.fields)).toBeFalsy();
+                expect(component.checkRules(cfg.enableWhen, {}, cfg.fields)).toBeFalsy();
             });
 
             it('should check default field value and return true whrn all rules match', () => {
@@ -195,7 +188,7 @@ describe('GroupComponent Core', () => {
                     ],
                     enableWhen: { type: ConditionType.And, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
                 };
-                expect(component.checkRules(cfg, {}, cfg.fields)).toBeTruthy();
+                expect(component.checkRules(cfg.enableWhen, {}, cfg.fields)).toBeTruthy();
             });
 
             it('should check default field false when value is not found', () => {
@@ -206,25 +199,25 @@ describe('GroupComponent Core', () => {
                     ],
                     enableWhen: { type: ConditionType.And, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
                 };
-                expect(component.checkRules(cfg, {}, cfg.fields)).toBeFalsy();
+                expect(component.checkRules(cfg.enableWhen, {}, cfg.fields)).toBeFalsy();
             });
 
             it('should run multiple rules with `and` and return false when one does not match', () => {
                 const model = { title: 'test', count: 1 };
                 const cfg = { enableWhen: { type: ConditionType.And, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1123] }] } };
-                expect(component.checkRules(cfg, model, [])).toBeFalsy();
+                expect(component.checkRules(cfg.enableWhen, model, [])).toBeFalsy();
             });
 
             it('should run multiple rules with `or` and return false when none match', () => {
                 const model = { title: 'test', count: 1 };
                 const cfg = { enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test1"] }, { field: "count", equals: [1123] }] } };
-                expect(component.checkRules(cfg, model, [])).toBeFalsy();
+                expect(component.checkRules(cfg.enableWhen, model, [])).toBeFalsy();
             });
 
             it('should run multiple rules with `or` and return true when one match', () => {
                 const model = { title: 'test', count: 1 };
                 const cfg = { enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1222] }] } };
-                expect(component.checkRules(cfg, model, [])).toBeTruthy();
+                expect(component.checkRules(cfg.enableWhen, model, [])).toBeTruthy();
             });
 
             it('should check default field value and return true when one OR rules match', () => {
@@ -235,7 +228,7 @@ describe('GroupComponent Core', () => {
                     ],
                     enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
                 };
-                expect(component.checkRules(cfg, {}, cfg.fields)).toBeTruthy();
+                expect(component.checkRules(cfg.enableWhen, {}, cfg.fields)).toBeTruthy();
             });
 
             it('should check default field false when value is not found', () => {
@@ -246,7 +239,65 @@ describe('GroupComponent Core', () => {
                     ],
                     enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
                 };
-                expect(component.checkRules(cfg, {}, cfg.fields)).toBeFalsy();
+                expect(component.checkRules(cfg.enableWhen, {}, cfg.fields)).toBeFalsy();
+            });
+
+            it('should skip all rule checks', () => {
+                const cfg = {
+                    fields: [
+                        { name: "title", type: 'text' },
+                        { name: "count", type: 'text' }
+                    ],
+                    enableWhen: { type: "XOR", rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
+                };
+                expect(component.checkRules(cfg.enableWhen, {}, cfg.fields)).toBeFalsy();
+            });
+
+            it('should run rules in ngAfterViewInit', () => {
+                component.lookups = { test: [{ t: 'a' }, { t: 'b' }, { t: 'c' }] };;
+                component.formConfig = {
+                    form: [{
+                        fields: [
+                            { name: "title", type: 'text' },
+                            { name: "count", type: 'text' }
+                        ],
+                        enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
+                    }]
+                } as FormConfig;
+                component.ngOnInit();
+                component.ngAfterViewInit();
+                expect(component.group.controls.title.enabled).toBeFalsy();
+            });
+
+            it('should run rules in ngAfterViewInit and return true', () => {
+                component.lookups = { test: [{ t: 'a' }, { t: 'b' }, { t: 'c' }] };;
+                component.formConfig = {
+                    form: [{
+                        fields: [
+                            { name: "title", type: 'text', value: 'test' },
+                            { name: "count", type: 'text', value: 1 }
+                        ],
+                        enableWhen: { type: ConditionType.Or, rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
+                    }]
+                } as FormConfig;
+                component.ngOnInit();
+                component.ngAfterViewInit();
+                expect(component.group.controls.title.enabled).toBeTruthy();
+            });
+
+            it('should not run rules in ngAfterViewInit', () => {
+                component.lookups = { test: [{ t: 'a' }, { t: 'b' }, { t: 'c' }] };;
+                component.formConfig = {
+                    form: [{
+                        fields: [
+                            { name: "title", type: 'text' },
+                            { name: "count", type: 'text' }
+                        ]
+                    }]
+                } as FormConfig;
+                component.ngOnInit();
+                component.ngAfterViewInit();
+                expect(component.group.controls.title.enabled).toBeTruthy();
             });
 
         });
@@ -265,7 +316,6 @@ describe('GroupComponent Core', () => {
                 expect(component.selected).toEqual(1);
             });
         });
-
 
         describe('subscription()', () => {
             it('should extract lookup', () => {

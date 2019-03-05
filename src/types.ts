@@ -89,3 +89,8 @@ export interface FormsExtensions {
     fieldDictionary?: FieldDictionary;
     layoutDictionary?: LayoutDictionary;
 }
+
+export interface Law {
+    type?: ConditionType;
+    rules: ConditionRule[];
+}
