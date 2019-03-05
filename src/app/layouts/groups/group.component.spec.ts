@@ -250,7 +250,7 @@ describe('GroupComponent Core', () => {
                     ],
                     enableWhen: { type: "XOR", rules: [{ field: "title", equals: ["test"] }, { field: "count", equals: [1] }] }
                 };
-                expect(component.checkRules(cfg.enableWhen, {}, cfg.fields)).toBeFalsy();
+                expect(component.checkRules(cfg.enableWhen, {}, cfg.fields)).toBeTruthy();
             });
 
             it('should run rules in ngAfterViewInit', () => {

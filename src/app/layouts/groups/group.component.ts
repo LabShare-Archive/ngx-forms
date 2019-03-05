@@ -73,7 +73,7 @@ export class GroupComponent extends BaseLayout implements OnInit, AfterViewInit,
             return enableWhen.rules.every(checkRule);
         }
 
-        return false;
+        return true;
     }
 
     validateGroup(index) {
