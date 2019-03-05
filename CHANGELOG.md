@@ -1,3 +1,13 @@
+## [5.3.5](https://github.com/LabShare/ngx-forms/compare/v5.3.4...v5.3.5) (2019-03-05)
+
+
+### Bug Fixes
+
+* fix enabling/disabling based on rules ([891979d](https://github.com/LabShare/ngx-forms/commit/891979d))
+* fixed bug when some sections were disabled ([0bb76e8](https://github.com/LabShare/ngx-forms/commit/0bb76e8))
+* fixed disabling form ([c83132b](https://github.com/LabShare/ngx-forms/commit/c83132b))
+* fixed return value for groups without rules ([04aaf20](https://github.com/LabShare/ngx-forms/commit/04aaf20))
+
 ## [5.3.4](https://github.com/LabShare/ngx-forms/compare/v5.3.3...v5.3.4) (2019-03-01)
 
 
