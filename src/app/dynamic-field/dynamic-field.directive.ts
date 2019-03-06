@@ -36,7 +36,7 @@ export class DynamicFieldDirective implements Field, OnInit, OnDestroy {
     }
 
     public createControl(cfg: FieldConfig): FormControl {
-        const { disabled, required, minLength, maxLength, email, min, max, pattern, value } = cfg;
+        const { disabled, required, minLength, maxLength, email, min, max, pattern, value, requiredTrue } = cfg;
         const validators = [];
         if (required !== undefined && required) { validators.push(Validators.required); }
         if (minLength !== undefined) { validators.push(Validators.minLength(minLength)); }
@@ -45,6 +45,7 @@ export class DynamicFieldDirective implements Field, OnInit, OnDestroy {
         if (min !== undefined) { validators.push(Validators.min(min)); }
         if (max !== undefined) { validators.push(Validators.max(max)); }
         if (pattern !== undefined) { validators.push(Validators.pattern(pattern)); }
+        if (requiredTrue) { validators.push(Validators.requiredTrue); }
 
         return this.fb.control({ disabled, value }, validators);
     }

@@ -94,7 +94,7 @@ export class GroupComponent extends BaseLayout implements OnInit, AfterViewInit,
             }
 
             this.groupProps[index].fields
-                .filter((f: FieldConfig) => f.required)
+                .filter((f: FieldConfig) => f.required || f.requiredTrue)
                 .forEach((f: FieldConfig) => {
                     const control = this.group.get(f.name);
                     this.groupProps[index].controls.push(control);
