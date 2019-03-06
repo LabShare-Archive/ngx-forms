@@ -26,6 +26,7 @@ export interface FieldConfig {
     lookup?: string | ILookup; // Array of a lookup array inside lookup payload
     // lookups?: (string | ILookup)[]; // Array of a lookup array inside lookup payload
     settings?: any; // Free format object for storing custom form inputs settings
+    requiredTrue?: boolean;
 }
 
 export interface Field {
