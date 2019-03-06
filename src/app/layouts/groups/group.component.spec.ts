@@ -64,6 +64,7 @@ describe('GroupComponent Core', () => {
             form: [
                 { label: 'fields and panels', panels: [{ label: 'fields', fields: [{ type: 'text', name: 'title', required: true }] }] },
                 { label: 'fields, no panels', fields: [{ type: 'text', name: 'test', required: true }] },
+                { label: 'fields, no panels', fields: [{ type: 'text', name: 'test', requiredTrue: true }] },
                 { label: 'no fields with panels', panels: [{ label: 'no fields' }] },
                 { label: 'no fields, no panels' }
             ]
