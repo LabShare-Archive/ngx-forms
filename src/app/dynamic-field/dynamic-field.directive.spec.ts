@@ -153,7 +153,6 @@ describe('DynamicFieldDirective', () => {
             expect(vals.required).toBeTruthy();
         });
         
-
         it('should set value', () => {
             let control = dir.createControl(cfg);
             expect(control.value).toEqual(cfg.value);
