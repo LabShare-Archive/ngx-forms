@@ -1,3 +1,10 @@
+# [5.4.0](https://github.com/LabShare/ngx-forms/compare/v5.3.5...v5.4.0) (2019-03-06)
+
+
+### Features
+
+* **validation:** added checkbox true validation ([62c0e0a](https://github.com/LabShare/ngx-forms/commit/62c0e0a))
+
 ## [5.3.5](https://github.com/LabShare/ngx-forms/compare/v5.3.4...v5.3.5) (2019-03-05)
 
 
