@@ -1,3 +1,10 @@
+## [5.4.1](https://github.com/LabShare/ngx-forms/compare/v5.4.0...v5.4.1) (2019-03-07)
+
+
+### Bug Fixes
+
+* **package:** update fork-ts-checker-webpack-plugin to version 1.0.0 ([ce72477](https://github.com/LabShare/ngx-forms/commit/ce72477))
+
 # [5.4.0](https://github.com/LabShare/ngx-forms/compare/v5.3.5...v5.4.0) (2019-03-06)
 
 
