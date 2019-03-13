@@ -1,3 +1,10 @@
+## [5.4.2](https://github.com/LabShare/ngx-forms/compare/v5.4.1...v5.4.2) (2019-03-13)
+
+
+### Bug Fixes
+
+* update button labels #ppp-295 ([64764da](https://github.com/LabShare/ngx-forms/commit/64764da)), closes [#ppp-295](https://github.com/LabShare/ngx-forms/issues/ppp-295)
+
 ## [5.4.1](https://github.com/LabShare/ngx-forms/compare/v5.4.0...v5.4.1) (2019-03-07)
 
 
