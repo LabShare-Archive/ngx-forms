@@ -38,6 +38,7 @@ export class DynamicFormDirective implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
+        console.log('settings')
         if (this.readOnly) {
             this.group.disable();
         }
