@@ -1,4 +1,4 @@
-import { Input, OnInit, ComponentFactoryResolver, ViewContainerRef, Directive, Inject } from '@angular/core';
+import { Input, OnInit, ComponentFactoryResolver, ViewContainerRef, Directive, Inject, AfterViewInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout } from '../../types';
 
@@ -6,10 +6,11 @@ import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout } from '../../types
     exportAs: 'dynamicForm',
     selector: 'dynamic-form'
 })
-export class DynamicFormDirective implements OnInit {
+export class DynamicFormDirective implements OnInit, AfterViewInit {
     @Input() formConfig: FormConfig;
     @Input() model: any;
     @Input() lookups: any;
+    @Input() readOnly: boolean;
 
     public group: FormGroup;
     get changes() { return this.group.valueChanges; }
@@ -34,6 +35,12 @@ export class DynamicFormDirective implements OnInit {
         component.instance.formConfig = this.formConfig;
         component.instance.model = this.model;
         component.instance.lookups = this.lookups;
+    }
+
+    ngAfterViewInit() {
+        if (this.readOnly) {
+            this.group.disable();
+        }
     }
 
 }

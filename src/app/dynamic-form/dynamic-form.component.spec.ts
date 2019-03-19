@@ -97,6 +97,21 @@ describe('DynamicFormDirective', () => {
             expect(dir.rawValue).toEqual(dir.group.getRawValue());
         });
 
+        describe('ngAfterViewInit()', () => {
+
+            it('sets ReadOnly mode to false by default', () => {
+                dir.ngAfterViewInit();
+                expect(dir.group.disabled).toBeFalsy();
+            });
+
+            it('sets ReadOnly mode to true', () => {
+                dir.readOnly = true
+                dir.ngAfterViewInit();
+                expect(dir.group.disabled).toBeTruthy();
+            });
+    
+        });
+
     });
 
     describe('createControl()', () => {
@@ -111,14 +126,10 @@ describe('DynamicFormDirective', () => {
                 ]
             };
         });
-
-
         it('should not throw error', () => {
             expect(() => {
                 fixture.detectChanges();
             }).toThrowError()
         });
-
     });
-
 });
