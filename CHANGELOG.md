@@ -1,3 +1,15 @@
+# [5.5.0](https://github.com/LabShare/ngx-forms/compare/v5.4.2...v5.5.0) (2019-03-19)
+
+
+### Bug Fixes
+
+* removed console.log ([ec7725b](https://github.com/LabShare/ngx-forms/commit/ec7725b))
+
+
+### Features
+
+* added ReadOnly mode ([c9a4124](https://github.com/LabShare/ngx-forms/commit/c9a4124))
+
 ## [5.4.2](https://github.com/LabShare/ngx-forms/compare/v5.4.1...v5.4.2) (2019-03-13)
 
 
