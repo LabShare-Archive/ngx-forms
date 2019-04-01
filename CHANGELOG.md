@@ -1,3 +1,11 @@
+## [5.5.1](https://github.com/LabShare/ngx-forms/compare/v5.5.0...v5.5.1) (2019-04-01)
+
+
+### Bug Fixes
+
+* fixed date convertion ([c70dd96](https://github.com/LabShare/ngx-forms/commit/c70dd96))
+* fixed provider reference ([15b217f](https://github.com/LabShare/ngx-forms/commit/15b217f))
+
 # [5.5.0](https://github.com/LabShare/ngx-forms/compare/v5.4.2...v5.5.0) (2019-03-19)
 
 
