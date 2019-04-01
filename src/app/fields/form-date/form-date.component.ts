@@ -5,4 +5,4 @@ import { BaseFieldComponent } from '../base-field';
     selector: 'form-date',
     template: require('./form-date.component.html')
 })
-export class FormDateComponent extends BaseFieldComponent {}
+export class FormDateComponent extends BaseFieldComponent { }

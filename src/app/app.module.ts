@@ -8,7 +8,8 @@ import { Fields, FieldComponents } from './fields';
 import { FormLayoutsModule, defaultLayouts } from './layouts/layouts.module';
 import { DynamicFieldModule } from './dynamic-field/dynamic-field.module';
 import { QuillModule } from 'ngx-quill';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
+import { DatePickerAdapter } from './adapters/date-picker.adapter';
 
 @NgModule({
     imports: [
@@ -39,6 +40,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         {
             provide: LAYOUTS_TOKEN,
             useValue: defaultLayouts
+        },
+        {
+            provide: NgbDateAdapter,
+            useClass: DatePickerAdapter
         }
     ],
     schemas: [
