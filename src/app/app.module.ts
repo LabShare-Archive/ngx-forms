@@ -40,10 +40,6 @@ import { DatePickerAdapter } from './adapters/date-picker.adapter';
         {
             provide: LAYOUTS_TOKEN,
             useValue: defaultLayouts
-        },
-        {
-            provide: NgbDateAdapter,
-            useClass: DatePickerAdapter
         }
     ],
     schemas: [
