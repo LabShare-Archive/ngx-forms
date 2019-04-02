@@ -3,7 +3,7 @@ import { FormMultiCheckboxComponent } from './form-multicheckbox.component';
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
-describe('FormRadioComponent', () => {
+describe('FormMulticheckboxComponent', () => {
     let component: FormMultiCheckboxComponent;
     let fixture: ComponentFixture<FormMultiCheckboxComponent>;
     const formBuilder: FormBuilder = new FormBuilder();
