@@ -1,0 +1,5 @@
+<ng-container [formGroup]="group">
+    <label *ngFor="let item of field.options">
+        <input type="checkbox" [value]="item" [formControlName]="field.name">{{item}}
+    </label>
+</ng-container>
