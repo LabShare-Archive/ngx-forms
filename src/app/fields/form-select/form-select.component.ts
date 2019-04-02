@@ -7,5 +7,3 @@ import { BaseFieldComponent } from '../base-field';
 })
 export class FormSelectComponent extends BaseFieldComponent {}
 
-console.log('Linked!!!!');
-
