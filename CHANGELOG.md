@@ -1,3 +1,13 @@
+## [5.5.2](https://github.com/LabShare/ngx-forms/compare/v5.5.1...v5.5.2) (2019-04-02)
+
+
+### Bug Fixes
+
+* add multicheckbox input #ppp-375 ([eda8035](https://github.com/LabShare/ngx-forms/commit/eda8035)), closes [#ppp-375](https://github.com/LabShare/ngx-forms/issues/ppp-375)
+* lint error ([edfb28c](https://github.com/LabShare/ngx-forms/commit/edfb28c))
+* remove console log ([bce19fc](https://github.com/LabShare/ngx-forms/commit/bce19fc))
+* update test name ([15ce4ae](https://github.com/LabShare/ngx-forms/commit/15ce4ae))
+
 ## [5.5.1](https://github.com/LabShare/ngx-forms/compare/v5.5.0...v5.5.1) (2019-04-01)
 
 
