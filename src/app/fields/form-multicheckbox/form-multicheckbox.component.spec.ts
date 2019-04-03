@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormMultiCheckboxComponent } from './form-multicheckbox.component';
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
+import { MulticheckboxControlComponent } from './multicheckbox-control/multicheckbox-control.component';
 
 describe('FormMulticheckboxComponent', () => {
     let component: FormMultiCheckboxComponent;
@@ -14,7 +15,7 @@ describe('FormMulticheckboxComponent', () => {
                 FormsModule,
                 ReactiveFormsModule
             ],
-            declarations: [FormMultiCheckboxComponent],
+            declarations: [FormMultiCheckboxComponent, MulticheckboxControlComponent],
             providers: [
                 { provide: APP_BASE_HREF, useValue: '/' }
             ]
@@ -25,8 +26,14 @@ describe('FormMulticheckboxComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(FormMultiCheckboxComponent);
         component = fixture.componentInstance;
-        component.group = formBuilder.group({});
-        component.field = { "type": "text", "label": "Explain", "name": "testName", "required": true };
+        component.group = formBuilder.group({ testName: formBuilder.control('')});
+        component.field = {
+            "type": "text",
+            "label": "Explain",
+            "name": "testName",
+            "required": true,
+            "options": ['one', 'two', 'three']
+        };
 
         fixture.detectChanges();
     });

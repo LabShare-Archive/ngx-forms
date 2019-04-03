@@ -9,6 +9,7 @@ import { FormInputHiddenComponent } from './form-hidden/form-hidden.component';
 import { FormLabelComponent } from './form-label/form-label.component';
 import { FormDateComponent } from './form-date/form-date.component';
 import { FieldDictionary } from '../../types';
+import { MulticheckboxControlComponent } from './form-multicheckbox/multicheckbox-control/multicheckbox-control.component';
 
 export const Fields: FieldDictionary = {
     text: FormInputComponent,
@@ -34,4 +35,8 @@ export const FieldComponents = [
     FormCheckboxComponent,
     FormLabelComponent,
     FormDateComponent,
+];
+
+export const CustomInputs = [
+    MulticheckboxControlComponent
 ];

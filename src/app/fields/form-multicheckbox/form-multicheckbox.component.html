@@ -1,7 +1,3 @@
 <ng-container [formGroup]="group">
-    <p *ngFor="let item of field.options">
-        <label>
-            <input type="checkbox" [value]="item" [formControlName]="field.name">{{item}}
-        </label>
-    </p>
+    <multicheckbox-control [options]="field.options" [formControlName]="field.name"></multicheckbox-control>
 </ng-container>
