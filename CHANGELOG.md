@@ -1,3 +1,10 @@
+## [5.5.4](https://github.com/LabShare/ngx-forms/compare/v5.5.3...v5.5.4) (2019-04-03)
+
+
+### Bug Fixes
+
+* **multicheckbox:** fixed control ([d4760bf](https://github.com/LabShare/ngx-forms/commit/d4760bf))
+
 ## [5.5.3](https://github.com/LabShare/ngx-forms/compare/v5.5.2...v5.5.3) (2019-04-03)
 
 
