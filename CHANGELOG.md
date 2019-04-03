@@ -1,3 +1,10 @@
+## [5.5.3](https://github.com/LabShare/ngx-forms/compare/v5.5.2...v5.5.3) (2019-04-03)
+
+
+### Bug Fixes
+
+* **template:** fixed multi checkbox layout ([bd8c14e](https://github.com/LabShare/ngx-forms/commit/bd8c14e))
+
 ## [5.5.2](https://github.com/LabShare/ngx-forms/compare/v5.5.1...v5.5.2) (2019-04-02)
 
 
