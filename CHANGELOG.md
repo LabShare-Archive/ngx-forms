@@ -1,3 +1,35 @@
+## [5.5.4](https://github.com/LabShare/ngx-forms/compare/v5.5.3...v5.5.4) (2019-04-03)
+
+
+### Bug Fixes
+
+* **multicheckbox:** fixed control ([d4760bf](https://github.com/LabShare/ngx-forms/commit/d4760bf))
+
+## [5.5.3](https://github.com/LabShare/ngx-forms/compare/v5.5.2...v5.5.3) (2019-04-03)
+
+
+### Bug Fixes
+
+* **template:** fixed multi checkbox layout ([bd8c14e](https://github.com/LabShare/ngx-forms/commit/bd8c14e))
+
+## [5.5.2](https://github.com/LabShare/ngx-forms/compare/v5.5.1...v5.5.2) (2019-04-02)
+
+
+### Bug Fixes
+
+* add multicheckbox input #ppp-375 ([eda8035](https://github.com/LabShare/ngx-forms/commit/eda8035)), closes [#ppp-375](https://github.com/LabShare/ngx-forms/issues/ppp-375)
+* lint error ([edfb28c](https://github.com/LabShare/ngx-forms/commit/edfb28c))
+* remove console log ([bce19fc](https://github.com/LabShare/ngx-forms/commit/bce19fc))
+* update test name ([15ce4ae](https://github.com/LabShare/ngx-forms/commit/15ce4ae))
+
+## [5.5.1](https://github.com/LabShare/ngx-forms/compare/v5.5.0...v5.5.1) (2019-04-01)
+
+
+### Bug Fixes
+
+* fixed date convertion ([c70dd96](https://github.com/LabShare/ngx-forms/commit/c70dd96))
+* fixed provider reference ([15b217f](https://github.com/LabShare/ngx-forms/commit/15b217f))
+
 # [5.5.0](https://github.com/LabShare/ngx-forms/compare/v5.4.2...v5.5.0) (2019-03-19)
 
 

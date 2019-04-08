@@ -5,4 +5,5 @@ import { BaseFieldComponent } from '../base-field';
     selector: 'form-select',
     template: require('./form-select.component.html')
 })
-export class FormSelectComponent extends BaseFieldComponent { }
+export class FormSelectComponent extends BaseFieldComponent {}
+

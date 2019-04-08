@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DynamicFormDirective } from './dynamic-form/dynamic-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FIELD_DICT_TOKEN, LAYOUTS_TOKEN, FormsExtensions } from '../types';
-import { Fields, FieldComponents } from './fields';
+import { Fields, FieldComponents, CustomInputs } from './fields';
 import { FormLayoutsModule, defaultLayouts } from './layouts/layouts.module';
 import { DynamicFieldModule } from './dynamic-field/dynamic-field.module';
 import { QuillModule } from 'ngx-quill';
@@ -23,7 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ],
     declarations: [
         DynamicFormDirective,
-        FieldComponents
+        FieldComponents,
+        CustomInputs
     ],
     entryComponents: [
         FieldComponents
