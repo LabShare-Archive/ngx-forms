@@ -1,3 +1,10 @@
+## [5.5.6](https://github.com/LabShare/ngx-forms/compare/v5.5.5...v5.5.6) (2019-04-12)
+
+
+### Bug Fixes
+
+* fixed forced version update ([2e43cf1](https://github.com/LabShare/ngx-forms/commit/2e43cf1))
+
 ## [5.5.5](https://github.com/LabShare/ngx-forms/compare/v5.5.4...v5.5.5) (2019-04-12)
 
 
