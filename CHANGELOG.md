@@ -1,3 +1,11 @@
+## [5.5.5](https://github.com/LabShare/ngx-forms/compare/v5.5.4...v5.5.5) (2019-04-12)
+
+
+### Bug Fixes
+
+* increase input height #ppp-390 ([93c60c4](https://github.com/LabShare/ngx-forms/commit/93c60c4)), closes [#ppp-390](https://github.com/LabShare/ngx-forms/issues/ppp-390)
+* updated css ([5057a02](https://github.com/LabShare/ngx-forms/commit/5057a02))
+
 ## [5.5.4](https://github.com/LabShare/ngx-forms/compare/v5.5.3...v5.5.4) (2019-04-03)
 
 
