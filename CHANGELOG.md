@@ -1,3 +1,10 @@
+# [5.6.0](https://github.com/LabShare/ngx-forms/compare/v5.5.6...v5.6.0) (2019-04-15)
+
+
+### Features
+
+* added datepicker to readme. Bump version ([93a0358](https://github.com/LabShare/ngx-forms/commit/93a0358))
+
 ## [5.5.6](https://github.com/LabShare/ngx-forms/compare/v5.5.5...v5.5.6) (2019-04-12)
 
 
