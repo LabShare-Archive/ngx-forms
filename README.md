@@ -61,4 +61,4 @@ Name | Type | Description | Example
 - `hidden` - hidden value field `<input type="hidden">`.
 - `radio` - radio buttons
 - `checkbox` - checkbox buttons
-
+- `date` - datepicker
