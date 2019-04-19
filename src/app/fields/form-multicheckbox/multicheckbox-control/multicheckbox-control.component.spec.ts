@@ -85,10 +85,19 @@ describe('MulticheckboxControlComponent', () => {
         });
 
         it('should return errors', () => {
+            component.required = true;
             const mdl = []
             component.writeValue(mdl);
             const res = component.validate();
             expect(res.required).toBeTruthy();
+        });
+
+        it('should not return errors when component is not required', () => {
+            component.required = false;
+            const mdl = []
+            component.writeValue(mdl);
+            const res = component.validate();
+            expect(res).toBeFalsy();
         });
 
         it('should not return required error', () => {
