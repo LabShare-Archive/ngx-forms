@@ -1,3 +1,10 @@
+## [5.6.2](https://github.com/LabShare/ngx-forms/compare/v5.6.1...v5.6.2) (2019-05-01)
+
+
+### Bug Fixes
+
+* **package:** update ngx-quill to version 5.0.0 ([a2c4afe](https://github.com/LabShare/ngx-forms/commit/a2c4afe))
+
 ## [5.6.1](https://github.com/LabShare/ngx-forms/compare/v5.6.0...v5.6.1) (2019-04-19)
 
 
