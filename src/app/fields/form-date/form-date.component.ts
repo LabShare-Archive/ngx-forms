@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BaseFieldComponent } from '../base-field';
 import { NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
-import { DatePickerAdapter } from '../../adapters/date-picker.adapter';
+import { DatePickerAdapter } from './data-adapter/date-picker.adapter';
 
 @Component({
     selector: 'form-date',

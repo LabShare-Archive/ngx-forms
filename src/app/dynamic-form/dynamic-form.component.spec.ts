@@ -24,12 +24,11 @@ export class FormInputComponent implements Field {
 const defaultInputs: FieldDictionary = { text: FormInputComponent }
 const layouts = { test: LayoutComponent }
 
-@Component({ template: `<dynamic-form [formConfig]="formConfig" #form="dynamicForm" [model]="data" [lookups]="lookups"></dynamic-form>` })
+@Component({ template: `<dynamic-form [formConfig]="formConfig" #form="dynamicForm" [model]="data" ></dynamic-form>` })
 class TestComponent {
     formConfig
     data: {};
     dynamicForm: {};
-    lookups: {};
     model: any
 }
 

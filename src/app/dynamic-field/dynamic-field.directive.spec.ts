@@ -92,6 +92,12 @@ describe('DynamicFieldDirective', () => {
 
         let cfg = { name: 'test', type: 'text', disabled: true, required: true, minLength: 5, maxLength: 10, email: true, min: 1, max: 10, pattern: new RegExp('\d'), nullValidator: true, value: 5 };
 
+        it('should test', () => {
+            dir.model = { "publicationTitle": "123"}
+            dir.ngOnInit();
+            expect(dir.group.value['publicationTitle']).toEqual("123");
+        });
+
         it('shoulld test constructor', () => {
             DynamicFieldDirective.constructor();
             expect(dir).toBeTruthy();
