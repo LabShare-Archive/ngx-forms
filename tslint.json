@@ -3,7 +3,6 @@
   "rules": {
     "max-line-length": {
       "options": [300]
-    },
-    "no-unused-variable": true
+    }
   }
 }
