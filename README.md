@@ -8,10 +8,10 @@ Dynamic form generator. This module provides components that wrap angular 2+ For
 ![Alt text](/imgs/readmess.png?raw=true "Optional Title")
 
 ## Requirements
--   angular 2+
+-   angular 6+
 
 ## Installation
-`npm install`
+`npm i --save @labshare/ngx-forms`
 
 ## Linking
 `npm run build:watch`
