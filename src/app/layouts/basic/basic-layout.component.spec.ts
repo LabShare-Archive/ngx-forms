@@ -21,13 +21,12 @@ const defaultInputs: FieldDictionary = {
 }
 
 @Component({
-    template: `<dynamic-form [formConfig]="formConfig" #form="dynamicForm" [model]="data" [lookups]="lookups"></dynamic-form>`
+    template: `<dynamic-form [formConfig]="formConfig" #form="dynamicForm" [model]="data"></dynamic-form>`
 })
 class TestComponent {
     formConfig
     data: {};
     dynamicForm: {};
-    lookups: {};
 }
 
 @NgModule({

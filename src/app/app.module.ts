@@ -3,12 +3,16 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DynamicFormDirective } from './dynamic-form/dynamic-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FIELD_DICT_TOKEN, LAYOUTS_TOKEN, FormsExtensions } from '../types';
+import { FIELD_DICT_TOKEN, LAYOUTS_TOKEN, FormsExtensions, LayoutDictionary } from '../types';
 import { Fields, FieldComponents, CustomInputs } from './fields';
-import { FormLayoutsModule, defaultLayouts } from './layouts/layouts.module';
-import { DynamicFieldModule } from './dynamic-field/dynamic-field.module';
 import { QuillModule } from 'ngx-quill';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BasicLayoutComponent } from './layouts/basic/basic-layout.component';
+import { DynamicFieldDirective } from './dynamic-field/dynamic-field.directive';
+
+const defaultLayouts: LayoutDictionary = {
+    basic: BasicLayoutComponent
+};
 
 @NgModule({
     imports: [
@@ -16,20 +20,22 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         BrowserAnimationsModule,
         ReactiveFormsModule,
         FormsModule,
-        FormLayoutsModule,
-        DynamicFieldModule,
         QuillModule,
         NgbModule
     ],
     declarations: [
         DynamicFormDirective,
         FieldComponents,
-        CustomInputs
+        CustomInputs,
+        BasicLayoutComponent,
+        DynamicFieldDirective
     ],
     entryComponents: [
-        FieldComponents
+        FieldComponents,
+        BasicLayoutComponent
     ],
     exports: [
+        DynamicFieldDirective,
         DynamicFormDirective,
     ],
     providers: [
@@ -68,3 +74,4 @@ export class NgxFormModule {
 }
 
 // todo: be able to export full form with buttons, or just form as object editor
+// todo: refactor file structure, add themes and layouts

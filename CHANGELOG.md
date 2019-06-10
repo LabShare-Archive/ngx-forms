@@ -1,3 +1,15 @@
+# [7.0.0](https://github.com/LabShare/ngx-forms/compare/v6.0.0...v7.0.0) (2019-06-10)
+
+
+### Bug Fixes
+
+* readme ([d6830ff](https://github.com/LabShare/ngx-forms/commit/d6830ff))
+
+
+### BREAKING CHANGES
+
+* major update under the hood
+
 ## [5.6.2](https://github.com/LabShare/ngx-forms/compare/v5.6.1...v5.6.2) (2019-05-01)
 
 
