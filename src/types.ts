@@ -33,15 +33,14 @@ export interface FieldDictionary { [key: string]: Type<Field>; }
 
 export interface LayoutDictionary { [key: string]: Type<Layout>; }
 
-export const FIELD_DICT_TOKEN = "FIELD_DICT_TOKEN";
-export const LAYOUTS_TOKEN = "LAYOUTS_TOKEN";
+export const FIELD_DICT_TOKEN = 'FIELD_DICT_TOKEN';
+export const LAYOUTS_TOKEN = 'LAYOUTS_TOKEN';
 
 export interface Layout {
     group: FormGroup;
     formConfig: any;
     model: any;
 }
-
 
 export interface FormConfig {
     form: any;
