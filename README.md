@@ -4,24 +4,36 @@
 
 # ngx-forms
 
-Dynamic form generator. This module provides components that wrap angular 2+ FormBuilder styled with Bootstrap CSS 4
-![Alt text](/imgs/readmess.png?raw=true "Optional Title")
+Dynamic form generator, creates Angular Reactive forms from json schema
 
-## Requirements
--   angular 6+
+![Alt text](/imgs/readmess.png?raw=true "Optional Title")
 
 ## Installation
 `npm i --save @labshare/ngx-forms`
 
-## Linking
-`npm run build:watch`
-
 ## Usage
 Add html tag with bindings
-`<dynamic-form [config]="config" #form="dynamicForm" [model]="project"></dynamic-form>`
+```
+<dynamic-form [formConfig]="config" #form="dynamicForm" [model]="data"></dynamic-form>
+```
+
 - `config` - json array that contains fields definitions
 - `#form="dynamicForm"` - bind to `dynamicForm` object that has form output
 - `model` - preload data. One way binding only
+
+Add reference in the component controller 
+```
+export class MyFormComponent {
+    @ViewChild('form') public formReference: DynamicFormDirective;
+
+    public const config = [ 
+        { type: 'text', label: 'Title', name: 'title' } 
+    ];
+ 
+    public const model = { title: "Example" }
+    
+}
+```
 
 ## Config example
 ```javascript
@@ -62,3 +74,9 @@ Name | Type | Description | Example
 - `radio` - radio buttons
 - `checkbox` - checkbox buttons
 - `date` - datepicker
+
+## Linking for Development
+```
+npm run link
+npm run build:watch
+```
