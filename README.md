@@ -4,24 +4,36 @@
 
 # ngx-forms
 
-Dynamic form generator. This module provides components that wrap angular 2+ FormBuilder styled with Bootstrap CSS 4
+Dynamic form generator, creates Angular Reactive forms from json schema
+
 ![Alt text](/imgs/readmess.png?raw=true "Optional Title")
 
-## Requirements
--   angular 2+
-
 ## Installation
-`npm install`
-
-## Linking
-`npm run build:watch`
+`npm i --save @labshare/ngx-forms`
 
 ## Usage
 Add html tag with bindings
-`<dynamic-form [config]="config" #form="dynamicForm" [model]="project"></dynamic-form>`
+```
+<dynamic-form [formConfig]="config" #form="dynamicForm" [model]="data"></dynamic-form>
+```
+
 - `config` - json array that contains fields definitions
 - `#form="dynamicForm"` - bind to `dynamicForm` object that has form output
 - `model` - preload data. One way binding only
+
+Add reference in the component controller 
+```
+export class MyFormComponent {
+    @ViewChild('form') public formReference: DynamicFormDirective;
+
+    public const config = [ 
+        { type: 'text', label: 'Title', name: 'title' } 
+    ];
+ 
+    public const model = { title: "Example" }
+    
+}
+```
 
 ## Config example
 ```javascript
@@ -52,6 +64,7 @@ Name | Type | Description | Example
 `nullValidator?` | `any` | Validation: null validation | `nullValidator: true`
 `hidden` | `boolean` | hide the field by default when the form loading| `hidden: true`
 
+
 ## Field types:
 - `text` - text input `<input type="text">`
 - `select` - text unput `<select>`
@@ -60,4 +73,10 @@ Name | Type | Description | Example
 - `hidden` - hidden value field `<input type="hidden">`.
 - `radio` - radio buttons
 - `checkbox` - checkbox buttons
+- `date` - datepicker
 
+## Linking for Development
+```
+npm run link
+npm run build:watch
+```

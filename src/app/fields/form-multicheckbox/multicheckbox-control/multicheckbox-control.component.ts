@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
+import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator, FormControl, FormGroup, FormArray } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -26,6 +26,7 @@ export class MulticheckboxControlComponent implements ControlValueAccessor, Vali
     private subscriptions: Subscription[] = [];
 
     @Input() options: any[];
+    @Input() required = false;
 
     constructor() {
         this.subscriptions.push(this.localGroup.valueChanges.subscribe(value => {
@@ -74,7 +75,7 @@ export class MulticheckboxControlComponent implements ControlValueAccessor, Vali
         let valid = true;
 
         const checked = this.inputs.value.some(o => o);
-        if (!checked) {
+        if (this.required && !checked) {
             err.required = true;
             valid = false;
         }
