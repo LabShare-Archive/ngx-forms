@@ -1,3 +1,22 @@
+## [7.0.1](https://github.com/LabShare/ngx-forms/compare/v7.0.0...v7.0.1) (2019-06-13)
+
+
+### Bug Fixes
+
+* **package:** update ngx-chips to version 2.0.1 ([60f1fa0](https://github.com/LabShare/ngx-forms/commit/60f1fa0))
+
+# [7.0.0](https://github.com/LabShare/ngx-forms/compare/v6.0.0...v7.0.0) (2019-06-10)
+
+
+### Bug Fixes
+
+* readme ([d6830ff](https://github.com/LabShare/ngx-forms/commit/d6830ff))
+
+
+### BREAKING CHANGES
+
+* major update under the hood
+
 ## [5.6.2](https://github.com/LabShare/ngx-forms/compare/v5.6.1...v5.6.2) (2019-05-01)
 
 
