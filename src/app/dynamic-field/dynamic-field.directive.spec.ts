@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, FormControl, ValidationErrors } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicFieldDirective } from "./dynamic-field.directive"
 import { By } from '@angular/platform-browser';
@@ -92,6 +92,12 @@ describe('DynamicFieldDirective', () => {
 
         let cfg = { name: 'test', type: 'text', disabled: true, required: true, minLength: 5, maxLength: 10, email: true, min: 1, max: 10, pattern: new RegExp('\d'), nullValidator: true, value: 5 };
 
+        it('should test', () => {
+            dir.model = { "publicationTitle": "123"}
+            dir.ngOnInit();
+            expect(dir.group.value['publicationTitle']).toEqual("123");
+        });
+
         it('shoulld test constructor', () => {
             DynamicFieldDirective.constructor();
             expect(dir).toBeTruthy();
@@ -147,10 +153,17 @@ describe('DynamicFieldDirective', () => {
             expect(vals.max).toBeTruthy();
         });
 
+        it('should set max value validator', () => {
+            let control = dir.createControl({ name: 'test', type: 'text', max: 2, requiredTrue: true });
+            const vals: ValidationErrors = control.validator(control);
+            expect(vals.required).toBeTruthy();
+        });
+        
         it('should set value', () => {
             let control = dir.createControl(cfg);
             expect(control.value).toEqual(cfg.value);
         });
+        
 
     });
 });

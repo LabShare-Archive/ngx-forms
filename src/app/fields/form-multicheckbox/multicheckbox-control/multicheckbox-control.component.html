@@ -1,0 +1,9 @@
+<div class="row" [formGroup]="localGroup">
+    <div class="col-md-12" formArrayName="inputs">
+        <div class="row" *ngFor="let option of options; let i = index;">
+            <label class="col-md-4 checkboxy">
+                <input type="checkbox" [formControlName]="i" class="mr-3"><span>{{option}}</span>
+            </label>
+        </div>
+    </div>
+</div>

@@ -1,11 +1,5 @@
 import { FormGroup } from '@angular/forms';
 import { FieldConfig } from './types';
-import { InjectionToken } from '@angular/core';
-
-export interface ILookup {
-    name: string; // Name of lookup from lookup payload
-    extract?: string; // Extract one field from lookup item when lookup is an object
-}
 
 export interface FieldConfig {
     disabled?: boolean;
@@ -23,9 +17,8 @@ export interface FieldConfig {
     min?: number;
     max?: number;
     pattern?: RegExp;
-    lookup?: string | ILookup; // Array of a lookup array inside lookup payload
-    // lookups?: (string | ILookup)[]; // Array of a lookup array inside lookup payload
     settings?: any; // Free format object for storing custom form inputs settings
+    requiredTrue?: boolean;
 }
 
 export interface Field {
@@ -40,9 +33,8 @@ export interface FieldDictionary { [key: string]: Type<Field>; }
 
 export interface LayoutDictionary { [key: string]: Type<Layout>; }
 
-export const FIELD_DICT_TOKEN = new InjectionToken<FieldDictionary>('fields');
-
-export const LAYOUTS_TOKEN = new InjectionToken<Layout>('layouts');
+export const FIELD_DICT_TOKEN = 'FIELD_DICT_TOKEN';
+export const LAYOUTS_TOKEN = 'LAYOUTS_TOKEN';
 
 export interface Layout {
     group: FormGroup;
@@ -50,40 +42,14 @@ export interface Layout {
     model: any;
 }
 
-export const enum ConditionType {
-    And = 'and',
-    Or = 'or'
-}
-
 export interface FormConfig {
-    form: PanelGroup[];
+    form: any;
     layout: any;
-}
-
-export interface ConditionRule {
-    field: string;
-    equals: any[] | any;
-}
-
-export interface EnableWhenConfig {
-    type?: ConditionType;
-    rules: ConditionRule[];
-}
-
-export interface PanelConfig {
-    label?: string;
-    fields?: FieldConfig[];
-    enableWhen?: any;
-}
-
-export interface PanelGroup {
-    label?: string;
-    fields?: FieldConfig[];
-    panels?: PanelConfig[];
-    enableWhen?: EnableWhenConfig;
 }
 
 export interface FormsExtensions {
     fieldDictionary?: FieldDictionary;
     layoutDictionary?: LayoutDictionary;
 }
+
+

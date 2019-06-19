@@ -24,12 +24,11 @@ export class FormInputComponent implements Field {
 const defaultInputs: FieldDictionary = { text: FormInputComponent }
 const layouts = { test: LayoutComponent }
 
-@Component({ template: `<dynamic-form [formConfig]="formConfig" #form="dynamicForm" [model]="data" [lookups]="lookups"></dynamic-form>` })
+@Component({ template: `<dynamic-form [formConfig]="formConfig" #form="dynamicForm" [model]="data" ></dynamic-form>` })
 class TestComponent {
     formConfig
     data: {};
     dynamicForm: {};
-    lookups: {};
     model: any
 }
 
@@ -97,6 +96,21 @@ describe('DynamicFormDirective', () => {
             expect(dir.rawValue).toEqual(dir.group.getRawValue());
         });
 
+        describe('ngAfterViewInit()', () => {
+
+            it('sets ReadOnly mode to false by default', () => {
+                dir.ngAfterViewInit();
+                expect(dir.group.disabled).toBeFalsy();
+            });
+
+            it('sets ReadOnly mode to true', () => {
+                dir.readOnly = true
+                dir.ngAfterViewInit();
+                expect(dir.group.disabled).toBeTruthy();
+            });
+    
+        });
+
     });
 
     describe('createControl()', () => {
@@ -111,14 +125,10 @@ describe('DynamicFormDirective', () => {
                 ]
             };
         });
-
-
         it('should not throw error', () => {
             expect(() => {
                 fixture.detectChanges();
             }).toThrowError()
         });
-
     });
-
 });

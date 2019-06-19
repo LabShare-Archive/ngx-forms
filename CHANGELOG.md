@@ -1,3 +1,166 @@
+## [7.0.1](https://github.com/LabShare/ngx-forms/compare/v7.0.0...v7.0.1) (2019-06-13)
+
+
+### Bug Fixes
+
+* **package:** update ngx-chips to version 2.0.1 ([60f1fa0](https://github.com/LabShare/ngx-forms/commit/60f1fa0))
+
+# [7.0.0](https://github.com/LabShare/ngx-forms/compare/v6.0.0...v7.0.0) (2019-06-10)
+
+
+### Bug Fixes
+
+* readme ([d6830ff](https://github.com/LabShare/ngx-forms/commit/d6830ff))
+
+
+### BREAKING CHANGES
+
+* major update under the hood
+
+## [5.6.2](https://github.com/LabShare/ngx-forms/compare/v5.6.1...v5.6.2) (2019-05-01)
+
+
+### Bug Fixes
+
+* **package:** update ngx-quill to version 5.0.0 ([a2c4afe](https://github.com/LabShare/ngx-forms/commit/a2c4afe))
+
+## [5.6.1](https://github.com/LabShare/ngx-forms/compare/v5.6.0...v5.6.1) (2019-04-19)
+
+
+### Bug Fixes
+
+* fixed multicheckbox validation ([54ea4bd](https://github.com/LabShare/ngx-forms/commit/54ea4bd))
+* **template:** fixed asterix for requiredTrue ([fb7d19a](https://github.com/LabShare/ngx-forms/commit/fb7d19a))
+
+# [5.6.0](https://github.com/LabShare/ngx-forms/compare/v5.5.6...v5.6.0) (2019-04-15)
+
+
+### Features
+
+* added datepicker to readme. Bump version ([93a0358](https://github.com/LabShare/ngx-forms/commit/93a0358))
+
+## [5.5.6](https://github.com/LabShare/ngx-forms/compare/v5.5.5...v5.5.6) (2019-04-12)
+
+
+### Bug Fixes
+
+* fixed forced version update ([2e43cf1](https://github.com/LabShare/ngx-forms/commit/2e43cf1))
+
+## [5.5.5](https://github.com/LabShare/ngx-forms/compare/v5.5.4...v5.5.5) (2019-04-12)
+
+
+### Bug Fixes
+
+* increase input height #ppp-390 ([93c60c4](https://github.com/LabShare/ngx-forms/commit/93c60c4)), closes [#ppp-390](https://github.com/LabShare/ngx-forms/issues/ppp-390)
+* updated css ([5057a02](https://github.com/LabShare/ngx-forms/commit/5057a02))
+
+## [5.5.4](https://github.com/LabShare/ngx-forms/compare/v5.5.3...v5.5.4) (2019-04-03)
+
+
+### Bug Fixes
+
+* **multicheckbox:** fixed control ([d4760bf](https://github.com/LabShare/ngx-forms/commit/d4760bf))
+
+## [5.5.3](https://github.com/LabShare/ngx-forms/compare/v5.5.2...v5.5.3) (2019-04-03)
+
+
+### Bug Fixes
+
+* **template:** fixed multi checkbox layout ([bd8c14e](https://github.com/LabShare/ngx-forms/commit/bd8c14e))
+
+## [5.5.2](https://github.com/LabShare/ngx-forms/compare/v5.5.1...v5.5.2) (2019-04-02)
+
+
+### Bug Fixes
+
+* add multicheckbox input #ppp-375 ([eda8035](https://github.com/LabShare/ngx-forms/commit/eda8035)), closes [#ppp-375](https://github.com/LabShare/ngx-forms/issues/ppp-375)
+* lint error ([edfb28c](https://github.com/LabShare/ngx-forms/commit/edfb28c))
+* remove console log ([bce19fc](https://github.com/LabShare/ngx-forms/commit/bce19fc))
+* update test name ([15ce4ae](https://github.com/LabShare/ngx-forms/commit/15ce4ae))
+
+## [5.5.1](https://github.com/LabShare/ngx-forms/compare/v5.5.0...v5.5.1) (2019-04-01)
+
+
+### Bug Fixes
+
+* fixed date convertion ([c70dd96](https://github.com/LabShare/ngx-forms/commit/c70dd96))
+* fixed provider reference ([15b217f](https://github.com/LabShare/ngx-forms/commit/15b217f))
+
+# [5.5.0](https://github.com/LabShare/ngx-forms/compare/v5.4.2...v5.5.0) (2019-03-19)
+
+
+### Bug Fixes
+
+* removed console.log ([ec7725b](https://github.com/LabShare/ngx-forms/commit/ec7725b))
+
+
+### Features
+
+* added ReadOnly mode ([c9a4124](https://github.com/LabShare/ngx-forms/commit/c9a4124))
+
+## [5.4.2](https://github.com/LabShare/ngx-forms/compare/v5.4.1...v5.4.2) (2019-03-13)
+
+
+### Bug Fixes
+
+* update button labels #ppp-295 ([64764da](https://github.com/LabShare/ngx-forms/commit/64764da)), closes [#ppp-295](https://github.com/LabShare/ngx-forms/issues/ppp-295)
+
+## [5.4.1](https://github.com/LabShare/ngx-forms/compare/v5.4.0...v5.4.1) (2019-03-07)
+
+
+### Bug Fixes
+
+* **package:** update fork-ts-checker-webpack-plugin to version 1.0.0 ([ce72477](https://github.com/LabShare/ngx-forms/commit/ce72477))
+
+# [5.4.0](https://github.com/LabShare/ngx-forms/compare/v5.3.5...v5.4.0) (2019-03-06)
+
+
+### Features
+
+* **validation:** added checkbox true validation ([62c0e0a](https://github.com/LabShare/ngx-forms/commit/62c0e0a))
+
+## [5.3.5](https://github.com/LabShare/ngx-forms/compare/v5.3.4...v5.3.5) (2019-03-05)
+
+
+### Bug Fixes
+
+* fix enabling/disabling based on rules ([891979d](https://github.com/LabShare/ngx-forms/commit/891979d))
+* fixed bug when some sections were disabled ([0bb76e8](https://github.com/LabShare/ngx-forms/commit/0bb76e8))
+* fixed disabling form ([c83132b](https://github.com/LabShare/ngx-forms/commit/c83132b))
+* fixed return value for groups without rules ([04aaf20](https://github.com/LabShare/ngx-forms/commit/04aaf20))
+
+## [5.3.4](https://github.com/LabShare/ngx-forms/compare/v5.3.3...v5.3.4) (2019-03-01)
+
+
+### Bug Fixes
+
+* **validation:** fixed bug when group section appeared valid PPP-276 ([3b71c3f](https://github.com/LabShare/ngx-forms/commit/3b71c3f))
+
+## [5.3.3](https://github.com/LabShare/ngx-forms/compare/v5.3.2...v5.3.3) (2019-03-01)
+
+
+### Bug Fixes
+
+* **name:** renamed template ([430c1e0](https://github.com/LabShare/ngx-forms/commit/430c1e0))
+* cleanup ([e5fed22](https://github.com/LabShare/ngx-forms/commit/e5fed22))
+
+## [5.3.2](https://github.com/LabShare/ngx-forms/compare/v5.3.1...v5.3.2) (2019-02-25)
+
+
+### Bug Fixes
+
+* **lint:** lint fixes ([145e5e3](https://github.com/LabShare/ngx-forms/commit/145e5e3))
+* **loading:** fixed lookup loading ([54adaa9](https://github.com/LabShare/ngx-forms/commit/54adaa9))
+* **module:** added reference to bootstrap datepicker ([a4ec948](https://github.com/LabShare/ngx-forms/commit/a4ec948))
+* **type:** fixed layout type ([04011c2](https://github.com/LabShare/ngx-forms/commit/04011c2))
+
+## [5.3.1](https://github.com/LabShare/ngx-forms/compare/v5.3.0...v5.3.1) (2019-02-21)
+
+
+### Bug Fixes
+
+* change text at readme ([f5d055e](https://github.com/LabShare/ngx-forms/commit/f5d055e))
+
 # [5.3.0](https://github.com/LabShare/ngx-forms/compare/v5.2.3...v5.3.0) (2019-02-21)
 
 
