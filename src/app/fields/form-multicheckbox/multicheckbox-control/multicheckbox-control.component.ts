@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
+import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator, FormControl, FormGroup, FormArray } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
