@@ -9,7 +9,6 @@ import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout } from '../../types
 export class DynamicFormDirective implements OnInit, AfterViewInit {
     @Input() formConfig: FormConfig;
     @Input() model: any;
-    @Input() lookups: any;
     @Input() readOnly: boolean;
 
     public group: FormGroup;
@@ -34,7 +33,6 @@ export class DynamicFormDirective implements OnInit, AfterViewInit {
         component.instance.group = this.group;
         component.instance.formConfig = this.formConfig;
         component.instance.model = this.model;
-        component.instance.lookups = this.lookups;
     }
 
     ngAfterViewInit() {
