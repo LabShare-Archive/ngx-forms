@@ -1,3 +1,19 @@
+# [7.1.0](https://github.com/LabShare/ngx-forms/compare/v7.0.1...v7.1.0) (2019-06-25)
+
+
+### Bug Fixes
+
+* **pacakge:** updated all minor versions ([4858df9](https://github.com/LabShare/ngx-forms/commit/4858df9))
+* fixed multicheckbox style ([81454ff](https://github.com/LabShare/ngx-forms/commit/81454ff))
+* style of radio ([11a7345](https://github.com/LabShare/ngx-forms/commit/11a7345))
+
+
+### Features
+
+* **package:** split dev and peer deps ([5383efa](https://github.com/LabShare/ngx-forms/commit/5383efa))
+* **package:** updated angular version ([b4d53ce](https://github.com/LabShare/ngx-forms/commit/b4d53ce))
+* simple json editor ([821ef38](https://github.com/LabShare/ngx-forms/commit/821ef38))
+
 ## [7.0.1](https://github.com/LabShare/ngx-forms/compare/v7.0.0...v7.0.1) (2019-06-13)
 
 
