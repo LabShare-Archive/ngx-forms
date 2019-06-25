@@ -1,3 +1,10 @@
+## [7.1.1](https://github.com/LabShare/ngx-forms/compare/v7.1.0...v7.1.1) (2019-06-25)
+
+
+### Bug Fixes
+
+* **package:** update ngx-quill to version 6.0.0 ([7d3bc4f](https://github.com/LabShare/ngx-forms/commit/7d3bc4f))
+
 # [7.1.0](https://github.com/LabShare/ngx-forms/compare/v7.0.1...v7.1.0) (2019-06-25)
 
 
