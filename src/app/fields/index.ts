@@ -10,6 +10,8 @@ import { FormLabelComponent } from './form-label/form-label.component';
 import { FormDateComponent } from './form-date/form-date.component';
 import { FieldDictionary } from '../../types';
 import { MulticheckboxControlComponent } from './form-multicheckbox/multicheckbox-control/multicheckbox-control.component';
+import { FormJsonComponent } from './form-json/form-json.component';
+import { JsonControlValueAccessorComponent } from './form-json/json-control/json-control.component';
 
 export const Fields: FieldDictionary = {
     text: FormInputComponent,
@@ -21,7 +23,8 @@ export const Fields: FieldDictionary = {
     radio: FormRadioComponent,
     checkbox: FormCheckboxComponent,
     label: FormLabelComponent,
-    date: FormDateComponent
+    date: FormDateComponent,
+    json: FormJsonComponent
 };
 
 export const FieldComponents = [
@@ -35,8 +38,10 @@ export const FieldComponents = [
     FormCheckboxComponent,
     FormLabelComponent,
     FormDateComponent,
+    FormJsonComponent
 ];
 
 export const CustomInputs = [
-    MulticheckboxControlComponent
+    MulticheckboxControlComponent,
+    JsonControlValueAccessorComponent
 ];
