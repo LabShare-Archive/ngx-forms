@@ -11,6 +11,14 @@ Dynamic form generator, creates Angular Reactive forms from json schema
 ## Installation
 `npm i --save @labshare/ngx-forms`
 
+```
+@NgModule({
+  imports: [
+    NgxFormModule
+  ]
+})
+```
+
 ## Usage
 Add html tag with bindings
 ```
