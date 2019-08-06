@@ -76,7 +76,7 @@
     "rxjs-compat": "^6.2.0",
     "sass-loader": "7.1.0",
     "semantic-release": "^15.13.16",
-    "style-loader": "^0.23.1",
+    "style-loader": "^1.0.0",
     "ts-loader": "^4.3.0",
     "tslint-angular": "^3.0.2",
     "tslint": "^5.18.0",
