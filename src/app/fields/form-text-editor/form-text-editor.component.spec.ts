@@ -14,7 +14,7 @@ describe('FormTextEditorComponent', () => {
             imports: [
                 FormsModule,
                 ReactiveFormsModule,
-                QuillModule
+                QuillModule.forRoot()
             ],
             declarations: [FormTextEditorComponent],
             providers: [
