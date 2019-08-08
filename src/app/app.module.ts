@@ -20,7 +20,7 @@ const defaultLayouts: LayoutDictionary = {
         BrowserAnimationsModule,
         ReactiveFormsModule,
         FormsModule,
-        QuillModule,
+        QuillModule.forRoot(),
         NgbModule
     ],
     declarations: [
