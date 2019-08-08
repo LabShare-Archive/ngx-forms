@@ -1,3 +1,10 @@
+## [7.1.2](https://github.com/LabShare/ngx-forms/compare/v7.1.1...v7.1.2) (2019-08-08)
+
+
+### Bug Fixes
+
+* quill injector ([d99015c](https://github.com/LabShare/ngx-forms/commit/d99015c))
+
 ## [7.1.1](https://github.com/LabShare/ngx-forms/compare/v7.1.0...v7.1.1) (2019-06-25)
 
 
