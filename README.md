@@ -55,7 +55,7 @@ ngx-forms can be extended with custom layout or custom inputs
 
 ```typescript
 export const customFields = {
-  fieldEditor: FieldEditorComponent,
+  peoplePicker: PeoplePickerComponent,
 };
 
 export const customLayouts: LayoutDictionary = {
@@ -72,10 +72,21 @@ export const customLayouts: LayoutDictionary = {
       fieldDictionary: customFields,
     }),
   ],
-  declarations: [FieldEditorComponent],
-  entryComponents: [CustomLayoutComponent, FieldEditorComponent],
+  declarations: [PeoplePickerComponent],
+  entryComponents: [CustomLayoutComponent, PeoplePickerComponent],
 })
 export class NgxFormsExtensionsModule {}
+```
+
+then use custom fields and layouts in the form config:
+```javascript
+{  
+    layout: 'myCustomLayout',
+    fields: [ 
+        { type: 'text', label: 'Title', name: 'title' },
+        { type: 'peoplePicker', label: 'People', name: 'people' },
+    ]
+};
 ```
 
 ### Creating custom layouts
@@ -119,7 +130,7 @@ import {FieldConfig, Field} from '@labshare/ngx-forms';
   selector: 'field-editor',
   template: require('./field-editor.component.html'),
 })
-export class FieldEditorComponent implements Field {
+export class PeoplePickerComponent implements Field {
   public field: FieldConfig;
   public group: FormGroup;
 }
@@ -127,7 +138,7 @@ export class FieldEditorComponent implements Field {
 And template:
 ```html
 <ng-container [formGroup]="group">
-    <field-editor-accessor [options]="field.options" [formControlName]="field.name"></field-editor-accessor>
+    <people-picker-accessor [options]="field.options" [formControlName]="field.name"></people-picker-accessor>
 </ng-container>
 ```
 In this case `field-editor-accessor` is a custom `ControlValueAccessor`
@@ -136,7 +147,7 @@ In this case `field-editor-accessor` is a custom `ControlValueAccessor`
 It is possible to overwrite existing out of the box fields and layouts by simply using their names in the dictionary in `forRoot`. For example if you need to overwrite `text` input field:
 ```typescript
 export const customFields = {
-  text: FieldEditorComponent,
+  text: PeoplePickerComponent,
 };
 ```
 
