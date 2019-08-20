@@ -141,7 +141,7 @@ And template:
     <people-picker-accessor [options]="field.options" [formControlName]="field.name"></people-picker-accessor>
 </ng-container>
 ```
-In this case `field-editor-accessor` is a custom `ControlValueAccessor`
+In this case `people-picker-accessor` is a custom `ControlValueAccessor`
 
 ### Overwriting existing types
 It is possible to overwrite existing out of the box fields and layouts by simply using their names in the dictionary in `forRoot`. For example if you need to overwrite `text` input field:
