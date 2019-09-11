@@ -1,3 +1,21 @@
+# [8.0.0](https://github.com/LabShare/ngx-forms/compare/v7.1.2...v8.0.0) (2019-08-23)
+
+
+### Bug Fixes
+
+* fixed typo in readme ([a92ed62](https://github.com/LabShare/ngx-forms/commit/a92ed62))
+* more readme updates ([91aa563](https://github.com/LabShare/ngx-forms/commit/91aa563))
+
+
+### Features
+
+* support angular 8 viewChild ([2d2f730](https://github.com/LabShare/ngx-forms/commit/2d2f730))
+
+
+### BREAKING CHANGES
+
+* moved to angular 8 support
+
 ## [7.1.2](https://github.com/LabShare/ngx-forms/compare/v7.1.1...v7.1.2) (2019-08-08)
 
 
