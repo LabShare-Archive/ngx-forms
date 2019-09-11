@@ -9,9 +9,11 @@ Dynamic form generator, creates Angular Reactive forms from json schema
 ![Alt text](/imgs/readmess.png?raw=true "Optional Title")
 
 ## Installation
+Install Package
 `npm i --save @labshare/ngx-forms`
 
-```
+Add import to the main module
+```typescript
 import { NgxFormModule } from '@labshare/ngx-forms';
 
 @NgModule({
@@ -21,37 +23,132 @@ import { NgxFormModule } from '@labshare/ngx-forms';
 })
 ```
 
-## Usage
 Add html tag with bindings
-```
+```html
 <dynamic-form [formConfig]="config" #form="dynamicForm" [model]="data"></dynamic-form>
 ```
 
 - `config` - json array that contains fields definitions
-- `#form="dynamicForm"` - bind to `dynamicForm` object that has form output
-- `model` - preload data. One way binding only
+- `#form="dynamicForm"` - Output. Bind to `dynamicForm` object that has form output object
+- `model` - Input data. One way binding only
 
 Add reference in the component controller 
-```
+```typescript
 export class MyFormComponent {
     @ViewChild('form') public formReference: DynamicFormDirective;
 
-    public const config = [ 
-        { type: 'text', label: 'Title', name: 'title' } 
-    ];
+    public const config = {
+      layout: 'basic',
+      fields: [ 
+        { type: 'text', label: 'Title', name: 'title' },
+        { type: 'text', label: 'Project Name', name: 'projectName', placeholder: 'Enter project name', minLength: 2, maxLength: 5 },
+      ]
+    };
  
-    public const model = { title: "Example" }
+    public const model = { title: 'Example', projectName: 'Demo' }
     
 }
 ```
 
-## Config example
+## Extending form
+ngx-forms can be extended with custom layout or custom inputs
+
+```typescript
+export const customFields = {
+  peoplePicker: PeoplePickerComponent,
+};
+
+export const customLayouts: LayoutDictionary = {
+  myCustomLayout: CustomLayoutComponent,
+};
+
+@NgModule({
+  imports: [
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule,
+    NgxFormModule.forRoot({
+      layoutDictionary: customLayouts,
+      fieldDictionary: customFields,
+    }),
+  ],
+  declarations: [PeoplePickerComponent],
+  entryComponents: [CustomLayoutComponent, PeoplePickerComponent],
+})
+export class NgxFormsExtensionsModule {}
+```
+
+then use custom fields and layouts in the form config:
 ```javascript
-[
-    { type: 'hidden', name: 'id' },
-    { type: 'text', label: 'Title', name: 'title', placeholder: 'Enter project title', required: true, max: 14 },
-    { type: 'text', label: 'Name', name: 'activityName', placeholder: 'Enter project name', minLength: 2, maxLength: 5 },
-]
+{  
+    layout: 'myCustomLayout',
+    fields: [ 
+        { type: 'text', label: 'Title', name: 'title' },
+        { type: 'peoplePicker', label: 'People', name: 'people' },
+    ]
+};
+```
+
+### Creating custom layouts
+Custom layout component needs to extend `BaseLayout` from `ngx-forms`:
+```typescript
+import { Component } from '@angular/core';
+import { BaseLayout } from '@labshare/ngx-forms/src/app/layouts/base-layout';
+
+@Component({
+  selector: 'custom-forms-layout',
+  template: require('./custom-layout.component.html'),
+})
+export class CustomLayoutComponent extends BaseLayout {}
+```
+Custom layout template must have entry directive `dynamicField` through which an input will be injected:
+```html
+<div class="row">
+    <div class="col-12">
+        <div *ngFor="let field of formConfig.fields" class="mb-2">
+            <ng-container *ngIf="!field.hidden">
+                <label>{{field.label}}
+                </label>
+                <div dynamicField [field]="field" [group]="group" [model]="model"></div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+```
+### Creating custom inputs
+Inputs can be of any kind and return objects, arrays, strings etc. 
+
+Creating and field itself is not difficult but in most cases you may have to create a custom `ControlValueAccessor`
+
+Custom field must implement `Field` interface from `ngx-forms`
+```typescript
+import {Component} from '@angular/core';
+import {FormGroup} from '@angular/forms';
+import {FieldConfig, Field} from '@labshare/ngx-forms';
+
+@Component({
+  selector: 'field-editor',
+  template: require('./field-editor.component.html'),
+})
+export class PeoplePickerComponent implements Field {
+  public field: FieldConfig;
+  public group: FormGroup;
+}
+```
+And template:
+```html
+<ng-container [formGroup]="group">
+    <people-picker-accessor [options]="field.options" [formControlName]="field.name"></people-picker-accessor>
+</ng-container>
+```
+In this case `people-picker-accessor` is a custom `ControlValueAccessor`
+
+### Overwriting existing types
+It is possible to overwrite existing out of the box fields and layouts by simply using their names in the dictionary in `forRoot`. For example if you need to overwrite `text` input field:
+```typescript
+export const customFields = {
+  text: PeoplePickerComponent,
+};
 ```
 
 ## Field options and examples
@@ -75,9 +172,9 @@ Name | Type | Description | Example
 `hidden` | `boolean` | hide the field by default when the form loading| `hidden: true`
 
 
-## Field types:
+## Out of box field types:
 - `text` - text input `<input type="text">`
-- `select` - text unput `<select>`
+- `select` - text input `<select>`
 - `textarea` - text input `<textarea>`
 - `editor` - Rich text editor based on `ngx-quill`
 - `hidden` - hidden value field `<input type="hidden">`.
@@ -85,8 +182,3 @@ Name | Type | Description | Example
 - `checkbox` - checkbox buttons
 - `date` - datepicker
 
-## Linking for Development
-```
-npm run link
-npm run build:watch
-```
