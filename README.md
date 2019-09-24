@@ -37,7 +37,7 @@ Add reference in the component controller
 export class MyFormComponent {
     @ViewChild('form') public formReference: DynamicFormDirective;
 
-    public const config = {
+    public config = {
       layout: 'basic',
       fields: [ 
         { type: 'text', label: 'Title', name: 'title' },
@@ -45,7 +45,7 @@ export class MyFormComponent {
       ]
     };
  
-    public const model = { title: 'Example', projectName: 'Demo' }
+    public model = { title: 'Example', projectName: 'Demo' }
     
 }
 ```
