@@ -7,8 +7,8 @@ import { DynamicFieldDirective } from './dynamic-field/dynamic-field.directive';
 import { DefaultLayoutComponent } from './layouts/default/default-layout.component';
 import { MulticheckboxControlComponent } from './fields/multicheckbox/multicheckbox-control/multicheckbox-control.component';
 import { JsonControlValueAccessorComponent } from './fields/json/json-control/json-control.component';
-import { DefaultLayouts } from './layouts';
-import { FieldComponents, DefaultFields } from './fields';
+import { DefaultLayouts } from './layouts/layouts';
+import { FieldComponents, DefaultFields } from './fields/fields';
 
 export const CustomInputs = [
   MulticheckboxControlComponent,
