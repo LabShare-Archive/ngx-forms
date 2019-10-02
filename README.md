@@ -90,11 +90,13 @@ then use custom fields and layouts in the form config:
 ```
 
 ### Subscribing to change events
-```ngAfterViewInit() {
+```
+ngAfterViewInit() {
 		this.formReference.changes.subscribe(val => {
 			console.log('from observable', val)
 		});
-```}
+}
+```
 
 ### Creating custom layouts
 Custom layout component needs to extend `BaseLayout` from `ngx-forms`:
