@@ -92,9 +92,9 @@ then use custom fields and layouts in the form config:
 ### Subscribing to change events
 ```
 ngAfterViewInit() {
-		this.formReference.changes.subscribe(val => {
-			console.log('from observable', val)
-		});
+  this.formReference.changes.subscribe(val => {
+    console.log('from observable', val)
+  });
 }
 ```
 
