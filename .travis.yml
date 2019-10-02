@@ -32,7 +32,8 @@ jobs:
     - stage: release
       if: branch = master
       node_js: lts/*
-      script: skip
+      script:
+        - npm run build:lib
       deploy:
         provider: script
         skip_cleanup: true

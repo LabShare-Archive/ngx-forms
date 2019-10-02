@@ -20,10 +20,10 @@
     ],
     "paths": {
       "ngx-forms": [
-        "dist/ngx-forms"
+        "dist"
       ],
       "ngx-forms/*": [
-        "dist/ngx-forms/*"
+        "dist/*"
       ]
     }
   },
