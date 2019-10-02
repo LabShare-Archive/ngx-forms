@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormJsonComponent } from './json.component'
+import { JsonComponent } from './json.component'
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 import { JsonControlValueAccessorComponent } from './json-control/json-control.component'
 
 describe('FormJsonComponent', () => {
-    let component: FormJsonComponent;
-    let fixture: ComponentFixture<FormJsonComponent>;
+    let component: JsonComponent;
+    let fixture: ComponentFixture<JsonComponent>;
     const formBuilder: FormBuilder = new FormBuilder();
 
     beforeEach(async(() => {
@@ -15,7 +15,7 @@ describe('FormJsonComponent', () => {
                 FormsModule,
                 ReactiveFormsModule
             ],
-            declarations: [FormJsonComponent, JsonControlValueAccessorComponent],
+            declarations: [JsonComponent, JsonControlValueAccessorComponent],
             providers: [
                 { provide: APP_BASE_HREF, useValue: '/' }
             ]
@@ -24,7 +24,7 @@ describe('FormJsonComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(FormJsonComponent);
+        fixture = TestBed.createComponent(JsonComponent);
         component = fixture.componentInstance;
         component.group = formBuilder.group({ testName: formBuilder.control('') });
         component.field = {

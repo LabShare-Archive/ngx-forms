@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormInputHiddenComponent } from './hidden.component';
+import { InputHiddenComponent } from './hidden.component';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 import { By } from '@angular/platform-browser';
 
 describe('FormInputHiddenComponent', () => {
-    let component: FormInputHiddenComponent;
-    let fixture: ComponentFixture<FormInputHiddenComponent>;
+    let component: InputHiddenComponent;
+    let fixture: ComponentFixture<InputHiddenComponent>;
     const formBuilder: FormBuilder = new FormBuilder();
     let directiveEl;
     let value = "Some Test Value";
@@ -17,13 +17,13 @@ describe('FormInputHiddenComponent', () => {
                 FormsModule,
                 ReactiveFormsModule
             ],
-            declarations: [FormInputHiddenComponent],
+            declarations: [InputHiddenComponent],
             providers: [
                 { provide: APP_BASE_HREF, useValue: '/' }
             ]
         }).compileComponents()
             .then(() => {
-                fixture = TestBed.createComponent(FormInputHiddenComponent);
+                fixture = TestBed.createComponent(InputHiddenComponent);
                 component = fixture.componentInstance;
 
                 component.field = { type: "hidden", name: "test" };

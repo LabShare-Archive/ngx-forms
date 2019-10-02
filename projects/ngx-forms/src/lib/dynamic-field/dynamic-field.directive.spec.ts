@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, FormControl, 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DynamicFieldDirective } from "./dynamic-field.directive"
 import { By } from '@angular/platform-browser';
-import { FieldConfig, FieldDictionary, FIELD_DICT_TOKEN, Field } from "../types";
+import { FieldConfig, FieldDictionary, FIELD_DICT_TOKEN, Field } from "../common/types";
 
 @Component({
     selector: 'form-input',

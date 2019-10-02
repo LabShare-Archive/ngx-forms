@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { BaseFieldComponent } from '../base-field';
+import { BaseFieldComponent } from '../../common/base-field';
 
 @Component({
     selector: 'form-hidden',
     templateUrl: './hidden.component.html'
 })
-export class FormInputHiddenComponent extends BaseFieldComponent { }
+export class InputHiddenComponent extends BaseFieldComponent { }

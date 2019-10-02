@@ -1,6 +1,6 @@
 import { Input, OnInit, ComponentFactoryResolver, ViewContainerRef, Directive, Inject, AfterViewInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout } from '../types';
+import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout } from '../common/types';
 
 @Directive({
     exportAs: 'dynamicForm',

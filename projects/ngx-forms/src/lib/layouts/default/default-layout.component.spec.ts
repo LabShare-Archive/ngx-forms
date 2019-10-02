@@ -1,11 +1,12 @@
 import { Component, NgModule } from "@angular/core";
-import { Field, FieldConfig, FieldDictionary, FIELD_DICT_TOKEN, FormConfig } from "../../types";
+import { Field, FieldConfig, FieldDictionary, FIELD_DICT_TOKEN, FormConfig } from "../../common/types";
 import { FormGroup, ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed
+ } from "@angular/core/testing";
 import { CommonModule } from "@angular/common";
-import { DynamicFieldDirective } from "../../dynamic-field/dynamic-field.directive";
-import { BasicLayoutComponent } from './basic-layout.component';
+import { DefaultLayoutComponent } from './default-layout.component';
 import { DynamicFormDirective} from '../../dynamic-form/dynamic-form.component';
+import { DynamicFieldDirective } from '../../dynamic-field/dynamic-field.directive';
 
 @Component({
     selector: 'form-input',
@@ -32,25 +33,25 @@ class TestComponent {
 @NgModule({
     declarations: [FormInputComponent],
     imports: [FormsModule, ReactiveFormsModule, CommonModule],
-    entryComponents: [FormInputComponent, BasicLayoutComponent]
+    entryComponents: [FormInputComponent, DefaultLayoutComponent]
 })
 class TestModule { }
 
 describe('BasicLayoutComponent Core', () => {
-    let component: BasicLayoutComponent;
-    let fixture: ComponentFixture<BasicLayoutComponent>;
+    let component: DefaultLayoutComponent;
+    let fixture: ComponentFixture<DefaultLayoutComponent>;
     let model = { test: 'test', title: 'title' };
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [DynamicFieldDirective, TestComponent, BasicLayoutComponent, DynamicFormDirective],
+            declarations: [DynamicFieldDirective, TestComponent, DefaultLayoutComponent, DynamicFormDirective],
             imports: [FormsModule, ReactiveFormsModule, TestModule],
             providers: [{ provide: FIELD_DICT_TOKEN, useValue: defaultInputs }]
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(BasicLayoutComponent);
+        fixture = TestBed.createComponent(DefaultLayoutComponent);
         component = fixture.componentInstance;
         component.group = new FormGroup({})
         component.formConfig = {

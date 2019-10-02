@@ -3,6 +3,6 @@ import { BaseFieldComponent } from '../../common/base-field';
 
 @Component({
     selector: 'form-checkbox',
-    templateUrl: './checkbox.component.html'
+    templateUrl: './form-checkbox.component.html'
 })
-export class CheckboxComponent extends BaseFieldComponent {}
+export class FormCheckboxComponent extends BaseFieldComponent {}

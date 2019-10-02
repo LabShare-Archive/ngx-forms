@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { BaseFieldComponent } from '../base-field';
+import { BaseFieldComponent } from '../../common/base-field';
 
 @Component({
     selector: 'form-multicheckbox',
     templateUrl: './multicheckbox.component.html'
 })
 
-export class FormMultiCheckboxComponent extends BaseFieldComponent { }
+export class MultiCheckboxComponent extends BaseFieldComponent { }

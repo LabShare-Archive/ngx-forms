@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { BaseFieldComponent } from '../base-field';
+import { BaseFieldComponent } from '../../common/base-field';
 
 @Component({
     selector: 'form-textarea',
     templateUrl: './textarea.component.html'
 })
-export class FormTextareaComponent extends BaseFieldComponent { }
+export class TextareaComponent extends BaseFieldComponent { }

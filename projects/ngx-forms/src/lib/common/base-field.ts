@@ -1,5 +1,5 @@
 import { FormGroup } from '@angular/forms';
-import { FieldConfig, Field } from '../types';
+import { FieldConfig, Field } from './types';
 
 export class BaseFieldComponent implements Field {
     field: FieldConfig;

@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormTextareaComponent } from "./textarea.component";
+import { TextareaComponent } from "./textarea.component";
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
 describe('FormTextareaComponent', () => {
-    let component: FormTextareaComponent;
-    let fixture: ComponentFixture<FormTextareaComponent>;
+    let component: TextareaComponent;
+    let fixture: ComponentFixture<TextareaComponent>;
     const formBuilder: FormBuilder = new FormBuilder();
 
     beforeEach(async(() => {
@@ -14,7 +14,7 @@ describe('FormTextareaComponent', () => {
                 FormsModule,
                 ReactiveFormsModule
             ],
-            declarations: [FormTextareaComponent],
+            declarations: [TextareaComponent],
             providers: [
                 { provide: APP_BASE_HREF, useValue: '/' }
             ]
@@ -23,7 +23,7 @@ describe('FormTextareaComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(FormTextareaComponent);
+        fixture = TestBed.createComponent(TextareaComponent);
         component = fixture.componentInstance;
         component.field = { "type": "textarea", "label": "Explain", "name": "testName", "required": true };
         component.group = formBuilder.group({ testName: ['']});

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { BaseFieldComponent } from '../base-field';
+import { BaseFieldComponent } from '../../common/base-field';
 
 @Component({
     selector: 'form-label',
     templateUrl: './label.component.html'
 })
-export class FormLabelComponent extends BaseFieldComponent { }
+export class LabelComponent extends BaseFieldComponent { }

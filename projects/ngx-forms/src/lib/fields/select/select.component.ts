@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { BaseFieldComponent } from '../base-field';
+import { BaseFieldComponent } from '../../common/base-field';
 
 @Component({
     selector: 'form-select',
     templateUrl: './select.component.html'
 })
-export class FormSelectComponent extends BaseFieldComponent {}
+export class SelectComponent extends BaseFieldComponent {}
 

@@ -12,9 +12,15 @@ export class AppComponent {
 	public data = { title: "Test" };
 	public config = {
 		fields: [
-			{ type: "text", label: "Title", name: "title" },
-			{ type: "text", label: "Project Name", name: "projectName", placeholder: "Enter project name", minLength: 2, maxLength: 5 },
-			{ type: "select", label: "Type", name: "select", options: ["one", "two", "three"] }
+			{ type: "hidden", label: "hidden", name: "hidden", value: "hidden" },
+			{ type: "label", label: "label", name: "label", value: "value" },
+			{ type: "text", label: "text", name: "title" },
+			{ type: "textarea", label: "textarea", name: "textarea" },
+			{ type: "json", label: "json", name: "json" },
+			{ type: "select", label: "select", name: "select", options: ["one", "two", "three"] },
+			{ type: "checkbox", label: "checkbox", name: "checkbox" },
+			{ type: "radio", label: "radio", name: "radio", options: ["one", "two", "three"] },
+			{ type: "multicheckbox", label: "multicheckbox", name: "multicheckbox", options: ["one", "two", "three"] }
 		]
 	};
 

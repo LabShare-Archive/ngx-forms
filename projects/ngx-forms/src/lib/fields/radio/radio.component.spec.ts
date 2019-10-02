@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormRadioComponent } from './radio.component';
+import { RadioComponent } from './radio.component';
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
 describe('FormRadioComponent', () => {
-    let component: FormRadioComponent;
-    let fixture: ComponentFixture<FormRadioComponent>;
+    let component: RadioComponent;
+    let fixture: ComponentFixture<RadioComponent>;
     const formBuilder: FormBuilder = new FormBuilder();
 
     beforeEach(async(() => {
@@ -14,7 +14,7 @@ describe('FormRadioComponent', () => {
                 FormsModule,
                 ReactiveFormsModule
             ],
-            declarations: [FormRadioComponent],
+            declarations: [RadioComponent],
             providers: [
                 { provide: APP_BASE_HREF, useValue: '/' }
             ]
@@ -23,7 +23,7 @@ describe('FormRadioComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(FormRadioComponent);
+        fixture = TestBed.createComponent(RadioComponent);
         component = fixture.componentInstance;
         component.group = formBuilder.group({});
         component.field = { "type": "text", "label": "Explain", "name": "testName", "required": true };

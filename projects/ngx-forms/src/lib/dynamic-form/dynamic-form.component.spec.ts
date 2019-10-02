@@ -3,7 +3,7 @@ import { Component, NgModule } from "@angular/core";
 import { DynamicFormDirective } from "./dynamic-form.component";
 import { ReactiveFormsModule, FormsModule, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FieldDictionary, FIELD_DICT_TOKEN, FieldConfig, Field, LAYOUTS_TOKEN } from '../types';
+import { FieldDictionary, FIELD_DICT_TOKEN, FieldConfig, Field, LAYOUTS_TOKEN } from '../common/types';
 import { By } from '@angular/platform-browser';
 
 @Component({
