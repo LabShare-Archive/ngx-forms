@@ -1,0 +1,22 @@
+<div class="container">
+
+    <div class="py-3 text-center">
+        <h2>Demo form</h2>
+        <p class="lead">Below is an example form built using ngx-forms with Bootstrap’s theme</p>
+    </div>
+
+    <div class="card mb-3">
+        <h5 class="card-header">Example</h5>
+        <div class="card-body">
+            <dynamic-form [formConfig]="config" #form="dynamicForm" [model]="model"></dynamic-form>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <h5 class="card-header">Output</h5>
+        <div class="card-body">
+            {{ form.group.value | json }}
+        </div>
+    </div>
+
+</div>
