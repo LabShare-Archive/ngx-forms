@@ -1,3 +1,27 @@
+# [9.0.0](https://github.com/LabShare/ngx-forms/compare/v8.0.0...v9.0.0) (2019-10-02)
+
+
+### Bug Fixes
+
+* added covergae ([d3b463b](https://github.com/LabShare/ngx-forms/commit/d3b463b))
+* fixed exports ([89c6991](https://github.com/LabShare/ngx-forms/commit/89c6991))
+* lint ([36a461e](https://github.com/LabShare/ngx-forms/commit/36a461e))
+* removed editor ([fdec560](https://github.com/LabShare/ngx-forms/commit/fdec560))
+* semantic release ([cbb3d20](https://github.com/LabShare/ngx-forms/commit/cbb3d20))
+* tests ([104b2ae](https://github.com/LabShare/ngx-forms/commit/104b2ae))
+* updated travis ([fa836da](https://github.com/LabShare/ngx-forms/commit/fa836da))
+* updated travis ([6dc601c](https://github.com/LabShare/ngx-forms/commit/6dc601c))
+
+
+### Features
+
+* added semantic release script ([6560c80](https://github.com/LabShare/ngx-forms/commit/6560c80))
+
+
+### BREAKING CHANGES
+
+* Webpack replaced with ng-packagr
+
 # [8.0.0](https://github.com/LabShare/ngx-forms/compare/v7.1.2...v8.0.0) (2019-08-23)
 
 

@@ -14,11 +14,11 @@ Install Package
 
 Add import to the main module
 ```typescript
-import { NgxFormModule } from '@labshare/ngx-forms';
+import { NgxFormsModule } from '@labshare/ngx-forms';
 
 @NgModule({
   imports: [
-    NgxFormModule
+    NgxFormsModule
   ]
 })
 ```
@@ -26,6 +26,7 @@ import { NgxFormModule } from '@labshare/ngx-forms';
 Add html tag with bindings
 ```html
 <dynamic-form [formConfig]="config" #form="dynamicForm" [model]="data"></dynamic-form>
+{{ form.group.value | json }}
 ```
 - `config` - json array that contains fields definitions
 - `model` - Input data. One way binding only
@@ -62,7 +63,7 @@ export const customLayouts: LayoutDictionary = {
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    NgxFormModule.forRoot({
+    NgxFormsModule.forRoot({
       layoutDictionary: customLayouts,
       fieldDictionary: customFields,
     }),
