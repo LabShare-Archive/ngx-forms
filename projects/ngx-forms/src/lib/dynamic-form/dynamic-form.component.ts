@@ -1,6 +1,6 @@
 import { Input, OnInit, ComponentFactoryResolver, ViewContainerRef, Directive, Inject, AfterViewInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout } from '../common/types';
+import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout, DEFAULT_LAYOUT } from '../common/types';
 
 @Directive({
     exportAs: 'dynamicForm',
@@ -28,7 +28,7 @@ export class DynamicFormDirective implements OnInit, AfterViewInit {
 
     public ngOnInit(): void {
         if (this.container.length) { return }
-        if (!this.formConfig.layout) { this.formConfig.layout = "default" }
+        if (!this.formConfig.layout) { this.formConfig.layout = DEFAULT_LAYOUT }
         if (!this.layouts[this.formConfig.layout]) { throw new Error(`Layout with name "${this.formConfig.layout}" was not found`); }
 
         const componentReference = this.layouts[this.formConfig.layout];

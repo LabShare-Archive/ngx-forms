@@ -3,7 +3,7 @@ import { Component, NgModule } from "@angular/core";
 import { DynamicFormDirective } from "./dynamic-form.component";
 import { ReactiveFormsModule, FormsModule, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FieldDictionary, FIELD_DICT_TOKEN, FieldConfig, Field, LAYOUTS_TOKEN } from '../common/types';
+import { FieldDictionary, FIELD_DICT_TOKEN, FieldConfig, Field, LAYOUTS_TOKEN, DEFAULT_LAYOUT } from '../common/types';
 import { By } from '@angular/platform-browser';
 
 @Component({
@@ -22,7 +22,7 @@ export class FormInputComponent implements Field {
 }
 
 const defaultInputs: FieldDictionary = { text: FormInputComponent }
-const layouts = { test: LayoutComponent }
+const layouts = { test: LayoutComponent, default: LayoutComponent }
 
 @Component({ template: `<dynamic-form [formConfig]="formConfig" #form="dynamicForm" [model]="data" ></dynamic-form>` })
 class TestComponent {
@@ -96,6 +96,19 @@ describe('DynamicFormDirective', () => {
             expect(dir.rawValue).toEqual(dir.group.getRawValue());
         });
 
+        it('should choose default layout', () => {
+            component.formConfig = {
+                form: [
+                    { label: 'fields and panels', fields: [{ label: 'fields', fields: [{ type: 'text', name: 'title', required: true }] }] },
+                ]
+            };
+            fixture.detectChanges();
+            dir.ngOnInit();
+            expect(dir.formConfig.layout).toEqual(DEFAULT_LAYOUT);
+        });
+
+
+
         describe('ngAfterViewInit()', () => {
 
             it('sets ReadOnly mode to false by default', () => {
@@ -114,8 +127,6 @@ describe('DynamicFormDirective', () => {
     });
 
     describe('createControl()', () => {
-        let dir: DynamicFormDirective;
-        let directiveEl;
 
         beforeEach(() => {
             component.formConfig = {

@@ -53,4 +53,4 @@ export interface FormsExtensions {
     layoutDictionary?: LayoutDictionary;
 }
 
-
+export const DEFAULT_LAYOUT = "default";
