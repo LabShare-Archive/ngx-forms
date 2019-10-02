@@ -79,7 +79,6 @@ describe('DynamicFormDirective', () => {
             dir = directiveEl.injector.get(DynamicFormDirective);
         });
 
-
         it('should call changes()', () => {
             expect(dir.changes).toEqual(dir.group.valueChanges);
         });
@@ -106,8 +105,6 @@ describe('DynamicFormDirective', () => {
             dir.ngOnInit();
             expect(dir.formConfig.layout).toEqual(DEFAULT_LAYOUT);
         });
-
-
 
         describe('ngAfterViewInit()', () => {
 
