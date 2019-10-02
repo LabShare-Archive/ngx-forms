@@ -180,9 +180,7 @@ Name | Type | Description | Example
 - `text` - text input `<input type="text">`
 - `select` - text input `<select>`
 - `textarea` - text input `<textarea>`
-- `editor` - Rich text editor based on `ngx-quill`
 - `hidden` - hidden value field `<input type="hidden">`.
 - `radio` - radio buttons
 - `checkbox` - checkbox buttons
 - `date` - datepicker
-

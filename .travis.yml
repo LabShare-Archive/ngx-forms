@@ -14,9 +14,9 @@ before_install:
 install:
   - npm i -g lsc codecov
   - npm install
-  - npm run build
+  - ng build
 script:
-  - npm run lint
+  - ng lint
   - xvfb-run npm run coverage
   - codecov
 cache:
@@ -32,7 +32,8 @@ jobs:
     - stage: release
       if: branch = master
       node_js: lts/*
-      script: skip
+      script:
+        - npm run build:lib
       deploy:
         provider: script
         skip_cleanup: true
