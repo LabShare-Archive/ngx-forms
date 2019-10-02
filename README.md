@@ -14,11 +14,11 @@ Install Package
 
 Add import to the main module
 ```typescript
-import { NgxFormModule } from '@labshare/ngx-forms';
+import { NgxFormsModule } from '@labshare/ngx-forms';
 
 @NgModule({
   imports: [
-    NgxFormModule
+    NgxFormsModule
   ]
 })
 ```
@@ -62,7 +62,7 @@ export const customLayouts: LayoutDictionary = {
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    NgxFormModule.forRoot({
+    NgxFormsModule.forRoot({
       layoutDictionary: customLayouts,
       fieldDictionary: customFields,
     }),
