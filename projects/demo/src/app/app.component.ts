@@ -8,45 +8,20 @@ import { DynamicFormDirective } from 'projects/ngx-forms/src/lib/dynamic-form/dy
 })
 export class AppComponent {
 	@ViewChild('form', { static: false }) public formReference: DynamicFormDirective;
-	@ViewChild('form2', { static: false }) public formReference2: DynamicFormDirective;
-	public output = {};
 
-	public exampleConfig = {
-		"fields": [
-			{
-				"type": "text",
-				"label": "Title",
-				"name": "title"
-			},
-			{
-				"type": "text",
-				"label": "Project Name",
-				"name": "projectName",
-				"placeholder": "Enter project name",
-				"minLength": 2,
-				"maxLength": 5
-			}
-		]
-	};
-
+	public data = { title: "Test" };
 	public config = {
 		fields: [
-			{ type: 'json', label: 'Config', name: 'json' },
+			{ type: "text", label: "Title", name: "title" },
+			{ type: "text", label: "Project Name", name: "projectName", placeholder: "Enter project name", minLength: 2, maxLength: 5 },
+			{ type: "select", label: "Type", name: "select", options: ["one", "two", "three"] }
 		]
 	};
-	public config2 = this.exampleConfig;
-
-	public model = { json: this.exampleConfig }
 
 	ngAfterViewInit() {
 		this.formReference.changes.subscribe(val => {
-			this.config2 = val.json;
-		})
-
-		this.formReference2.changes.subscribe(val => {
-			this.output = val;
-		})
+			console.log('from observable', val)
+		});
 	}
-
 
 }
