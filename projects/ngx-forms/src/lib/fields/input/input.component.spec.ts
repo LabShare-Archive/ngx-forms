@@ -1,14 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormCheckboxComponent as Type} from './form-checkbox.component';
+import { FormInputComponent as Type} from './input.component';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 import { By } from '@angular/platform-browser';
 
-describe('FormCheckboxComponent', () => {
+describe('FormInputComponent', () => {
     let component: Type;
     let fixture: ComponentFixture<Type>;
     let directiveEl;
-    let value = true;
+    let value = "Some Test Value";
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -42,8 +42,8 @@ describe('FormCheckboxComponent', () => {
     });
 
     it('ensures component is rendered', () => {
-        let inputs = fixture.debugElement.queryAll(By.css('input'));
-        expect(inputs.length).toBeGreaterThan(0);
+        directiveEl = fixture.debugElement.query(By.css('input'));
+        expect(directiveEl.nativeElement.value).toEqual(value);
     });
 
 });

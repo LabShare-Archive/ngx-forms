@@ -3,6 +3,6 @@ import { BaseFieldComponent } from '../base-field';
 
 @Component({
     selector: 'form-label',
-    templateUrl: './form-label.component.html'
+    templateUrl: './label.component.html'
 })
 export class FormLabelComponent extends BaseFieldComponent { }

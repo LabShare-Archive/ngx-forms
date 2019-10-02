@@ -3,7 +3,7 @@ import { BaseFieldComponent } from '../base-field';
 
 @Component({
     selector: 'form-input',
-    templateUrl: './form-input.component.html'
+    templateUrl: './input.component.html'
 })
 export class FormInputComponent extends BaseFieldComponent {
 }

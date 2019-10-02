@@ -3,7 +3,7 @@ import { BaseFieldComponent } from '../base-field';
 
 @Component({
     selector: 'form-radio',
-    templateUrl: './form-radio.component.html'
+    templateUrl: './radio.component.html'
 })
 
 export class FormRadioComponent extends BaseFieldComponent { }

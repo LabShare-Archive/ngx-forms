@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormInputHiddenComponent } from './form-hidden.component';
+import { FormInputHiddenComponent } from './hidden.component';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 import { By } from '@angular/platform-browser';

@@ -3,6 +3,6 @@ import { BaseFieldComponent } from '../base-field';
 
 @Component({
     selector: 'form-hidden',
-    templateUrl: './form-hidden.component.html'
+    templateUrl: './hidden.component.html'
 })
 export class FormInputHiddenComponent extends BaseFieldComponent { }

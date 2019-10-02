@@ -1,12 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormMultiCheckboxComponent } from './form-multicheckbox.component';
+import { FormRadioComponent } from './radio.component';
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
-import { MulticheckboxControlComponent } from './multicheckbox-control/multicheckbox-control.component';
 
-describe('FormMulticheckboxComponent', () => {
-    let component: FormMultiCheckboxComponent;
-    let fixture: ComponentFixture<FormMultiCheckboxComponent>;
+describe('FormRadioComponent', () => {
+    let component: FormRadioComponent;
+    let fixture: ComponentFixture<FormRadioComponent>;
     const formBuilder: FormBuilder = new FormBuilder();
 
     beforeEach(async(() => {
@@ -15,7 +14,7 @@ describe('FormMulticheckboxComponent', () => {
                 FormsModule,
                 ReactiveFormsModule
             ],
-            declarations: [FormMultiCheckboxComponent, MulticheckboxControlComponent],
+            declarations: [FormRadioComponent],
             providers: [
                 { provide: APP_BASE_HREF, useValue: '/' }
             ]
@@ -24,16 +23,10 @@ describe('FormMulticheckboxComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(FormMultiCheckboxComponent);
+        fixture = TestBed.createComponent(FormRadioComponent);
         component = fixture.componentInstance;
-        component.group = formBuilder.group({ testName: formBuilder.control('')});
-        component.field = {
-            "type": "text",
-            "label": "Explain",
-            "name": "testName",
-            "required": true,
-            "options": ['one', 'two', 'three']
-        };
+        component.group = formBuilder.group({});
+        component.field = { "type": "text", "label": "Explain", "name": "testName", "required": true };
 
         fixture.detectChanges();
     });
