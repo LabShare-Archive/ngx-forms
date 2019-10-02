@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { JsonComponent } from './json.component'
+import { JsonComponent } from './json.component';
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
-import { JsonControlValueAccessorComponent } from './json-control/json-control.component'
+import { JsonControlValueAccessorComponent } from './json-control/json-control.component';
 
 describe('FormJsonComponent', () => {
     let component: JsonComponent;
@@ -28,10 +28,10 @@ describe('FormJsonComponent', () => {
         component = fixture.componentInstance;
         component.group = formBuilder.group({ testName: formBuilder.control('') });
         component.field = {
-            "type": "text",
-            "label": "Explain",
-            "name": "testName",
-            "required": true
+            type: 'text',
+            label: 'Explain',
+            name: 'testName',
+            required: true
         };
 
         fixture.detectChanges();

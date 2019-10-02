@@ -39,7 +39,7 @@ describe('MulticheckboxControlComponent', () => {
         });
 
         it('should not set value', () => {
-            const val = component.textarea.nativeElement.value
+            const val = component.textarea.nativeElement.value;
             component.writeValue(null);
             expect(component.textarea.nativeElement.value).toEqual(val);
         });
@@ -92,14 +92,14 @@ describe('MulticheckboxControlComponent', () => {
 
         it('should not return errors when component is not required', () => {
             component.required = false;
-            const mdl = []
+            const mdl = [];
             component.writeValue(mdl);
             const res = component.validate();
             expect(res).toBeFalsy();
         });
 
         it('should not return required error', () => {
-            const mdl = ['one']
+            const mdl = ['one'];
 
             component.writeValue(mdl);
             const res = component.validate();
@@ -110,14 +110,14 @@ describe('MulticheckboxControlComponent', () => {
     describe('onChange()', () => {
         it('should update value', () => {
             spyOn(component, 'onModelChange');
-            component.onChange("{}");
+            component.onChange('{}');
             expect(component.valid).toBeTruthy();
             expect(component.onModelChange).toHaveBeenCalledWith({});
         });
 
         it('should not update value when input is invalid', () => {
             spyOn(component, 'onModelChange');
-            component.onChange("{1111}");
+            component.onChange('{1111}');
             expect(component.valid).toBeFalsy();
             expect(component.onModelChange).not.toHaveBeenCalled();
         });

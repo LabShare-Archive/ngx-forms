@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, NgModule } from "@angular/core";
-import { DynamicFormDirective } from "./dynamic-form.component";
+import { Component, NgModule } from '@angular/core';
+import { DynamicFormDirective } from './dynamic-form.component';
 import { ReactiveFormsModule, FormsModule, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FieldDictionary, FIELD_DICT_TOKEN, FieldConfig, Field, LAYOUTS_TOKEN, DEFAULT_LAYOUT } from '../common/types';
@@ -21,15 +21,15 @@ export class FormInputComponent implements Field {
     group: FormGroup;
 }
 
-const defaultInputs: FieldDictionary = { text: FormInputComponent }
-const layouts = { test: LayoutComponent, default: LayoutComponent }
+const defaultInputs: FieldDictionary = { text: FormInputComponent };
+const layouts = { test: LayoutComponent, default: LayoutComponent };
 
 @Component({ template: `<dynamic-form [formConfig]="formConfig" #form="dynamicForm" [model]="data" ></dynamic-form>` })
 class TestComponent {
-    formConfig
+    formConfig;
     data: {};
     dynamicForm: {};
-    model: any
+    model: any;
 }
 
 @NgModule({
@@ -42,7 +42,7 @@ class TestModule { }
 describe('DynamicFormDirective', () => {
     let component: TestComponent;
     let fixture: ComponentFixture<TestComponent>;
-    let model = { test: 'test', title: 'title' };
+    const model = { test: 'test', title: 'title' };
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -114,11 +114,11 @@ describe('DynamicFormDirective', () => {
             });
 
             it('sets ReadOnly mode to true', () => {
-                dir.readOnly = true
+                dir.readOnly = true;
                 dir.ngAfterViewInit();
                 expect(dir.group.disabled).toBeTruthy();
             });
-    
+
         });
 
     });
@@ -136,7 +136,7 @@ describe('DynamicFormDirective', () => {
         it('should not throw error', () => {
             expect(() => {
                 fixture.detectChanges();
-            }).toThrowError()
+            }).toThrowError();
         });
     });
 });

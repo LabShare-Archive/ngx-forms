@@ -8,7 +8,7 @@ describe('FormCheckboxComponent', () => {
     let component: Type;
     let fixture: ComponentFixture<Type>;
     let directiveEl;
-    let value = true;
+    const value = true;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -25,7 +25,7 @@ describe('FormCheckboxComponent', () => {
                 fixture = TestBed.createComponent(Type);
                 component = fixture.componentInstance;
 
-                component.field = { type: "text", name: "test", required: true };
+                component.field = { type: 'text', name: 'test', required: true };
                 component.group = new FormGroup({
                     test: new FormControl('')
                 });
@@ -42,7 +42,7 @@ describe('FormCheckboxComponent', () => {
     });
 
     it('ensures component is rendered', () => {
-        let inputs = fixture.debugElement.queryAll(By.css('input'));
+        const inputs = fixture.debugElement.queryAll(By.css('input'));
         expect(inputs.length).toBeGreaterThan(0);
     });
 

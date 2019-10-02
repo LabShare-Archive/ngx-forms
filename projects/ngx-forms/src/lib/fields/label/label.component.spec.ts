@@ -9,7 +9,7 @@ describe('FormInputHiddenComponent', () => {
     let fixture: ComponentFixture<Type>;
     const formBuilder: FormBuilder = new FormBuilder();
     let directiveEl;
-    const value = "Test Value"
+    const value = 'Test Value';
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -26,7 +26,7 @@ describe('FormInputHiddenComponent', () => {
                 fixture = TestBed.createComponent(Type);
                 component = fixture.componentInstance;
 
-                component.field = { type: "label", name: "test" };
+                component.field = { type: 'label', name: 'test' };
                 component.group = new FormGroup({
                     test: new FormControl('')
                 });

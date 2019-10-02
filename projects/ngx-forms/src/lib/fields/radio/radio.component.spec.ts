@@ -26,7 +26,7 @@ describe('FormRadioComponent', () => {
         fixture = TestBed.createComponent(RadioComponent);
         component = fixture.componentInstance;
         component.group = formBuilder.group({});
-        component.field = { "type": "text", "label": "Explain", "name": "testName", "required": true };
+        component.field = { type: 'text', label: 'Explain', name: 'testName', required: true };
 
         fixture.detectChanges();
     });

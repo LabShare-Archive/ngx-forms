@@ -36,7 +36,7 @@ describe('MulticheckboxControlComponent', () => {
     describe('writeValue()', () => {
         it('should set value', () => {
             component.writeValue(model);
-            expect(component.inputs.value).toEqual([true,false,true])
+            expect(component.inputs.value).toEqual([true, false, true]);
         });
 
         it('should not set value', () => {
@@ -86,7 +86,7 @@ describe('MulticheckboxControlComponent', () => {
 
         it('should return errors', () => {
             component.required = true;
-            const mdl = []
+            const mdl = [];
             component.writeValue(mdl);
             const res = component.validate();
             expect(res.required).toBeTruthy();
@@ -94,14 +94,14 @@ describe('MulticheckboxControlComponent', () => {
 
         it('should not return errors when component is not required', () => {
             component.required = false;
-            const mdl = []
+            const mdl = [];
             component.writeValue(mdl);
             const res = component.validate();
             expect(res).toBeFalsy();
         });
 
         it('should not return required error', () => {
-            const mdl = ['one']
+            const mdl = ['one'];
 
             component.writeValue(mdl);
             const res = component.validate();

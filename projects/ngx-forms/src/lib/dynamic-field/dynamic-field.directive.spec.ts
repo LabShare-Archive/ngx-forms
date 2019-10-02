@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, FormControl, ValidationErrors } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DynamicFieldDirective } from "./dynamic-field.directive"
+import { DynamicFieldDirective } from './dynamic-field.directive';
 import { By } from '@angular/platform-browser';
-import { FieldConfig, FieldDictionary, FIELD_DICT_TOKEN, Field } from "../common/types";
+import { FieldConfig, FieldDictionary, FIELD_DICT_TOKEN, Field } from '../common/types';
 
 @Component({
     selector: 'form-input',
@@ -18,7 +18,7 @@ export class FormInputComponent implements Field {
 
 const defaultInputs: FieldDictionary = {
     text: FormInputComponent,
-}
+};
 
 @Component({
     template: `<form [formGroup]="form"><div dynamicField [field]="field" [group]="form"></div></form>`
@@ -53,7 +53,7 @@ describe('DynamicFieldDirective', () => {
 
         fixture = TestBed.createComponent(TestComponent);
         component = fixture.componentInstance;
-        component.field = { "type": "text", "label": "Title", "name": "publicationTitle", "placeholder": "Please enter", "required": true };
+        component.field = { type: 'text', label: 'Title', name: 'publicationTitle', placeholder: 'Please enter', required: true };
         component.form = formBuilder.group({
             publicationTitle: new FormControl('test')
         });
@@ -70,14 +70,14 @@ describe('DynamicFieldDirective', () => {
     it('throws error when put incorrect type', () => {
         fixtureError = TestBed.createComponent(TestComponent);
         componentError = fixtureError.componentInstance;
-        componentError.field = { "type": "text2", "label": "Title", "name": "publicationTitle", "placeholder": "Please enter", "required": true };
+        componentError.field = { type: 'text2', label: 'Title', name: 'publicationTitle', placeholder: 'Please enter', required: true };
         componentError.form = formBuilder.group({
             publicationTitle: new FormControl('test')
         });
 
         expect(() => {
             fixtureError.detectChanges();
-        }).toThrowError()
+        }).toThrowError();
 
     });
 
@@ -90,12 +90,12 @@ describe('DynamicFieldDirective', () => {
             dir = directiveEl.injector.get(DynamicFieldDirective);
         });
 
-        let cfg = { name: 'test', type: 'text', disabled: true, required: true, minLength: 5, maxLength: 10, email: true, min: 1, max: 10, pattern: new RegExp('\d'), nullValidator: true, value: 5 };
+        const cfg = { name: 'test', type: 'text', disabled: true, required: true, minLength: 5, maxLength: 10, email: true, min: 1, max: 10, pattern: new RegExp('\d'), nullValidator: true, value: 5 };
 
         it('should test', () => {
-            dir.model = { "publicationTitle": "123"}
+            dir.model = { publicationTitle: '123'};
             dir.ngOnInit();
-            expect(dir.group.value['publicationTitle']).toEqual("123");
+            expect(dir.group.value.publicationTitle).toEqual('123');
         });
 
         it('shoulld test constructor', () => {
@@ -112,58 +112,58 @@ describe('DynamicFieldDirective', () => {
         });
 
         it('should set pattern validator', () => {
-            let control = dir.createControl({ name: 'test', type: 'text', pattern: new RegExp('\d'), value: 5 });
+            const control = dir.createControl({ name: 'test', type: 'text', pattern: new RegExp('\d'), value: 5 });
             const vals = control.validator(control);
             expect(vals.pattern).toBeTruthy();
         });
 
         it('should set email validator', () => {
-            let control = dir.createControl({ name: 'test', type: 'text', email: true, value: 5 });
+            const control = dir.createControl({ name: 'test', type: 'text', email: true, value: 5 });
             const vals = control.validator(control);
             expect(vals.email).toBeTruthy();
         });
 
         it('should set min length validator', () => {
-            let control = dir.createControl({ name: 'test', type: 'text', minLength: 5, maxLength: 10, value: 'test' });
+            const control = dir.createControl({ name: 'test', type: 'text', minLength: 5, maxLength: 10, value: 'test' });
             const vals = control.validator(control);
             expect(vals.minlength).toBeTruthy();
         });
 
         it('should set max length validator', () => {
-            let control = dir.createControl({ name: 'test', type: 'text', maxLength: 2, value: 'test' });
+            const control = dir.createControl({ name: 'test', type: 'text', maxLength: 2, value: 'test' });
             const vals = control.validator(control);
             expect(vals.maxlength).toBeTruthy();
         });
 
         it('should set required validator', () => {
-            let control = dir.createControl({ name: 'test', type: 'text', required: true, value: '' });
+            const control = dir.createControl({ name: 'test', type: 'text', required: true, value: '' });
             const vals = control.validator(control);
             expect(vals.required).toBeTruthy();
         });
 
         it('should set min value validator', () => {
-            let control = dir.createControl({ name: 'test', type: 'text', min: 2, value: 1 });
+            const control = dir.createControl({ name: 'test', type: 'text', min: 2, value: 1 });
             const vals = control.validator(control);
             expect(vals.min).toBeTruthy();
         });
 
         it('should set max value validator', () => {
-            let control = dir.createControl({ name: 'test', type: 'text', max: 2, value: 22 });
+            const control = dir.createControl({ name: 'test', type: 'text', max: 2, value: 22 });
             const vals = control.validator(control);
             expect(vals.max).toBeTruthy();
         });
 
         it('should set max value validator', () => {
-            let control = dir.createControl({ name: 'test', type: 'text', max: 2, requiredTrue: true });
+            const control = dir.createControl({ name: 'test', type: 'text', max: 2, requiredTrue: true });
             const vals: ValidationErrors = control.validator(control);
             expect(vals.required).toBeTruthy();
         });
-        
+
         it('should set value', () => {
-            let control = dir.createControl(cfg);
+            const control = dir.createControl(cfg);
             expect(control.value).toEqual(cfg.value);
         });
-        
+
 
     });
 });
@@ -181,12 +181,12 @@ describe('TestNoGroup', () => {
     });
 
     it('should throw error', () => {
-        expect(() => { fixtureError.detectChanges(); }).toThrowError()
+        expect(() => { fixtureError.detectChanges(); }).toThrowError();
     });
 });
 
 describe('TestNoInput', () => {
-    @Component({ template: `<div dynamicField [group]="form"></div>` }) class TestNoInput { form: any };
+    @Component({ template: `<div dynamicField [group]="form"></div>` }) class TestNoInput { form: any; }
     let fixtureError: ComponentFixture<TestNoInput>;
     let component: TestNoInput;
     let fixture: ComponentFixture<TestNoInput>;
@@ -206,7 +206,7 @@ describe('TestNoInput', () => {
     });
 
     it('should throw error', () => {
-        expect(() => { fixtureError.detectChanges(); }).toThrowError("Cannot read property 'detectChanges' of undefined")
+        expect(() => { fixtureError.detectChanges(); }).toThrowError('Cannot read property \'detectChanges\' of undefined');
     });
 
 });

@@ -24,7 +24,7 @@ export interface FieldConfig {
 export interface Field {
     field: FieldConfig;
     group: FormGroup;
-    model?: Object;
+    model?: object;
 }
 
 export type Type<T> = new (...args: any[]) => T;
@@ -53,4 +53,4 @@ export interface FormsExtensions {
     layoutDictionary?: LayoutDictionary;
 }
 
-export const DEFAULT_LAYOUT = "default";
+export const DEFAULT_LAYOUT = 'default';

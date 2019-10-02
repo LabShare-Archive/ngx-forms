@@ -8,7 +8,7 @@ describe('FormInputComponent', () => {
     let component: Type;
     let fixture: ComponentFixture<Type>;
     let directiveEl;
-    let value = "Some Test Value";
+    const value = 'Some Test Value';
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -25,7 +25,7 @@ describe('FormInputComponent', () => {
                 fixture = TestBed.createComponent(Type);
                 component = fixture.componentInstance;
 
-                component.field = { type: "text", name: "test", required: true };
+                component.field = { type: 'text', name: 'test', required: true };
                 component.group = new FormGroup({
                     test: new FormControl('')
                 });

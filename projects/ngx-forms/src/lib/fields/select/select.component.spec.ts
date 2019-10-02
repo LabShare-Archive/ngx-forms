@@ -8,7 +8,7 @@ describe('FormSelectComponent', () => {
     let component: Type;
     let fixture: ComponentFixture<Type>;
     let directiveEl;
-    let value = "c";
+    const value = 'c';
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -25,7 +25,7 @@ describe('FormSelectComponent', () => {
                 fixture = TestBed.createComponent(Type);
                 component = fixture.componentInstance;
 
-                component.field = { type: "select", name: "test", required: true, options: ['a', 'b', 'c'] };
+                component.field = { type: 'select', name: 'test', required: true, options: ['a', 'b', 'c'] };
                 component.group = new FormGroup({
                     test: new FormControl('')
                 });

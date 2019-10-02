@@ -10,25 +10,25 @@ import { LabelComponent } from './label/label.component';
 import { FieldDictionary } from '../common/types';
 
 export const DefaultFields: FieldDictionary = {
-	text: InputComponent,
-	select: SelectComponent,
-	multicheckbox: MultiCheckboxComponent,
-	textarea: TextareaComponent,
-	hidden: InputHiddenComponent,
-	radio: RadioComponent,
-	checkbox: CheckboxComponent,
-	label: LabelComponent,
-	json: JsonComponent
+  text: InputComponent,
+  select: SelectComponent,
+  multicheckbox: MultiCheckboxComponent,
+  textarea: TextareaComponent,
+  hidden: InputHiddenComponent,
+  radio: RadioComponent,
+  checkbox: CheckboxComponent,
+  label: LabelComponent,
+  json: JsonComponent
 };
 
 export const FieldComponents = [
-	InputComponent,
-	SelectComponent,
-	MultiCheckboxComponent,
-	TextareaComponent,
-	InputHiddenComponent,
-	RadioComponent,
-	CheckboxComponent,
-	LabelComponent,
-	JsonComponent
+  InputComponent,
+  SelectComponent,
+  MultiCheckboxComponent,
+  TextareaComponent,
+  InputHiddenComponent,
+  RadioComponent,
+  CheckboxComponent,
+  LabelComponent,
+  JsonComponent
 ];

@@ -1,4 +1,4 @@
-import { Input, OnInit, ComponentFactoryResolver, ViewContainerRef, Directive, Inject, AfterViewInit } from '@angular/core';
+import { Input, OnInit, ComponentFactoryResolver, ViewContainerRef, Directive, Inject, AfterViewInit, OnChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout, DEFAULT_LAYOUT } from '../common/types';
 
@@ -6,7 +6,7 @@ import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout, DEFAULT_LAYOUT } f
     exportAs: 'dynamicForm',
     selector: 'dynamic-form'
 })
-export class DynamicFormDirective implements OnInit, AfterViewInit {
+export class DynamicFormDirective implements OnInit, AfterViewInit, OnChanges {
     @Input() formConfig: FormConfig;
     @Input() model: any;
     @Input() readOnly: boolean;
@@ -27,8 +27,8 @@ export class DynamicFormDirective implements OnInit, AfterViewInit {
     }
 
     public ngOnInit(): void {
-        if (this.container.length) { return }
-        if (!this.formConfig.layout) { this.formConfig.layout = DEFAULT_LAYOUT }
+        if (this.container.length) { return; }
+        if (!this.formConfig.layout) { this.formConfig.layout = DEFAULT_LAYOUT; }
         if (!this.layouts[this.formConfig.layout]) { throw new Error(`Layout with name "${this.formConfig.layout}" was not found`); }
 
         const componentReference = this.layouts[this.formConfig.layout];
@@ -37,7 +37,7 @@ export class DynamicFormDirective implements OnInit, AfterViewInit {
         component.instance.group = this.group;
         component.instance.formConfig = this.formConfig;
         component.instance.model = this.model;
-        this.comp= component;
+        this.comp = component;
     }
 
     ngAfterViewInit() {

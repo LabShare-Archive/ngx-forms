@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { TextareaComponent } from "./textarea.component";
+import { TextareaComponent } from './textarea.component';
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 
@@ -25,7 +25,7 @@ describe('FormTextareaComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(TextareaComponent);
         component = fixture.componentInstance;
-        component.field = { "type": "textarea", "label": "Explain", "name": "testName", "required": true };
+        component.field = { type: 'textarea', label: 'Explain', name: 'testName', required: true };
         component.group = formBuilder.group({ testName: ['']});
 
         fixture.detectChanges();

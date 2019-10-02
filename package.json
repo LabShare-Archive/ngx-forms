@@ -7,6 +7,7 @@
     "build": "ng build",
     "test": "ng test --watch=false",
     "lint": "ng lint",
+    "lint:fix": "tslint --fix -p tsconfig.json -c tslint.json",
     "e2e": "ng e2e"
   },
   "dependencies": {

@@ -28,11 +28,11 @@ describe('FormMulticheckboxComponent', () => {
         component = fixture.componentInstance;
         component.group = formBuilder.group({ testName: formBuilder.control('')});
         component.field = {
-            "type": "text",
-            "label": "Explain",
-            "name": "testName",
-            "required": true,
-            "options": ['one', 'two', 'three']
+            type: 'text',
+            label: 'Explain',
+            name: 'testName',
+            required: true,
+            options: ['one', 'two', 'three']
         };
 
         fixture.detectChanges();
