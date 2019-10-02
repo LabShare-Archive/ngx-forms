@@ -27,25 +27,20 @@ Add html tag with bindings
 ```html
 <dynamic-form [formConfig]="config" #form="dynamicForm" [model]="data"></dynamic-form>
 ```
-
 - `config` - json array that contains fields definitions
-- `#form="dynamicForm"` - Output. Bind to `dynamicForm` object that has form output object
 - `model` - Input data. One way binding only
 
 Add reference in the component controller 
 ```typescript
 export class MyFormComponent {
-    @ViewChild('form') public formReference: DynamicFormDirective;
-
-    public config = {
-      layout: 'basic',
-      fields: [ 
-        { type: 'text', label: 'Title', name: 'title' },
-        { type: 'text', label: 'Project Name', name: 'projectName', placeholder: 'Enter project name', minLength: 2, maxLength: 5 },
-      ]
-    };
- 
-    public model = { title: 'Example', projectName: 'Demo' }
+	public data = { title: "Test" };
+	public config = {
+		fields: [
+			{ type: "text", label: "Title", name: "title" },
+			{ type: "text", label: "Project Name", name: "projectName", placeholder: "Enter project name", minLength: 2, maxLength: 5 },
+			{ type: "select", label: "Type", name: "select", options: ["one", "two", "three"] }
+		]
+	};
     
 }
 ```
