@@ -6,17 +6,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FIELD_DICT_TOKEN, LAYOUTS_TOKEN, FormsExtensions, LayoutDictionary, FieldDictionary } from './types';
 import { DynamicFieldDirective } from './dynamic-field/dynamic-field.directive';
 import { BasicLayoutComponent } from './layouts/default/basic-layout.component';
-import { FormInputComponent } from './fields/form-input/form-input.component';
-import { FormSelectComponent } from './fields/form-select/form-select.component';
-import { FormCheckboxComponent } from './fields/form-checkbox/form-checkbox.component';
-import { FormMultiCheckboxComponent } from './fields/form-multicheckbox/form-multicheckbox.component';
-import { FormRadioComponent } from './fields/form-radio/form-radio.component';
-import { FormTextareaComponent } from './fields/form-textarea/form-textarea.component';
-import { FormInputHiddenComponent } from './fields/form-hidden/form-hidden.component';
-import { FormLabelComponent } from './fields/form-label/form-label.component';
-import { MulticheckboxControlComponent } from './fields/form-multicheckbox/multicheckbox-control/multicheckbox-control.component';
-import { FormJsonComponent } from './fields/form-json/form-json.component';
-import { JsonControlValueAccessorComponent } from './fields/form-json/json-control/json-control.component';
+import { FormInputComponent } from './fields/input/form-input.component';
+import { FormSelectComponent } from './fields/select/form-select.component';
+import { FormCheckboxComponent } from './fields/checkbox/form-checkbox.component';
+import { FormMultiCheckboxComponent } from './fields/multicheckbox/form-multicheckbox.component';
+import { FormRadioComponent } from './fields/radio/form-radio.component';
+import { FormTextareaComponent } from './fields/textarea/form-textarea.component';
+import { FormInputHiddenComponent } from './fields/hidden/form-hidden.component';
+import { FormLabelComponent } from './fields/label/form-label.component';
+import { MulticheckboxControlComponent } from './fields/multicheckbox/multicheckbox-control/multicheckbox-control.component';
+import { FormJsonComponent } from './fields/json/form-json.component';
+import { JsonControlValueAccessorComponent } from './fields/json/json-control/json-control.component';
 
 export const Fields: FieldDictionary = {
   text: FormInputComponent,
