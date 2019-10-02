@@ -14,9 +14,9 @@ before_install:
 install:
   - npm i -g lsc codecov
   - npm install
-  - npm run build
+  - ng build
 script:
-  - npm run lint
+  - ng lint
   - xvfb-run npm run coverage
   - codecov
 cache:
