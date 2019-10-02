@@ -1,3 +1,41 @@
-<dynamic-form [formConfig]="config" #form="dynamicForm" [model]="data"></dynamic-form>
+<div class="container">
 
-{{ form.group.value | json }}
+    <div class="py-5 text-center">
+        <h2>Demo form</h2>
+        <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form
+            group has a validation state that can be triggered by attempting to submit the form without completing
+            it.</p>
+    </div>
+
+
+    <div class="card mb-3">
+        <h5 class="card-header">Config Editor</h5>
+        <div class="card-body">
+            <dynamic-form [formConfig]="config" #form="dynamicForm" [model]="model"></dynamic-form>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+            <h5 class="card-header">Result 1st Output</h5>
+            <div class="card-body">
+                {{ form.group.value | json }}
+            </div>
+        </div>
+
+    <div class="card mb-3">
+        <h5 class="card-header">Result Form</h5>
+        <div class="card-body">
+            <dynamic-form [formConfig]="config2" #form2="dynamicForm" [model]="model2"></dynamic-form>
+            <div #form2></div>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <h5 class="card-header">Result Form Output</h5>
+        <div class="card-body">
+            {{ output | json }}
+        </div>
+    </div>
+
+
+</div>

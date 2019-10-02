@@ -50,7 +50,7 @@ export const CustomInputs = [
 
 
 const defaultLayouts: LayoutDictionary = {
-  basic: BasicLayoutComponent
+  default: BasicLayoutComponent
 };
 
 @NgModule({

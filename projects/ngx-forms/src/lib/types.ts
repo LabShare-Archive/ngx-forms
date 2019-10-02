@@ -43,8 +43,7 @@ export interface Layout {
 }
 
 export interface FormConfig {
-    form: any;
-    layout: any;
+    layout?: any;
     title?: string;
     fields?: FieldConfig[];
 }

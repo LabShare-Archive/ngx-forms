@@ -16,7 +16,7 @@ export class JsonControlValueAccessorComponent implements ControlValueAccessor {
     public disabled = false;
     public valid = true;
 
-    @ViewChild('textarea', { static: false }) textarea: ElementRef;
+    @ViewChild('textarea', { static: true }) textarea: ElementRef;
     @Input() required = false;
     onModelChange = (model: any) => { };
     onModelTouched = (model: any) => { };

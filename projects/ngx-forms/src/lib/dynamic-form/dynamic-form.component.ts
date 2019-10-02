@@ -1,4 +1,4 @@
-import { Input, OnInit, ComponentFactoryResolver, ViewContainerRef, Directive, Inject, AfterViewInit } from '@angular/core';
+import { Input, OnInit, ComponentFactoryResolver, ViewContainerRef, Directive, Inject, AfterViewInit, Type } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout } from '../types';
 
@@ -17,6 +17,8 @@ export class DynamicFormDirective implements OnInit, AfterViewInit {
     get value() { return this.group.value; }
     get rawValue() { return this.group.getRawValue(); }
 
+    private comp;
+
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
         private container: ViewContainerRef,
@@ -25,6 +27,8 @@ export class DynamicFormDirective implements OnInit, AfterViewInit {
     }
 
     public ngOnInit(): void {
+        if (this.container.length) { return }
+        if (!this.formConfig.layout) { this.formConfig.layout = "default" }
         if (!this.layouts[this.formConfig.layout]) { throw new Error(`Layout with name "${this.formConfig.layout}" was not found`); }
 
         const componentReference = this.layouts[this.formConfig.layout];
@@ -33,12 +37,26 @@ export class DynamicFormDirective implements OnInit, AfterViewInit {
         component.instance.group = this.group;
         component.instance.formConfig = this.formConfig;
         component.instance.model = this.model;
+        this.comp= component;
     }
 
     ngAfterViewInit() {
         if (this.readOnly) {
             this.group.disable();
         }
+    }
+
+    removeComponent() {
+        if (this.comp) {
+            this.container.remove(this.container.indexOf(this.comp));
+            this.comp = undefined;
+        }
+    }
+
+
+    ngOnChanges() {
+        this.removeComponent();
+        this.ngOnInit();
     }
 
 }

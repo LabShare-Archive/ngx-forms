@@ -63,6 +63,7 @@
               "projects/demo/src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "projects/demo/src/styles.scss"
             ],
             "scripts": []
@@ -117,6 +118,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "@labshare/ngx-forms"
 }
