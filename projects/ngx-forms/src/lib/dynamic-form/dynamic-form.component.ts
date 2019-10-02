@@ -1,4 +1,4 @@
-import { Input, OnInit, ComponentFactoryResolver, ViewContainerRef, Directive, Inject, AfterViewInit, Type } from '@angular/core';
+import { Input, OnInit, ComponentFactoryResolver, ViewContainerRef, Directive, Inject, AfterViewInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormConfig, LayoutDictionary, LAYOUTS_TOKEN, Layout } from '../types';
 
@@ -52,7 +52,6 @@ export class DynamicFormDirective implements OnInit, AfterViewInit {
             this.comp = undefined;
         }
     }
-
 
     ngOnChanges() {
         this.removeComponent();

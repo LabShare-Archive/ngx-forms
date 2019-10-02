@@ -1,7 +1,7 @@
 import { Component, NgModule } from "@angular/core";
 import { Field, FieldConfig, FieldDictionary, FIELD_DICT_TOKEN, FormConfig } from "../../types";
 import { FormGroup, ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { ComponentFixture, TestBed, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { CommonModule } from "@angular/common";
 import { DynamicFieldDirective } from "../../dynamic-field/dynamic-field.directive";
 import { BasicLayoutComponent } from './basic-layout.component';

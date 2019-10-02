@@ -5,8 +5,7 @@ import { DynamicFormDirective } from './dynamic-form/dynamic-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FIELD_DICT_TOKEN, LAYOUTS_TOKEN, FormsExtensions, LayoutDictionary, FieldDictionary } from './types';
 import { DynamicFieldDirective } from './dynamic-field/dynamic-field.directive';
-import { BasicLayoutComponent } from './layouts/basic/basic-layout.component';
-
+import { BasicLayoutComponent } from './layouts/default/basic-layout.component';
 import { FormInputComponent } from './fields/form-input/form-input.component';
 import { FormSelectComponent } from './fields/form-select/form-select.component';
 import { FormCheckboxComponent } from './fields/form-checkbox/form-checkbox.component';
@@ -47,7 +46,6 @@ export const CustomInputs = [
   MulticheckboxControlComponent,
   JsonControlValueAccessorComponent
 ];
-
 
 const defaultLayouts: LayoutDictionary = {
   default: BasicLayoutComponent
