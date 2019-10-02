@@ -26,6 +26,7 @@ import { NgxFormsModule } from '@labshare/ngx-forms';
 Add html tag with bindings
 ```html
 <dynamic-form [formConfig]="config" #form="dynamicForm" [model]="data"></dynamic-form>
+{{ form.group.value | json }}
 ```
 - `config` - json array that contains fields definitions
 - `model` - Input data. One way binding only
