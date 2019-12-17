@@ -36,7 +36,7 @@
     "@labshare/semantic-release-config": "^1.1.1",
     "@types/jasmine": "~3.4.3",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "~12.7.10",
+    "@types/node": "~12.12.20",
     "codelyzer": "^5.0.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
