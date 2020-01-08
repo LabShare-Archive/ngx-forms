@@ -3,7 +3,7 @@
 # These owners will be the default owners for everything in
 # the repo, unless a match on a later line takes precedence.
 # "@MyOrganization/MyTeam" below requests review from all members of MyTeam.
-*       @LabShare/core-reviewers
+*       @LabShare/code-reviewers
 
 # It's also possible to add notifications based on language
 # or location in repo, etc.
