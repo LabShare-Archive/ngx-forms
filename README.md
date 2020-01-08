@@ -185,3 +185,4 @@ Name | Type | Description | Example
 - `radio` - radio buttons
 - `checkbox` - checkbox buttons
 - `date` - datepicker
+  
