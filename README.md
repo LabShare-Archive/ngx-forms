@@ -6,8 +6,6 @@
 
 Dynamic form generator, creates Angular Reactive forms from json schema
 
-![Alt text](/imgs/readmess.png?raw=true "Optional Title")
-
 ## Installation
 Install Package
 `npm i --save @labshare/ngx-forms`
