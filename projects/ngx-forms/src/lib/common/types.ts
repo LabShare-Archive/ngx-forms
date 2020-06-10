@@ -1,5 +1,4 @@
 import { FormGroup } from '@angular/forms';
-import { FieldConfig } from './types';
 
 export interface FieldConfig {
     disabled?: boolean;
