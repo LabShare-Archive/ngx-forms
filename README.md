@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/LabShare/ngx-forms.svg?token=zsifsALL6Np5avzzjVp1&branch=master)](https://travis-ci.com/LabShare/ngx-forms)
 
 # ngx-forms
-
+This should not be used any where but we are prefering to use ngx-formerly.
 Dynamic form generator, creates Angular Reactive forms from json schema
 
 ![Alt text](/imgs/readmess.png?raw=true "Optional Title")
